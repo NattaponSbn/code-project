@@ -1,0 +1,18 @@
+curl -XPUT http://localhost:9200/test -d '{
+  "settings":{
+    "analysis":{
+      "analyzer":{
+        "default":{
+          "type":"custom",
+          "tokenizer":"standard",
+          "filters":[ "standard","thai","lowercase", "stop", "kstem" ]
+        }
+      }
+    },
+    "filter": {
+      "thai": {
+        "type": "org.apache.lucene.analysis.th.ThaiWordFilterFactory"
+      }
+    }
+  }
+}’

@@ -1,0 +1,258 @@
+html {
+    background-image: url("img/background-body-addproject-3.jpg");
+}
+
+.body1 {
+    background-image: url("img/background-body-addproject-3.jpg");
+}
+
+.textadd {
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 18px;
+    color: black;
+}
+
+.border1 {
+    padding-top: 8px;
+    border: 1px solid #D9A327;
+    margin-left: 30px;
+    margin-right: 1285px;
+    
+}
+
+.tile {
+    /* background-color: #7CE1B5; */
+    background-image: url("img/background-body-addproject-2.jpg");
+}
+
+.step {
+    height: 50px;
+    width: 50px;
+    margin: 0 10px;
+    margin-right: 10px;
+    background-color: #b150c7;
+    border: none;
+    border-radius: 50%;
+    display: inline-block;
+    opacity: 0.5;
+    float: center;
+}
+
+.font {
+    text-align: center;
+    font-size: 18px;
+    padding-top: 10px;
+    color: #fff;
+}
+
+.btnp {
+    background-color: #FFCC66;
+}
+
+.btnn {
+    background-color: #00CCFF;
+}
+
+.btnnn {
+    margin-top: 20px;
+    margin-left: 278px;
+}
+
+input {
+    padding: 5px;
+    width: 30%;
+    font-size: 17px;
+    font-family: Raleway;
+    border: 1px solid #aaaaaa;
+}
+
+
+/* Mark input boxes that gets an error on validation: */
+
+input.invalid {
+    background-color: #ffdddd;
+    border: 1px solid red;
+}
+
+select {
+    padding: 5px;
+    width: 30%;
+    font-size: 17px;
+    font-family: Raleway;
+    border: 1px solid #aaaaaa;
+}
+
+select.invalid {
+    background-color: #ffdddd;
+    border: 1px solid red;
+}
+
+
+/* Hide all steps by default: */
+
+.tab {
+    display: none;
+}
+
+button {
+    background-color: #4CAF50;
+    color: #ffffff;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 20%;
+    font-size: 17px;
+    font-family: Raleway;
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+#prevBtn {
+    background-color: #bbbbbb;
+}
+
+.step.active {
+    opacity: 1;
+}
+
+
+/* Mark the steps that are finished and valid: */
+
+.step.finish {
+    background-color: #37b848;
+}
+
+
+/* set label */
+
+label {
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+.imgup {
+    background-color: #4CAF50;
+    width: 100px;
+    height: 100px;
+}
+
+.drop-zone {
+    max-width: 200px;
+    height: 200px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family: "Quicksand", sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    cursor: pointer;
+    color: #cccccc;
+    border: 4px dashed #009578;
+    border-radius: 5px;
+}
+
+.drop-zone--over {
+    border-style: solid;
+}
+
+.drop-zone__input {
+    display: none;
+}
+
+.drop-zone__thumb {
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    overflow: hidden;
+    background-color: #cccccc;
+    background-size: cover;
+    position: relative;
+}
+
+.drop-zone__thumb::after {
+    content: attr(data-label);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 5px 0;
+    color: #ffffff;
+    background: rgba(0, 0, 0, 0.75);
+    font-size: 14px;
+    text-align: center;
+}
+
+.drop-zone-img {
+    max-width: 500px;
+    height: 300px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family: "Quicksand", sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    cursor: pointer;
+    color: #cccccc;
+    border: 4px dashed #009578;
+    border-radius: 5px;
+}
+
+.drop-zone-img--over {
+    border-style: solid;
+}
+
+.drop-zone-img__input {
+    display: none;
+}
+
+.drop-zone-img__thumb {
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    overflow: hidden;
+    background-color: #cccccc;
+    background-size: cover;
+    position: relative;
+}
+
+.img-back {
+    opacity: 0.5;
+    /* width: 100%;
+    height: 100%; */
+    max-width: 500px;
+    height: 300px;
+    border-radius: 5px;
+    background-size: cover;
+    position: relative;
+}
+
+.img-logo {
+    opacity: 0.5;
+    /* width: 100%;
+    height: 100%; */
+    max-width: 200px;
+    height: 200px;
+    border-radius: 5px;
+    background-size: cover;
+    position: relative;
+}
+
+.drop-zone-img__thumb::after {
+    content: attr(data-label);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 5px 0;
+    color: #ffffff;
+    background: rgba(0, 0, 0, 0.75);
+    font-size: 14px;
+    text-align: center;
+}
