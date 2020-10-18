@@ -482,6 +482,7 @@
             font-family: 'Athiti', sans-serif;
             font-weight: 600;
         }
+        
         .sidenav a, .dropdown-btn ,.dropdown-btn2,.dropdown-btn3{
             padding: 6px 8px 6px 16px;
             text-decoration: none;
@@ -519,16 +520,36 @@
 
         /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
         .dropdown-container {
-            display: none;
+            display: block;
             background-color: #262626;
             padding-left: 8px;
-            
         }
 
         /* Optional: Style the caret down icon */
         .fa-caret-down {
             float: right;
             padding-right: 8px;
+        }
+
+        .breadcrumb-detail {
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+            padding: .75rem 1rem;
+            margin-bottom: 1rem;
+            list-style: none;
+            border-radius: .25rem;
+        }
+
+        a:active{
+            color: #7B68EE;
+            text-decoration: underline;
+        }
+
+        a:hover{
+            color: #0099FF;
+            text-decoration: underline;
         }
 
         .breadcrumb-detail {
@@ -578,6 +599,23 @@
                     <li class="active3 menulink fontlink"><a href="#">เกี่ยวกับ</a></li>
                     <li class="active4 menulink fontlink"><a href="#">ติดต่อ</a></li>
                 </nav>
+                <li style="margin-left: -10%;margin-right: 2%;">
+                    <div class="links front" style="font-size: 20px;">
+                        @if(!isset($_SESSION['status']) == 'userM' & !isset($_SESSION['statusA']) == 'admin')
+
+                        @elseif (isset($_SESSION['status']) == 'user')
+                            @if(!isset($_SESSION['project']))
+                            <a href="addproject" class="view"><i class="far fa-plus-square fa-lg i-hover" title="สร้างผลงงานคุณ"></i></a><br>
+                            @elseif(isset($_SESSION['project']))
+                            <a href="listdetil" class="view"><i class="fas fa-book fa-lg i-hover" title="ผลงงานคุณ"></i></a><br>
+                            @endif
+                        @elseif (isset($_SESSION['statusA']) == 'admin')
+                        <div class="links front">
+                            <a href="homeadmin" class="view">กลับสู่หน้าผู้ดูเเลระบบ</a><br>
+                        </div>
+                        @endif
+                    </div>
+                </li>
                 <div class="navbar-dark layoutaccout" style="margin-right: 50px;">
                     <ul class="navbar-nav ml-auto ml-md-0">
                         <?php
@@ -595,7 +633,7 @@
                                                     <div class="card-header" style="margin-right:-15%;">{{ __('เข้าสู่ระบบ') }}</div>
                                                 </h3>
                                                 <div class="" style="font-family: 'Athiti', sans-serif;font-size: 16px;">
-                                                    <form method="POST" action="loginBD">
+                                                    <form method="POST" action="{{url ('loginBD')}}">
                                                         @csrf
 
                                                         <div class="form-group row">
@@ -700,12 +738,19 @@
                                                 </div>
                                             </div>
 
-                                            <a href="profile" class="top dropdown-item"><i class="zmdi zmdi-account"></i>โปรไฟล์</a>
+                                            <a href="profile" class="top dropdown-item"><i class="fas fa-user" style="margin-right: 2%;"></i>โปรไฟล์</a>
+                                            <div class="top dropdown-item" >
+                                                @if(!isset($_SESSION['project']))
+                                                <a href="addproject" class="view" style="color: black;text-decoration: none;"><i class="far fa-plus-square" style="margin-right: 2%;"></i>สร้างผลงาน</a><br>
+                                                @elseif(isset($_SESSION['project']))
+                                                <a href="listdetil" class="view" style="color: black;text-decoration: none;"><i class="fas fa-book" style="margin-right: 2%;"></i>ผลงานของฉัน</a><br>
+                                                @endif
+                                            </div>
                                             <a class="dropdown-item" href="logout" onclick="event.preventDefault();
-                                                                    document.getElementById('logout-form').submit();">
+                                                                    document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt" ></i>
                                                 {{ __('ออกจากระบบ') }}
                                             </a>
-                                            <form id="logout-form" action="logout" method="POST" style="display: none;">
+                                            <form id="logout-form" action="{{url ('logout')}}" method="POST" style="display: none;">
                                                 @csrf
                                             </form>
                                         </div>
@@ -755,12 +800,15 @@
                                                 </div>
                                             </div>
 
-                                            <a href="profileadmin" class="top dropdown-item"><i class="zmdi zmdi-account"></i>โปรไฟล์</a>
+                                            <a href="{{url ('profileadmin')}}" class="top dropdown-item"><i class="fas fa-user" style="margin-right: 2%;"></i>โปรไฟล์</a>
+                                            <div class="links front">
+                                                <a href="'{{url ('homeadmin')}}" class="view" style="color: black;text-decoration: none;"><i class="far fa-caret-square-left" style="margin-right: 2%;"></i>กลับสู่หน้าผู้ดูเเลระบบ</a><br>
+                                            </div>
                                             <a class="dropdown-item" href="logout" onclick="event.preventDefault();
-                                                                document.getElementById('logout-form').submit();">
+                                                                document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt"></i>
                                                 {{ __('ออกจากระบบ') }}
                                             </a>
-                                            <form id="logout-form" action="logout" method="POST" style="display: none;">
+                                            <form id="logout-form" action="{{url ('logout')}}" method="POST" style="display: none;">
                                                 @csrf
                                             </form>
                                         </div>
@@ -781,17 +829,14 @@
                             <div id="layoutSidenav_nav">
                                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                                     <div class="sb-sidenav-menu">
-                                        <div class="nav">
-                                            <br>
+                                    <div class="nav">
+                                        <div class="font-Athiti">
+                                            <a href="{{action('ProjectController@itemproject')}}"><button type="button" class="btn-control btn-default btn-outline-primaryy " style="font-size:18px;">ปริญญาตรี</button></a>
+                                            <a href="{{action('Project_MDDController@itemproject')}}"><button type="button" class="btn-control btn-default btn-outline-primaryy " style="font-size:18px;">ปริญญาเอก โท </button></a>
+                                        </div><br>
                                             <div class="sidenav" >
-                                                <button class="dropdown-btn" style="border-top: 0.5px solid #fff;">ระดับวิทยานิพนธ์
-                                                    <i class="fa fa-caret-down fa-lg" style="width: 20px;"></i>
-                                                </button>
-                                                <div class="dropdown-container">
-                                                    <a href="{{action('ProjectController@itemproject')}}" class="btn-control btn-default btn-outline-primaryy " style="font-size:17px;color:#fff;">ปริญญาตรี</a>
-                                                    <a href="{{action('Project_MDDController@itemproject')}}" class="btn-control btn-default btn-outline-primaryy " style="font-size:17px;color:#fff;">ปริญญาเอก โท</a>
-                                                </div>
-                                                <button class="dropdown-btn" style="border-top: 0.5px solid #fff;">ประเภท
+                                                
+                                                <button class="dropdown-btn" style="border-top: 0.5px solid #fff;border-radius: 10%;">ประเภท
                                                     <i class="fa fa-caret-down fa-lg" style="width: 20px;"></i>
                                                 </button>
                                                     <div class="dropdown-container">
@@ -806,7 +851,7 @@
                                                     </div>
                                                 
                                            
-                                                <button class="dropdown-btn" style="border-top: 0.5px solid #fff;">หมวดหมู่
+                                                <button class="dropdown-btn" style="border-top: 0.5px solid #fff;border-radius: 10%;">หมวดหมู่
                                                     <i class="fa fa-caret-down fa-lg" style="width: 20px;"></i>
                                                 </button>
                                                     <div class="dropdown-container">
@@ -821,7 +866,7 @@
                                                     </div>
                                             
 
-                                                <button class="dropdown-btn " style="border-top: 0.5px solid #fff;">ชนิดเอกสาร
+                                                <button class="dropdown-btn " style="border-top: 0.5px solid #fff;border-radius: 10%;">ชนิดเอกสาร
                                                     <i class="fa fa-caret-down fa-lg" style="width: 20px;"></i>
                                                 </button>
                                                     <div class="dropdown-container">
@@ -858,22 +903,7 @@
                 </p>
 
                 <div class="layoutlogre">
-                    <?php
-                    if (!isset($_SESSION['status']) == 'user' & !isset($_SESSION['statusA']) == 'admin') {
-                    } else if (isset($_SESSION['status']) == 'user') { ?>
-                        <div class="links front" style="font-size: 20px;">
-                            @if(!isset($_SESSION['project']))
-                            <a href="addproject" class="view">สร้างผลงาน</a><br>
-                            @elseif(isset($_SESSION['project']))
-                            <a href="listdetil" class="view"><i class="fas fa-book fa-lg" style="color:#212529; margin-right: 5px;margin-left: 10px;"></i>ผลงานของฉัน</a><br>
-                            @endif
-                        </div>
-                    <?php } else  if (isset($_SESSION['statusA']) == 'admin') { ?>
-                        <div class="links front">
-                            <a href="homeadmin" class="view">กลับสู่หน้าผู้ดูเเลระบบ</a><br>
-                        </div>
-                    <?php }
-                    ?>
+                    
                 </div>
                 </li>
             </ul>

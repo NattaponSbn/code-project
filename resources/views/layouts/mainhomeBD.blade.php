@@ -572,13 +572,22 @@
                     <li class="active3 menulink fontlink"><a href="#">เกี่ยวกับ</a></li>
                     <li class="active4 menulink fontlink"><a href="#">ติดต่อ</a></li>
                 </nav>
-                <li style="margin-left: -150px;">
+                <li style="margin-left: -10%;margin-right: 2%;">
                     <div class="links front" style="font-size: 20px;">
+                    @if(!isset($_SESSION['status']) == 'userM' & !isset($_SESSION['statusA']) == 'admin')
+
+                    @elseif (isset($_SESSION['status']) == 'user')
                         @if(!isset($_SESSION['project']))
-                        <a href="addproject" class="view"><i class="far fa-plus-square fa-lg" style="color:#212529; margin-right: 7px;margin-left: 10px;"></i>สร้างผลงาน</a><br>
+                        <a href="addproject" class="view"><i class="far fa-plus-square fa-lg i-hover" title="สร้างผลงงานคุณ"></i></a><br>
                         @elseif(isset($_SESSION['project']))
-                        <a href="listdetil" class="view"><i class="fas fa-book fa-lg" style="color:#212529; margin-right: 7px;margin-left: 10px;"></i>ผลงานของฉัน</a><br>
+                        <a href="listdetil" class="view"><i class="fas fa-book fa-lg i-hover" title="ผลงงานคุณ"></i></a><br>
                         @endif
+                    @elseif (isset($_SESSION['statusA']) == 'admin')
+                    <div class="links front">
+                        <a href="homeadmin" class="view">กลับสู่หน้าผู้ดูเเลระบบ</a><br>
+                    </div>
+                    @endif
+
                     </div>
                 </li>
                 <div class="navbar-dark layoutaccout">
@@ -703,16 +712,16 @@
                                                 </div>
                                             </div>
 
-                                            <a href="profile" class="top dropdown-item"><i class="zmdi zmdi-account"></i>โปรไฟล์</a>
+                                            <a href="profile" class="top dropdown-item"><i class="fas fa-user" style="margin-right: 2%;"></i>โปรไฟล์</a>
                                             <div class="top dropdown-item" >
                                                 @if(!isset($_SESSION['project']))
-                                                <a href="addproject" class="view" style="color: black;">สร้างผลงาน</a><br>
+                                                <a href="addproject" class="view" style="color: black;text-decoration: none;"><i class="far fa-plus-square" style="margin-right: 2%;"></i>สร้างผลงาน</a><br>
                                                 @elseif(isset($_SESSION['project']))
-                                                <a href="listdetil" class="view" style="color: black;">ผลงานของฉัน</a><br>
+                                                <a href="listdetil" class="view" style="color: black;text-decoration: none;"><i class="fas fa-book" style="margin-right: 2%;"></i>ผลงานของฉัน</a><br>
                                                 @endif
                                             </div>
                                             <a class="dropdown-item" href="logout" onclick="event.preventDefault();
-                                                                    document.getElementById('logout-form').submit();">
+                                                                    document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt" ></i>
                                                 {{ __('ออกจากระบบ') }}
                                             </a>
                                             <form id="logout-form" action="logout" method="POST" style="display: none;">
@@ -769,9 +778,12 @@
                                                 </div>
                                             </div>
 
-                                            <a href="profileadmin" class="top dropdown-item"><i class="zmdi zmdi-account"></i>โปรไฟล์</a>
+                                            <a href="profileadmin" class="top dropdown-item"><i class="fas fa-user" style="margin-right: 2%;"></i>โปรไฟล์</a>
+                                            <div class="links front">
+                                                <a href="homeadmin" class="view" style="color: black;text-decoration: none;"><i class="far fa-caret-square-left" style="margin-right: 2%;"></i>กลับสู่หน้าผู้ดูเเลระบบ</a><br>
+                                            </div>
                                             <a class="dropdown-item" href="logout" onclick="event.preventDefault();
-                                                                document.getElementById('logout-form').submit();">
+                                                                document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt"></i>
                                                 {{ __('ออกจากระบบ') }}
                                             </a>
                                             <form id="logout-form" action="logout" method="POST" style="display: none;">

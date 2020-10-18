@@ -1083,6 +1083,56 @@ pre code {
     padding-top: 5%;
 }
 
+.i-hover {
+    color: #ffffff;
+    margin-right: 7px;
+    margin-left: 10px;
+}
+
+.i-hover:hover {
+    color: #212529;
+    margin-right: 7px;
+    margin-left: 10px;
+}
+
+.i-edit {
+    color: #D9A327;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.i-edit:hover {
+    color: #fdc543;
+}
+
+.i-edit:active {
+    color: #007bff;
+}
+
+.i-delete {
+    color: #212529;
+}
+
+.i-delete:hover {
+    color: #525150;
+}
+
+.i-delete:active {
+    color: #a11414;
+}
+
+.i-add {
+    color: rgb(12, 129, 12);
+}
+
+.i-add:hover {
+    color: rgb(64, 175, 64);
+}
+
+.i-add:active {
+    color: rgb(83, 226, 83);
+}
+
 
 /* บล็อคโชว์งานวิจัย */
 
