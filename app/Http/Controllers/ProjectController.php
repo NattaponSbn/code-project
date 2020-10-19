@@ -580,305 +580,310 @@ class ProjectController extends Controller
         
         //ดึง id มา เพื่อทำการเเยก id ที่มาจากการ by order วันที่สร้าง (ในเเท็กมาใหม่)
         $itemloop = DB::select("SELECT project_id FROM projects,type_project WHERE projects.type_id=type_project.type_id ORDER BY projects.created_at DESC");
-        if(isset($itemloop[0])? $itemloop[0]:'') {
-            $item0 = $itemloop[0]; //เลือกตำเเหน่งของข้อมูล
-            compact('item0'); // ส่งค่า item0 จากการเลือกตำเเหน่ง
-            foreach($item0 as $ite0){ // ทำการวง loop foreach เพื่อ เอาค่า id ออกจาก array
-                // echo $ite0;
-                $ite0; // id ของ ตำเเหน่งที่ 0 ที่ได้มาจากการ loop 
-                // หลังจากได้ id ที่ เป็น str ก็นำมา select จาก database ทีละ id เเล้วส่งค่าไปแสดงผลหน้า homeBD
-                $itemlp0 = DB::select("SELECT * FROM projects,type_project WHERE projects.type_id=type_project.type_id 
-                AND projects.project_id='$ite0'");  
+        if(isset($itemloop)?$itemloop:''){
+            $_SESSION['itemloop']='itemloop';
+            if(isset($itemloop[0])? $itemloop[0]:'') {
+                $item0 = $itemloop[0]; //เลือกตำเเหน่งของข้อมูล
+                compact('item0'); // ส่งค่า item0 จากการเลือกตำเเหน่ง
+                foreach($item0 as $ite0){ // ทำการวง loop foreach เพื่อ เอาค่า id ออกจาก array
+                    // echo $ite0;
+                    $ite0; // id ของ ตำเเหน่งที่ 0 ที่ได้มาจากการ loop 
+                    // หลังจากได้ id ที่ เป็น str ก็นำมา select จาก database ทีละ id เเล้วส่งค่าไปแสดงผลหน้า homeBD
+                    $itemlp0 = DB::select("SELECT * FROM projects,type_project WHERE projects.type_id=type_project.type_id 
+                    AND projects.project_id='$ite0'");  
 
-                //rateingproject
+                    //rateingproject
 
-                // $rate0 = DB::select("SELECT * FROM rating_p WHERE projects.type_id=type_project.type_id 
-                // AND projects.project_id='$ite0'");  
+                    // $rate0 = DB::select("SELECT * FROM rating_p WHERE projects.type_id=type_project.type_id 
+                    // AND projects.project_id='$ite0'");  
 
-                $svg0 = DB::select("SELECT AVG(rate_index) AS AvgRate FROM rating_p WHERE project_id='$ite0'"); 
-                $svgrate0 = $svg0[0];
-                compact('svgrate0');
-                foreach($svgrate0 as $svgrate0){
-                    $svgrate0 = round($svgrate0,$percision=1);
-                }
-
-                $view0 = DB::select("SELECT COUNT(login_log.login_project) AS countview FROM login_log,projects 
-                WHERE projects.project_id=login_log.login_project AND projects.project_id='$ite0'
-                GROUP BY login_log.login_project");
-                if(isset($view0)?$view0:''){
-                    compact('view0');
-                    foreach($view0 as $view0){
-                        $viewcount0 = $view0->countview;
+                    $svg0 = DB::select("SELECT AVG(rate_index) AS AvgRate FROM rating_p WHERE project_id='$ite0'"); 
+                    $svgrate0 = $svg0[0];
+                    compact('svgrate0');
+                    foreach($svgrate0 as $svgrate0){
+                        $svgrate0 = round($svgrate0,$percision=1);
                     }
-                }else{
-                    $viewcount0 = '0';
+
+                    $view0 = DB::select("SELECT COUNT(login_log.login_project) AS countview FROM login_log,projects 
+                    WHERE projects.project_id=login_log.login_project AND projects.project_id='$ite0'
+                    GROUP BY login_log.login_project");
+                    if(isset($view0)?$view0:''){
+                        compact('view0');
+                        foreach($view0 as $view0){
+                            $viewcount0 = $view0->countview;
+                        }
+                    }else{
+                        $viewcount0 = '0';
+                    }
+                    
+                    // $view0 = DB::select("SELECT login_log ");
+                    
                 }
+            }else {
+                $itemlp0='';
+            }
+
+            
+            if(isset($itemloop[1])? $itemloop[1]:'') {
+                $item1 = $itemloop[1];
+                compact('item1');
+                foreach($item1 as $ite1){
+                    // echo $ite1; echo '<br>';
+                    $ite1;
+                    $itemlp1 = DB::select("SELECT * FROM projects,type_project WHERE projects.type_id=type_project.type_id 
+                    AND projects.project_id='$ite1'");
+                    
+                    $svg1 = DB::select("SELECT AVG(rate_index) FROM rating_p WHERE project_id='$ite1'");
+                    $svgrate1 = $svg1[0];
+                    compact('svgrate1');
+                    foreach($svgrate1 as $svgrate1){
+                        $svgrate1=round($svgrate1,$percision=1);;
+                    }
+
+                    $view1 = DB::select("SELECT COUNT(login_log.login_project) AS countview FROM login_log,projects 
+                    WHERE projects.project_id=login_log.login_project AND projects.project_id='$ite1'
+                    GROUP BY login_log.login_project");
+                    if(isset($view1)?$view1:''){
+                        compact('view1');
+                        foreach($view1 as $view1){
+                            $viewcount1 = $view1->countview;
+                        }
+                    }else{
+                        $viewcount1 = '0';
+                    }
                 
-                // $view0 = DB::select("SELECT login_log ");
-                
-            }
-        }else {
-            $itemlp0='';
-        }
-
-        
-        if(isset($itemloop[1])? $itemloop[1]:'') {
-            $item1 = $itemloop[1];
-            compact('item1');
-            foreach($item1 as $ite1){
-                // echo $ite1; echo '<br>';
-                $ite1;
-                $itemlp1 = DB::select("SELECT * FROM projects,type_project WHERE projects.type_id=type_project.type_id 
-                AND projects.project_id='$ite1'");
-                 
-                $svg1 = DB::select("SELECT AVG(rate_index) FROM rating_p WHERE project_id='$ite1'");
-                $svgrate1 = $svg1[0];
-                compact('svgrate1');
-                foreach($svgrate1 as $svgrate1){
-                    $svgrate1=round($svgrate1,$percision=1);;
                 }
-
-                $view1 = DB::select("SELECT COUNT(login_log.login_project) AS countview FROM login_log,projects 
-                WHERE projects.project_id=login_log.login_project AND projects.project_id='$ite1'
-                GROUP BY login_log.login_project");
-                if(isset($view1)?$view1:''){
-                    compact('view1');
-                    foreach($view1 as $view1){
-                        $viewcount1 = $view1->countview;
+            }else {
+                $itemlp1='';
+            }
+            
+            if(isset($itemloop[2])? $itemloop[2]:'') {
+                $item2 = $itemloop[2];
+                compact('item2');
+                foreach($item2 as $ite2){
+                    // echo $ite2;
+                    $ite2;
+                    $itemlp2 = DB::select("SELECT * FROM projects,type_project WHERE projects.type_id=type_project.type_id 
+                    AND projects.project_id='$ite2'");
+                    
+                    $svg2 = DB::select("SELECT AVG(rate_index) FROM rating_p WHERE project_id='$ite2'");
+                    $svgrate2 = $svg2[0];
+                    compact('svgrate2');
+                    foreach($svgrate2 as $svgrate2){
+                        $svgrate2=round($svgrate2,$percision=1);;
                     }
-                }else{
-                    $viewcount1 = '0';
-                }
-               
-            }
-        }else {
-            $itemlp1='';
-        }
-        
-        if(isset($itemloop[2])? $itemloop[2]:'') {
-            $item2 = $itemloop[2];
-            compact('item2');
-            foreach($item2 as $ite2){
-                // echo $ite2;
-                $ite2;
-                $itemlp2 = DB::select("SELECT * FROM projects,type_project WHERE projects.type_id=type_project.type_id 
-                AND projects.project_id='$ite2'");
-                
-                $svg2 = DB::select("SELECT AVG(rate_index) FROM rating_p WHERE project_id='$ite2'");
-                $svgrate2 = $svg2[0];
-                compact('svgrate2');
-                foreach($svgrate2 as $svgrate2){
-                    $svgrate2=round($svgrate2,$percision=1);;
-                }
 
-                $view2 = DB::select("SELECT COUNT(login_log.login_project) AS countview FROM login_log,projects 
-                WHERE projects.project_id=login_log.login_project AND projects.project_id='$ite2'
-                GROUP BY login_log.login_project");
-                if(isset($view2)?$view2:''){
-                    compact('view2');
-                    foreach($view2 as $view2){
-                        $viewcount2 = $view2->countview;
+                    $view2 = DB::select("SELECT COUNT(login_log.login_project) AS countview FROM login_log,projects 
+                    WHERE projects.project_id=login_log.login_project AND projects.project_id='$ite2'
+                    GROUP BY login_log.login_project");
+                    if(isset($view2)?$view2:''){
+                        compact('view2');
+                        foreach($view2 as $view2){
+                            $viewcount2 = $view2->countview;
+                        }
+                    }else{
+                        $viewcount2 = '0';
                     }
-                }else{
-                    $viewcount2 = '0';
                 }
+            }else {
+                $itemlp2='';
             }
-        }else {
-            $itemlp2='';
-        }
 
-        if(isset($itemloop[3])? $itemloop[3]:'') {
-            $item3 = $itemloop[3];
-            compact('item3');
-            foreach($item3 as $ite3){
-                // echo $ite3;
-                $ite3;
-                $itemlp3 = DB::select("SELECT * FROM projects,type_project WHERE projects.type_id=type_project.type_id 
-                AND projects.project_id='$ite3'");
-                
-                $svg3 = DB::select("SELECT AVG(rate_index) FROM rating_p WHERE project_id='$ite3'");
-                $svgrate3 = $svg3[0];
-                compact('svgrate3');
-                foreach($svgrate3 as $svgrate3){
-                    $svgrate3=round($svgrate3,$percision=1);;
-                }
-
-                $view3 = DB::select("SELECT COUNT(login_log.login_project) AS countview FROM login_log,projects 
-                WHERE projects.project_id=login_log.login_project AND projects.project_id='$ite3'
-                GROUP BY login_log.login_project");
-                if(isset($view3)?$view3:''){
-                    compact('view3');
-                    foreach($view3 as $view3){
-                        $viewcount3 = $view3->countview;
+            if(isset($itemloop[3])? $itemloop[3]:'') {
+                $item3 = $itemloop[3];
+                compact('item3');
+                foreach($item3 as $ite3){
+                    // echo $ite3;
+                    $ite3;
+                    $itemlp3 = DB::select("SELECT * FROM projects,type_project WHERE projects.type_id=type_project.type_id 
+                    AND projects.project_id='$ite3'");
+                    
+                    $svg3 = DB::select("SELECT AVG(rate_index) FROM rating_p WHERE project_id='$ite3'");
+                    $svgrate3 = $svg3[0];
+                    compact('svgrate3');
+                    foreach($svgrate3 as $svgrate3){
+                        $svgrate3=round($svgrate3,$percision=1);;
                     }
-                }else{
-                    $viewcount3 = '0';
-                }
-            }
-        }else {
-            $itemlp3='';
-        }
 
-        if(isset($itemloop[4])? $itemloop[4]:'') {
-            $item4 = $itemloop[4];
-            compact('item4');
-            foreach($item4 as $ite4){
-                // echo $ite3;
-                $ite4;
-                $itemlp4 = DB::select("SELECT * FROM projects,type_project WHERE projects.type_id=type_project.type_id 
-                AND projects.project_id='$ite4'");
-
-                $svg4 = DB::select("SELECT AVG(rate_index) FROM rating_p WHERE project_id='$ite4'");
-                $svgrate4 = $svg4[0];
-                compact('svgrate4');
-                foreach($svgrate4 as $svgrate4){
-                    $svgrate4=round($svgrate4,$percision=1);;
-                }
-
-                $view4 = DB::select("SELECT COUNT(login_log.login_project) AS countview FROM login_log,projects 
-                WHERE projects.project_id=login_log.login_project AND projects.project_id='$ite4'
-                GROUP BY login_log.login_project");
-                if(isset($view4)?$view4:''){
-                    compact('view4');
-                    foreach($view4 as $view4){
-                        $viewcount4 = $view4->countview;
+                    $view3 = DB::select("SELECT COUNT(login_log.login_project) AS countview FROM login_log,projects 
+                    WHERE projects.project_id=login_log.login_project AND projects.project_id='$ite3'
+                    GROUP BY login_log.login_project");
+                    if(isset($view3)?$view3:''){
+                        compact('view3');
+                        foreach($view3 as $view3){
+                            $viewcount3 = $view3->countview;
+                        }
+                    }else{
+                        $viewcount3 = '0';
                     }
-                }else{
-                    $viewcount4 = '0';
                 }
+            }else {
+                $itemlp3='';
             }
-        }else {
-            $itemlp4='';
-        }
-        
-        if(isset($itemloop[5])? $itemloop[5]:'') {
-            $item5 = $itemloop[5];
-            compact('item5');
-            foreach($item5 as $ite5){
-                // echo $ite3;
-                $ite5;
-                $itemlp5 = DB::select("SELECT * FROM projects,type_project WHERE projects.type_id=type_project.type_id 
-                AND projects.project_id='$ite5'");
 
-                $svg5 = DB::select("SELECT AVG(rate_index) FROM rating_p WHERE project_id='$ite5'");
-                $svgrate5 = $svg5[0];
-                compact('svgrate5');
-                foreach($svgrate5 as $svgrate5){
-                    $svgrate5=round($svgrate5,$percision=1);;
-                }
+            if(isset($itemloop[4])? $itemloop[4]:'') {
+                $item4 = $itemloop[4];
+                compact('item4');
+                foreach($item4 as $ite4){
+                    // echo $ite3;
+                    $ite4;
+                    $itemlp4 = DB::select("SELECT * FROM projects,type_project WHERE projects.type_id=type_project.type_id 
+                    AND projects.project_id='$ite4'");
 
-                $view5 = DB::select("SELECT COUNT(login_log.login_project) AS countview FROM login_log,projects 
-                WHERE projects.project_id=login_log.login_project AND projects.project_id='$ite5'
-                GROUP BY login_log.login_project");
-                if(isset($view5)?$view5:''){
-                    compact('view5');
-                    foreach($view5 as $view5){
-                        $viewcount5 = $view5->countview;
+                    $svg4 = DB::select("SELECT AVG(rate_index) FROM rating_p WHERE project_id='$ite4'");
+                    $svgrate4 = $svg4[0];
+                    compact('svgrate4');
+                    foreach($svgrate4 as $svgrate4){
+                        $svgrate4=round($svgrate4,$percision=1);;
                     }
-                }else{
-                    $viewcount5 = '0';
-                }
 
-                
-            }
-        }else {
-            $itemlp5='';
-        }
-        
-        if(isset($itemloop[6])? $itemloop[6]:'') {
-            $item6 = $itemloop[6];
-            compact('item6');
-            foreach($item6 as $ite6){
-                // echo $ite3;
-                $ite6;
-                $itemlp6 = DB::select("SELECT * FROM projects,type_project WHERE projects.type_id=type_project.type_id 
-                AND projects.project_id='$ite6'");
-                $svg6 = DB::select("SELECT AVG(rate_index) FROM rating_p WHERE project_id='$ite6'");
-                $svgrate6 = $svg6[0];
-                compact('svgrate6');
-                foreach($svgrate6 as $svgrate6){
-                    $svgrate6=round($svgrate6,$percision=1);;
-                }
-
-                $view6 = DB::select("SELECT COUNT(login_log.login_project) AS countview FROM login_log,projects 
-                WHERE projects.project_id=login_log.login_project AND projects.project_id='$ite6'
-                GROUP BY login_log.login_project");
-                if(isset($view6)?$view6:''){
-                    compact('view6');
-                    foreach($view6 as $view6){
-                        $viewcount6 = $view6->countview;
+                    $view4 = DB::select("SELECT COUNT(login_log.login_project) AS countview FROM login_log,projects 
+                    WHERE projects.project_id=login_log.login_project AND projects.project_id='$ite4'
+                    GROUP BY login_log.login_project");
+                    if(isset($view4)?$view4:''){
+                        compact('view4');
+                        foreach($view4 as $view4){
+                            $viewcount4 = $view4->countview;
+                        }
+                    }else{
+                        $viewcount4 = '0';
                     }
-                }else{
-                    $viewcount6 = '0';
                 }
+            }else {
+                $itemlp4='';
             }
-        }else {
-            $itemlp6='';
-        }
-        
-        if(isset($itemloop[7])? $itemloop[7]:'') {
-            $item7 = $itemloop[7];
-            compact('item7');
-            foreach($item7 as $ite7){
-                // echo $ite3;
-                $ite7;
-                $itemlp7 = DB::select("SELECT * FROM projects,type_project WHERE projects.type_id=type_project.type_id 
-                AND projects.project_id='$ite7'");
+            
+            if(isset($itemloop[5])? $itemloop[5]:'') {
+                $item5 = $itemloop[5];
+                compact('item5');
+                foreach($item5 as $ite5){
+                    // echo $ite3;
+                    $ite5;
+                    $itemlp5 = DB::select("SELECT * FROM projects,type_project WHERE projects.type_id=type_project.type_id 
+                    AND projects.project_id='$ite5'");
 
-                $svg7 = DB::select("SELECT AVG(rate_index) FROM rating_p WHERE project_id='$ite7'");
-                $svgrate7 = $svg7[0];
-                compact('svgrate7');
-                foreach($svgrate7 as $svgrate7){
-                    $svgrate7=round($svgrate7,$percision=1);;
-                }
-
-                $view7 = DB::select("SELECT COUNT(login_log.login_project) AS countview FROM login_log,projects 
-                WHERE projects.project_id=login_log.login_project AND projects.project_id='$ite7'
-                GROUP BY login_log.login_project");
-                if(isset($view7)?$view7:''){
-                    compact('view7');
-                    foreach($view7 as $view7){
-                        $viewcount7 = $view7->countview;
+                    $svg5 = DB::select("SELECT AVG(rate_index) FROM rating_p WHERE project_id='$ite5'");
+                    $svgrate5 = $svg5[0];
+                    compact('svgrate5');
+                    foreach($svgrate5 as $svgrate5){
+                        $svgrate5=round($svgrate5,$percision=1);;
                     }
-                }else{
-                    $viewcount7 = '0';
-                }
-            }
-        }else {
-            $itemlp7='';
-        }
-        
-        if(isset($itemloop[8])? $itemloop[8]:'') {
-            $item8 = $itemloop[8];
-            compact('item8');
-            foreach($item8 as $ite8){
-                // echo $ite3;
-                $ite8;
-                $itemlp8 = DB::select("SELECT * FROM projects,type_project WHERE projects.type_id=type_project.type_id 
-                AND projects.project_id='$ite8'");
 
-                $svg8 = DB::select("SELECT AVG(rate_index) FROM rating_p WHERE project_id='$ite8'");
-                $svgrate8 = $svg8[0];
-                compact('svgrate8');
-                foreach($svgrate8 as $svgrate8){
-                    $svgrate8=round($svgrate8,$percision=1);;
-                }
-
-                $view8 = DB::select("SELECT COUNT(login_log.login_project) AS countview FROM login_log,projects 
-                WHERE projects.project_id=login_log.login_project AND projects.project_id='$ite8'
-                GROUP BY login_log.login_project");
-                if(isset($view8)?$view8:''){
-                    compact('view8');
-                    foreach($view8 as $view8){
-                        $viewcount8 = $view8->countview;
+                    $view5 = DB::select("SELECT COUNT(login_log.login_project) AS countview FROM login_log,projects 
+                    WHERE projects.project_id=login_log.login_project AND projects.project_id='$ite5'
+                    GROUP BY login_log.login_project");
+                    if(isset($view5)?$view5:''){
+                        compact('view5');
+                        foreach($view5 as $view5){
+                            $viewcount5 = $view5->countview;
+                        }
+                    }else{
+                        $viewcount5 = '0';
                     }
-                }else{
-                    $viewcount8 = '0';
+
+                    
                 }
-                
+            }else {
+                $itemlp5='';
             }
-        }else {
-            $itemlp8='';
+            
+            if(isset($itemloop[6])? $itemloop[6]:'') {
+                $item6 = $itemloop[6];
+                compact('item6');
+                foreach($item6 as $ite6){
+                    // echo $ite3;
+                    $ite6;
+                    $itemlp6 = DB::select("SELECT * FROM projects,type_project WHERE projects.type_id=type_project.type_id 
+                    AND projects.project_id='$ite6'");
+                    $svg6 = DB::select("SELECT AVG(rate_index) FROM rating_p WHERE project_id='$ite6'");
+                    $svgrate6 = $svg6[0];
+                    compact('svgrate6');
+                    foreach($svgrate6 as $svgrate6){
+                        $svgrate6=round($svgrate6,$percision=1);;
+                    }
+
+                    $view6 = DB::select("SELECT COUNT(login_log.login_project) AS countview FROM login_log,projects 
+                    WHERE projects.project_id=login_log.login_project AND projects.project_id='$ite6'
+                    GROUP BY login_log.login_project");
+                    if(isset($view6)?$view6:''){
+                        compact('view6');
+                        foreach($view6 as $view6){
+                            $viewcount6 = $view6->countview;
+                        }
+                    }else{
+                        $viewcount6 = '0';
+                    }
+                }
+            }else {
+                $itemlp6='';
+            }
+            
+            if(isset($itemloop[7])? $itemloop[7]:'') {
+                $item7 = $itemloop[7];
+                compact('item7');
+                foreach($item7 as $ite7){
+                    // echo $ite3;
+                    $ite7;
+                    $itemlp7 = DB::select("SELECT * FROM projects,type_project WHERE projects.type_id=type_project.type_id 
+                    AND projects.project_id='$ite7'");
+
+                    $svg7 = DB::select("SELECT AVG(rate_index) FROM rating_p WHERE project_id='$ite7'");
+                    $svgrate7 = $svg7[0];
+                    compact('svgrate7');
+                    foreach($svgrate7 as $svgrate7){
+                        $svgrate7=round($svgrate7,$percision=1);;
+                    }
+
+                    $view7 = DB::select("SELECT COUNT(login_log.login_project) AS countview FROM login_log,projects 
+                    WHERE projects.project_id=login_log.login_project AND projects.project_id='$ite7'
+                    GROUP BY login_log.login_project");
+                    if(isset($view7)?$view7:''){
+                        compact('view7');
+                        foreach($view7 as $view7){
+                            $viewcount7 = $view7->countview;
+                        }
+                    }else{
+                        $viewcount7 = '0';
+                    }
+                }
+            }else {
+                $itemlp7='';
+            }
+            
+            if(isset($itemloop[8])? $itemloop[8]:'') {
+                $item8 = $itemloop[8];
+                compact('item8');
+                foreach($item8 as $ite8){
+                    // echo $ite3;
+                    $ite8;
+                    $itemlp8 = DB::select("SELECT * FROM projects,type_project WHERE projects.type_id=type_project.type_id 
+                    AND projects.project_id='$ite8'");
+
+                    $svg8 = DB::select("SELECT AVG(rate_index) FROM rating_p WHERE project_id='$ite8'");
+                    $svgrate8 = $svg8[0];
+                    compact('svgrate8');
+                    foreach($svgrate8 as $svgrate8){
+                        $svgrate8=round($svgrate8,$percision=1);;
+                    }
+
+                    $view8 = DB::select("SELECT COUNT(login_log.login_project) AS countview FROM login_log,projects 
+                    WHERE projects.project_id=login_log.login_project AND projects.project_id='$ite8'
+                    GROUP BY login_log.login_project");
+                    if(isset($view8)?$view8:''){
+                        compact('view8');
+                        foreach($view8 as $view8){
+                            $viewcount8 = $view8->countview;
+                        }
+                    }else{
+                        $viewcount8 = '0';
+                    }
+                    
+                }
+            }else {
+                $itemlp8='';
+            }
+        }else{
+            $itemloop='';
         }
 
         //genre(ไอโอที(IoT)) item 
@@ -888,272 +893,277 @@ class ProjectController extends Controller
         }else{$sum_type_p = '0';}
 
         $itemgenre = DB::select("SELECT project_id FROM projects,genre_project,type_project WHERE genre_project.genre_name in ('ไอโอที(IoT)') AND projects.type_id=type_project.type_id AND projects.genre_id=genre_project.genre_id ORDER BY projects.created_at ASC");
-        if(isset($itemgenre[0])? $itemgenre[0]:'') {
-            $item0 = $itemgenre[0]; //เลือกตำเเหน่งของข้อมูล
-            compact('item0'); // ส่งค่า item0 จากการเลือกตำเเหน่ง
-            foreach($item0 as $ite0){ // ทำการวง loop foreach เพื่อ เอาค่า id ออกจาก array
-                // echo $ite0;
-                $ite0; // id ของ ตำเเหน่งที่ 0 ที่ได้มาจากการ loop
-                // หลังจากได้ id ที่ เป็น str ก็นำมา select จาก database ทีละ id เเล้วส่งค่าไปแสดงผลหน้า homeBD
-                $itemlg0 = DB::select("SELECT * FROM projects,genre_project,type_project WHERE projects.type_id=type_project.type_id AND projects.genre_id=genre_project.genre_id 
-                AND projects.project_id='$ite0'"); 
+        if(isset($itemgenre)?$itemgenre:''){
+            $_SESSION['itemgenre']='itemgenre';
+            if(isset($itemgenre[0])? $itemgenre[0]:'') {
+                $item0 = $itemgenre[0]; //เลือกตำเเหน่งของข้อมูล
+                compact('item0'); // ส่งค่า item0 จากการเลือกตำเเหน่ง
+                foreach($item0 as $ite0){ // ทำการวง loop foreach เพื่อ เอาค่า id ออกจาก array
+                    // echo $ite0;
+                    $ite0; // id ของ ตำเเหน่งที่ 0 ที่ได้มาจากการ loop
+                    // หลังจากได้ id ที่ เป็น str ก็นำมา select จาก database ทีละ id เเล้วส่งค่าไปแสดงผลหน้า homeBD
+                    $itemlg0 = DB::select("SELECT * FROM projects,genre_project,type_project WHERE projects.type_id=type_project.type_id AND projects.genre_id=genre_project.genre_id 
+                    AND projects.project_id='$ite0'"); 
 
-                $svg0 = DB::select("SELECT AVG(rate_index) FROM rating_p WHERE project_id='$ite0'");
-                $svgrateg0 = $svg0[0];
-                compact('svgrateg0');
-                foreach($svgrateg0 as $svgrateg0){
-                    $svgrateg0=round($svgrateg0,$percision=1);;
-                }
-
-                $view0 = DB::select("SELECT COUNT(login_log.login_project) AS countview FROM login_log,projects 
-                WHERE projects.project_id=login_log.login_project AND projects.project_id='$ite0'
-                GROUP BY login_log.login_project");
-                compact('view0');
-                foreach($view0 as $view0){
-                    $viewcountg0 = $view0->countview;
-                }
-            }
-            
-        }else {
-            $itemlg0='';
-            $viewcountg0='';
-        }
-
-        if(isset($itemgenre[1])?$itemgenre[1]:''){
-            $item1 = $itemgenre[1];
-            compact('item1');
-            foreach($item1 as $ite1){
-                // echo $ite1;
-
-                $ite1;
-                $itemlg1 = DB::select("SELECT * FROM projects,genre_project,type_project WHERE projects.type_id=type_project.type_id AND projects.genre_id=genre_project.genre_id
-                AND projects.project_id='$ite1'");
-
-                $svg1 = DB::select("SELECT AVG(rate_index) FROM rating_p WHERE project_id='$ite1'");
-                $svgrateg1 = $svg1[0];
-                compact('svgrateg1');
-                foreach($svgrateg1 as $svgrateg1){
-                    $svgrateg1=round($svgrateg1,$percision=1);;
-                }
-
-                $view1 = DB::select("SELECT COUNT(login_log.login_project) AS countview FROM login_log,projects 
-                WHERE projects.project_id=login_log.login_project AND projects.project_id='$ite1'
-                GROUP BY login_log.login_project");
-                if(isset($view1)?$view1:''){
-                    compact('view1');
-                    foreach($view1 as $view1){
-                        $viewcountg1 = $view1->countview;
+                    $svg0 = DB::select("SELECT AVG(rate_index) FROM rating_p WHERE project_id='$ite0'");
+                    $svgrateg0 = $svg0[0];
+                    compact('svgrateg0');
+                    foreach($svgrateg0 as $svgrateg0){
+                        $svgrateg0=round($svgrateg0,$percision=1);;
                     }
-                }else{
-                    $viewcountg1='0';
+
+                    $view0 = DB::select("SELECT COUNT(login_log.login_project) AS countview FROM login_log,projects 
+                    WHERE projects.project_id=login_log.login_project AND projects.project_id='$ite0'
+                    GROUP BY login_log.login_project");
+                    compact('view0');
+                    foreach($view0 as $view0){
+                        $viewcountg0 = $view0->countview;
+                    }
                 }
                 
+            }else {
+                $itemlg0='';
+                $viewcountg0='';
             }
-            
-        }else {
-            $itemlg1='';
-            $viewcountg1='';
-        }
-       
-        if(isset($itemgenre[2])?$itemgenre[2]:''){
-            $item2 = $itemgenre[2];
-            compact('item2');
-            foreach($item2 as $ite2){
-                // echo $ite2;
-                $ite2;
-                $itemlg2 = DB::select("SELECT * FROM projects,genre_project,type_project WHERE projects.type_id=type_project.type_id AND projects.genre_id=genre_project.genre_id
-                AND projects.project_id='$ite2'");
 
-                $svg2 = DB::select("SELECT AVG(rate_index) FROM rating_p WHERE project_id='$ite2'");
-                $svgrateg2 = $svg2[0];
-                compact('svgrateg2');
-                foreach($svgrateg2 as $svgrateg2){
-                    $svgrateg2=round($svgrateg2,$percision=1);;
-                }
+            if(isset($itemgenre[1])?$itemgenre[1]:''){
+                $item1 = $itemgenre[1];
+                compact('item1');
+                foreach($item1 as $ite1){
+                    // echo $ite1;
 
-                $view2 = DB::select("SELECT COUNT(login_log.login_project) AS countview FROM login_log,projects 
-                WHERE projects.project_id=login_log.login_project AND projects.project_id='$ite2'
-                GROUP BY login_log.login_project");
-                if(isset($view2)?$view2:''){
-                    compact('view2');
-                    foreach($view2 as $view2){
-                        $viewcountg2 = $view2->countview;
+                    $ite1;
+                    $itemlg1 = DB::select("SELECT * FROM projects,genre_project,type_project WHERE projects.type_id=type_project.type_id AND projects.genre_id=genre_project.genre_id
+                    AND projects.project_id='$ite1'");
+
+                    $svg1 = DB::select("SELECT AVG(rate_index) FROM rating_p WHERE project_id='$ite1'");
+                    $svgrateg1 = $svg1[0];
+                    compact('svgrateg1');
+                    foreach($svgrateg1 as $svgrateg1){
+                        $svgrateg1=round($svgrateg1,$percision=1);;
                     }
-                }else{
-                    $viewcountg2='0';
-                }
-            }
-        }else {
-            $itemlg2='';
-            $viewcountg2='';
-        }
-        
-        if(isset($itemgenre[3])?$itemgenre[3]:''){
-            $item3 = $itemgenre[3];
-            compact('item3');
-            foreach($item3 as $ite3){
-                // echo $ite3;
-                $ite3;
-                $itemlg3 = DB::select("SELECT * FROM projects,genre_project,type_project WHERE projects.type_id=type_project.type_id AND projects.genre_id=genre_project.genre_id
-                AND projects.project_id='$ite3'");
 
-                $svg3 = DB::select("SELECT AVG(rate_index) FROM rating_p WHERE project_id='$ite3'");
-                $svgrateg3 = $svg3[0];
-                compact('svgrateg3');
-                foreach($svgrateg3 as $svgrateg3){
-                    $svgrateg3=round($svgrateg3,$percision=1);;
-                }
-
-                $view3 = DB::select("SELECT COUNT(login_log.login_project) AS countview FROM login_log,projects 
-                WHERE projects.project_id=login_log.login_project AND projects.project_id='$ite3'
-                GROUP BY login_log.login_project");
-                if(isset($view3)?$view3:''){
-                    compact('view3');
-                    foreach($view3 as $view3){
-                        $viewcountg3 = $view3->countview;
+                    $view1 = DB::select("SELECT COUNT(login_log.login_project) AS countview FROM login_log,projects 
+                    WHERE projects.project_id=login_log.login_project AND projects.project_id='$ite1'
+                    GROUP BY login_log.login_project");
+                    if(isset($view1)?$view1:''){
+                        compact('view1');
+                        foreach($view1 as $view1){
+                            $viewcountg1 = $view1->countview;
+                        }
+                    }else{
+                        $viewcountg1='0';
                     }
-                }else{
-                    $viewcountg3='0';
-                }
-            }
-        }else {
-            $itemlg3='';
-            $viewcountg3='';
-        }
-
-        if(isset($itemgenre[4])?$itemgenre[4]:''){
-            $item4 = $itemgenre[4];
-            compact('item4');
-            foreach($item4 as $ite4){
-                // echo $ite3;
-                $ite4;
-                $itemlg4 = DB::select("SELECT * FROM projects,genre_project,type_project WHERE projects.type_id=type_project.type_id AND projects.genre_id=genre_project.genre_id
-                AND projects.project_id='$ite4'");
-
-                $svg4 = DB::select("SELECT AVG(rate_index) FROM rating_p WHERE project_id='$ite4'");
-                $svgrateg4 = $svg4[0];
-                compact('svgrateg4');
-                foreach($svgrateg4 as $svgrateg4){
-                    $svgrateg4=round($svgrateg4,$percision=1);;
-                }
-
-                $view4 = DB::select("SELECT COUNT(login_log.login_project) AS countview FROM login_log,projects 
-                WHERE projects.project_id=login_log.login_project AND projects.project_id='$ite4'
-                GROUP BY login_log.login_project");
-                if(isset($view4)?$view4:''){
-                    compact('view4');
-                    foreach($view4 as $view4){
-                        $viewcountg4 = $view4->countview;
-                    }
-                }else{
-                    $viewcountg4='0';
-                }
-            }
-        }else {
-            $itemlg4='';
-            $viewcountg4='';
-        }
-
-        if(isset($itemgenre[5])?$itemgenre[5]:''){
-            $item5 = $itemgenre[5];
-            compact('item5');
-            foreach($item5 as $ite5){
-                // echo $ite3;
-                $ite5;
-                $itemlg5 = DB::select("SELECT * FROM projects,genre_project,type_project WHERE projects.type_id=type_project.type_id AND projects.genre_id=genre_project.genre_id
-                AND projects.project_id='$ite5'");
-
-                $svg5 = DB::select("SELECT AVG(rate_index) FROM rating_p WHERE project_id='$ite5'");
-                $svgrateg5 = $svg5[0];
-                compact('svgrateg5');
-                foreach($svgrateg5 as $svgrateg5){
-                    $svgrateg5=round($svgrateg5,$percision=1);;
-                }
-
-                $view5 = DB::select("SELECT COUNT(login_log.login_project) AS countview FROM login_log,projects 
-                WHERE projects.project_id=login_log.login_project AND projects.project_id='$ite5'
-                GROUP BY login_log.login_project");
-                if(isset($view5)?$view5:''){
-                    compact('view5');
-                    foreach($view5 as $view5){
-                        $viewcountg5 = $view5->countview;
-                        echo $viewcountg5;
-                        echo '1';
-                    }
-                }else{
-                    $viewcountg5='0';
                     
                 }
+                
+            }else {
+                $itemlg1='';
+                $viewcountg1='';
             }
-        }else {
-            $itemlg5='';
-            $viewcountg5='';
-        }
+        
+            if(isset($itemgenre[2])?$itemgenre[2]:''){
+                $item2 = $itemgenre[2];
+                compact('item2');
+                foreach($item2 as $ite2){
+                    // echo $ite2;
+                    $ite2;
+                    $itemlg2 = DB::select("SELECT * FROM projects,genre_project,type_project WHERE projects.type_id=type_project.type_id AND projects.genre_id=genre_project.genre_id
+                    AND projects.project_id='$ite2'");
 
-        if(isset($itemgenre[6])?$itemgenre[6]:''){
-            $item6 = $itemgenre[6];
-            compact('item6');
-            foreach($item6 as $ite6){
-                // echo $ite3;
-                $ite6;
-                $itemlg6 = DB::select("SELECT * FROM projects,genre_project,type_project WHERE projects.type_id=type_project.type_id AND projects.genre_id=genre_project.genre_id
-                AND projects.project_id='$ite6'");
-
-                $svg6 = DB::select("SELECT AVG(rate_index) FROM rating_p WHERE project_id='$ite6'");
-                $svgrateg6 = $svg6[0];
-                compact('svgrateg6');
-                foreach($svgrateg6 as $svgrateg6){
-                    $svgrateg6=round($svgrateg6,$percision=1);;
-                }
-
-                $view6 = DB::select("SELECT COUNT(login_log.login_project) AS countview FROM login_log,projects 
-                WHERE projects.project_id=login_log.login_project AND projects.project_id='$ite6'
-                GROUP BY login_log.login_project");
-                if(isset($view6)?$view6:''){
-                    compact('view6');
-                    foreach($view6 as $view6){
-                        $viewcountg6 = $view6->countview;
+                    $svg2 = DB::select("SELECT AVG(rate_index) FROM rating_p WHERE project_id='$ite2'");
+                    $svgrateg2 = $svg2[0];
+                    compact('svgrateg2');
+                    foreach($svgrateg2 as $svgrateg2){
+                        $svgrateg2=round($svgrateg2,$percision=1);;
                     }
-                }else{
-                    $viewcountg6='0';
-                }
-            }
-        }else {
-            $itemlg6='';
-            $viewcountg6 = '';
-        }
 
-        if(isset($itemgenre[7])?$itemgenre[7]:''){
-            $item7 = $itemgenre[7];
-            compact('item7');
-            foreach($item7 as $ite7){
-                // echo $ite3;
-                $ite7;
-                $itemlg7 = DB::select("SELECT * FROM projects,genre_project,type_project WHERE projects.type_id=type_project.type_id AND projects.genre_id=genre_project.genre_id
-                AND projects.project_id='$ite7'");
-
-                $svg7 = DB::select("SELECT AVG(rate_index) FROM rating_p WHERE project_id='$ite7'");
-                $svgrateg7 = $svg7[0];
-                compact('svgrateg7');
-                foreach($svgrateg7 as $svgrateg7){
-                    $svgrateg7=round($svgrateg7,$percision=1);;
-                }
-
-                $view7 = DB::select("SELECT COUNT(login_log.login_project) AS countview FROM login_log,projects 
-                WHERE projects.project_id=login_log.login_project AND projects.project_id='$ite7'
-                GROUP BY login_log.login_project");
-                if(isset($view7)?$view7:''){
-                    compact('view7');
-                    foreach($view7 as $view7){
-                        $viewcountg7 = $view7->countview;
+                    $view2 = DB::select("SELECT COUNT(login_log.login_project) AS countview FROM login_log,projects 
+                    WHERE projects.project_id=login_log.login_project AND projects.project_id='$ite2'
+                    GROUP BY login_log.login_project");
+                    if(isset($view2)?$view2:''){
+                        compact('view2');
+                        foreach($view2 as $view2){
+                            $viewcountg2 = $view2->countview;
+                        }
+                    }else{
+                        $viewcountg2='0';
                     }
-                }else{
-                    $viewcountg7='0';
                 }
+            }else {
+                $itemlg2='';
+                $viewcountg2='';
             }
-        }else {
-            $itemlg7='';
-            $viewcountg7='';
+            
+            if(isset($itemgenre[3])?$itemgenre[3]:''){
+                $item3 = $itemgenre[3];
+                compact('item3');
+                foreach($item3 as $ite3){
+                    // echo $ite3;
+                    $ite3;
+                    $itemlg3 = DB::select("SELECT * FROM projects,genre_project,type_project WHERE projects.type_id=type_project.type_id AND projects.genre_id=genre_project.genre_id
+                    AND projects.project_id='$ite3'");
+
+                    $svg3 = DB::select("SELECT AVG(rate_index) FROM rating_p WHERE project_id='$ite3'");
+                    $svgrateg3 = $svg3[0];
+                    compact('svgrateg3');
+                    foreach($svgrateg3 as $svgrateg3){
+                        $svgrateg3=round($svgrateg3,$percision=1);;
+                    }
+
+                    $view3 = DB::select("SELECT COUNT(login_log.login_project) AS countview FROM login_log,projects 
+                    WHERE projects.project_id=login_log.login_project AND projects.project_id='$ite3'
+                    GROUP BY login_log.login_project");
+                    if(isset($view3)?$view3:''){
+                        compact('view3');
+                        foreach($view3 as $view3){
+                            $viewcountg3 = $view3->countview;
+                        }
+                    }else{
+                        $viewcountg3='0';
+                    }
+                }
+            }else {
+                $itemlg3='';
+                $viewcountg3='';
+            }
+
+            if(isset($itemgenre[4])?$itemgenre[4]:''){
+                $item4 = $itemgenre[4];
+                compact('item4');
+                foreach($item4 as $ite4){
+                    // echo $ite3;
+                    $ite4;
+                    $itemlg4 = DB::select("SELECT * FROM projects,genre_project,type_project WHERE projects.type_id=type_project.type_id AND projects.genre_id=genre_project.genre_id
+                    AND projects.project_id='$ite4'");
+
+                    $svg4 = DB::select("SELECT AVG(rate_index) FROM rating_p WHERE project_id='$ite4'");
+                    $svgrateg4 = $svg4[0];
+                    compact('svgrateg4');
+                    foreach($svgrateg4 as $svgrateg4){
+                        $svgrateg4=round($svgrateg4,$percision=1);;
+                    }
+
+                    $view4 = DB::select("SELECT COUNT(login_log.login_project) AS countview FROM login_log,projects 
+                    WHERE projects.project_id=login_log.login_project AND projects.project_id='$ite4'
+                    GROUP BY login_log.login_project");
+                    if(isset($view4)?$view4:''){
+                        compact('view4');
+                        foreach($view4 as $view4){
+                            $viewcountg4 = $view4->countview;
+                        }
+                    }else{
+                        $viewcountg4='0';
+                    }
+                }
+            }else {
+                $itemlg4='';
+                $viewcountg4='';
+            }
+
+            if(isset($itemgenre[5])?$itemgenre[5]:''){
+                $item5 = $itemgenre[5];
+                compact('item5');
+                foreach($item5 as $ite5){
+                    // echo $ite3;
+                    $ite5;
+                    $itemlg5 = DB::select("SELECT * FROM projects,genre_project,type_project WHERE projects.type_id=type_project.type_id AND projects.genre_id=genre_project.genre_id
+                    AND projects.project_id='$ite5'");
+
+                    $svg5 = DB::select("SELECT AVG(rate_index) FROM rating_p WHERE project_id='$ite5'");
+                    $svgrateg5 = $svg5[0];
+                    compact('svgrateg5');
+                    foreach($svgrateg5 as $svgrateg5){
+                        $svgrateg5=round($svgrateg5,$percision=1);;
+                    }
+
+                    $view5 = DB::select("SELECT COUNT(login_log.login_project) AS countview FROM login_log,projects 
+                    WHERE projects.project_id=login_log.login_project AND projects.project_id='$ite5'
+                    GROUP BY login_log.login_project");
+                    if(isset($view5)?$view5:''){
+                        compact('view5');
+                        foreach($view5 as $view5){
+                            $viewcountg5 = $view5->countview;
+                            echo $viewcountg5;
+                            echo '1';
+                        }
+                    }else{
+                        $viewcountg5='0';
+                        
+                    }
+                }
+            }else {
+                $itemlg5='';
+                $viewcountg5='';
+            }
+
+            if(isset($itemgenre[6])?$itemgenre[6]:''){
+                $item6 = $itemgenre[6];
+                compact('item6');
+                foreach($item6 as $ite6){
+                    // echo $ite3;
+                    $ite6;
+                    $itemlg6 = DB::select("SELECT * FROM projects,genre_project,type_project WHERE projects.type_id=type_project.type_id AND projects.genre_id=genre_project.genre_id
+                    AND projects.project_id='$ite6'");
+
+                    $svg6 = DB::select("SELECT AVG(rate_index) FROM rating_p WHERE project_id='$ite6'");
+                    $svgrateg6 = $svg6[0];
+                    compact('svgrateg6');
+                    foreach($svgrateg6 as $svgrateg6){
+                        $svgrateg6=round($svgrateg6,$percision=1);;
+                    }
+
+                    $view6 = DB::select("SELECT COUNT(login_log.login_project) AS countview FROM login_log,projects 
+                    WHERE projects.project_id=login_log.login_project AND projects.project_id='$ite6'
+                    GROUP BY login_log.login_project");
+                    if(isset($view6)?$view6:''){
+                        compact('view6');
+                        foreach($view6 as $view6){
+                            $viewcountg6 = $view6->countview;
+                        }
+                    }else{
+                        $viewcountg6='0';
+                    }
+                }
+            }else {
+                $itemlg6='';
+                $viewcountg6 = '';
+            }
+
+            if(isset($itemgenre[7])?$itemgenre[7]:''){
+                $item7 = $itemgenre[7];
+                compact('item7');
+                foreach($item7 as $ite7){
+                    // echo $ite3;
+                    $ite7;
+                    $itemlg7 = DB::select("SELECT * FROM projects,genre_project,type_project WHERE projects.type_id=type_project.type_id AND projects.genre_id=genre_project.genre_id
+                    AND projects.project_id='$ite7'");
+
+                    $svg7 = DB::select("SELECT AVG(rate_index) FROM rating_p WHERE project_id='$ite7'");
+                    $svgrateg7 = $svg7[0];
+                    compact('svgrateg7');
+                    foreach($svgrateg7 as $svgrateg7){
+                        $svgrateg7=round($svgrateg7,$percision=1);;
+                    }
+
+                    $view7 = DB::select("SELECT COUNT(login_log.login_project) AS countview FROM login_log,projects 
+                    WHERE projects.project_id=login_log.login_project AND projects.project_id='$ite7'
+                    GROUP BY login_log.login_project");
+                    if(isset($view7)?$view7:''){
+                        compact('view7');
+                        foreach($view7 as $view7){
+                            $viewcountg7 = $view7->countview;
+                        }
+                    }else{
+                        $viewcountg7='0';
+                    }
+                }
+            }else {
+                $itemlg7='';
+                $viewcountg7='';
+            }
+        }else{
+            $itemgenre='';
         }
         
         //poppulay item 
@@ -1164,207 +1174,301 @@ class ProjectController extends Controller
         }else{$sum_pop_p = '0';}
 
         
-        $itempop = DB::select("SELECT project_id, AVG(rate_index) ratesum FROM rating_p GROUP BY project_id ORDER BY AVG(rate_index) DESC");
+        $itempop = DB::select("SELECT login_project,COUNT(login_project) AS countview FROM login_log GROUP BY login_project ORDER BY COUNT(login_project) DESC");
         // print_r($itempop);
-        if(isset($itempop[0])? $itempop[0]:'') {
-            $item0 = $itempop[0]; //เลือกตำเเหน่งของข้อมูล
-            // print_r($item0);
-            $pop0 = $item0->project_id;
-            $avgpop0 = round($item0->ratesum,$percision=1);
-            $itempop0 = DB::select("SELECT * FROM projects,genre_project,type_project WHERE projects.type_id=type_project.type_id AND projects.genre_id=genre_project.genre_id 
-            AND projects.project_id='$pop0'"); 
-            // print_r($itemlpop0);
+        if(isset($itempop)?$itempop:''){
+            $_SESSION['itempop']='itempop';
+            if(isset($itempop[0])? $itempop[0]:'') {
+                $item0 = $itempop[0]; //เลือกตำเเหน่งของข้อมูล
+                // print_r($item0);
+                $pop0 = $item0->login_project;
+                
+                $itempop0 = DB::select("SELECT * FROM projects,genre_project,type_project WHERE projects.type_id=type_project.type_id AND projects.genre_id=genre_project.genre_id 
+                AND projects.project_id='$pop0'"); 
+                // print_r($itemlpop0);
 
-            $view0 = DB::select("SELECT COUNT(login_log.login_project) AS countview FROM login_log,projects 
-            WHERE projects.project_id=login_log.login_project AND projects.project_id='$pop0'
-            GROUP BY login_log.login_project");
-            if(isset($view0)?$view0:''){
-                compact('view0');
-                foreach($view0 as $view0){
-                    $viewcountp0 = $view0->countview;
+                $itemp0 = DB::select("SELECT AVG(rate_index) ratesum FROM rating_p,projects WHERE projects.project_id=rating_p.project_id AND projects.project_id='$pop0' GROUP BY rating_p.project_id ");
+                if(isset($itemp0)?$itemp0:''){
+                    compact('itemp0');
+                    foreach($itemp0 as $itemp0){
+                        $avgpop0 = round($itemp0->ratesum,$percision=1);
+                    }
+                }else{
+                    $avgpop0 = '0';
                 }
-            }else{
-                $viewcountp0='0';
+                
+
+                $view0 = DB::select("SELECT COUNT(login_log.login_project) AS countview FROM login_log,projects 
+                WHERE projects.project_id=login_log.login_project AND projects.project_id='$pop0'
+                GROUP BY login_log.login_project");
+                if(isset($view0)?$view0:''){
+                    compact('view0');
+                    foreach($view0 as $view0){
+                        $viewcountp0 = $view0->countview;
+                    }
+                }else{
+                    $viewcountp0='0';
+                }
+
+            }else {
+                $itemlg0='';
+                $avgpop0='';
+                $viewcountp0='';
             }
 
-        }else {
-            $itemlg0='';
-            $viewcountp0='';
-        }
+            if(isset($itempop[1])?$itempop[1]:''){
+                $item1 = $itempop[1];
+                $pop1 = $item1->login_project;
+                // $avgpop1 = round($item1->ratesum,$percision=1);
+                $itempop1 = DB::select("SELECT * FROM projects,genre_project,type_project WHERE projects.type_id=type_project.type_id AND projects.genre_id=genre_project.genre_id
+                AND projects.project_id='$pop1'");
 
-        if(isset($itempop[1])?$itempop[1]:''){
-            $item1 = $itempop[1];
-            $pop1 = $item1->project_id;
-            $avgpop1 = round($item1->ratesum,$percision=1);
-            $itempop1 = DB::select("SELECT * FROM projects,genre_project,type_project WHERE projects.type_id=type_project.type_id AND projects.genre_id=genre_project.genre_id
-            AND projects.project_id='$pop1'");
-
-            $view1 = DB::select("SELECT COUNT(login_log.login_project) AS countview FROM login_log,projects 
-            WHERE projects.project_id=login_log.login_project AND projects.project_id='$pop1'
-            GROUP BY login_log.login_project");
-            if(isset($view1)?$view1:''){
-                compact('view1');
-                foreach($view1 as $view1){
-                    $viewcountp1 = $view1->countview;
+                $itemp1 = DB::select("SELECT AVG(rate_index) ratesum FROM rating_p,projects WHERE projects.project_id=rating_p.project_id AND projects.project_id='$pop1' GROUP BY rating_p.project_id ");
+                if(isset($itemp1)?$itemp1:''){
+                    compact('itemp1');
+                    foreach($itemp1 as $itemp1){
+                        $avgpop1 = round($itemp1->ratesum,$percision=1);
+                    }
+                }else{
+                    $avgpop1 = '0';
                 }
-            }else{
-                $viewcountp1='0';
+
+                $view1 = DB::select("SELECT COUNT(login_log.login_project) AS countview FROM login_log,projects 
+                WHERE projects.project_id=login_log.login_project AND projects.project_id='$pop1'
+                GROUP BY login_log.login_project");
+                if(isset($view1)?$view1:''){
+                    compact('view1');
+                    foreach($view1 as $view1){
+                        $viewcountp1 = $view1->countview;
+                    }
+                }else{
+                    $viewcountp1='0';
+                }
+                
+            }else {
+                $itemlg1='';
+                $viewcountp1='';
+                $avgpop1='';
+            }
+        
+            if(isset($itempop[2])?$itempop[2]:''){
+                $item2 = $itempop[2];
+                $pop2 = $item2->login_project;
+                // $avgpop2 = round($item2->ratesum,$percision=1);
+                $itempop2 = DB::select("SELECT * FROM projects,genre_project,type_project WHERE projects.type_id=type_project.type_id AND projects.genre_id=genre_project.genre_id
+                AND projects.project_id='$pop2'");
+
+                $itemp2 = DB::select("SELECT AVG(rate_index) ratesum FROM rating_p,projects WHERE projects.project_id=rating_p.project_id AND projects.project_id='$pop2' GROUP BY rating_p.project_id ");
+                if(isset($itemp2)?$itemp2:''){
+                    compact('itemp2');
+                    foreach($itemp2 as $itemp2){
+                        $avgpop2 = round($itemp2->ratesum,$percision=1);
+                    }
+                }else{
+                    $avgpop2 = '0';
+                }
+
+                $view2 = DB::select("SELECT COUNT(login_log.login_project) AS countview FROM login_log,projects 
+                WHERE projects.project_id=login_log.login_project AND projects.project_id='$pop2'
+                GROUP BY login_log.login_project");
+                if(isset($view2)?$view2:''){
+                    compact('view2');
+                    foreach($view2 as $view2){
+                        $viewcountp2 = $view2->countview;
+                    }
+                }else{
+                    $viewcountp2='0';
+                }
+
+            }else {
+                $itemlg2='';
+                $viewcountp2='';
+                $avgpop2 = '';
             }
             
-        }else {
-            $itemlg1='';
-            $viewcountp1='';
-        }
-       
-        if(isset($itempop[2])?$itempop[2]:''){
-            $item2 = $itempop[2];
-            $pop2 = $item2->project_id;
-            $avgpop2 = round($item2->ratesum,$percision=1);
-            $itempop2 = DB::select("SELECT * FROM projects,genre_project,type_project WHERE projects.type_id=type_project.type_id AND projects.genre_id=genre_project.genre_id
-            AND projects.project_id='$pop2'");
+            if(isset($itempop[3])?$itempop[3]:''){
+                $item3 = $itempop[3];
+                $pop3 = $item3->login_project;
+                // $avgpop3 = round($item3->ratesum,$percision=1);
+                $itempop3 = DB::select("SELECT * FROM projects,genre_project,type_project WHERE projects.type_id=type_project.type_id AND projects.genre_id=genre_project.genre_id
+                AND projects.project_id='$pop3'");
 
-            $view2 = DB::select("SELECT COUNT(login_log.login_project) AS countview FROM login_log,projects 
-            WHERE projects.project_id=login_log.login_project AND projects.project_id='$pop2'
-            GROUP BY login_log.login_project");
-            if(isset($view2)?$view2:''){
-                compact('view2');
-                foreach($view2 as $view2){
-                    $viewcountp2 = $view2->countview;
+                $itemp3 = DB::select("SELECT AVG(rate_index) ratesum FROM rating_p,projects WHERE projects.project_id=rating_p.project_id AND projects.project_id='$pop3' GROUP BY rating_p.project_id ");
+                if(isset($itemp3)?$itemp3:''){
+                    compact('itemp3');
+                    foreach($itemp3 as $itemp3){
+                        $avgpop3 = round($itemp3->ratesum,$percision=1);
+                    }
+                }else{
+                    $avgpop3 = '0';
                 }
-            }else{
-                $viewcountp2='0';
+
+                $view3 = DB::select("SELECT COUNT(login_log.login_project) AS countview FROM login_log,projects 
+                WHERE projects.project_id=login_log.login_project AND projects.project_id='$pop3'
+                GROUP BY login_log.login_project");
+                if(isset($view3)?$view3:''){
+                    compact('view3');
+                    foreach($view3 as $view3){
+                        $viewcountp3 = $view3->countview;
+                    }
+                }else{
+                    $viewcountp3='0';
+                }
+
+            }else {
+                $itemlg3='';
+                $viewcountp3='';
+                $avgpop3 = '';
             }
 
-        }else {
-            $itemlg2='';
-            $viewcountp2='';
-        }
+            if(isset($itempop[4])?$itempop[4]:''){
+                $item4 = $itempop[4];
+                $pop4 = $item4->login_project;
+                // $avgpop4 = round($item4->ratesum,$percision=1);
+                $itempop4 = DB::select("SELECT * FROM projects,genre_project,type_project WHERE projects.type_id=type_project.type_id AND projects.genre_id=genre_project.genre_id
+                AND projects.project_id='$pop4'");
+
+                $itemp4 = DB::select("SELECT AVG(rate_index) ratesum FROM rating_p,projects WHERE projects.project_id=rating_p.project_id AND projects.project_id='$pop4' GROUP BY rating_p.project_id ");
+                if(isset($itemp4)?$itemp4:''){
+                    compact('itemp4');
+                    foreach($itemp4 as $itemp4){
+                        $avgpop4 = round($itemp4->ratesum,$percision=1);
+                    }
+                }else{
+                    $avgpop4 = '0';
+                }
+
+                $view4 = DB::select("SELECT COUNT(login_log.login_project) AS countview FROM login_log,projects 
+                WHERE projects.project_id=login_log.login_project AND projects.project_id='$pop4'
+                GROUP BY login_log.login_project");
+                if(isset($view4)?$view4:''){
+                    compact('view4');
+                    foreach($view4 as $view4){
+                        $viewcountp4 = $view4->countview;
+                    }
+                }else{
+                    $viewcountp4='0';
+                }
         
-        if(isset($itempop[3])?$itempop[3]:''){
-            $item3 = $itempop[3];
-            $pop3 = $item3->project_id;
-            $avgpop3 = round($item3->ratesum,$percision=1);
-            $itempop3 = DB::select("SELECT * FROM projects,genre_project,type_project WHERE projects.type_id=type_project.type_id AND projects.genre_id=genre_project.genre_id
-            AND projects.project_id='$pop3'");
-
-            $view3 = DB::select("SELECT COUNT(login_log.login_project) AS countview FROM login_log,projects 
-            WHERE projects.project_id=login_log.login_project AND projects.project_id='$pop3'
-            GROUP BY login_log.login_project");
-            if(isset($view3)?$view3:''){
-                compact('view3');
-                foreach($view3 as $view3){
-                    $viewcountp3 = $view3->countview;
-                }
-            }else{
-                $viewcountp3='0';
+            }else {
+                $itemlg4='';
+                $viewcountp4='';
+                $avgpop4 = '';
             }
 
-        }else {
-            $itemlg3='';
-            $viewcountp3='';
-        }
+            if(isset($itempop[5])?$itempop[5]:''){
+                $item5 = $itempop[5];
+                $pop5 = $item5->login_project;
+                // $avgpop5 = round($item5->ratesum,$percision=1);
+                $itempop5 = DB::select("SELECT * FROM projects,genre_project,type_project WHERE projects.type_id=type_project.type_id AND projects.genre_id=genre_project.genre_id
+                AND projects.project_id='$pop5'");
 
-        if(isset($itempop[4])?$itempop[4]:''){
-            $item4 = $itempop[4];
-            $pop4 = $item4->project_id;
-            $avgpop4 = round($item4->ratesum,$percision=1);
-            $itempop4 = DB::select("SELECT * FROM projects,genre_project,type_project WHERE projects.type_id=type_project.type_id AND projects.genre_id=genre_project.genre_id
-            AND projects.project_id='$pop4'");
-
-            $view4 = DB::select("SELECT COUNT(login_log.login_project) AS countview FROM login_log,projects 
-            WHERE projects.project_id=login_log.login_project AND projects.project_id='$pop4'
-            GROUP BY login_log.login_project");
-            if(isset($view4)?$view4:''){
-                compact('view4');
-                foreach($view4 as $view4){
-                    $viewcountp4 = $view4->countview;
+                $itemp5 = DB::select("SELECT AVG(rate_index) ratesum FROM rating_p,projects WHERE projects.project_id=rating_p.project_id AND projects.project_id='$pop5' GROUP BY rating_p.project_id ");
+                if(isset($itemp5)?$itemp5:''){
+                    compact('itemp5');
+                    foreach($itemp5 as $itemp5){
+                        $avgpop5 = round($itemp5->ratesum,$percision=1);
+                    }
+                }else{
+                    $avgpop5 = '0';
                 }
-            }else{
-                $viewcountp4='0';
-            }
-    
-        }else {
-            $itemlg4='';
-            $viewcountp4='';
-        }
 
-        if(isset($itempop[5])?$itempop[5]:''){
-            $item5 = $itempop[5];
-            $pop5 = $item5->project_id;
-            $avgpop5 = round($item5->ratesum,$percision=1);
-            $itempop5 = DB::select("SELECT * FROM projects,genre_project,type_project WHERE projects.type_id=type_project.type_id AND projects.genre_id=genre_project.genre_id
-            AND projects.project_id='$pop5'");
-
-            $view5 = DB::select("SELECT COUNT(login_log.login_project) AS countview FROM login_log,projects 
-            WHERE projects.project_id=login_log.login_project AND projects.project_id='$pop5'
-            GROUP BY login_log.login_project");
-            if(isset($view5)?$view5:''){
-                compact('view5');
-                foreach($view5 as $view5){
-                    $viewcountp5 = $view5->countview;
+                $view5 = DB::select("SELECT COUNT(login_log.login_project) AS countview FROM login_log,projects 
+                WHERE projects.project_id=login_log.login_project AND projects.project_id='$pop5'
+                GROUP BY login_log.login_project");
+                if(isset($view5)?$view5:''){
+                    compact('view5');
+                    foreach($view5 as $view5){
+                        $viewcountp5 = $view5->countview;
+                    }
+                }else{
+                    $viewcountp5='0';
                 }
-            }else{
-                $viewcountp5='0';
+
+            }else {
+                $itemlg5='';
+                $viewcountp5='';
+                $avgpop5 = '';
             }
 
-        }else {
-            $itemlg5='';
-            $viewcountp5='';
-        }
+            if(isset($itempop[6])?$itempop[6]:''){
+                $item6 = $itempop[6];
+                $pop6 = $item6->login_project;
+                // $avgpop6 = round($item6->ratesum,$percision=1);
+                $itempop6 = DB::select("SELECT * FROM projects,genre_project,type_project WHERE projects.type_id=type_project.type_id AND projects.genre_id=genre_project.genre_id
+                AND projects.project_id='$pop6'");
 
-        if(isset($itempop[6])?$itempop[6]:''){
-            $item6 = $itempop[6];
-            $pop6 = $item6->project_id;
-            $avgpop6 = round($item6->ratesum,$percision=1);
-            $itempop6 = DB::select("SELECT * FROM projects,genre_project,type_project WHERE projects.type_id=type_project.type_id AND projects.genre_id=genre_project.genre_id
-            AND projects.project_id='$pop6'");
-
-            $view6 = DB::select("SELECT COUNT(login_log.login_project) AS countview FROM login_log,projects 
-            WHERE projects.project_id=login_log.login_project AND projects.project_id='$pop6'
-            GROUP BY login_log.login_project");
-            if(isset($view6)?$view6:''){
-                compact('view6');
-                foreach($view6 as $view6){
-                    $viewcountp6 = $view6->countview;
+                $itemp6 = DB::select("SELECT AVG(rate_index) ratesum FROM rating_p,projects WHERE projects.project_id=rating_p.project_id AND projects.project_id='$pop6' GROUP BY rating_p.project_id ");
+                if(isset($itemp6)?$itemp6:''){
+                    compact('itemp6');
+                    foreach($itemp6 as $itemp6){
+                        $avgpop6 = round($itemp6->ratesum,$percision=1);
+                    }
+                }else{
+                    $avgpop6 = '0';
                 }
-            }else{
-                $viewcountp6='0';
+
+                $view6 = DB::select("SELECT COUNT(login_log.login_project) AS countview FROM login_log,projects 
+                WHERE projects.project_id=login_log.login_project AND projects.project_id='$pop6'
+                GROUP BY login_log.login_project");
+                if(isset($view6)?$view6:''){
+                    compact('view6');
+                    foreach($view6 as $view6){
+                        $viewcountp6 = $view6->countview;
+                    }
+                }else{
+                    $viewcountp6='0';
+                }
+
+            }else {
+                $itemlg6='';
+                $viewcountp6='';
+                $avgpop6 = '';
             }
 
-        }else {
-            $itemlg6='';
-            $viewcountp6='';
-        }
+            if(isset($itempop[7])?$itempop[7]:''){
+                $item7 = $itempop[7];
+                $pop7 = $item7->login_project;
+                // $avgpop7 = round($item7->ratesum,$percision=1);
+                $itempop7 = DB::select("SELECT * FROM projects,genre_project,type_project WHERE projects.type_id=type_project.type_id AND projects.genre_id=genre_project.genre_id
+                AND projects.project_id='$pop7'");
 
-        if(isset($itempop[7])?$itempop[7]:''){
-            $item7 = $itempop[7];
-            $pop7 = $item7->project_id;
-            $avgpop7 = round($item7->ratesum,$percision=1);
-            $itempop7 = DB::select("SELECT * FROM projects,genre_project,type_project WHERE projects.type_id=type_project.type_id AND projects.genre_id=genre_project.genre_id
-            AND projects.project_id='$pop7'");
-
-            $view7 = DB::select("SELECT COUNT(login_log.login_project) AS countview FROM login_log,projects 
-            WHERE projects.project_id=login_log.login_project AND projects.project_id='$pop7'
-            GROUP BY login_log.login_project");
-            if(isset($view7)?$view7:''){
-                compact('view7');
-                foreach($view7 as $view7){
-                    $viewcountp7 = $view7->countview;
+                $itemp7 = DB::select("SELECT AVG(rate_index) ratesum FROM rating_p,projects WHERE projects.project_id=rating_p.project_id AND projects.project_id='$pop7' GROUP BY rating_p.project_id ");
+                if(isset($itemp7)?$itemp7:''){
+                    compact('itemp7');
+                    foreach($itemp7 as $itemp7){
+                        $avgpop7 = round($itemp7->ratesum,$percision=1);
+                    }
+                }else{
+                    $avgpop7 = '0';
                 }
-            }else{
-                $viewcountp7='0';
-            }
 
-        }else {
-            $itemlg7='';
-            $viewcountp7='';
+                $view7 = DB::select("SELECT COUNT(login_log.login_project) AS countview FROM login_log,projects 
+                WHERE projects.project_id=login_log.login_project AND projects.project_id='$pop7'
+                GROUP BY login_log.login_project");
+                if(isset($view7)?$view7:''){
+                    compact('view7');
+                    foreach($view7 as $view7){
+                        $viewcountp7 = $view7->countview;
+                    }
+                }else{
+                    $viewcountp7='0';
+                }
+
+            }else {
+                $itemlg7='';
+                $viewcountp7='';
+                $avgpop7 = '';
+            }
+        }else{
+            $itempop='';
         }
 
         // $chk_genre = DB::select("SELECT * FROM genre_project");
         // $chk_category = DB::select("SELECT * FROM category_project");
         // $chk_type = DB::select("SELECT * FROM type_project");
 
-        return view('homeBD',compact('itemlp0','itemlp1','itemlp2','itemlp3','itemlp4','itemlp5','itemlp6','itemlp7','itemlp8',
+        return view('homeBD',compact('itemloop','itemgenre','itempop','itemlp0','itemlp1','itemlp2','itemlp3','itemlp4','itemlp5','itemlp6','itemlp7','itemlp8',
         'viewcount0','viewcount1','viewcount2','viewcount3','viewcount4','viewcount5','viewcount6','viewcount7','viewcount8',
         'itemlg0','itemlg1','itemlg2','itemlg3','itemlg4','itemlg5','itemlg6','itemlg7',
         'viewcountg0','viewcountg1','viewcountg2','viewcountg3','viewcountg4','viewcountg5','viewcountg6','viewcountg7',

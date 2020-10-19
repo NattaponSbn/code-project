@@ -11220,3 +11220,43 @@ label.fontdetail {
     margin-left: 2px;
     height: 5%;
 }
+
+.footer {
+    -premailer-cellpadding: 0;
+    -premailer-cellspacing: 0;
+    -premailer-width: 570px;
+    display: block;
+    margin: 0 auto;
+    padding: 0;
+    text-align: center;
+    height: 200px;
+    /* ความสูงของ footer */
+    width: 100%;
+}
+
+.footer-color {
+    background-color: #212327
+}
+
+.footer p {
+    color: #b0adc5;
+    font-size: 12px;
+    text-align: center;
+}
+
+.footer a {
+    color: #b0adc5;
+    text-decoration: underline;
+}
+
+.wrapper {
+    display: block;
+    min-height: 100%;
+    /* real browsers */
+    height: auto !important;
+    /* real browsers */
+    height: 100%;
+    /* IE6 bug */
+    margin-bottom: -30%;
+    /* กำหนด margin-bottom ให้ติดลบเท่ากับความสูงของ footer */
+}

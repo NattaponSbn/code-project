@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="imghtml">
 
 <head>
     <meta charset="utf-8">
@@ -512,7 +512,7 @@
             </div>
         </div>
     </div>
-
+<div class="wrapper">
     <div class="app sidebar-mini ">
         <header class="app-header">
             <!-- font Athiti -->
@@ -891,12 +891,12 @@
                 </li>
             </ul>
         </aside>
-
         <div class="imghtml" style="font-family: 'Athiti', sans-serif;">@yield('content')</div>
         <!-- The Modal -->
-
-
-
+    </div>
+    </div>
+    
+</body>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>
         <script src="{{ asset('js/app.js') }}" defer></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
@@ -919,46 +919,43 @@
             });
         </script>
 
-    <script>
-        /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
-        test("dropdown-btn");
-        test("dropdown-btn2");
-        test("dropdown-btn3");
-        test("dropdown-btn4");
-        test("dropdown-btn5");
-        test("dropdown-btn6");
-        test("dropdown-btn7");
-        function test(input){
-            var dropdown2 = document.getElementsByClassName(input);
-            var i;
+        <script>
+            /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
+            test("dropdown-btn");
+            test("dropdown-btn2");
+            test("dropdown-btn3");
+            test("dropdown-btn4");
+            test("dropdown-btn5");
+            test("dropdown-btn6");
+            test("dropdown-btn7");
+            function test(input){
+                var dropdown2 = document.getElementsByClassName(input);
+                var i;
 
-            for (i = 0; i < dropdown2.length; i++) {
-                dropdown2[i].addEventListener("click", function() {
-                this.classList.toggle("active-item");
-                var dropdownContent = this.nextElementSibling;
-                if (dropdownContent.style.display === "block") {
-                    dropdownContent.style.display = "none";
-                } else {
-                    dropdownContent.style.display = "block";
+                for (i = 0; i < dropdown2.length; i++) {
+                    dropdown2[i].addEventListener("click", function() {
+                    this.classList.toggle("active-item");
+                    var dropdownContent = this.nextElementSibling;
+                    if (dropdownContent.style.display === "block") {
+                        dropdownContent.style.display = "none";
+                    } else {
+                        dropdownContent.style.display = "block";
+                    }
+                    });
                 }
-                });
             }
-        }
-        </script>
+            </script>
 
-        <!-- The javascript plugin to display page loading on top-->
-        <script src="js/plugins/pace.min.js"></script>
-        <!-- Page specific javascripts-->
-        <!-- <script>
-            $(window).scroll(function(){
-                var scroll = $(window).scrollTop();
-                $("").css({
-                    width: (100 + scroll/5) + "%"
+            <!-- The javascript plugin to display page loading on top-->
+            <script src="js/plugins/pace.min.js"></script>
+            <!-- Page specific javascripts-->
+            <!-- <script>
+                $(window).scroll(function(){
+                    var scroll = $(window).scrollTop();
+                    $("").css({
+                        width: (100 + scroll/5) + "%"
+                    })
                 })
-            })
-        </script> -->
-    </div>
-    <!-- Modal -->
-</body>
+            </script> -->
 
 </html>

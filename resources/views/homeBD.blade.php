@@ -719,7 +719,7 @@
                         </div>
                         
     
-
+        @if(isset($_SESSION['itemgenre'])?$_SESSION['itemgenre']:'')
         <div class="rowcolumn">
             <div class="col-md-12">
                 <div class="tile2">
@@ -815,9 +815,11 @@
                 </div>
             </div>
         </div>
+        @else
+        @endif
     </div>
 
-        
+        @if($_SESSION['itempop']?$_SESSION['itempop']:'')
         <div class="rowcolumn">
             <div class="col-md-12">
                 <div class="tile3">
@@ -1690,8 +1692,18 @@
                 </div>
             </div>
         </div>
+        @else
+        @endif
     </div>
+    <footer class="footer footer-color">
+        <div class="container">
+            <p style="color: #fff;">Author: Hege Refsnes<br>
+            <a href="mailto:hege@example.com" style="color: #fff;">hege@example.com</a></p>
+        </div>
+        
+    </footer>
 @endsection
+
     <?php
         function utf8_strlen($str){ 
             $c = strlen($str);
