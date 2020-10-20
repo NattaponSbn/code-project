@@ -51,6 +51,11 @@ Route::get('input_rate', 'ProjectController@test');
     //     return view('beforesearchBD');
     // });
 
+    //ค้นหา MDD
+    Route::get('searchmdd','Autocomplete_MddController@searchmdd');
+    Route::get('AVsearchmdd', 'Autocomplete_MddController@detailsearch')->name('AVsearchmdd');
+    Route::get('SearchAdvancemdd', 'Autocomplete_MddController@detailview')->name('AVsearchmdd');
+
 
 
 Route::get('test', function () {

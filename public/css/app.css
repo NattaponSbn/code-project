@@ -1023,13 +1023,14 @@ pre code {
 
 .textimg {
     margin-top: 7px;
-    font-size: 20px;
+    font-size: 19px;
     padding: 2px;
     color: black;
 }
 
 .textimg2 {
     color: black;
+    margin-top: -1px;
 }
 
 .row {
@@ -1206,7 +1207,7 @@ pre code {
     margin-right: 20px;
     margin-top: 25px;
     width: 220px;
-    height: 300px;
+    height: 310px;
     background-color: #fff;
     -webkit-box-shadow: 0 12px 34px rgba(0, 0, 0, 0.12);
     -moz-box-shadow: 0 12px 34px rgba(0, 0, 0, 0.12);
@@ -1244,6 +1245,20 @@ pre code {
 }
 
 .column-mdd:hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.column-mdd-s {
+    margin-left: 30px;
+    margin-right: 20px;
+    margin-top: 10px;
+    display: table;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.12);
+}
+
+.column-mdd-s:hover {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -1298,7 +1313,7 @@ pre code {
 .columnimg {
     margin-left: 25px;
     margin-right: 30px;
-    margin-top: 25px;
+    margin-top: 20px;
     width: 170px;
     height: 180px;
     padding: 10px;
@@ -1348,6 +1363,11 @@ pre code {
 }
 
 .layoutMDD {
+    margin-left: 25px;
+    padding: 10px;
+}
+
+.layoutMDD-s {
     margin-left: 25px;
     padding: 10px;
 }
@@ -11209,8 +11229,7 @@ label.fontdetail {
 }
 
 .countview {
-    margin-left: 3%;
-    margin-right: 1%;
+    margin-left: 1%;
     margin-top: 1px;
     font-size: 14.5px;
     font-family: 'Athiti', sans-serif;
@@ -11227,26 +11246,65 @@ label.fontdetail {
     -premailer-width: 570px;
     display: block;
     margin: 0 auto;
-    padding: 0;
+    padding: 10px;
     text-align: center;
-    height: 200px;
+    font-size: 18px;
+    height: 100%;
     /* ความสูงของ footer */
     width: 100%;
+    font-family: 'Athiti', sans-serif;
+    color: #ffffff;
+}
+
+.footer-conlayout {
+    padding: 2%;
+    align-items: center;
+    float: center;
+}
+
+.row-footer {
+    width: 90%;
 }
 
 .footer-color {
     background-color: #212327
 }
 
+.footer-text-header {
+    color: honeydew;
+}
+
 .footer p {
     color: #b0adc5;
-    font-size: 12px;
+    font-size: 16px;
     text-align: center;
 }
 
 .footer a {
     color: #b0adc5;
     text-decoration: underline;
+    font-size: 16px;
+}
+
+.footer-mdd {
+    -premailer-cellpadding: 0;
+    -premailer-cellspacing: 0;
+    -premailer-width: 570px;
+    display: block;
+    margin: 0 auto;
+    padding: 10px;
+    text-align: center;
+    font-size: 18px;
+    height: 50%;
+    /* ความสูงของ footer */
+    width: 100%;
+    font-family: 'Athiti', sans-serif;
+    color: #ffffff;
+}
+
+.footer-conlayoutmdd {
+    padding: 2%;
+    float: center;
 }
 
 .wrapper {
@@ -11259,4 +11317,58 @@ label.fontdetail {
     /* IE6 bug */
     margin-bottom: -30%;
     /* กำหนด margin-bottom ให้ติดลบเท่ากับความสูงของ footer */
+}
+
+.text-layout-footer {
+    float: inline-start;
+}
+
+#back-top {
+    position: fixed;
+    bottom: 15px;
+    /*margin-left: -150px;*/
+    right: 20px;
+}
+
+#back-top a {
+    /*width: 60px;*/
+    display: block;
+    text-align: center;
+    font: 11px/100% Arial, Helvetica, sans-serif;
+    /*text-transform: uppercase;*/
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    opacity: 0.9;
+    /* transition */
+    -webkit-transition: 1s;
+    -moz-transition: 1s;
+    transition: 1s;
+}
+
+#back-top a:hover {
+    color: #fff;
+}
+
+
+/* arrow icon (span tag) */
+
+#back-top span {
+    width: 60px;
+    height: 60px;
+    display: block;
+    margin-bottom: 7px;
+    background: #ddd url(up-arrow.png) no-repeat center center;
+    /* rounded corners */
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+    /* transition */
+    -webkit-transition: 1s;
+    -moz-transition: 1s;
+    transition: 1s;
+}
+
+#back-top a:hover span {
+    background-color: #005419;
 }

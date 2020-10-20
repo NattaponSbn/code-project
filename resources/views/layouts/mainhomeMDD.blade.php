@@ -620,7 +620,8 @@
             <!-- main.css-->
             <ul class="app-nav">
                 <li class="app-search search-left">
-                <form action='/mddsearch' method='GET'>
+                    
+                <form action="searchmdd" method="GET">
                             <input class="app-search__input" name='mddsearch' id="mddsearch" type="text" placeholder="ค้นหา...">
                             <div id="searchList">
                             </div>
@@ -662,8 +663,8 @@
                         </form>
                 </li>
                 <nav class="app-navmenu">
-                    <li class="active1 menulink fontlink"><a href="homeBD">หน้าเเรก</a></li>
-                    <li class="active2 menulink fontlink"><a href="SearchAdvance">ค้นหาเเบบละเอียด</a></li>
+                    <li class="active1 menulink fontlink"><a href="homeMDD">หน้าเเรก</a></li>
+                    <li class="active2 menulink fontlink"><a href="SearchAdvancemdd">ค้นหาเเบบละเอียด</a></li>
                     <li class="active3 menulink fontlink"><a href="#">เกี่ยวกับ</a></li>
                     <li class="active4 menulink fontlink"><a href="#">ติดต่อ</a></li>
                 </nav>
@@ -862,7 +863,7 @@
                
         </header>
         <!-- app-sidebar css ของ main.css ส่วนของ เเท็บ ซ้ายมือ -->
-        <aside class="app-sidebar">
+        <aside class="app-sidebar" id="sidebar">
             <ul class="app-menu">
                 <li>
                 <div id="layoutSidenav">
@@ -907,21 +908,7 @@
                                                     <a href="#">ไอโอที(IoT)</a> -->
                                                     @endforeach
                                                 </div>
-                                        
 
-                                            <button class="dropdown-btn " style="border-top: 0.5px solid #fff;border-radius: 10%;">ชนิดเอกสาร
-                                                <i class="fa fa-caret-down fa-lg" style="width: 20px;"></i>
-                                            </button>
-                                                <div class="dropdown-container">
-                                                    @foreach($chk_type as $type)
-                                                    <a href="typeproject/{{$type->type_id}}" class="btn-default btn-outline-primaryy" style="font-size:17px;color:#fff;">{{$type->type_name}}</a>
-                                                    <!-- <a href="#">โปรแกรมประยุกต์สำหรับอุปกรณ์เคลื่อนที่</a>
-                                                    <a href="#">ไอโอที(IoT)</a>
-                                                    <a href="#">ปัญญาประดิษฐ์(Ai)</a>
-                                                    <a href="#">ไอโอที(IoT)</a>
-                                                    <a href="#">ไอโอที(IoT)</a> -->
-                                                    @endforeach
-                                                </div>
                                         </div>
 
                                     </div>
@@ -971,7 +958,7 @@
             </ul>
 
         </aside>
-        <div>@yield('content')</div>
+        <div class="img-top">@yield('content')</div>
 
 
 
@@ -1001,6 +988,17 @@
                     $(this).parent().find('input[name=rating]').val(rating); //add rating value to input field
                 });
             });
+        </script>
+
+        <script>
+            $(window).scroll(function(){
+                var scroll = $(window).scrollTop();
+                $("#sidebar").css({
+                    // width: (100 + scroll/5) + "%",
+                    height: (75 + scroll/-10)+ "%"
+                })
+            })
+           
         </script>
         
         <script>

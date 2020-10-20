@@ -256,7 +256,7 @@
     </style>
 </head>
 
-<body>
+<body id="top">
     <!-- successappproject -->
     @if ($message = Session::get('successappproject'))
     <script>
@@ -802,14 +802,14 @@
         </header>
         <div class="app-sidebar__overlay" data-toggle="sidebar" aria-label="Hide Sidebar"></div>
         <!-- app-sidebar css ของ main.css ส่วนของ เเท็บ ซ้ายมือ -->
-        <aside class="app-sidebar">
-            <ul class="app-menu">
-                <li>
-                    <div id="layoutSidenav">
-                        <div id="layoutSidenav_nav">
-                            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-                                <div class="sb-sidenav-menu">
-                                <div class="nav">
+        <aside class="app-sidebar" id="sidebar">
+            <ul class="app-menu" >
+                <li >
+                    <div id="layoutSidenav" >
+                        <div id="layoutSidenav_nav" >
+                            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion" >
+                                <div class="sb-sidenav-menu" >
+                                <div class="nav" >
                                     <br>
                                         <div class="sidenav" >
                                             <button class="dropdown-btn" style="border-top: 0.5px solid #fff;border-radius: 10%;">ระดับวิทยานิพนธ์
@@ -882,21 +882,19 @@
                     }
                 </style>
                 <p>
-                    <hr>
                 </p>
-
-                <div class="layoutlogre">
-                   
-                </div>
-                </li>
             </ul>
         </aside>
         <div class="imghtml" style="font-family: 'Athiti', sans-serif;">@yield('content')</div>
+        
         <!-- The Modal -->
     </div>
     </div>
     
 </body>
+
+
+
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>
         <script src="{{ asset('js/app.js') }}" defer></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
@@ -912,11 +910,23 @@
         <script src="js/scripts.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
+        <!-- <script src="{{ asset('js/jquery.stickit.js') }}"></script> -->
 
         <script>
             $(function() {
                 $(".rateyo").rateYo()
             });
+        </script>
+
+        <script>
+            $(window).scroll(function(){
+                var scroll = $(window).scrollTop();
+                $("#sider-in,#sidebar").css({
+                    // width: (100 + scroll/5) + "%",
+                    height: (161 + scroll/-10)+ "%"
+                })
+            })
+           
         </script>
 
         <script>

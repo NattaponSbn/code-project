@@ -1696,12 +1696,72 @@
         @endif
     </div>
     <footer class="footer footer-color">
-        <div class="container">
-            <p style="color: #fff;">Author: Hege Refsnes<br>
-            <a href="mailto:hege@example.com" style="color: #fff;">hege@example.com</a></p>
+        <div class="containermdd footer-conlayout">
+            <div class="row " >
+                <div class="col">
+                    <label for="text" style="margin-top: 10%;">เกี่ยวกับ</label>
+                    <!-- <p><i class="fas fa-home mr-3"></i> New York, NY 10012, US</p> -->
+                    <p>
+                        ระบบจัดเก็บโครงงานวิจัย และวิทยานิพนธ์ของนิสิต คณะเทคโนโลยีสารสนเทศและการสื่อสาร มหาวิทยาลัยพะเยา 
+                        ได้พัฒนาระบบนี้ขึ้นเพื่อการเก็บรักษาเอกสารโครงงาน วิจัยและวิทยานิพนธ์ของนิสิต ให้ยังคงอยู่เป็นแนวทางในการศึกษาการทำโครงงาน วิจัยและวิทยานิพนธ์ 
+                        ให้แก่รุ่นต่อๆไปได้นำมาประยุกต์ใช้กับผลงานของนิสิตหรือนำมาพัฒนาต่อยอดแก่ผู้ที่สนใจ อีกทั้งยังช่วยลดปัญหาการสุญหายของเอกสาร และลดการใช้ทรัพยากรกระดาษอีกด้วย 
+                    </p>  
+                </div>
+                <div class="col" style="margin-top: 3.1%;">
+                    <label for="text">ติดต่อ</label>
+                    <!-- <p><i class="fas fa-home mr-3"></i> New York, NY 10012, US</p> -->
+                    <p><i class="fas fa-envelope mr-3"></i> ohmsbn@gmail.com</p>
+                    <p><i class="fas fa-phone mr-3"></i>099-247-927-1</p>
+                </div>
+                <div class="col" style="margin-top: 3%;">
+                    <label for="text">เเผนผังเว็บไซต์</label>
+                    <a href=""><p>คู่มือเว็บไซต์</p></a>
+                    <a href=""><p>คู่มือเว็บไซร์</p></a>
+                    <a href=""><p>คู่มือเว็บไซร์</p></a>
+                    <a href=""><p>คู่มือเว็บไซร์</p></a>
+                 
+                </div>
+                </div>
+                <div class="w-100"></div>
+                <div class="col"></div>
+                <div class="col">
+                    <p>© 2020 ลิขสิทธิ์:</p>
+                </div>
+                <div class="col"></div>
+            </div>
         </div>
+        <p id="back-top">
+            <a href="#top">
+                <span style="color: white;" ><i class="fas fa-arrow-circle-up fa-2x" style="height: 60px;"></i></span>
+                Back to Top
+            </a>
+        </p>
         
     </footer>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            // hide #back-top first
+            $("#back-top").hide();
+            // fade in #back-top
+            $(function () {
+                $(window).scroll(function () {
+                    if ($(this).scrollTop() > 500) {
+                        $('#back-top').fadeIn();
+                    } else {
+                        $('#back-top').fadeOut();
+                    }
+                });
+                // scroll body to 0px on click
+                $('#back-top a').click(function () {
+                    $('body,html').animate({
+                        scrollTop: 0
+                    }, 1000);
+                    return false;
+                });
+            });
+        });
+    </script>
 @endsection
 
     <?php
@@ -1772,14 +1832,27 @@
             }
         }
 
+        function formattter($viewcount) {
+            if ($viewcount >= 1000000) {
+                echo round($viewcount/ 1000000, 1).'M';
+            }
+            else if ($viewcount >= 1000) {
+                echo round($viewcount/ 1000, 1). 'K';
+            }else{
+                echo $viewcount;
+            }
+            
+        }
+
         function create_star($svgrate,$viewcount){
             if(isset($svgrate)?$svgrate:''){
                 if($svgrate < 2 & $svgrate> 0){
                     echo'<div class="rating">';
                         check_rating($svgrate);
                         if(isset($svgrate)?$svgrate:''){
-                            echo'<span class=""> ('.(round($svgrate, $precision = 1)).')</span><span class="countview">'.$viewcount.'</span><i class="fas fa-user i-view" style="color: #A9A9A9;"></i>';
+                            echo'<span class=""> ('.(round($svgrate, $precision = 1)).')</span><br>';
                         }
+                        echo '<span class="countview">'.formattter($viewcount).'</span><i class="fas fa-user i-view" style="color: #A9A9A9;"></i>';
                     echo'</div>';
                 }
                 
@@ -1787,8 +1860,9 @@
                     echo'<div class="rating">';
                         check_rating($svgrate);
                         if(isset($svgrate)?$svgrate:''){
-                            echo'<span class=""> ('.(round($svgrate, $precision = 1)).')</span><span class="countview">'.$viewcount.'</span><i class="fas fa-user i-view" style="color: #A9A9A9;"></i>';
+                            echo'<span class=""> ('.(round($svgrate, $precision = 1)).')</span><br>';
                         }
+                        echo '<span class="countview">'.formattter($viewcount).'</span><i class="fas fa-user i-view" style="color: #A9A9A9;"></i>';
                     echo '</div>';
                 }
                 
@@ -1796,8 +1870,9 @@
                     echo'<div class="rating">';
                         check_rating($svgrate);
                         if(isset($svgrate)?$svgrate:''){
-                            echo'<span class=""> ('.(round($svgrate, $precision = 1)).')</span><span class="countview">'.$viewcount.'</span><i class="fas fa-user i-view" style="color: #A9A9A9;"></i>';
+                            echo'<span class=""> ('.(round($svgrate, $precision = 1)).')</span><br>';
                         }
+                        echo '<span class="countview">'.formattter($viewcount).'</span><i class="fas fa-user i-view" style="color: #A9A9A9;"></i>';
                     echo '</div>';
                 }
                 
@@ -1805,37 +1880,40 @@
                     echo'<div class="rating">';
                         check_rating($svgrate);
                         if(isset($svgrate)?$svgrate:''){
-                            echo'<span class=""> ('.(round($svgrate, $precision = 1)).')</span><span class="countview">'.$viewcount.'</span><i class="fas fa-user i-view" style="color: #A9A9A9;"></i>';
+                            echo'<span class=""> ('.(round($svgrate, $precision = 1)).')</span><br>';
                         } 
+                        echo '<span class="countview">'.formattter($viewcount).'</span><i class="fas fa-user i-view" style="color: #A9A9A9;"></i>';
                     echo'</div>';}
                 
                 elseif($svgrate >= 5){
                     echo'<div class="rating">';
                         check_rating($svgrate);
                         if(isset($svgrate)?$svgrate:''){
-                            echo'<span class=""> ('.(round($svgrate, $precision = 1)).')</span><span class="countview">'.$viewcount.'</span><i class="fas fa-user i-view" style="color: #A9A9A9;"></i>';
+                            echo'<span class=""> ('.(round($svgrate, $precision = 1)).')</span><br>';
                         }
+                        echo '<span class="countview">'.formattter($viewcount).'</span><i class="fas fa-user i-view" style="color: #A9A9A9;"></i>';
                     echo'</div>';
                     }
                 else{
                     echo'<div class="rating">';
                         check_rating($svgrate);
                         if(isset($svgrate)?$svgrate:''){
-                            echo'<span class=""> ('.(round($svgrate, $precision = 1)).')</span>
-                            <div>
-                                <span class="countview">'.$viewcount.'</span><i class="fas fa-user i-view" style="color: #A9A9A9;"></i>
-                            </div>';
+                            echo'<span class=""> ('.(round($svgrate, $precision = 1)).')</span><br>';
                         }
+                        echo '<span class="countview">'.formattter($viewcount).'</span><i class="fas fa-user i-view" style="color: #A9A9A9;"></i>';
                     echo '</div>';}
             
                 }
             else{
                 echo'<div class="rating">';
-                    check_rating(0);  echo'<span class="">(0)</span><span class="countview">'.$viewcount.'</span><i class="fas fa-user i-view" style="color: #A9A9A9;"></i>';
+                    check_rating(0);  echo'<span class="">(0)</span><br>';
+                    echo '<span class="countview">'.formattter($viewcount).'</span><i class="fas fa-user i-view" style="color: #A9A9A9;"></i>';
                 echo'</div>';
             }    
         }
       
     ?>
+
+   
 
         

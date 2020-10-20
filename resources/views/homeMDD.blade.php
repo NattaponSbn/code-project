@@ -4,7 +4,7 @@
         <div class="rowcolumn">
             <div class="col-md-12">
                 <div class="tile">
-                    <div class="texthe"><i class="fas fa-tags"></i> <b>ติดตาม</b></div>
+                    <div class="texthe"><i class="fas fa-tags"></i> <b>เกษตร</b></div>
                         <a href="pursue" class="btnsum"><button type="button" class="btn btn-default" style="color: #D9A32F;background-color: white;margin-top:-20px;" >
                                 ดูทั้งหมด (<?php if($sum_follow){echo $sum_follow;}?>)</button></a>
                                     <div class="tile-body">
@@ -65,6 +65,73 @@
                 </div>
             </div
         ></div>
+        <footer class="footer footer-color footer-mdd">
+        <div class="containermdd footer-conlayoutmdd">
+            <div class="row " >
+                <div class="col">
+                    <label for="text" style="margin-top: 10%;">เกี่ยวกับ</label>
+                    <!-- <p><i class="fas fa-home mr-3"></i> New York, NY 10012, US</p> -->
+                    <p>
+                        ระบบจัดเก็บโครงงานวิจัย และวิทยานิพนธ์ของนิสิต คณะเทคโนโลยีสารสนเทศและการสื่อสาร มหาวิทยาลัยพะเยา 
+                        ได้พัฒนาระบบนี้ขึ้นเพื่อการเก็บรักษาเอกสารโครงงาน วิจัยและวิทยานิพนธ์ของนิสิต ให้ยังคงอยู่เป็นแนวทางในการศึกษาการทำโครงงาน วิจัยและวิทยานิพนธ์ 
+                        ให้แก่รุ่นต่อๆไปได้นำมาประยุกต์ใช้กับผลงานของนิสิตหรือนำมาพัฒนาต่อยอดแก่ผู้ที่สนใจ อีกทั้งยังช่วยลดปัญหาการสุญหายของเอกสาร และลดการใช้ทรัพยากรกระดาษอีกด้วย 
+                    </p>  
+                </div>
+                <div class="col" style="margin-top: 3.1%;">
+                    <label for="text">ติดต่อ</label>
+                    <!-- <p><i class="fas fa-home mr-3"></i> New York, NY 10012, US</p> -->
+                    <p><i class="fas fa-envelope mr-3"></i> ohmsbn@gmail.com</p>
+                    <p><i class="fas fa-phone mr-3"></i>099-247-927-1</p>
+                </div>
+                <div class="col" style="margin-top: 3%;">
+                    <label for="text">เเผนผังเว็บไซต์</label>
+                    <a href=""><p>คู่มือเว็บไซต์</p></a>
+                    <a href=""><p>คู่มือเว็บไซร์</p></a>
+                    <a href=""><p>คู่มือเว็บไซร์</p></a>
+                    <a href=""><p>คู่มือเว็บไซร์</p></a>
+                 
+                </div>
+                </div>
+                <div class="w-100"></div>
+                <div class="col"></div>
+                <div class="col">
+                    <p>© 2020 ลิขสิทธิ์:</p>
+                </div>
+                <div class="col"></div>
+            </div>
+        </div>
+        <p id="back-top">
+            <a href="#top">
+                <span style="color: white;" ><i class="fas fa-arrow-circle-up fa-2x" style="height: 60px;"></i></span>
+                Back to Top
+            </a>
+        </p>
+        
+    </footer>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            // hide #back-top first
+            $("#back-top").hide();
+            // fade in #back-top
+            $(function () {
+                $(window).scroll(function () {
+                    if ($(this).scrollTop() > 160) {
+                        $('#back-top').fadeIn();
+                    } else {
+                        $('#back-top').fadeOut();
+                    }
+                });
+                // scroll body to 0px on click
+                $('#back-top a').click(function () {
+                    $('body,html').animate({
+                        scrollTop: 0
+                    }, 1000);
+                    return false;
+                });
+            });
+        });
+    </script>
 @stop
      
 <?php

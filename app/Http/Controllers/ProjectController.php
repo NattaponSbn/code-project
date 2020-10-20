@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManagerStatic as Image;
+use PhpParser\Node\Expr\Isset_;
 use Symfony\Component\Process\Process;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 
@@ -1450,6 +1451,11 @@ class ProjectController extends Controller
                     compact('view7');
                     foreach($view7 as $view7){
                         $viewcountp7 = $view7->countview;
+                        if(isset($viewcountp7)?$viewcountp7:''){
+                            
+                        }else{
+                            $viewcountp7 = $view7->countview;
+                        }
                     }
                 }else{
                     $viewcountp7='0';

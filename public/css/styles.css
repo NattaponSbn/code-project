@@ -10047,6 +10047,7 @@ body {
     flex-direction: column;
     height: 100%;
     flex-wrap: nowrap;
+    padding: 7px;
 }
 
 .sb-sidenav .sb-sidenav-menu {

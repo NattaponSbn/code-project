@@ -122,7 +122,7 @@ class Project_MDDController extends Controller
 
         // $item = DB::select("SELECT * FROM projectmdd,type_project,category_project,users WHERE projectmdd.type_id=type_project.type_id and projectmdd.user_id=users.U_id
         // and projectmdd.category_id=category_project.category_id ORDER BY projectmdd.category_id=1");
-        $item_m = DB::select("SELECT project_m_id FROM users,projectmdd,genre_project,type_project,category_project WHERE category_project.category_name in ('ติดตาม') AND projectmdd.type_id=type_project.type_id 
+        $item_m = DB::select("SELECT project_m_id FROM users,projectmdd,genre_project,type_project,category_project WHERE category_project.category_name in ('เกษตร') AND projectmdd.type_id=type_project.type_id 
         AND projectmdd.genre_id=genre_project.genre_id AND projectmdd.category_id=category_project.category_id AND projectmdd.user_id=users.U_id ORDER BY RAND()");
         // print_r($item_m);
         if(isset($item_m[0])? $item_m[0]:'') {
@@ -181,7 +181,7 @@ class Project_MDDController extends Controller
             $item_m1='';
         }
 
-        $itemA = DB::select("SELECT project_m_id FROM owner_projectmdd,projectmdd,genre_project,type_project,category_project WHERE category_project.category_name in ('ติดตาม') AND projectmdd.type_id=type_project.type_id 
+        $itemA = DB::select("SELECT project_m_id FROM owner_projectmdd,projectmdd,genre_project,type_project,category_project WHERE category_project.category_name in ('เกษตร') AND projectmdd.type_id=type_project.type_id 
         AND projectmdd.genre_id=genre_project.genre_id AND projectmdd.category_id=category_project.category_id AND projectmdd.user_id=owner_projectmdd.owner_m_id  ORDER BY RAND()");
         // print_r($itemA);
         if(isset($itemA[0])? $itemA[0]:'') {
