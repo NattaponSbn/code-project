@@ -370,12 +370,15 @@
         });
     </script>
     @endif
-
+        @if(isset($_COOKIE['download'])?$_COOKIE['download']:'')
+        @else
         <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">ความพึ่งพอใจ</h5>
+                        @foreach($item as $datas)
+                        <h5 class="modal-title" id="exampleModalLongTitle">ดาวโหลดไฟล์เอกสาร<?php echo $datas->type_name ?></h5>
+                        @endforeach
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -389,16 +392,43 @@
                             @foreach($itemadmin as $datas)
                             <input type="text" name="project_id" id="project_id" style="display: none;" value="<?php echo $datas->project_id; ?>">
                             @endforeach
+                    </div>
+
+                    <button type="submit" target="_blank" class="btn btn-primary" >ดาวโหลดไฟล์เอกสาร</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        @endif
+
+        <!-- <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">ความพึ่งพอใจของเนื้อหา</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="#" method="POST">
+                            @csrf
+                            @foreach($item as $datas)
+                            <input type="text" name="project_id" id="project_id" style="display: none;" value="<?php echo $datas->project_id; ?>">
+                            @endforeach
+                            @foreach($itemadmin as $datas)
+                            <input type="text" name="project_id" id="project_id" style="display: none;" value="<?php echo $datas->project_id; ?>">
+                            @endforeach
                             <div class="rateyo" name="rating" id="rating" data-rateyo-rating="5" data-rateyo-num-stars="5" data-rateyo-score="3">
                             </div>
                             <input type="hidden" name="rating">
                     </div>
 
-                    <button type="submit" class="btn btn-primary">ดาวน์โหลดไฟล์ข้อมูล</button>
+                    <button type="submit" class="btn btn-primary">ตกลง</button>
                     </form>
                 </div>
             </div>
-        </div>
+        </div> -->
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -768,9 +798,16 @@
                                                 </div>
                                             </div>
 
-                                            <a href="profile" class="top dropdown-item"><i class="zmdi zmdi-account"></i>โปรไฟล์</a>
+                                            <a href="profile" class="top dropdown-item"><i class="fas fa-user" style="margin-right: 2%;"></i>โปรไฟล์</a>
+                                            <div class="top dropdown-item" >
+                                                @if(!isset($_SESSION['project']))
+                                                <a href="{{url ('addproject')}}" class="view" style="color: black;text-decoration: none;"><i class="far fa-plus-square" style="margin-right: 2%;"></i>สร้างผลงาน</a><br>
+                                                @elseif(isset($_SESSION['project']))
+                                                <a href="{{url ('listdetil')}}" class="view" style="color: black;text-decoration: none;"><i class="fas fa-book" style="margin-right: 2%;"></i>ผลงานของฉัน</a><br>
+                                                @endif
+                                            </div>
                                             <a class="dropdown-item" href="logout" onclick="event.preventDefault();
-                                                                    document.getElementById('logout-form').submit();">
+                                                                    document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt" ></i>
                                                 {{ __('ออกจากระบบ') }}
                                             </a>
                                             <form id="logout-form" action="{{url ('logout')}}" method="POST" style="display: none;">
@@ -1101,42 +1138,42 @@
                                                         <label for="" style="margin-left:50px;font-size: 20px;font-weight: bold;">รายละเอียด<?php echo $datas->type_name; ?></label>
                                                         <table style="width:100%;margin-left:80px;">
                                                             <tr>
-                                                                <td><label for="text"><b>ชื่อเรื่อง :</b></label></td>
-                                                                <td colspan=1 style="width:70%;"><?php echo $datas->project_name; ?></td>
+                                                                <td style="vertical-align: baseline;" ><label for="text"><b>ชื่อเรื่อง :</b></label></td>
+                                                                <td  colspan=1 style="width:70%;vertical-align: baseline;"><?php echo $datas->project_name; ?></td>
                                                             <tr>
-                                                                <td><label for="text"><b>ชื่อเรื่องภาษาอังกฤษ :</b></label></td>
-                                                                <td colspan=1><?php echo $datas->name_en; ?></td>
+                                                                <td style="vertical-align: baseline;" ><label for="text"><b>ชื่อเรื่องภาษาอังกฤษ :</b></label></td>
+                                                                <td style="vertical-align: baseline;" colspan=1><?php echo $datas->name_en; ?></td>
                                                             <tr>
-                                                                <td><label for="text"><b>เจ้าของโครงงาน :</b></label></td>
-                                                                <td colspan=1><?php echo $datas->name; ?></td>
+                                                                <td style="vertical-align: baseline;" ><label for="text"><b>เจ้าของโครงงาน :</b></label></td>
+                                                                <td style="vertical-align: baseline;" colspan=1><?php echo $datas->name; ?></td>
                                                             <tr>
-                                                                <td><label for="text"><b>อาจารย์ที่ปรึกษา :</b></label></td>
-                                                                <td colspan=1><?php echo $datas->advisor_p; ?></td>
+                                                                <td style="vertical-align: baseline;" ><label for="text"><b>อาจารย์ที่ปรึกษา :</b></label></td>
+                                                                <td style="vertical-align: baseline;" colspan=1><?php echo $datas->advisor_p; ?></td>
                                                             <tr>
-                                                                <td><label for="text"><b>คำสำคัญ :</b></label></td>
-                                                                <td colspan=1>
+                                                                <td style="vertical-align: baseline;"><label for="text"><b>คำสำคัญ :</b></label></td>
+                                                                <td colspan=1 style="vertical-align: baseline;">
                                                                     <?php echo $datas->keyword_project1; ?>
                                                                     <?php echo $datas->keyword_project2; ?>
                                                                     <?php echo $datas->keyword_project3; ?>
                                                                     <?php echo $datas->keyword_project4; ?>
                                                                 </td>
                                                             <tr>
-                                                                <td><label for="text" class=""><b>บทคัดย่อ :</b></label></td>
-                                                                <td colspan=1  ><?php echo $datas->des_project; ?></td>
+                                                                <td style="vertical-align: baseline;"><label for="text" class=""><b>บทคัดย่อ :</b></label></td>
+                                                                <td style="vertical-align: baseline;" colspan=1  ><?php echo $datas->des_project; ?></td>
                                                             </tr>
                                                         </table>
                                                         <label for="" style="margin-left:50px;font-size: 20px;font-weight: bold;">ช่องทางการติดต่อ</label>
                                                         <table style="width:100%;margin-left:80px;">
                         
                                                             <tr>
-                                                                <td><label for="text"><b>Email :</b></label></td>
-                                                                <td colspan=1 style="width:70%;"><?php echo $datas->email; ?></td>
+                                                                <td style="vertical-align: baseline;"><label for="text"><b>Email :</b></label></td>
+                                                                <td colspan=1 style="width:70%;vertical-align: baseline;"><?php echo $datas->email; ?></td>
                                                             <tr>
-                                                                <td><label for="text"><b>Facebook :</b></label></td>
-                                                                <td colspan=1><?php echo $datas->facebook; ?></td>
+                                                                <td style="vertical-align: baseline;"><label for="text"><b>Facebook :</b></label></td>
+                                                                <td colspan=1 style="vertical-align: baseline;"><?php echo $datas->facebook; ?></td>
                                                             <tr>
                                                                 <td><label for="text"><b>เบอร์โทรศัพท์ :</b></label></td>
-                                                                <td colspan=1><?php echo $datas->phone; ?></td>
+                                                                <td colspan=1 style="vertical-align: baseline;"><?php echo $datas->phone; ?></td>
                                                             </tr>
                                                         </table>
 
@@ -1146,36 +1183,36 @@
                                                             <div style="width:100%;margin-left:80px;opacity:0.5;">
                                                                 <div class="container">
                                                                     <div class="row">
-                                                                        <div class="column-download-not">
+                                                                        <div class="column-download-not" title="<?php echo $file_p = $datas->namefile; ?>">
                                                                             <center><b><label for="" class="column-download-text-un">บทคัดย่อ</label></b></center>
                                                                             <div class="column-download-icon">
                                                                                 <center><i class="fas fa-file-alt fa-2x" style="color:#FB00E0;"></i></center>
                                                                             </div>
                                                                         </div>
                                                             
-                                                                        <div class="column-download-not">
+                                                                        <div class="column-download-not" title="<?php echo $file_p = $datas->namefile; ?>">
                                                                             <center><b><label for="" class="column-download-text-un">เล่ม<?php echo $datas->type_name; ?></label></b></center>
                                                                             <div class="column-download-icon">
                                                                                 <center><i class="fas fa-book-open fa-2x" style="color: #4100E3;"></i></center>
                                                                             </div>
                                                                         </div>
 
-                                                                        <div class="column-download-not">
+                                                                        <div class="column-download-not" title="<?php echo $file_p = $datas->namefile; ?>">
                                                                             <center><b><label for="" class="column-download-text-un">สไลด์นำเสนอ</label></b></center>
                                                                             <div class="column-download-icon">
                                                                                 <center><i class="fab fa-slideshare fa-2x" style="color: #0C7BFA;"></i></center>
                                                                             </div>
                                                                         </div>
 
-                                                                        <div class="column-download-not">
+                                                                        <div class="column-download-not" title="<?php echo $file_p = $datas->namefile; ?>">
                                                                             <center><b><label for="" class="column-download-text-un">โปสเตอร์</label></b></center>
                                                                             <div class="column-download-icon">
                                                                                 <center><i class="fas fa-paste fa-2x" style="color: #00E3AF;"></i></center>
                                                                             </div>
                                                                         </div>
 
-                                                                        <div class="column-download-not">
-                                                                            <center><b><label for="" class="column-download-text-un">Source Code</label></b></center>
+                                                                        <div class="column-download-not" title="<?php echo $file_p = $datas->namefile; ?>">
+                                                                            <center><b><label for="" class="column-download-text-un">ไฟล์โปรเเกรม</label></b></center>
                                                                             <div class="column-download-icon">
                                                                                 <center><i class="fas fa-file-code fa-2x" style="color: #0AFF00;"></i></center>
                                                                             </div>
@@ -1190,66 +1227,121 @@
                                                                 <div class="row">
                                                                     <?php $file_d = $datas->namefile; ?>
                                                                     @if(isset($file_d)?$file_d:'')
-                                                                        <div class="column-download" title="<?php echo $datas->namefile; ?>">
+                                                                        @if(isset($_SESSION['download_a'])?$_SESSION['download_a']:'')
+                                                                        <div class="column-download-after" title="<?php echo $datas->namefile; ?>">
                                                                             <a href="#" target="_blank" data-toggle="modal" data-target="#exampleModalLong">
-                                                                                <center><b><label for="" class="column-download-text-un" title="<?php echo $datas->namefile; ?>">บทคัดย่อ</label></b></center>
+                                                                                <center><b><label for="" class="column-download-after-text" title="<?php echo $datas->namefile; ?>">บทคัดย่อ</label></b></center>
                                                                                 <div class="column-download-icon">
                                                                                     <center><i class="fas fa-file-alt fa-2x" style="color:#FB00E0;" title="<?php echo $datas->namefile; ?>"></i></center>
                                                                                 </div>
                                                                             </a>
                                                                         </div>
+                                                                        @else
+                                                                        <div class="column-download" title="<?php echo $datas->namefile; ?>">
+                                                                            <a href="#" target="_blank" data-toggle="modal" data-target="#exampleModalLong">
+                                                                                <center><b><label for="" class="column-download-text" title="<?php echo $datas->namefile; ?>">บทคัดย่อ</label></b></center>
+                                                                                <div class="column-download-icon">
+                                                                                    <center><i class="fas fa-file-alt fa-2x" style="color:#FB00E0;" title="<?php echo $datas->namefile; ?>"></i></center>
+                                                                                </div>
+                                                                            </a>
+                                                                        </div>
+                                                                        @endif
                                                                     @else
                                                                     @endif
                                                         
                                                                     <?php $file_b = $datas->namefile; ?>
                                                                     @if(isset($file_b)?$file_b:'')
-                                                                        <div class="column-download">
+                                                                        @if(isset($_SESSION['download'])?$_SESSION['download']:'')
+                                                                        <div class="column-download-after" title="<?php echo $file_p = $datas->namefile; ?>>
                                                                             <a href="#" target="_blank" data-toggle="modal" data-target="#exampleModalLong">
-                                                                                <center><b><label for="" class="column-download-text-un">เล่ม<?php echo $datas->type_name; ?></label></b></center>
+                                                                                <center><b><label for="" class="column-download-after-text">เล่ม<?php echo $datas->type_name; ?></label></b></center>
                                                                                 <div class="column-download-icon">
                                                                                     <center><i class="fas fa-book-open fa-2x" style="color: #4100E3;"></i></center>
                                                                                 </div>
                                                                             </a>
                                                                         </div>
+                                                                        @else
+                                                                        <div class="column-download" title="<?php echo $file_p = $datas->namefile; ?>>
+                                                                            <a href="#" target="_blank" data-toggle="modal" data-target="#exampleModalLong">
+                                                                                <center><b><label for="" class="column-download-text">เล่ม<?php echo $datas->type_name; ?></label></b></center>
+                                                                                <div class="column-download-icon">
+                                                                                    <center><i class="fas fa-book-open fa-2x" style="color: #4100E3;"></i></center>
+                                                                                </div>
+                                                                            </a>
+                                                                        </div>
+                                                                        @endif
                                                                     @else
                                                                     @endif
 
                                                                     <?php $file_p = $datas->namefile; ?>
                                                                     @if(isset($file_p)?$file_p:'')
-                                                                        <div class="column-download">
+                                                                        @if(isset($_SESSION['download_s'])?$_SESSION['download_s']:'')
+                                                                        <div class="column-download-after" title="<?php echo $file_p = $datas->namefile; ?>">
                                                                             <a href="#" target="_blank" data-toggle="modal" data-target="#exampleModalLong">
-                                                                                <center><b><label for="" class="column-download-text-un">สไลด์นำเสนอ</label></b></center>
+                                                                                <center><b><label for="" class="column-download-after-text">สไลด์นำเสนอ</label></b></center>
                                                                                 <div class="column-download-icon">
                                                                                     <center><i class="fab fa-slideshare fa-2x" style="color: #0C7BFA;"></i></center>
                                                                                 </div>
                                                                             </a>
                                                                         </div>
+                                                                        @else
+                                                                        <div class="column-download" title="<?php echo $file_p = $datas->namefile; ?>">
+                                                                            <a href="#" target="_blank" data-toggle="modal" data-target="#exampleModalLong">
+                                                                                <center><b><label for="" class="column-download-text">สไลด์นำเสนอ</label></b></center>
+                                                                                <div class="column-download-icon">
+                                                                                    <center><i class="fab fa-slideshare fa-2x" style="color: #0C7BFA;"></i></center>
+                                                                                </div>
+                                                                            </a>
+                                                                        </div>
+                                                                        @endif
                                                                     @else
                                                                     @endif
 
                                                                     <?php $file_post = $datas->namefile; ?>
                                                                     @if(isset($file_post)?$file_post:'')
-                                                                        <div class="column-download">
-                                                                            <a href="#" target="_blank" data-toggle="modal" data-target="#exampleModalLong">
-                                                                                <center><b><label for="" class="column-download-text-un">โปสเตอร์</label></b></center>
-                                                                                <div class="column-download-icon">
-                                                                                    <center><i class="fas fa-paste fa-2x" style="color: #00E3AF;"></i></center>
-                                                                                </div>
-                                                                            </a>
-                                                                        </div>
+                                                                        @if(isset($_SESSION['download_p'])?$_SESSION['download_p']:'')
+                                                                            <div class="column-download-after" title="<?php echo $file_p = $datas->namefile; ?>">
+                                                                                <a href="#" target="_blank" data-toggle="modal" data-target="#exampleModalLong">
+                                                                                    <center><b><label for="" class="column-download-after-text">โปสเตอร์</label></b></center>
+                                                                                    <div class="column-download-icon">
+                                                                                        <center><i class="fas fa-paste fa-2x" style="color: #00E3AF;"></i></center>
+                                                                                    </div>
+                                                                                </a>
+                                                                            </div>
+                                                                        @else
+                                                                            <div class="column-download" title="<?php echo $file_p = $datas->namefile; ?>">
+                                                                                <a href="#" target="_blank" data-toggle="modal" data-target="#exampleModalLong">
+                                                                                    <center><b><label for="" class="column-download-text">โปสเตอร์</label></b></center>
+                                                                                    <div class="column-download-icon">
+                                                                                        <center><i class="fas fa-paste fa-2x" style="color: #00E3AF;"></i></center>
+                                                                                    </div>
+                                                                                </a>
+                                                                            </div>
+                                                                        @endif
                                                                     @else
                                                                     @endif
 
                                                                     <?php $linkcode = $datas->namefile; ?>
                                                                     @if(isset($linkcode)?$linkcode:'')
-                                                                        <div class="column-download">
-                                                                            <a href="#" target="_blank" data-toggle="modal" data-target="#exampleModalLong">
-                                                                                <center><b><label for="" class="column-download-text-un">Source Code</label></b></center>
-                                                                                <div class="column-download-icon">
-                                                                                    <center><i class="fas fa-file-code fa-2x" style="color: #0AFF00;"></i></center>
-                                                                                </div>
-                                                                            </a>
-                                                                        </div>
+                                                                        @if(isset($_SESSION['download_l'])?$_SESSION['download_l']:'')
+                                                                            <div class="column-download-after" title="<?php echo $linkcode = $datas->namefile; ?>">
+                                                                                <a href="#" target="_blank" data-toggle="modal" data-target="#exampleModalLong">
+                                                                                    <center><b><label for="" class="column-download-after-text">ไฟล์โปรเเกรม</label></b></center>
+                                                                                    <div class="column-download-icon">
+                                                                                        <center><i class="fas fa-file-code fa-2x" style="color: #0AFF00;"></i></center>
+                                                                                    </div>
+                                                                                </a>
+                                                                            </div>
+                                                                        @else
+                                                                            <div class="column-download" title="<?php echo $linkcode = $datas->namefile; ?>">
+                                                                                <a href="#" target="_blank" data-toggle="modal" data-target="#exampleModalLong">
+                                                                                    <center><b><label for="" class="column-download-text">ไฟล์โปรเเกรม</label></b></center>
+                                                                                    <div class="column-download-icon">
+                                                                                        <center><i class="fas fa-file-code fa-2x" style="color: #0AFF00;"></i></center>
+                                                                                    </div>
+                                                                                </a>
+                                                                            </div>
+                                                                        @endif
                                                                     @else
                                                                     @endif
                                                                 
@@ -1263,14 +1355,25 @@
                                                                 <div class="row">
                                                                     <?php $file_d = $datas->namefile; ?>
                                                                     @if(isset($file_d)?$file_d:'')
-                                                                        <div class="column-download">
-                                                                            <a href="#" target="_blank" data-toggle="modal" data-target="#exampleModalLong">
-                                                                                <center><b><label for="" class="column-download-text">บทคัดย่อ</label></b></center>
-                                                                                <div class="column-download-icon">
-                                                                                    <center><i class="fas fa-file-alt fa-2x" style="color:#FB00E0;"></i></center>
-                                                                                </div>
-                                                                            </a>
-                                                                        </div>
+                                                                        @if(isset($_SESSION['download_a'])?$_SESSION['download_a']:'')
+                                                                            <div class="column-download-after" title="<?php echo $file_d = $datas->namefile; ?>">
+                                                                                <a href="#" target="_blank" data-toggle="modal" data-target="#exampleModalLong">
+                                                                                    <center><b><label for="" class="column-download-after-text">บทคัดย่อ</label></b></center>
+                                                                                    <div class="column-download-icon">
+                                                                                        <center><i class="fas fa-file-alt fa-2x" style="color:#FB00E0;"></i></center>
+                                                                                    </div>
+                                                                                </a>
+                                                                            </div>
+                                                                        @else
+                                                                            <div class="column-download" title="<?php echo $file_d = $datas->namefile; ?>">
+                                                                                <a href="#" target="_blank" data-toggle="modal" data-target="#exampleModalLong">
+                                                                                    <center><b><label for="" class="column-download-text">บทคัดย่อ</label></b></center>
+                                                                                    <div class="column-download-icon">
+                                                                                        <center><i class="fas fa-file-alt fa-2x" style="color:#FB00E0;"></i></center>
+                                                                                    </div>
+                                                                                </a>
+                                                                            </div>
+                                                                        @endif
                                                                     @else
                                                                     @endif
                                                                 </div>
@@ -1291,42 +1394,42 @@
                                                 <label for="" style="margin-left:50px;font-size: 20px;font-weight: bold;">รายละเอียด<?php echo $datas->type_name; ?></label>
                                                     <table style="width:100%;margin-left:80px;">
                                                         <tr>
-                                                            <td><label for="text"><b>ชื่อเรื่อง :</b></label></td>
-                                                            <td colspan=1 style="width:70%;"><?php echo $datas->project_name; ?></td>
+                                                            <td style="vertical-align: baseline;"><label for="text"><b>ชื่อเรื่อง :</b></label></td>
+                                                            <td colspan=1 style="width:70%;vertical-align: baseline;"><?php echo $datas->project_name; ?></td>
                                                         <tr>
-                                                            <td><label for="text"><b>ชื่อเรื่องภาษาอังกฤษ :</b></label></td>
-                                                            <td colspan=1><?php echo $datas->name_en; ?></td>
+                                                            <td style="vertical-align: baseline;"><label for="text"><b>ชื่อเรื่องภาษาอังกฤษ :</b></label></td>
+                                                            <td colspan=1 style="vertical-align: baseline;"><?php echo $datas->name_en; ?></td>
                                                         <tr>
-                                                            <td><label for="text"><b>เจ้าของโครงงาน :</b></label></td>
-                                                            <td colspan=1><?php echo $datas->owner_name; ?></td>
+                                                            <td style="vertical-align: baseline;"><label for="text"><b>เจ้าของโครงงาน :</b></label></td>
+                                                            <td colspan=1 style="vertical-align: baseline;"><?php echo $datas->owner_name; ?></td>
                                                         <tr>
-                                                            <td><label for="text"><b>อาจารย์ที่ปรึกษา :</b></label></td>
-                                                            <td colspan=1><?php echo $datas->advisor_p; ?></td>
+                                                            <td style="vertical-align: baseline;"><label for="text"><b>อาจารย์ที่ปรึกษา :</b></label></td>
+                                                            <td colspan=1 style="vertical-align: baseline;"><?php echo $datas->advisor_p; ?></td>
                                                         <tr>
-                                                            <td><label for="text"><b>คำสำคัญ :</b></label></td>
-                                                            <td colspan=1>
+                                                            <td style="vertical-align: baseline;"><label for="text"><b>คำสำคัญ :</b></label></td>
+                                                            <td colspan=1 style="vertical-align: baseline;">
                                                                 <?php echo $datas->keyword_project1; ?>
                                                                 <?php echo $datas->keyword_project2; ?>
                                                                 <?php echo $datas->keyword_project3; ?>
                                                                 <?php echo $datas->keyword_project4; ?>
                                                             </td>
                                                         <tr>
-                                                            <td><label for="text" class=""><b>บทคัดย่อ :</b></label></td>
-                                                            <td colspan=1  ><?php echo $datas->des_project; ?></td>
+                                                            <td style="vertical-align: baseline;"><label for="text" class=""><b>บทคัดย่อ :</b></label></td>
+                                                            <td colspan=1 style="vertical-align: baseline;" ><?php echo $datas->des_project; ?></td>
                                                         </tr>
                                                     </table>
                                                     <label for="" style="margin-left:50px;font-size: 20px;font-weight: bold;">ช่องทางการติดต่อ</label>
                                                     <table style="width:100%;margin-left:80px;">
                     
                                                         <tr>
-                                                            <td><label for="text"><b>Email :</b></label></td>
-                                                            <td colspan=1 style="width:70%;"><?php echo $datas->email_p; ?></td>
+                                                            <td style="vertical-align: baseline;"><label for="text"><b>Email :</b></label></td>
+                                                            <td colspan=1 style="width:70%;vertical-align: baseline;"><?php echo $datas->email_p; ?></td>
                                                         <tr>
-                                                            <td><label for="text"><b>Facebook :</b></label></td>
-                                                            <td colspan=1><?php echo $datas->facebook_p; ?></td>
+                                                            <td style="vertical-align: baseline;"><label for="text"><b>Facebook :</b></label></td>
+                                                            <td colspan=1 style="vertical-align: baseline;"><?php echo $datas->facebook_p; ?></td>
                                                         <tr>
-                                                            <td><label for="text"><b>เบอร์โทรศัพท์ :</b></label></td>
-                                                            <td colspan=1><?php echo $datas->phone_p; ?></td>
+                                                            <td style="vertical-align: baseline;"><label for="text"><b>เบอร์โทรศัพท์ :</b></label></td>
+                                                            <td colspan=1 style="vertical-align: baseline;"><?php echo $datas->phone_p; ?></td>
                                                         </tr>
                                                     </table>
                                                     <label for="" style="margin-left:50px;font-size: 20px;font-weight: bold;">เอกสารของ<?php echo $datas->type_name; ?></label>
@@ -1337,35 +1440,35 @@
                                                             <div class="container">
                                                                 <div class="row">
                                                                     <div class="column-download-not" title="<?php echo $file_d = $datas->namefile; ?>">
-                                                                        <center><b><label for="" class="column-download-text">บทคัดย่อ</label></b></center>
+                                                                        <center><b><label for="" class="column-download-text-un">บทคัดย่อ</label></b></center>
                                                                         <div class="column-download-icon">
                                                                             <center><i class="fas fa-file-alt fa-2x" style="color:#FB00E0;"></i></center>
                                                                         </div>
                                                                     </div>
                                                         
                                                                     <div class="column-download-not" title="<?php echo $file_d = $datas->namefile; ?>">
-                                                                        <center><b><label for="" class="column-download-text">เล่ม<?php echo $datas->type_name; ?></label></b></center>
+                                                                        <center><b><label for="" class="column-download-text-un">เล่ม<?php echo $datas->type_name; ?></label></b></center>
                                                                         <div class="column-download-icon">
                                                                             <center><i class="fas fa-book-open fa-2x" style="color: #4100E3;"></i></center>
                                                                         </div>
                                                                     </div>
 
                                                                     <div class="column-download-not">
-                                                                        <center><b><label for="" class="column-download-text">สไลด์นำเสนอ</label></b></center>
+                                                                        <center><b><label for="" class="column-download-text-un">สไลด์นำเสนอ</label></b></center>
                                                                         <div class="column-download-icon">
                                                                             <center><i class="fab fa-slideshare fa-2x" style="color: #0C7BFA;"></i></center>
                                                                         </div>
                                                                     </div>
 
                                                                     <div class="column-download-not">
-                                                                        <center><b><label for="" class="column-download-text">โปสเตอร์</label></b></center>
+                                                                        <center><b><label for="" class="column-download-text-un">โปสเตอร์</label></b></center>
                                                                         <div class="column-download-icon">
                                                                             <center><i class="fas fa-paste fa-2x" style="color: #00E3AF;"></i></center>
                                                                         </div>
                                                                     </div>
 
                                                                     <div class="column-download-not">
-                                                                        <center><b><label for="" class="column-download-text">Source Code</label></b></center>
+                                                                        <center><b><label for="" class="column-download-text-un">ไฟล์โปรเเกรม</label></b></center>
                                                                         <div class="column-download-icon">
                                                                             <center><i class="fas fa-file-code fa-2x" style="color: #0AFF00;"></i></center>
                                                                         </div>
@@ -1382,7 +1485,7 @@
                                                                     <th><center>เล่ม</center></th>
                                                                     <th><center>สไลด์นำเสนอ</center></th>
                                                                     <th><center>โปสเตอร์</center></th>
-                                                                    <th><center>Source Code</center></th>
+                                                                    <th><center>ไฟล์โปรเเกรม</center></th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
@@ -1398,69 +1501,124 @@
                                                     @elseif(isset($_SESSION['status'])=='user')
                                                         <div style="width:100%;margin-left:80px;">
                                                             <div class="container">
-                                                                <div class="row">
+                                                            <div class="row">
                                                                     <?php $file_d = $datas->namefile; ?>
                                                                     @if(isset($file_d)?$file_d:'')
-                                                                    <a href="#" target="_blank" data-toggle="modal" data-target="#exampleModalLong">
-                                                                        <div class="column-download" >
-                                                                            <center><b><label for="" class="column-download-text" title="<?php echo $datas->namefile; ?>">บทคัดย่อ</label></b></center>
-                                                                            <div class="column-download-icon">
-                                                                                <center><i class="fas fa-file-alt fa-2x" style="color:#FB00E0;"></i></center>
-                                                                            </div>
+                                                                        @if(isset($_SESSION['download_a'])?$_SESSION['download_a']:'')
+                                                                        <div class="column-download-after" title="<?php echo $datas->namefile; ?>">
+                                                                            <a href="#" target="_blank" data-toggle="modal" data-target="#exampleModalLong">
+                                                                                <center><b><label for="" class="column-download-after-text" title="<?php echo $datas->namefile; ?>">บทคัดย่อ</label></b></center>
+                                                                                <div class="column-download-icon">
+                                                                                    <center><i class="fas fa-file-alt fa-2x" style="color:#FB00E0;" title="<?php echo $datas->namefile; ?>"></i></center>
+                                                                                </div>
+                                                                            </a>
                                                                         </div>
-                                                                    </a>
+                                                                        @else
+                                                                        <div class="column-download" title="<?php echo $datas->namefile; ?>">
+                                                                            <a href="#" target="_blank" data-toggle="modal" data-target="#exampleModalLong">
+                                                                                <center><b><label for="" class="column-download-text" title="<?php echo $datas->namefile; ?>">บทคัดย่อ</label></b></center>
+                                                                                <div class="column-download-icon">
+                                                                                    <center><i class="fas fa-file-alt fa-2x" style="color:#FB00E0;" title="<?php echo $datas->namefile; ?>"></i></center>
+                                                                                </div>
+                                                                            </a>
+                                                                        </div>
+                                                                        @endif
                                                                     @else
                                                                     @endif
                                                         
                                                                     <?php $file_b = $datas->namefile; ?>
                                                                     @if(isset($file_b)?$file_b:'')
-                                                                    <a href="#" target="_blank" data-toggle="modal" data-target="#exampleModalLong">
-                                                                        <div class="column-download">
-                                                                            <center><b><label for="" class="column-download-text">เล่ม<?php echo $datas->type_name; ?></label></b></center>
-                                                                            <div class="column-download-icon">
-                                                                                <center><i class="fas fa-book-open fa-2x" style="color: #4100E3;"></i></center>
-                                                                            </div>
+                                                                        @if(isset($_SESSION['download'])?$_SESSION['download']:'')
+                                                                        <div class="column-download-after" title="<?php echo $file_p = $datas->namefile; ?>>
+                                                                            <a href="#" target="_blank" data-toggle="modal" data-target="#exampleModalLong">
+                                                                                <center><b><label for="" class="column-download-after-text">เล่ม<?php echo $datas->type_name; ?></label></b></center>
+                                                                                <div class="column-download-icon">
+                                                                                    <center><i class="fas fa-book-open fa-2x" style="color: #4100E3;"></i></center>
+                                                                                </div>
+                                                                            </a>
                                                                         </div>
-                                                                    </a>
+                                                                        @else
+                                                                        <div class="column-download" title="<?php echo $file_p = $datas->namefile; ?>>
+                                                                            <a href="#" target="_blank" data-toggle="modal" data-target="#exampleModalLong">
+                                                                                <center><b><label for="" class="column-download-text">เล่ม<?php echo $datas->type_name; ?></label></b></center>
+                                                                                <div class="column-download-icon">
+                                                                                    <center><i class="fas fa-book-open fa-2x" style="color: #4100E3;"></i></center>
+                                                                                </div>
+                                                                            </a>
+                                                                        </div>
+                                                                        @endif
                                                                     @else
                                                                     @endif
 
                                                                     <?php $file_p = $datas->namefile; ?>
                                                                     @if(isset($file_p)?$file_p:'')
-                                                                    <a href="#" target="_blank" data-toggle="modal" data-target="#exampleModalLong">
-                                                                        <div class="column-download">
-                                                                            <center><b><label for="" class="column-download-text">สไลด์นำเสนอ</label></b></center>
-                                                                            <div class="column-download-icon">
-                                                                                <center><i class="fab fa-slideshare fa-2x" style="color: #0C7BFA;"></i></center>
-                                                                            </div>
+                                                                        @if(isset($_SESSION['download_s'])?$_SESSION['download_s']:'')
+                                                                        <div class="column-download-after" title="<?php echo $file_p = $datas->namefile; ?>">
+                                                                            <a href="#" target="_blank" data-toggle="modal" data-target="#exampleModalLong">
+                                                                                <center><b><label for="" class="column-download-after-text">สไลด์นำเสนอ</label></b></center>
+                                                                                <div class="column-download-icon">
+                                                                                    <center><i class="fab fa-slideshare fa-2x" style="color: #0C7BFA;"></i></center>
+                                                                                </div>
+                                                                            </a>
                                                                         </div>
-                                                                    </a>
+                                                                        @else
+                                                                        <div class="column-download" title="<?php echo $file_p = $datas->namefile; ?>">
+                                                                            <a href="#" target="_blank" data-toggle="modal" data-target="#exampleModalLong">
+                                                                                <center><b><label for="" class="column-download-text">สไลด์นำเสนอ</label></b></center>
+                                                                                <div class="column-download-icon">
+                                                                                    <center><i class="fab fa-slideshare fa-2x" style="color: #0C7BFA;"></i></center>
+                                                                                </div>
+                                                                            </a>
+                                                                        </div>
+                                                                        @endif
                                                                     @else
                                                                     @endif
 
                                                                     <?php $file_post = $datas->namefile; ?>
                                                                     @if(isset($file_post)?$file_post:'')
-                                                                    <a href="#" target="_blank" data-toggle="modal" data-target="#exampleModalLong">
-                                                                        <div class="column-download">
-                                                                            <center><b><label for="" class="column-download-text">โปสเตอร์</label></b></center>
-                                                                            <div class="column-download-icon">
-                                                                                <center><i class="fas fa-paste fa-2x" style="color: #00E3AF;"></i></center>
+                                                                        @if(isset($_SESSION['download_p'])?$_SESSION['download_p']:'')
+                                                                            <div class="column-download-after" title="<?php echo $file_p = $datas->namefile; ?>">
+                                                                                <a href="#" target="_blank" data-toggle="modal" data-target="#exampleModalLong">
+                                                                                    <center><b><label for="" class="column-download-after-text">โปสเตอร์</label></b></center>
+                                                                                    <div class="column-download-icon">
+                                                                                        <center><i class="fas fa-paste fa-2x" style="color: #00E3AF;"></i></center>
+                                                                                    </div>
+                                                                                </a>
                                                                             </div>
-                                                                        </div>
-                                                                    </a>
+                                                                        @else
+                                                                            <div class="column-download" title="<?php echo $file_p = $datas->namefile; ?>">
+                                                                                <a href="#" target="_blank" data-toggle="modal" data-target="#exampleModalLong">
+                                                                                    <center><b><label for="" class="column-download-text">โปสเตอร์</label></b></center>
+                                                                                    <div class="column-download-icon">
+                                                                                        <center><i class="fas fa-paste fa-2x" style="color: #00E3AF;"></i></center>
+                                                                                    </div>
+                                                                                </a>
+                                                                            </div>
+                                                                        @endif
                                                                     @else
                                                                     @endif
 
                                                                     <?php $linkcode = $datas->namefile; ?>
                                                                     @if(isset($linkcode)?$linkcode:'')
-                                                                    <a href="#" target="_blank" data-toggle="modal" data-target="#exampleModalLong">
-                                                                        <div class="column-download">
-                                                                            <center><b><label for="" class="column-download-text">Source Code</label></b></center>
-                                                                            <div class="column-download-icon">
-                                                                                <center><i class="fas fa-file-code fa-2x" style="color: #0AFF00;"></i></center>
+                                                                        @if(isset($_SESSION['download_l'])?$_SESSION['download_l']:'')
+                                                                            <div class="column-download-after" title="<?php echo $linkcode = $datas->namefile; ?>">
+                                                                                <a href="#" target="_blank" data-toggle="modal" data-target="#exampleModalLong">
+                                                                                    <center><b><label for="" class="column-download-after-text">ไฟล์โปรเเกรม</label></b></center>
+                                                                                    <div class="column-download-icon">
+                                                                                        <center><i class="fas fa-file-code fa-2x" style="color: #0AFF00;"></i></center>
+                                                                                    </div>
+                                                                                </a>
                                                                             </div>
-                                                                        </div>
-                                                                    </a>
+                                                                        @else
+                                                                            <div class="column-download" title="<?php echo $linkcode = $datas->namefile; ?>">
+                                                                                <a href="#" target="_blank" data-toggle="modal" data-target="#exampleModalLong">
+                                                                                    <center><b><label for="" class="column-download-text">ไฟล์โปรเเกรม</label></b></center>
+                                                                                    <div class="column-download-icon">
+                                                                                        <center><i class="fas fa-file-code fa-2x" style="color: #0AFF00;"></i></center>
+                                                                                    </div>
+                                                                                </a>
+                                                                            </div>
+                                                                        @endif
                                                                     @else
                                                                     @endif
                                                                 
@@ -1474,14 +1632,25 @@
                                                                 <div class="row">
                                                                     <?php $file_d = $datas->namefile; ?>
                                                                     @if(isset($file_d)?$file_d:'')
-                                                                    <a href="#" target="_blank" data-toggle="modal" data-target="#exampleModalLong">
-                                                                        <div class="column-download">
-                                                                            <center><b><label for="" class="column-download-text">บทคัดย่อ</label></b></center>
-                                                                            <div class="column-download-icon">
-                                                                                <center><i class="fas fa-file-alt fa-2x" style="color:#FB00E0;"></i></center>
+                                                                        @if(isset($_SESSION['download_a'])?$_SESSION['download_a']:'')
+                                                                            <div class="column-download-after" title="<?php echo $file_d = $datas->namefile; ?>">
+                                                                                <a href="#" target="_blank" data-toggle="modal" data-target="#exampleModalLong">
+                                                                                    <center><b><label for="" class="column-download-after-text">บทคัดย่อ</label></b></center>
+                                                                                    <div class="column-download-icon">
+                                                                                        <center><i class="fas fa-file-alt fa-2x" style="color:#FB00E0;"></i></center>
+                                                                                    </div>
+                                                                                </a>
                                                                             </div>
-                                                                        </div>
-                                                                    </a>
+                                                                        @else
+                                                                            <div class="column-download" title="<?php echo $file_d = $datas->namefile; ?>">
+                                                                                <a href="#" target="_blank" data-toggle="modal" data-target="#exampleModalLong">
+                                                                                    <center><b><label for="" class="column-download-text">บทคัดย่อ</label></b></center>
+                                                                                    <div class="column-download-icon">
+                                                                                        <center><i class="fas fa-file-alt fa-2x" style="color:#FB00E0;"></i></center>
+                                                                                    </div>
+                                                                                </a>
+                                                                            </div>
+                                                                        @endif
                                                                     @else
                                                                     @endif
                                                                 </div>
@@ -1542,6 +1711,21 @@
         </script>
 
         <script>
+            // Capture the "click" event of the link.
+            var link = document.getElementById("the-link");
+            link.addEventListener("click", function(evt) {
+                // Stop the link from doing what it would normally do.
+                evt.preventDefault();
+                // Open the file download in a new window. (It should just
+                // show a normal file dialog)
+                window.open(this.href, "_blank");
+                // Then redirect the page you are on to whatever page you
+                // want shown once the download has been triggered.
+                window.location = "/thank_you.html";
+            }, true);
+        </script>
+
+        <script>
             /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
             test("dropdown-btn");
             test("dropdown-btn2");
@@ -1567,6 +1751,15 @@
                 }
             }
         </script>
+
+        <!-- <script>    
+            $("#chk").click(function(){
+                setTimeout(function () {
+                    document.write( 'data-toggle=\"modal\" data-target=\"#exampleModalLong\"' );
+                }, 5000);
+            })
+        </script> -->
+
         <!-- The javascript plugin to display page loading on top-->
         <script src="js/plugins/pace.min.js"></script>
         <!-- Page specific javascripts-->

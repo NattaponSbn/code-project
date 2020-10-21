@@ -665,8 +665,8 @@
                 <nav class="app-navmenu">
                     <li class="active1 menulink fontlink"><a href="homeMDD">หน้าเเรก</a></li>
                     <li class="active2 menulink fontlink"><a href="SearchAdvancemdd">ค้นหาเเบบละเอียด</a></li>
-                    <li class="active3 menulink fontlink"><a href="#">เกี่ยวกับ</a></li>
-                    <li class="active4 menulink fontlink"><a href="#">ติดต่อ</a></li>
+                    <li class="active3 menulink fontlink"><a href="#about">เกี่ยวกับ</a></li>
+                    <li class="active4 menulink fontlink"><a href="#contact">ติดต่อ</a></li>
                 </nav>
                 <div class="navbar-dark layoutaccout-MDD ">
                     <ul class="navbar-nav ml-auto ml-md-0">
@@ -790,9 +790,16 @@
                                                 </div>
                                             </div>
 
-                                            <a href="profile" class="top dropdown-item"><i class="zmdi zmdi-account"></i>โปรไฟล์</a>
+                                            <a href="profile" class="top dropdown-item"><i class="fas fa-user" style="margin-right: 2%;"></i>โปรไฟล์</a>
+                                            <div class="top dropdown-item" >
+                                                @if(!isset($_SESSION['project']))
+                                                <a href="addproject" class="view" style="color: black;text-decoration: none;"><i class="far fa-plus-square" style="margin-right: 2%;"></i>สร้างผลงาน</a><br>
+                                                @elseif(isset($_SESSION['project']))
+                                                <a href="listdetil" class="view" style="color: black;text-decoration: none;"><i class="fas fa-book" style="margin-right: 2%;"></i>ผลงานของฉัน</a><br>
+                                                @endif
+                                            </div>
                                             <a class="dropdown-item" href="logout" onclick="event.preventDefault();
-                                                                    document.getElementById('logout-form').submit();">
+                                                                    document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt" ></i>
                                                 {{ __('ออกจากระบบ') }}
                                             </a>
                                             <form id="logout-form" action="logout" method="POST" style="display: none;">
@@ -995,7 +1002,7 @@
                 var scroll = $(window).scrollTop();
                 $("#sidebar").css({
                     // width: (100 + scroll/5) + "%",
-                    height: (75 + scroll/-10)+ "%"
+                    height: (161 + scroll/-10)+ "%"
                 })
             })
            

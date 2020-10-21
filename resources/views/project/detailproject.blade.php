@@ -972,9 +972,46 @@
                                         </div>
 
                                         <label for="text" class="">ภาพโชว์ผลงาน</label><br>
-                                        <div class="col-md-4">
-                                            <div id="carouselExampleIndicators"  class="carousel slide" data-ride="carousel">
-                                                <div class="carousel-inner" style="width: 400px;margin-left:-30%;">
+                                        <center>
+                                            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                                                <ol class="carousel-indicators">
+                                                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                                                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                                                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                                                </ol>
+                                                @foreach($dataimg as $datas)
+                                                <div class="carousel-inner">
+                                                    <div class="carousel-item active ">
+                                                        <div class="backgroundimgproject">
+                                                            <img class="size-img-re" width="100%" height="100%" src="/project/img_backgrund/<?php echo $datas->img_p_1; ?>" alt="First slide">
+                                                        </div>
+                                                    </div>
+                                                    <div class="carousel-item">
+                                                        <div class="backgroundimgprojectt">
+                                                            <img class="size-img-re" width="100%" height="100%" src="/project/img_backgrund/<?php echo $datas->img_p_2; ?>" alt="Second slide">
+                                                        </div>
+                                                    </div>
+                                                    <div class="carousel-item">
+                                                        <div class="backgroundimgprojecttt">
+                                                            <img class="size-img-re" width="100%" height="100%" src="/project/img_backgrund/<?php echo $datas->img_p_3; ?>" alt="Third slide">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                @endforeach
+                                                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                    <span class="sr-only">Previous</span>
+                                                </a>
+                                                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                    <span class="sr-only">Next</span>
+                                                </a>
+                                            </div>
+                                        </center>
+                                        
+                                        <!-- <div class="col-md-4" style="width: 100%;">
+                                            <div id="carouselExampleIndicators" style="width: 100%;" class="carousel slide" data-ride="carousel">
+                                                <div class="carousel-inner" style="width: 400px;margin-left:-33%;padding-left:-30%">
                                                     <div class="carousel-item active">
                                                         <div class="table-responsive">
                                                             @if(isset($dataimg)?$dataimg:'')
@@ -1018,7 +1055,7 @@
                                                     </a>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> -->
 
                                         <label for="text" class="">โลโก้</label><span class="text-muted">(.png )</span><br>
                                         <span style="color: red;font-size: 20;">* <span class="danger_d">กรุณาใส่รูปโลโก้ผลงาน</span></span><br>

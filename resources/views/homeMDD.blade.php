@@ -4,15 +4,138 @@
         <div class="rowcolumn">
             <div class="col-md-12">
                 <div class="tile">
-                    <div class="texthe"><i class="fas fa-tags"></i> <b>เกษตร</b></div>
+                    @if(isset($item_m0)?$item_m0:'')
+                        <div class="texthe"><i class="fas fa-tags"></i> <b>เกษตร</b></div>
                         <a href="pursue" class="btnsum"><button type="button" class="btn btn-default" style="color: #D9A32F;background-color: white;margin-top:-20px;" >
                                 ดูทั้งหมด (<?php if($sum_follow){echo $sum_follow;}?>)</button></a>
+                            <div class="tile-body">
+                                @foreach($item_m0 as $items)
+                                <div class="column-mdd">
+                                <?php $status_m0 = $items->status_m ?>
+                                    @if(isset($item_m0))
+                                        <div class="layoutMDD"><span class="layout-mdd-i-text"><span class="countviewmdd"><?php formattter($viewcount0) ?></span><i class="fas fa-user" style="color: #A9A9A9;"></i></span>
+                                            <a href="itemdetaliMDD/{{$items->project_m_id}}"><div class="textMDD-h" ><b><?php echo $items->project_m_name;?></b></div></a>
+                                            <div class="textMDD" ><b>คำอธิบาย :</b> 
+                                                <?php 
+                                                    $str = $items->des_m_project;
+                                                    $count = utf8_strlen("$str");
+                                                    create_str($count,$str,$items);
+                                                ?></div>
+                                            <div class="textMDD" ><b>ผู้สร้างผลงาน :</b> <?php echo $items->name?></div>
+                                            <div class="textMDD" ><b>คำสำคัญ :</b> <?php echo $items->keyword_m_project1?> <?php echo $items->keyword_m_project2?> <?php echo $items->keyword_m_project3?> <?php echo $items->keyword_m_project4?></div>
+                                            <div class="textMDD" ><b>ประเภท :</b> <?php echo $items->type_name?></div>
+                                            <div class="rating">
+                                                <?php 
+                                                    $rate = $items->AvgRate;
+                                                    rating_star($rate); 
+                                                ?>
+                                            </div>
+                                        </div>
+                                        
+                                    @endif
+                                </div>
+                                @endforeach
+                                <br>
+                                @if(isset($itemA0)?$itemA0:'')
+                                @foreach($itemA0 as $items)
+                                    <div class="column-mdd">
+                                        <div class="layoutMDD"><span class="layout-mdd-i-text"><span class="countviewmdd"><?php formattter($viewcountA0) ?></span><i class="fas fa-user" style="color: #A9A9A9;"></i></span>
+                                            <a href="itemdetaliMDD/{{$items->project_m_id}}"><div class="textMDD-h" ><b><?php echo $items->project_m_name;?></b></div></a>
+                                            <div class="textMDD" ><b>คำอธิบาย :</b>
+                                            <?php 
+                                                $str = $items->des_m_project;
+                                                $count = utf8_strlen("$str");
+                                                create_str($count,$str,$items);
+                                            ?></div>
+                                            <div class="textMDD" ><b>ผู้สร้างผลงาน :</b> <?php echo $items->owner_m_name?></div>
+                                            <div class="textMDD" ><b>คำสำคัญ :</b> <?php echo $items->keyword_m_project1?> <?php echo $items->keyword_m_project2?> <?php echo $items->keyword_m_project3?> <?php echo $items->keyword_m_project4?> </div>
+                                            <div class="textMDD" ><b>ประเภท :</b> <?php echo $items->type_name?></div>
+                                            <div class="rating">
+                                                <?php 
+                                                    $rate = $items->AvgRate;
+                                                    rating_star($rate); 
+                                                ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                                @else
+                            @endif
+                              
+                            </div><hr>
+                            @else
+                        @endif
+                        @if(isset($item_l0)?$item_l0:'')
+                            <div class="texthe"><i class="fas fa-tags"></i> <b>การศึกษา</b></div>
+                            <a href="pursue" class="btnsum"><button type="button" class="btn btn-default" style="color: #D9A32F;background-color: white;margin-top:-20px;" >
+                            ดูทั้งหมด (<?php if($sum_follow){echo $sum_follow;}?>)</button></a>
+                                <div class="tile-body">
+                                    @foreach($item_l0 as $items)
+                                    <div class="column-mdd">
+                                    <?php $status_m0 = $items->status_m ?>
+                                        @if(isset($item_l0))
+                                            <div class="layoutMDD"><span class="layout-mdd-i-text"><span class="countviewmdd"><?php formattter($viewcount_l0) ?></span><i class="fas fa-user" style="color: #A9A9A9;"></i></span>
+                                                <a href="itemdetaliMDD/{{$items->project_m_id}}"><div class="textMDD-h" ><b><?php echo $items->project_m_name;?></b></div></a>
+                                                <div class="textMDD" ><b>คำอธิบาย :</b> 
+                                                    <?php 
+                                                        $str = $items->des_m_project;
+                                                        $count = utf8_strlen("$str");
+                                                        create_str($count,$str,$items);
+                                                    ?></div>
+                                                <div class="textMDD" ><b>ผู้สร้างผลงาน :</b> <?php echo $items->name?></div>
+                                                <div class="textMDD" ><b>คำสำคัญ :</b> <?php echo $items->keyword_m_project1?> <?php echo $items->keyword_m_project2?> <?php echo $items->keyword_m_project3?> <?php echo $items->keyword_m_project4?></div>
+                                                <div class="textMDD" ><b>ประเภท :</b> <?php echo $items->type_name?></div>
+                                                <div class="rating">
+                                                    <?php 
+                                                        $rate = $items->AvgRate;
+                                                        rating_star($rate); 
+                                                    ?>
+                                                </div>
+                                            </div>
+                                            
+                                        @endif
+                                    </div>
+                                    @endforeach
+                                    <br>
+                                @if(isset($itemA_l0)?$itemA_l0:'')
+                                    @foreach($itemA_l0 as $items)
+                                        <div class="column-mdd">
+                                            <div class="layoutMDD"><span class="layout-mdd-i-text"><span class="countviewmdd"><?php formattter($viewcountA_l0) ?></span><i class="fas fa-user" style="color: #A9A9A9;"></i></span>
+                                                <a href="itemdetaliMDD/{{$items->project_m_id}}"><div class="textMDD-h" ><b><?php echo $items->project_m_name;?></b></div></a>
+                                                <div class="textMDD" ><b>คำอธิบาย :</b>
+                                                <?php 
+                                                    $str = $items->des_m_project;
+                                                    $count = utf8_strlen("$str");
+                                                    create_str($count,$str,$items);
+                                                ?></div>
+                                                <div class="textMDD" ><b>ผู้สร้างผลงาน :</b> <?php echo $items->owner_m_name?></div>
+                                                <div class="textMDD" ><b>คำสำคัญ :</b> <?php echo $items->keyword_m_project1?> <?php echo $items->keyword_m_project2?> <?php echo $items->keyword_m_project3?> <?php echo $items->keyword_m_project4?> </div>
+                                                <div class="textMDD" ><b>ประเภท :</b> <?php echo $items->type_name?></div>
+                                                <div class="rating">
+                                                    <?php 
+                                                        $rate = $items->AvgRate;
+                                                        rating_star($rate); 
+                                                    ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                    @else  
+                            @endif
+                              </div><hr>
+                                 @else  
+                            @endif
+
+                            @if(isset($item_h0)?$item_h0:'')
+                            <div class="texthe"><i class="fas fa-tags"></i> <b>ดูเเลสุขภาพ</b></div>
+                            <a href="pursue" class="btnsum"><button type="button" class="btn btn-default" style="color: #D9A32F;background-color: white;margin-top:-20px;" >
+                                ดูทั้งหมด (<?php if($sum_follow){echo $sum_follow;}?>)</button></a>
                                     <div class="tile-body">
-                                        @foreach($item_m0 as $items)
+                                        @foreach($item_h0 as $items)
                                         <div class="column-mdd">
                                         <?php $status_m0 = $items->status_m ?>
-                                            @if(isset($item_m0))
-                                                <div class="layoutMDD">
+                                            @if(isset($item_h0))
+                                                <div class="layoutMDD"><span class="layout-mdd-i-text"><span class="countviewmdd"><?php formattter($viewcount_h0) ?></span><i class="fas fa-user" style="color: #A9A9A9;"></i></span>
                                                     <a href="itemdetaliMDD/{{$items->project_m_id}}"><div class="textMDD-h" ><b><?php echo $items->project_m_name;?></b></div></a>
                                                     <div class="textMDD" ><b>คำอธิบาย :</b> 
                                                         <?php 
@@ -35,10 +158,10 @@
                                         </div>
                                         @endforeach
                                         <br>
-
-                                        @foreach($itemA0 as $items)
+                                        @elseif(isset($itemA_h0)?$itemA_h0:'')
+                                        @foreach($itemA_h0 as $items)
                                             <div class="column-mdd">
-                                                <div class="layoutMDD">
+                                                <div class="layoutMDD"><span class="layout-mdd-i-text"><span class="countviewmdd"><?php formattter($viewcountA_h0) ?></span><i class="fas fa-user" style="color: #A9A9A9;"></i></span>
                                                     <a href="itemdetaliMDD/{{$items->project_m_id}}"><div class="textMDD-h" ><b><?php echo $items->project_m_name;?></b></div></a>
                                                     <div class="textMDD" ><b>คำอธิบาย :</b>
                                                     <?php 
@@ -59,8 +182,128 @@
                                             </div>
                                         @endforeach
                                         </div><hr>
-                                    </div>
-                        </div><hr>
+                                    @else
+                                @endif
+                                @if(isset($item_s0)?$item_s0:'')
+                                <div class="texthe"><i class="fas fa-tags"></i> <b>ดูเเลสุขภาพ</b></div>
+                                <a href="pursue" class="btnsum"><button type="button" class="btn btn-default" style="color: #D9A32F;background-color: white;margin-top:-20px;" >
+                                ดูทั้งหมด (<?php if($sum_follow){echo $sum_follow;}?>)</button></a>
+                                    <div class="tile-body">
+                                        @foreach($item_s0 as $items)
+                                        <div class="column-mdd">
+                                        <?php $status_m0 = $items->status_m ?>
+                                            @if(isset($item_s0))
+                                                <div class="layoutMDD"><span class="layout-mdd-i-text"><span class="countviewmdd"><?php formattter($viewcount_s0) ?></span><i class="fas fa-user" style="color: #A9A9A9;"></i></span>
+                                                    <a href="itemdetaliMDD/{{$items->project_m_id}}"><div class="textMDD-h" ><b><?php echo $items->project_m_name;?></b></div></a>
+                                                    <div class="textMDD" ><b>คำอธิบาย :</b> 
+                                                        <?php 
+                                                            $str = $items->des_m_project;
+                                                            $count = utf8_strlen("$str");
+                                                            create_str($count,$str,$items);
+                                                        ?></div>
+                                                    <div class="textMDD" ><b>ผู้สร้างผลงาน :</b> <?php echo $items->name?></div>
+                                                    <div class="textMDD" ><b>คำสำคัญ :</b> <?php echo $items->keyword_m_project1?> <?php echo $items->keyword_m_project2?> <?php echo $items->keyword_m_project3?> <?php echo $items->keyword_m_project4?></div>
+                                                    <div class="textMDD" ><b>ประเภท :</b> <?php echo $items->type_name?></div>
+                                                    <div class="rating">
+                                                        <?php 
+                                                            $rate = $items->AvgRate;
+                                                            rating_star($rate); 
+                                                        ?>
+                                                    </div>
+                                                </div>
+                                                
+                                            @endif
+                                        </div>
+                                        @endforeach
+                                        <br>
+                                        @elseif(isset($itemA_s0)?$itemA_s0:'')
+                                        @foreach($itemA_s0 as $items)
+                                            <div class="column-mdd">
+                                                <div class="layoutMDD"><span class="layout-mdd-i-text"><span class="countviewmdd"><?php formattter($viewcountA_s0) ?></span><i class="fas fa-user" style="color: #A9A9A9;"></i></span>
+                                                    <a href="itemdetaliMDD/{{$items->project_m_id}}"><div class="textMDD-h" ><b><?php echo $items->project_m_name;?></b></div></a>
+                                                    <div class="textMDD" ><b>คำอธิบาย :</b>
+                                                    <?php 
+                                                        $str = $items->des_m_project;
+                                                        $count = utf8_strlen("$str");
+                                                        create_str($count,$str,$items);
+                                                    ?></div>
+                                                    <div class="textMDD" ><b>ผู้สร้างผลงาน :</b> <?php echo $items->owner_m_name?></div>
+                                                    <div class="textMDD" ><b>คำสำคัญ :</b> <?php echo $items->keyword_m_project1?> <?php echo $items->keyword_m_project2?> <?php echo $items->keyword_m_project3?> <?php echo $items->keyword_m_project4?> </div>
+                                                    <div class="textMDD" ><b>ประเภท :</b> <?php echo $items->type_name?></div>
+                                                    <div class="rating">
+                                                        <?php 
+                                                            $rate = $items->AvgRate;
+                                                            rating_star($rate); 
+                                                        ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                        </div><hr>
+                                    @else
+                                @endif
+
+                            @if(isset($item_g0)?$item_g0:'')
+                            <div class="texthe"><i class="fas fa-tags"></i> <b>สังคมเเละสื่อสาร</b></div>
+                            <a href="pursue" class="btnsum"><button type="button" class="btn btn-default" style="color: #D9A32F;background-color: white;margin-top:-20px;" >
+                                ดูทั้งหมด (<?php if($sum_follow){echo $sum_follow;}?>)</button></a>
+                                    <div class="tile-body">
+                                        @foreach($item_g0 as $items)
+                                        <div class="column-mdd">
+                                        <?php $status_m0 = $items->status_m ?>
+                                            @if(isset($item_g0))
+                                                <div class="layoutMDD"><span class="layout-mdd-i-text"><span class="countviewmdd"><?php formattter($viewcount_g0) ?></span><i class="fas fa-user" style="color: #A9A9A9;"></i></span>
+                                                    <a href="itemdetaliMDD/{{$items->project_m_id}}"><div class="textMDD-h" ><b><?php echo $items->project_m_name;?></b></div></a>
+                                                    <div class="textMDD" ><b>คำอธิบาย :</b> 
+                                                        <?php 
+                                                            $str = $items->des_m_project;
+                                                            $count = utf8_strlen("$str");
+                                                            create_str($count,$str,$items);
+                                                        ?></div>
+                                                    <div class="textMDD" ><b>ผู้สร้างผลงาน :</b> <?php echo $items->name?></div>
+                                                    <div class="textMDD" ><b>คำสำคัญ :</b> <?php echo $items->keyword_m_project1?> <?php echo $items->keyword_m_project2?> <?php echo $items->keyword_m_project3?> <?php echo $items->keyword_m_project4?></div>
+                                                    <div class="textMDD" ><b>ประเภท :</b> <?php echo $items->type_name?></div>
+                                                    <div class="rating">
+                                                        <?php 
+                                                            $rate = $items->AvgRate;
+                                                            rating_star($rate); 
+                                                        ?>
+                                                    </div>
+                                                </div>
+                                                
+                                            @endif
+                                        </div>
+                                        @endforeach
+                                        <br>
+                                        @elseif(isset($itemA_g0)?$itemA_g0:'')
+                                        @foreach($itemA_g0 as $items)
+                                            <div class="column-mdd">
+                                                <div class="layoutMDD"><span class="layout-mdd-i-text"><span class="countviewmdd"><?php formattter($viewcountA_g0) ?></span><i class="fas fa-user" style="color: #A9A9A9;"></i></span>
+                                                    <a href="itemdetaliMDD/{{$items->project_m_id}}"><div class="textMDD-h" ><b><?php echo $items->project_m_name;?></b></div></a>
+                                                    <div class="textMDD" ><b>คำอธิบาย :</b>
+                                                    <?php 
+                                                        $str = $items->des_m_project;
+                                                        $count = utf8_strlen("$str");
+                                                        create_str($count,$str,$items);
+                                                    ?></div>
+                                                    <div class="textMDD" ><b>ผู้สร้างผลงาน :</b> <?php echo $items->owner_m_name?></div>
+                                                    <div class="textMDD" ><b>คำสำคัญ :</b> <?php echo $items->keyword_m_project1?> <?php echo $items->keyword_m_project2?> <?php echo $items->keyword_m_project3?> <?php echo $items->keyword_m_project4?> </div>
+                                                    <div class="textMDD" ><b>ประเภท :</b> <?php echo $items->type_name?></div>
+                                                    <div class="rating">
+                                                        <?php 
+                                                            $rate = $items->AvgRate;
+                                                            rating_star($rate); 
+                                                        ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                        </div><hr>
+                                    @else
+                                @endif
+                                </div>
+                            </div>
+                        <hr>
                     </div>
                 </div>
             </div
@@ -69,7 +312,7 @@
         <div class="containermdd footer-conlayoutmdd">
             <div class="row " >
                 <div class="col">
-                    <label for="text" style="margin-top: 10%;">เกี่ยวกับ</label>
+                    <label for="text" style="margin-top: 10%;" id="about">เกี่ยวกับ</label>
                     <!-- <p><i class="fas fa-home mr-3"></i> New York, NY 10012, US</p> -->
                     <p>
                         ระบบจัดเก็บโครงงานวิจัย และวิทยานิพนธ์ของนิสิต คณะเทคโนโลยีสารสนเทศและการสื่อสาร มหาวิทยาลัยพะเยา 
@@ -78,7 +321,7 @@
                     </p>  
                 </div>
                 <div class="col" style="margin-top: 3.1%;">
-                    <label for="text">ติดต่อ</label>
+                    <label for="text" id="contact">ติดต่อ</label>
                     <!-- <p><i class="fas fa-home mr-3"></i> New York, NY 10012, US</p> -->
                     <p><i class="fas fa-envelope mr-3"></i> ohmsbn@gmail.com</p>
                     <p><i class="fas fa-phone mr-3"></i>099-247-927-1</p>
@@ -147,6 +390,19 @@
         }
         return $l;
     } 
+
+    function formattter($viewcount) {
+        if ($viewcount >= 1000000) {
+            echo round($viewcount/ 1000000, 1).'หมื่น';
+        }
+        else if ($viewcount >= 1000) {
+            echo round($viewcount/ 1000, 1). 'พัน';
+        }else{
+            echo $viewcount;
+        }
+        
+    }
+
     function create_str($count,$str,$items) {
         if($count>20) {
             $strcount = substr($str,0,-10);
@@ -179,7 +435,7 @@
                 echo'<div class="rating">';
                     check_rating($svgid);
                     if(isset($svgid)?$svgid:''){
-                        echo'<span class=""> ('.(round($svgid, $precision = 1)).')</span><i class="fas fa-user" style="color: #A9A9A9;"></i>';
+                        echo'<span class=""> ('.(round($svgid, $precision = 1)).')</span>';
                     }
                 echo'</div>';
             }
@@ -188,7 +444,7 @@
                 echo'<div class="rating">';
                     check_rating($svgid);
                     if(isset($svgid)?$svgid:''){
-                        echo'<span class=""> ('.(round($svgid, $precision = 1)).')</span><i class="fas fa-user" style="color: #A9A9A9;"></i>';
+                        echo'<span class=""> ('.(round($svgid, $precision = 1)).')</span>';
                     }
                 echo '</div>';
             }
@@ -197,7 +453,7 @@
                 echo'<div class="rating">';
                     check_rating($svgid);
                     if(isset($svgid)?$svgid:''){
-                        echo'<span class=""> ('.(round($svgid, $precision = 1)).')</span><i class="fas fa-user" style="color: #A9A9A9;"></i>';
+                        echo'<span class=""> ('.(round($svgid, $precision = 1)).')</span>';
                     }
                 echo '</div>';
             }
@@ -206,7 +462,7 @@
                 echo'<div class="rating">';
                     check_rating($svgid);
                     if(isset($svgid)?$svgid:''){
-                        echo'<span class=""> ('.(round($svgid, $precision = 1)).')</span><i class="fas fa-user" style="color: #A9A9A9;"></i>';
+                        echo'<span class=""> ('.(round($svgid, $precision = 1)).')</span>';
                     } 
                 echo'</div>';}
             
@@ -214,7 +470,7 @@
                 echo'<div class="rating">';
                     check_rating($svgid);
                     if(isset($svgid)?$svgid:''){
-                        echo'<span class=""> ('.(round($svgid, $precision = 1)).')</span><i class="fas fa-user" style="color: #A9A9A9;"></i>';
+                        echo'<span class=""> ('.(round($svgid, $precision = 1)).')</span>';
                     }
                 echo'</div>';
                 }
@@ -222,14 +478,14 @@
                 echo'<div class="rating">';
                     check_rating($svgid);
                     if(isset($svgid)?$svgid:''){
-                        echo'<span class=""> ('.(round($svgid, $precision = 1)).')</span><i class="fas fa-user" style="color: #A9A9A9;"></i>';
+                        echo'<span class=""> ('.(round($svgid, $precision = 1)).')</span>';
                     }
                 echo '</div>';}
         
             }
         else{
             echo'<div class="rating">';
-                check_rating(0);  echo'<span class="">(0)</span><i class="fas fa-user" style="color: #A9A9A9;"></i>';
+                check_rating(0);  echo'<span class="">(0)</span>';
             echo'</div>';
         }    
     }

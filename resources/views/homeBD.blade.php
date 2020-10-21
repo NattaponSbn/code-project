@@ -1834,10 +1834,10 @@
 
         function formattter($viewcount) {
             if ($viewcount >= 1000000) {
-                echo round($viewcount/ 1000000, 1).'M';
+                echo round($viewcount/ 1000000, 1).'หมื่น';
             }
             else if ($viewcount >= 1000) {
-                echo round($viewcount/ 1000, 1). 'K';
+                echo round($viewcount/ 1000, 1). 'พัน';
             }else{
                 echo $viewcount;
             }

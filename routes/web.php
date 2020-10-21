@@ -165,6 +165,12 @@ Route::get('listdetil','ListdataController@listdetil');//listdetil ของน�
 
 Route::post('download', 'ProjectController@downloadfile');
 
+//pageload
+Route::get('pagedownload', function () {
+    return view('pagedownload');
+});
+
+
 Route::get('project', function () {
     return view('detailproject');
 });

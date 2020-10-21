@@ -319,6 +319,32 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">ดาวน์โหลดไฟล์เอกสารวิทยานิพนธ์</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="{{action ('Project_MDDController@downloadfile')}}" method="POST">
+                                @csrf
+                                @foreach($item as $datas)
+                                <input type="text" name="project_id" id="project_id" style="display: none;" value="<?php $datas->project_m_id; ?>">
+                                @endforeach
+                                @foreach($itemadmin as $datas)
+                                <input type="text" name="project_id" id="project_id" style="display: none;" value="<?php $datas->project_m_id; ?>">
+                                @endforeach
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">ดาวน์โหลดไฟล์เอกสาร</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLongTitle">ความพึ่งพอใจเอกสารที่ท่านได้ดาวน์โหลด</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
@@ -342,7 +368,7 @@
                         </form>
                     </div>
                 </div>
-            </div>
+            </div> -->
             
         <!-- Modal -->
             <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -805,9 +831,9 @@
                         if (!isset($_SESSION['status']) == 'user' & !isset($_SESSION['statusA']) == 'admin') {
                         } else if (isset($_SESSION['status']) == 'user') { ?>
                             <div class="links front" style="font-size: 20px;">
-                                @if(!isset($_SESSION['project']))
+                                @if(!isset($_SESSION['project_']))
                                 <a href="addproject" class="view"><i class="fas fa-book fa-lg" style="color:#212529; margin-right: 7px;margin-left: 10px;"></i>สร้างผลงาน</a><br>
-                                @elseif(isset($_SESSION['project']))
+                                @elseif(isset($_SESSION['project_']))
                                 <a href="listdetil" class="view"><i class="fas fa-book fa-lg" style="color:#212529; margin-right: 7px;margin-left: 10px;"></i>ผลงานของฉัน</a><br>
                                 @endif
                             </div>
@@ -862,31 +888,35 @@
                                 <!-- detailitem -->
                                 @foreach($item as $items) 
                                 <div class="D-text D-layout">
-                                    <table style="width:100%">
+                                    <table style="width:100%;">
 
-                                    <tr><td ><label for="text"><b>ชื่อเรื่อง :</b></label></td>
-                                        <td colspan=1 ><?php echo $items->project_m_name; ?></td>
-                                    <tr><td ><label for="text"><b>ชื่อเรื่องภาษาอังกฤษ :</b></label></td>
-                                        <td colspan=1 ><?php echo $items->project_m_name_en; ?></td>
-                                    <tr><td ><label for="text"><b>เจ้าของผลงาน :</b></label></td>
-                                        <td colspan=1 ><?php echo $items->name; ?></td>
-                                    <tr><td ><label for="text"><b>ที่ปรึกษา :</b></label></td>
-                                        <td colspan=1 ><?php echo $items->advisor_m; ?></td>
-                                    <tr><td ><label for="text"><b>หมวดหมู่ :</b></label></td>
-                                        <td colspan=1 ><?php echo $items->category_name; ?></td>
-                                    <tr><td ><label for="text"><b>ประเภทเอกสาร :</b></label></td>
-                                        <td colspan=1 ><?php echo $items->type_name; ?></td>
-                                    <tr><td ><label for="text"><b>คำสำคัญ :</b></label></td>
-                                        <td colspan=1 ><?php echo $items->keyword_m_project; ?></td>
-                                    <tr><td><label for="text" class=""><b>บทคัดย่อ :</b></label></td>
-                                        <td colspan=1 ><?php echo $items->des_m_project; ?></td></tr>
+                                    <tr><td style="vertical-align: baseline;"><label for="text" ><b>ชื่อเรื่อง :</b></label></td>
+                                        <td colspan=1 style="width:80%;vertical-align: baseline;"><?php echo $items->project_m_name; ?></td>
+                                    <tr><td style="vertical-align: baseline;"><label for="text"><b>ชื่อเรื่องภาษาอังกฤษ :</b></label></td>
+                                        <td colspan=1 style="vertical-align: baseline;"><?php echo $items->project_m_name_en; ?></td>
+                                    <tr><td style="vertical-align: baseline;"><label for="text"><b>เจ้าของผลงาน :</b></label></td>
+                                        <td colspan=1 style="vertical-align: baseline;"><?php echo $items->name; ?></td>
+                                    <tr><td style="vertical-align: baseline;"><label for="text"><b>ที่ปรึกษา :</b></label></td>
+                                        <td colspan=1 style="vertical-align: baseline;"><?php echo $items->advisor_m; ?></td>
+                                    <tr><td style="vertical-align: baseline;"><label for="text"><b>หมวดหมู่ :</b></label></td>
+                                        <td colspan=1 style="vertical-align: baseline;"><?php echo $items->category_name; ?></td>
+                                    <tr><td style="vertical-align: baseline;"><label for="text"><b>ประเภทเอกสาร :</b></label></td>
+                                        <td colspan=1 style="vertical-align: baseline;"><?php echo $items->type_name; ?></td>
+                                    <tr><td style="vertical-align: baseline;"><label for="text"><b>คำสำคัญ :</b></label></td>
+                                        <td colspan=1 style="vertical-align: baseline;"><?php echo $items->keyword_m_project; ?></td>
+                                    <tr><td style="vertical-align: baseline;"><label for="text" class=""><b>บทคัดย่อ :</b></label></td>
+                                        <td colspan=1 style="vertical-align: baseline;"><?php echo $items->des_m_project; ?></td></tr>
                                     </table>
                                     
                                     <div class="a-top-layout">
                                         @if(!isset($_SESSION['status'])=='user')
-                                            <p>ดาวน์โหลดไฟล์ข้อมูล<a href="" class="a-layout">คลิก</a></p>
+                                            <p>ดาวน์โหลดไฟล์เอกสาร<a href="" class="a-layout" disabled>ดาวน์โหลด</a></p>
                                         @elseif(isset($_SESSION['status'])=='user')
-                                            <p>ดาวน์โหลดไฟล์ข้อมูล<a href="" class="a-layout" data-toggle="modal" data-target="#exampleModalLong">คลิก</a></p>
+                                            @if(isset($_SESSION['downloadmdd'])?$_SESSION['downloadmdd']:'')
+                                            <p>ดาวน์โหลดไฟล์เอกสาร<a href="" class="a-layout " data-toggle="modal" data-target="#exampleModalLong">ดาวน์โหลดอีกครั้ง</a></p>
+                                            @else
+                                            <p>ดาวน์โหลดไฟล์เอกสาร<a href="" class="a-layout" data-toggle="modal" data-target="#exampleModalLong">ดาวน์โหลด</a></p>
+                                            @endif
                                         @endif
                                     </div>
                                 </div>
@@ -894,26 +924,26 @@
 
                                 @foreach($itemadmin as $items) 
                                 <div class="D-text D-layout">
-                                <table style="width:50%" >
-                                    <tr><td ><label for="text"><b>ชื่อเรื่อง :</b></label></td>
-                                        <td colspan=1 ><?php echo $items->project_m_name; ?></td>
-                                    <tr><td ><label for="text"><b>ชื่อเรื่องภาษาอังกฤษ :</b></label></td>
-                                        <td colspan=1 ><?php echo $items->project_m_name_en; ?></td>
-                                    <tr><td ><label for="text"><b>เจ้าของผลงาน :</b></label></td>
-                                        <td colspan=1 ><?php echo $items->owner_m_name; ?></td>
-                                    <tr><td ><label for="text"><b>ที่ปรึกษา :</b></label></td>
-                                        <td colspan=1 ><?php echo $items->advisor_m; ?></td>
-                                    <tr><td ><label for="text"><b>หมวดหมู่ :</b></label></td>
-                                        <td colspan=1 ><?php echo $items->category_name; ?></td>
-                                    <tr><td ><label for="text"><b>ประเภทเอกสาร :</b></label></td>
-                                        <td colspan=1 ><?php echo $items->type_name; ?></td>
-                                    <tr><td ><label for="text"><b>คำสำคัญ :</b></label></td>
-                                        <td colspan=1 ><?php echo $items->keyword_m_project; ?></td>
-                                    <tr><td><label for="text" class=""><b>บทคัดย่อ :</b></label></td>
-                                        <td colspan=1 ><?php echo $items->des_m_project; ?></td></tr>
+                                <table style="width:95%;">
+                                    <tr><td style="vertical-align: baseline;"><label for="text" ><b>ชื่อเรื่อง :</b></label></td>
+                                        <td colspan=1 style="width:80%;vertical-align: baseline;"><?php echo $items->project_m_name; ?></td>
+                                    <tr><td style="vertical-align: baseline;"><label for="text"><b>ชื่อเรื่องภาษาอังกฤษ :</b></label></td>
+                                        <td colspan=1 style="vertical-align: baseline;"><?php echo $items->project_m_name_en; ?></td>
+                                    <tr><td style="vertical-align: baseline;"><label for="text"><b>เจ้าของผลงาน :</b></label></td>
+                                        <td colspan=1 style="vertical-align: baseline;"><?php echo $items->owner_m_name; ?></td>
+                                    <tr><td style="vertical-align: baseline;"><label for="text"><b>ที่ปรึกษา :</b></label></td>
+                                        <td colspan=1 style="vertical-align: baseline;"><?php echo $items->advisor_m; ?></td>
+                                    <tr><td style="vertical-align: baseline;"><label for="text"><b>หมวดหมู่ :</b></label></td>
+                                        <td colspan=1 style="vertical-align: baseline;"><?php echo $items->category_name; ?></td>
+                                    <tr><td style="vertical-align: baseline;"><label for="text"><b>ประเภทเอกสาร :</b></label></td>
+                                        <td colspan=1 style="vertical-align: baseline;"><?php echo $items->type_name; ?></td>
+                                    <tr><td style="vertical-align: baseline;"><label for="text"><b>คำสำคัญ :</b></label></td>
+                                        <td colspan=1 style="vertical-align: baseline;"><?php echo $items->keyword_m_project; ?></td>
+                                    <tr><td style="vertical-align: baseline;"><label for="text" class=""><b>บทคัดย่อ :</b></label></td>
+                                        <td colspan=1 style="vertical-align: baseline;"><?php echo $items->des_m_project; ?></td></tr>
                                     </table>
                                     <div class="a-top-layout">
-                                        <p>ดาวน์โหลดไฟล์ข้อมูล<a href="" class="a-layout" data-toggle="modal" data-target="#exampleModalLong">คลิก</a></p>
+                                        <p>ดาวน์โหลดไฟล์เอกสาร<a href="" class="a-layout" data-toggle="modal" data-target="#exampleModalLong">คลิก</a></p>
                                     </div>
                                 </div>
                                 @endforeach  
@@ -1036,7 +1066,7 @@
                 $strcut = $strcount3."...";
                 echo $strcut;
             }else{
-                echo $datas->project_name;
+                echo $datas->project_m_name;
             }  
             
         }

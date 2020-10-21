@@ -1173,13 +1173,68 @@ pre code {
 
 .column-download:hover {
     float: center;
-    background-color: #b1b1b1;
+    background-color: #eeebeb;
     /* margin-left: 40px; */
     margin-right: 20px;
     margin-top: 0.5%;
     width: 17%;
     height: 7%;
     border: 2px solid #3be766;
+}
+
+
+/* ดาวน์โหลดอีกครั้ง */
+
+.column-download-after {
+    float: center;
+    /* margin-left: 40px; */
+    margin-right: 20px;
+    margin-top: 0.5%;
+    width: 17%;
+    height: 7%;
+    border: 2px solid rgb(101, 17, 112);
+    background-color: #eeebeb;
+}
+
+.column-download-after>a {
+    text-decoration: solid;
+    color: rgb(101, 17, 112);
+}
+
+.column-download-after>a:hover {
+    text-decoration: solid;
+    color: #0099FF;
+}
+
+.column-download-after>a:active {
+    text-decoration: underline;
+    color: #0099FF;
+}
+
+.column-download-after-text:hover {
+    text-decoration: underline;
+}
+
+.column-download-after:hover {
+    float: center;
+    background-color: #eeebeb;
+    /* margin-left: 40px; */
+    margin-right: 20px;
+    margin-top: 0.5%;
+    width: 17%;
+    height: 7%;
+    border: 2px solid #3be766;
+}
+
+.column-download-after:active {
+    float: center;
+    background-color: #eeebeb;
+    /* margin-left: 40px; */
+    margin-right: 20px;
+    margin-top: 0.5%;
+    width: 17%;
+    height: 7%;
+    border: 2px solid #0099FF;
 }
 
 .column-download-text {
@@ -11235,6 +11290,17 @@ label.fontdetail {
     font-family: 'Athiti', sans-serif;
 }
 
+.countviewmdd {
+    font-size: 14.5px;
+    font-family: 'Athiti', sans-serif;
+    margin-right: 5px;
+}
+
+.layout-mdd-i-text {
+    float: right;
+    margin-right: 1%;
+}
+
 .i-view {
     margin-left: 2px;
     height: 5%;
@@ -11371,4 +11437,16 @@ label.fontdetail {
 
 #back-top a:hover span {
     background-color: #005419;
+}
+
+.text-downloadmdd {
+    color: rgb(101, 17, 112);
+}
+
+.text-downloadmdd:hover {
+    color: rgb(101, 17, 112);
+}
+
+.text-downloadmdd:active {
+    color: #0099FF;
 }

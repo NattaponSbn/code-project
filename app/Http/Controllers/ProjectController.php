@@ -411,13 +411,13 @@ class ProjectController extends Controller
         $rating = $request->rating;
         $userID = $_SESSION['usersid'];
 
-        $codeu = 'R';
-        $cont = count(DB::select("SELECT NO_R FROM rating_p"));
-        $nextint = $cont+1;
-        $string_id = substr("00".$nextint,-3);
-        $nextid = $codeu.$string_id;
+        // $codeu = 'R';
+        // $cont = count(DB::select("SELECT NO_R FROM rating_p"));
+        // $nextint = $cont+1;
+        // $string_id = substr("00".$nextint,-3);
+        // $nextid = $codeu.$string_id;
 
-        DB::INSERT("INSERT INTO rating_p (rating_id, rate_index, project_id, users_id) VALUES ('$nextid','$rating','$project_id','$userID')");
+        // DB::INSERT("INSERT INTO rating_p (rating_id, rate_index, project_id, users_id) VALUES ('$nextid','$rating','$project_id','$userID')");
         $file_p = DB::select("SELECT namefile,file_p FROM projects WHERE project_id='$project_id'");
         compact('file_p');
         foreach($file_p as $file_p){
@@ -426,18 +426,22 @@ class ProjectController extends Controller
         }
         $file_path = public_path('project/'.$file);
 
+       
+        // DB::INSERT("INSERT INTO login_log (login_user, login_ip, login_datetime, login_status, login_ontime) VALUES ('$userID','$ip','now()','d_file','1')");
         $ip = $_SERVER['REMOTE_ADDR'];
-            DB::table('login_log')->insert(
-                [
-                    'login_user' => $_SESSION['usersid'],
-                    'login_ip' => $ip,
-                    'login_datetime' => now(),
-                    'login_status' => 'downloadfile',
-                    'login_ontime' => '1',
-                ]
-            );
-
-        return response()->download($file_path,$namefile);
+        DB::table('log_download')->insert(
+            [
+                'login_user' => $userID,
+                'id_project' => $project_id,
+                'login_ip' => $ip,
+                'login_datetime' => now(),
+                'login_status' => 'd_file',
+                'login_ontime' => '1',
+            ]
+        );
+        
+        $resdown = response()->download($file_path,$namefile);
+        return $resdown;
         
 
     }
@@ -1503,6 +1507,24 @@ class ProjectController extends Controller
         $chk_category = DB::select("SELECT * FROM category_project");
         $chk_type = DB::select("SELECT * FROM type_project");
 
+        //chklog ที่เคยดาวน์โหลดไฟล์
+        if(isset($_SESSION['usersid'])?$_SESSION['usersid']:''){
+            $id = $_SESSION['usersid'];
+            $chk_logdown = DB::select("SELECT login_user,id_project FROM log_download,users,projects 
+            WHERE users.U_id=log_download.login_user AND projects.project_id=log_download.id_project 
+            AND log_download.login_user='$id' AND log_download.id_project='$project_id';
+            ");
+            if(isset($chk_logdown)?$chk_logdown:''){
+                // print_r($chk_logdown);
+                $_SESSION['download']='ok';
+            }
+            else{
+
+            }
+        }else{
+
+        }
+        
         //log
         if(isset($_SESSION['usersid'])?$_SESSION['usersid']:''){
             $ip = $_SERVER['REMOTE_ADDR'];
@@ -1540,6 +1562,37 @@ class ProjectController extends Controller
         $chk_type = DB::select("SELECT * FROM type_project");
         $chk_genre = DB::select("SELECT * FROM genre_project");
         $chk_category = DB::select("SELECT * FROM category_project");
+
+        if(isset($_SESSION['usersid'])?$_SESSION['usersid']:''){
+            $id = $_SESSION['usersid'];
+            $chk_logdown = DB::select("SELECT login_user,id_project FROM log_download,users,projectmdd 
+            WHERE users.U_id=log_download.login_user AND projectmdd.project_m_id=log_download.id_project 
+            AND log_download.login_user='$id' AND log_download.id_project='$project_m_id';
+            ");
+            if(isset($chk_logdown)?$chk_logdown:''){
+                // print_r($chk_logdown);
+                $_SESSION['downloadmdd']='ok';
+            }
+            else{
+
+            }
+        }else{
+
+        }
+
+        if(isset($_SESSION['usersid'])?$_SESSION['usersid']:''){
+            $ip = $_SERVER['REMOTE_ADDR'];
+            DB::table('login_logmdd')->insert(
+                [
+                    'login_user' => $_SESSION['usersid'],
+                    'login_project' => $project_m_id,
+                    'login_ip' => $ip,
+                    'login_datetime' => now(),
+                    'login_status' => 'view',
+                    'login_ontime' => '1',
+                ]
+            );
+        }
 
         return view('project.itemdetalimdd',compact('item','project_m_id','itemadmin','imgaccount','adminaccount','chk_type','chk_genre','chk_category'));
     }
