@@ -204,7 +204,15 @@ class ListdataController extends Controller
         AND projects.status_p in ('1') AND projects.type_id=type_project.type_id AND projects.genre_id = genre_project.genre_id AND projects.project_id=rating_p.project_id GROUP BY rating_p.project_id ORDER BY RAND()");
         $genre = DB::select("SELECT genre_project.genre_name FROM projects,genre_project WHERE genre_project.genre_id='$genre_id' LIMIT 1");
         compact('genre');
-        $genre_name = $genre[0]->genre_name;
+        if(isset($genre)?$genre:''){
+            foreach($genre as $genre){
+                $genre_name = $genre->genre_name;
+            }
+            
+        }else{
+            $genre_name='';
+        }
+        
 
         $chk_genre = DB::select("SELECT * FROM genre_project");
         $chk_category = DB::select("SELECT * FROM category_project");
@@ -230,7 +238,16 @@ class ListdataController extends Controller
         AND projects.status_p in ('1') AND projects.type_id=type_project.type_id AND projects.category_id = category_project.category_id AND projects.project_id=rating_p.project_id GROUP BY rating_p.project_id ORDER BY RAND()");
         $category = DB::select("SELECT category_project.category_name FROM projects,category_project WHERE category_project.category_id='$category_id' LIMIT 1");
         compact('category');
-        $category_name = $category[0]->category_name;
+        // $category_name = $category[0]->category_name;
+        if(isset($category)?$category:''){
+            foreach($category as $category){
+                $category_name = $category->category_name;
+            }
+            
+        }else{
+            $category_name='';
+        }
+        
 
         $chk_genre = DB::select("SELECT * FROM genre_project");
         $chk_category = DB::select("SELECT * FROM category_project");
@@ -256,7 +273,15 @@ class ListdataController extends Controller
         AND projects.status_p in ('1') AND projects.type_id=type_project.type_id AND projects.project_id=rating_p.project_id GROUP BY rating_p.project_id ORDER BY RAND()");
         $type = DB::select("SELECT type_project.type_name FROM projects,type_project WHERE type_project.type_id='$type_id' AND projects.type_id=type_project.type_id LIMIT 1");
         compact('type');
-        $type_name = $type[0]->type_name;
+        // $type_name = $type[0]->type_name;
+        if(isset($type)?$type:''){
+            foreach($type as $type){
+                $type_name = $type->type_name;
+            }
+            
+        }else{
+            $type_name='';
+        }
 
         $chk_genre = DB::select("SELECT * FROM genre_project");
         $chk_category = DB::select("SELECT * FROM category_project");

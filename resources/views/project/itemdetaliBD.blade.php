@@ -65,7 +65,7 @@
 
         .name-scle {
             font-size: 16px;
-            color: #FFFFFF;
+            color: #000000;
             -ms-flex-item-align: center;
             align-self: center;
             margin-top: -30px;
@@ -114,13 +114,13 @@
         }
 
         .btn-outline-primaryy {
-            color: #D9A327;
+            color: #000000;
+            /* background-color: #D9A327; */
             border-color: #D9A327;
         }
 
         .btn-outline-primaryy:hover {
-            color: #fff;
-            background-color: #D9A327;
+            color: #D9A327;
             border-color: #D9A327;
         }
 
@@ -146,6 +146,43 @@
         .btn-outline-primaryy:not(:disabled):not(.disabled):active:focus,
         .btn-outline-primaryy:not(:disabled):not(.disabled).active:focus,
         .show>.btn-outline-primaryy.dropdown-toggle:focus {
+            box-shadow: 0 0 0 0.1rem #fff;
+        }
+
+        btn-outline-primaryy-sidenav {
+            color: #000000;
+            /* border-color: #D9A327; */
+        }
+
+        .btn-outline-primaryy-sidenav:hover {
+            color: #D9A327;
+            /* border-color: 1px solid #D9A327; */
+            /* background-color: #D9A327; */
+            text-decoration: underline;
+        }
+
+        .btn-outline-primaryy-sidenav:focus,
+        .btn-outline-primaryy-sidenav.focus {
+            box-shadow: 0 0 0 0.2rem rgba(52, 144, 220, 0.5);
+        }
+
+        .btn-outline-primaryy-sidenav.disabled,
+        .btn-outline-primaryy-sidenav:disabled {
+            color: #fff;
+            background-color: transparent;
+        }
+
+        .btn-outline-primaryy-sidenav:not(:disabled):not(.disabled):active,
+        .btn-outline-primaryy-sidenav:not(:disabled):not(.disabled).active,
+        .show>.btn-outline-primaryy-sidenav.dropdown-toggle {
+            color: #fff;
+            background-color: #D9A327;
+            border-color: #fff;
+        }
+
+        .btn-outline-primaryy-sidenav:not(:disabled):not(.disabled):active:focus,
+        .btn-outline-primaryy-sidenav:not(:disabled):not(.disabled).active:focus,
+        .show>.btn-outline-primaryy-sidenav.dropdown-toggle:focus {
             box-shadow: 0 0 0 0.1rem #fff;
         }
 
@@ -205,7 +242,7 @@
             padding: 6px 8px 6px 16px;
             text-decoration: none;
             font-size: 18px;
-            color: #FFF5EE;
+            color: #000000;
             display: block;
             border: none;
             background: none;
@@ -231,7 +268,7 @@
 
         /* Add an active class to the active dropdown button */
         .active-item {
-            color: white;
+            color: black;
             border-color: none;
             
         }
@@ -239,7 +276,7 @@
         /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
         .dropdown-container {
             display: block;
-            background-color: #262626;
+            background-color: #ffffff;
             padding-left: 8px;
         }
 
@@ -895,50 +932,50 @@
                                         </div><br>
                                             <div class="sidenav" >
                                                 
-                                                <button class="dropdown-btn" style="border-top: 0.5px solid #fff;border-radius: 10%;">ประเภท
-                                                    <i class="fa fa-caret-down fa-lg" style="width: 20px;"></i>
-                                                </button>
-                                                    <div class="dropdown-container">
-                                                        @foreach($chk_genre as $genre)
-                                                        <a href="genre/{{$genre->genre_id}}" class="btn-default btn-outline-primaryy" style="font-size:17px;color:#fff;">{{$genre->genre_name}}</a>
-                                                        <!-- <a href="#">โปรแกรมประยุกต์สำหรับอุปกรณ์เคลื่อนที่</a>
-                                                        <a href="#">ไอโอที(IoT)</a>
-                                                        <a href="#">ปัญญาประดิษฐ์(Ai)</a>
-                                                        <a href="#">ไอโอที(IoT)</a>
-                                                        <a href="#">ไอโอที(IoT)</a> -->
-                                                        @endforeach
-                                                    </div>
-                                                
-                                           
-                                                <button class="dropdown-btn" style="border-top: 0.5px solid #fff;border-radius: 10%;">หมวดหมู่
-                                                    <i class="fa fa-caret-down fa-lg" style="width: 20px;"></i>
-                                                </button>
-                                                    <div class="dropdown-container">
-                                                        @foreach($chk_category as $category)
-                                                        <a href="category/{{$category->category_id}}" class="btn-default btn-outline-primaryy" style="font-size:17px;color:#fff;">{{$category->category_name}}</a>
-                                                        <!-- <a href="#">โปรแกรมประยุกต์สำหรับอุปกรณ์เคลื่อนที่</a>
-                                                        <a href="#">ไอโอที(IoT)</a>
-                                                        <a href="#">ปัญญาประดิษฐ์(Ai)</a>
-                                                        <a href="#">ไอโอที(IoT)</a>
-                                                        <a href="#">ไอโอที(IoT)</a> -->
-                                                        @endforeach
-                                                    </div>
+                                            <button class="dropdown-btn" style="border-top: 0.5px solid #000000;border-radius: 10%;">ประเภท
+                                                <i class="fa fa-caret-down fa-lg" style="width: 20px;"></i>
+                                            </button>
+                                                <div class="dropdown-container">
+                                                    @foreach($chk_genre as $genre)
+                                                    <a href="genre/{{$genre->genre_id}}" class=" btn-default btn-outline-primaryy-sidenav" style="font-size:17px;">{{$genre->genre_name}}</a>
+                                                    <!-- <a href="#">โปรแกรมประยุกต์สำหรับอุปกรณ์เคลื่อนที่</a>
+                                                    <a href="#">ไอโอที(IoT)</a>
+                                                    <a href="#">ปัญญาประดิษฐ์(Ai)</a>
+                                                    <a href="#">ไอโอที(IoT)</a>
+                                                    <a href="#">ไอโอที(IoT)</a> -->
+                                                    @endforeach
+                                                </div>
                                             
+                                        
+                                            <button class="dropdown-btn" style="border-top: 0.5px solid #000000;border-radius: 10%;">หมวดหมู่
+                                                <i class="fa fa-caret-down fa-lg" style="width: 20px;"></i>
+                                            </button>
+                                                <div class="dropdown-container">
+                                                    @foreach($chk_category as $category)
+                                                    <a href="category/{{$category->category_id}}" class="btn-default btn-outline-primaryy-sidenav" style="font-size:17px;">{{$category->category_name}}</a>
+                                                    <!-- <a href="#">โปรแกรมประยุกต์สำหรับอุปกรณ์เคลื่อนที่</a>
+                                                    <a href="#">ไอโอที(IoT)</a>
+                                                    <a href="#">ปัญญาประดิษฐ์(Ai)</a>
+                                                    <a href="#">ไอโอที(IoT)</a>
+                                                    <a href="#">ไอโอที(IoT)</a> -->
+                                                    @endforeach
+                                                </div>
+                                        
 
-                                                <button class="dropdown-btn " style="border-top: 0.5px solid #fff;border-radius: 10%;">ชนิดเอกสาร
-                                                    <i class="fa fa-caret-down fa-lg" style="width: 20px;"></i>
-                                                </button>
-                                                    <div class="dropdown-container">
-                                                        @foreach($chk_type as $type)
-                                                        <a href="typeproject/{{$type->type_id}}" class="btn-default btn-outline-primaryy" style="font-size:17px;color:#fff;">{{$type->type_name}}</a>
-                                                        <!-- <a href="#">โปรแกรมประยุกต์สำหรับอุปกรณ์เคลื่อนที่</a>
-                                                        <a href="#">ไอโอที(IoT)</a>
-                                                        <a href="#">ปัญญาประดิษฐ์(Ai)</a>
-                                                        <a href="#">ไอโอที(IoT)</a>
-                                                        <a href="#">ไอโอที(IoT)</a> -->
-                                                        @endforeach
-                                                    </div>
-                                            </div>
+                                            <button class="dropdown-btn " style="border-top: 0.5px solid #000000;border-radius: 10%;">ชนิดเอกสาร
+                                                <i class="fa fa-caret-down fa-lg" style="width: 20px;"></i>
+                                            </button>
+                                                <div class="dropdown-container">
+                                                    @foreach($chk_type as $type)
+                                                    <a href="typeproject/{{$type->type_id}}" class="btn-default btn-outline-primaryy-sidenav" style="font-size:17px;">{{$type->type_name}}</a>
+                                                    <!-- <a href="#">โปรแกรมประยุกต์สำหรับอุปกรณ์เคลื่อนที่</a>
+                                                    <a href="#">ไอโอที(IoT)</a>
+                                                    <a href="#">ปัญญาประดิษฐ์(Ai)</a>
+                                                    <a href="#">ไอโอที(IoT)</a>
+                                                    <a href="#">ไอโอที(IoT)</a> -->
+                                                    @endforeach
+                                                </div>
+                                        </div>
 
                                         </div>
                                 </div>
@@ -1047,20 +1084,20 @@
                                     <label for="text">หมวดหมู่ : <?php echo $datas->genre_name; ?></label>
                                 </div>
                                 <div class="text-auth-N-d">
-                                    <label for="text">ผู้จัดทำ : <?php echo $datas->name; ?></label>
+                                    <label for="text">ผู้จัดทำ : <?php echo $datas->owner_p1; ?> <?php echo $datas->owner_p2; ?> <?php echo $datas->owner_p3; ?> <?php echo $datas->owner_p4; ?></label>
                                 </div>
                                 @endforeach
                             @else
                                 @foreach($itemadmin as $datas)
                                 <label for="text" style="font-size: 25px;padding: 10px 10px 10px 0px;"><?php echo $datas->project_name; ?></label>              
                                 <div class="text-auth-d">
-                                    <label for="text">คำสำคัญ : <?php echo $datas->keyword_project1; ?> <?php echo $datas->keyword_project2; ?> <?php echo $datas->keyword_project3; ?> <?php echo $datas->keyword_project4; ?></label>
+                                    <label for="text">คำสำคัญ : <?php echo $datas->keyword_project1; ?><?php echo $datas->keyword_project2; ?> <?php echo $datas->keyword_project3; ?> <?php echo $datas->keyword_project4; ?></label>
                                 </div>
                                 <div class="text-auth-N-d">
                                     <label for="text">หมวดหมู่ : <?php echo $datas->genre_name; ?></label>
                                 </div>
                                 <div class="text-auth-N-d">
-                                    <label for="text">ผู้จัดทำ : <?php echo $datas->owner_name; ?></label>
+                                    <label for="text">ผู้จัดทำ : <?php echo $datas->owner_p1; ?> <?php echo $datas->owner_p2; ?> <?php echo $datas->owner_p3; ?> <?php echo $datas->owner_p4; ?></label>
                                 </div>
                                 @endforeach
                             @endif
@@ -1145,7 +1182,7 @@
                                                                 <td style="vertical-align: baseline;" colspan=1><?php echo $datas->name_en; ?></td>
                                                             <tr>
                                                                 <td style="vertical-align: baseline;" ><label for="text"><b>เจ้าของโครงงาน :</b></label></td>
-                                                                <td style="vertical-align: baseline;" colspan=1><?php echo $datas->name; ?></td>
+                                                                <td style="vertical-align: baseline;" colspan=1><?php echo $datas->owner_p1; ?> <?php echo $datas->owner_p2; ?> <?php echo $datas->owner_p3; ?> <?php echo $datas->owner_p4; ?></td>
                                                             <tr>
                                                                 <td style="vertical-align: baseline;" ><label for="text"><b>อาจารย์ที่ปรึกษา :</b></label></td>
                                                                 <td style="vertical-align: baseline;" colspan=1><?php echo $datas->advisor_p; ?></td>
@@ -1252,7 +1289,7 @@
                                                                     <?php $file_b = $datas->namefile; ?>
                                                                     @if(isset($file_b)?$file_b:'')
                                                                         @if(isset($_SESSION['download'])?$_SESSION['download']:'')
-                                                                        <div class="column-download-after" title="<?php echo $file_p = $datas->namefile; ?>>
+                                                                        <div class="column-download-after" title="<?php echo $file_p = $datas->namefile; ?>">
                                                                             <a href="#" target="_blank" data-toggle="modal" data-target="#exampleModalLong">
                                                                                 <center><b><label for="" class="column-download-after-text">เล่ม<?php echo $datas->type_name; ?></label></b></center>
                                                                                 <div class="column-download-icon">
@@ -1261,7 +1298,7 @@
                                                                             </a>
                                                                         </div>
                                                                         @else
-                                                                        <div class="column-download" title="<?php echo $file_p = $datas->namefile; ?>>
+                                                                        <div class="column-download" title="<?php echo $file_p = $datas->namefile; ?>">
                                                                             <a href="#" target="_blank" data-toggle="modal" data-target="#exampleModalLong">
                                                                                 <center><b><label for="" class="column-download-text">เล่ม<?php echo $datas->type_name; ?></label></b></center>
                                                                                 <div class="column-download-icon">
@@ -1529,7 +1566,7 @@
                                                                     <?php $file_b = $datas->namefile; ?>
                                                                     @if(isset($file_b)?$file_b:'')
                                                                         @if(isset($_SESSION['download'])?$_SESSION['download']:'')
-                                                                        <div class="column-download-after" title="<?php echo $file_p = $datas->namefile; ?>>
+                                                                        <div class="column-download-after" title="<?php echo $file_p = $datas->namefile; ?>">
                                                                             <a href="#" target="_blank" data-toggle="modal" data-target="#exampleModalLong">
                                                                                 <center><b><label for="" class="column-download-after-text">เล่ม<?php echo $datas->type_name; ?></label></b></center>
                                                                                 <div class="column-download-icon">
@@ -1538,7 +1575,7 @@
                                                                             </a>
                                                                         </div>
                                                                         @else
-                                                                        <div class="column-download" title="<?php echo $file_p = $datas->namefile; ?>>
+                                                                        <div class="column-download" title="<?php echo $file_p = $datas->namefile; ?>">
                                                                             <a href="#" target="_blank" data-toggle="modal" data-target="#exampleModalLong">
                                                                                 <center><b><label for="" class="column-download-text">เล่ม<?php echo $datas->type_name; ?></label></b></center>
                                                                                 <div class="column-download-icon">

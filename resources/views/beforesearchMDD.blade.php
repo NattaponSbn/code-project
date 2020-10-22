@@ -63,7 +63,7 @@
 
            .name-scle{
                 font-size: 16px;
-                color: #FFFFFF;
+                color: #000000;
                 -ms-flex-item-align: center;
                     align-self: center;
                 margin-top: -30px;
@@ -108,13 +108,13 @@
            }
 
            .btn-outline-primaryy {
-                color: #D9A327;
-                border-color: #D9A327;
+            color: #000000;
+            /* background-color: #D9A327; */
+            border-color: #D9A327;
             }
 
             .btn-outline-primaryy:hover {
-                color: #fff;
-                background-color: #D9A327;
+                color: #D9A327;
                 border-color: #D9A327;
             }
 
@@ -140,6 +140,43 @@
             .btn-outline-primaryy:not(:disabled):not(.disabled):active:focus,
             .btn-outline-primaryy:not(:disabled):not(.disabled).active:focus,
             .show > .btn-outline-primaryy.dropdown-toggle:focus {
+                box-shadow: 0 0 0 0.1rem #fff;
+            }
+
+            .btn-outline-primaryy-sidenav {
+                color: #000000;
+                /* border-color: #D9A327; */
+            }
+
+            .btn-outline-primaryy-sidenav:hover {
+                color: #D9A327;
+                /* border-color: 1px solid #D9A327; */
+                /* background-color: #D9A327; */
+                text-decoration: underline;
+            }
+
+            .btn-outline-primaryy-sidenav:focus,
+            .btn-outline-primaryy-sidenav.focus {
+                box-shadow: 0 0 0 0.2rem rgba(52, 144, 220, 0.5);
+            }
+
+            .btn-outline-primaryy-sidenav.disabled,
+            .btn-outline-primaryy-sidenav:disabled {
+                color: #fff;
+                background-color: transparent;
+            }
+
+            .btn-outline-primaryy-sidenav:not(:disabled):not(.disabled):active,
+            .btn-outline-primaryy-sidenav:not(:disabled):not(.disabled).active,
+            .show>.btn-outline-primaryy-sidenav.dropdown-toggle {
+                color: #fff;
+                background-color: #D9A327;
+                border-color: #fff;
+            }
+
+            .btn-outline-primaryy-sidenav:not(:disabled):not(.disabled):active:focus,
+            .btn-outline-primaryy-sidenav:not(:disabled):not(.disabled).active:focus,
+            .show>.btn-outline-primaryy-sidenav.dropdown-toggle:focus {
                 box-shadow: 0 0 0 0.1rem #fff;
             }
 
@@ -192,63 +229,63 @@
             }
 
             .sidenav a, .dropdown-btn ,.dropdown-btn2,.dropdown-btn3{
-            padding: 6px 8px 6px 16px;
-            text-decoration: none;
-            font-size: 18px;
-            color: #FFF5EE;
-            display: block;
-            border: none;
-            background: none;
-            width: 95%;
-            text-align: left;
-            cursor: pointer;
-            outline: none;
-            margin-left: 5px;
-            font-family: 'Athiti', sans-serif;
-        }
+                padding: 6px 8px 6px 16px;
+                text-decoration: none;
+                font-size: 18px;
+                color: #000000;
+                display: block;
+                border: none;
+                background: none;
+                width: 95%;
+                text-align: left;
+                cursor: pointer;
+                outline: none;
+                margin-left: 5px;
+                font-family: 'Athiti', sans-serif;
+            }
 
-        /* On mouse-over */
-        .sidenav a:hover, .dropdown-btn:hover ,.dropdown-btn2:hover,.dropdown-btn3:hover{
-            color: #D9A327;
-        }
+            /* On mouse-over */
+            .sidenav a:hover, .dropdown-btn:hover ,.dropdown-btn2:hover,.dropdown-btn3:hover{
+                color: #D9A327;
+            }
 
-        /* Main content */
-        .main {
-            margin-left: 200px; /* Same as the width of the sidenav */
-            font-size: 20px; /* Increased text to enable scrolling */
-            padding: 0px 10px;
-        }
+            /* Main content */
+            .main {
+                margin-left: 200px; /* Same as the width of the sidenav */
+                font-size: 20px; /* Increased text to enable scrolling */
+                padding: 0px 10px;
+            }
 
-        /* Add an active class to the active dropdown button */
-        .active-item {
-            color: white;
-            border-color: none;
-            
-        }
+            /* Add an active class to the active dropdown button */
+            .active-item {
+                color: black;
+                border-color: none;
+                
+            }
 
-        /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
-        .dropdown-container {
-            display: block;
-            background-color: #262626;
-            padding-left: 8px;
-        }
+            /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
+            .dropdown-container {
+                display: block;
+                background-color: #ffffff;
+                padding-left: 8px;
+            }
 
-        /* Optional: Style the caret down icon */
-        .fa-caret-down {
-            float: right;
-            padding-right: 8px;
-        }
+            /* Optional: Style the caret down icon */
+            .fa-caret-down {
+                float: right;
+                padding-right: 8px;
+            }
 
-        .breadcrumb-detail {
-            display: -ms-flexbox;
-            display: flex;
-            -ms-flex-wrap: wrap;
-            flex-wrap: wrap;
-            padding: .75rem 1rem;
-            margin-bottom: 1rem;
-            list-style: none;
-            border-radius: .25rem;
-        }
+            .breadcrumb-detail {
+                display: -ms-flexbox;
+                display: flex;
+                -ms-flex-wrap: wrap;
+                flex-wrap: wrap;
+                padding: .75rem 1rem;
+                margin-bottom: 1rem;
+                list-style: none;
+                border-radius: .25rem;
+            }
               
         </style>
     </head>
@@ -759,35 +796,39 @@
                                             <a href="{{action('Project_MDDController@itemproject')}}"><button type="button" class="btn-control btn-default btn-outline-primaryy " style="font-size:18px;">ปริญญาเอก โท </button></a>
                                             </div><br>
                                             <div class="sidenav" >
-                                                    <button class="dropdown-btn" style="border-top: 0.5px solid #fff;border-radius: 10%;">ประเภท
-                                                        <i class="fa fa-caret-down fa-lg" style="width: 20px;"></i>
-                                                    </button>
-                                                        <div class="dropdown-container">
-                                                            @foreach($chk_genre as $genre)
-                                                            <a href="genre/{{$genre->genre_id}}" class="btn-default btn-outline-primaryy" style="font-size:17px;color:#fff;">{{$genre->genre_name}}</a>
-                                                            <!-- <a href="#">โปรแกรมประยุกต์สำหรับอุปกรณ์เคลื่อนที่</a>
-                                                            <a href="#">ไอโอที(IoT)</a>
-                                                            <a href="#">ปัญญาประดิษฐ์(Ai)</a>
-                                                            <a href="#">ไอโอที(IoT)</a>
-                                                            <a href="#">ไอโอที(IoT)</a> -->
-                                                            @endforeach
-                                                        </div>
-                                                    
-                                            
-                                                    <button class="dropdown-btn" style="border-top: 0.5px solid #fff;border-radius: 10%;">หมวดหมู่
-                                                        <i class="fa fa-caret-down fa-lg" style="width: 20px;"></i>
-                                                    </button>
-                                                        <div class="dropdown-container">
-                                                            @foreach($chk_category as $category)
-                                                            <a href="category/{{$category->category_id}}" class="btn-default btn-outline-primaryy" style="font-size:17px;color:#fff;">{{$category->category_name}}</a>
-                                                            <!-- <a href="#">โปรแกรมประยุกต์สำหรับอุปกรณ์เคลื่อนที่</a>
-                                                            <a href="#">ไอโอที(IoT)</a>
-                                                            <a href="#">ปัญญาประดิษฐ์(Ai)</a>
-                                                            <a href="#">ไอโอที(IoT)</a>
-                                                            <a href="#">ไอโอที(IoT)</a> -->
-                                                            @endforeach
-                                                        </div>
+                                            <button class="dropdown-btn" style="border-top: 0.5px solid #000000;border-radius: 10%;">ประเภท
+                                                <i class="fa fa-caret-down fa-lg" style="width: 20px;"></i>
+                                            </button>
+                                                <div class="dropdown-container">
+                                                    @foreach($chk_genre as $genre)
+                                                    <a href="genre/{{$genre->genre_id}}" class=" btn-default btn-outline-primaryy-sidenav" style="font-size:17px;">{{$genre->genre_name}}</a>
+                                                    <!-- <a href="#">โปรแกรมประยุกต์สำหรับอุปกรณ์เคลื่อนที่</a>
+                                                    <a href="#">ไอโอที(IoT)</a>
+                                                    <a href="#">ปัญญาประดิษฐ์(Ai)</a>
+                                                    <a href="#">ไอโอที(IoT)</a>
+                                                    <a href="#">ไอโอที(IoT)</a> -->
+                                                    @endforeach
                                                 </div>
+                                            
+                                        
+                                            <button class="dropdown-btn" style="border-top: 0.5px solid #000000;border-radius: 10%;">หมวดหมู่
+                                                <i class="fa fa-caret-down fa-lg" style="width: 20px;"></i>
+                                            </button>
+                                                <div class="dropdown-container">
+                                                    @foreach($chk_category as $category)
+                                                    <a href="category/{{$category->category_id}}" class="btn-default btn-outline-primaryy-sidenav" style="font-size:17px;">{{$category->category_name}}</a>
+                                                    <!-- <a href="#">โปรแกรมประยุกต์สำหรับอุปกรณ์เคลื่อนที่</a>
+                                                    <a href="#">ไอโอที(IoT)</a>
+                                                    <a href="#">ปัญญาประดิษฐ์(Ai)</a>
+                                                    <a href="#">ไอโอที(IoT)</a>
+                                                    <a href="#">ไอโอที(IoT)</a> -->
+                                                    @endforeach
+                                                </div>
+                                        
+
+                                            
+                                        </div>
+
 
                                             </div>
                                     </div>

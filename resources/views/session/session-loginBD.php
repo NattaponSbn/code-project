@@ -65,7 +65,7 @@
             if($dataproject){
                 $_SESSION['project'] = 'BD';
             }
-
+            $_SESSION['username']=$user_log;
             $_SESSION['message'] = "successlogin";
             header( "refresh: 0; url=/homeBD" );
             exit(0);

@@ -73,7 +73,7 @@
 
         .name-scle {
             font-size: 16px;
-            color: #FFFFFF;
+            color: #000000;
             -ms-flex-item-align: center;
             align-self: center;
             margin-top: -30px;
@@ -143,7 +143,7 @@
 
         .name-scle {
             font-size: 16px;
-            color: #FFFFFF;
+            color: #000000;
             -ms-flex-item-align: center;
             align-self: center;
             margin-top: -30px;
@@ -184,13 +184,13 @@
         }
 
         .btn-outline-primaryy {
-            color: #D9A327;
+            color: #000000;
+            /* background-color: #D9A327; */
             border-color: #D9A327;
         }
 
         .btn-outline-primaryy:hover {
-            color: #fff;
-            background-color: #D9A327;
+            color: #D9A327;
             border-color: #D9A327;
         }
 
@@ -216,6 +216,44 @@
         .btn-outline-primaryy:not(:disabled):not(.disabled):active:focus,
         .btn-outline-primaryy:not(:disabled):not(.disabled).active:focus,
         .show>.btn-outline-primaryy.dropdown-toggle:focus {
+            box-shadow: 0 0 0 0.1rem #fff;
+        }
+
+        /* mdd */
+        .btn-outline-primaryy-sidenav {
+            color: #000000;
+            border-color: #D9A327;
+        }
+
+        .btn-outline-primaryy-sidenav:hover {
+            color: #D9A327;
+            border-color: #D9A327;
+            /* background-color: #D9A327; */
+            text-decoration: underline;
+        }
+
+        .btn-outline-primaryy-sidenav:focus,
+        .btn-outline-primaryy-sidenav.focus {
+            box-shadow: 0 0 0 0.2rem rgba(52, 144, 220, 0.5);
+        }
+
+        .btn-outline-primaryy-sidenav.disabled,
+        .btn-outline-primaryy-sidenav:disabled {
+            color: #fff;
+            background-color: transparent;
+        }
+
+        .btn-outline-primaryy-sidenav:not(:disabled):not(.disabled):active,
+        .btn-outline-primaryy-sidenav:not(:disabled):not(.disabled).active,
+        .show>.btn-outline-primaryy-sidenav.dropdown-toggle {
+            color: #fff;
+            background-color: #D9A327;
+            border-color: #fff;
+        }
+
+        .btn-outline-primaryy-sidenav:not(:disabled):not(.disabled):active:focus,
+        .btn-outline-primaryy-sidenav:not(:disabled):not(.disabled).active:focus,
+        .show>.btn-outline-primaryy-sidenav.dropdown-toggle:focus {
             box-shadow: 0 0 0 0.1rem #fff;
         }
 
@@ -255,52 +293,8 @@
         .sidenav a, .dropdown-btn ,.dropdown-btn2,.dropdown-btn3{
             padding: 6px 8px 6px 16px;
             text-decoration: none;
-            font-size: 20px;
-            color: #818181;
-            display: block;
-            border: none;
-            background: none;
-            width: 95%;
-            text-align: left;
-            cursor: pointer;
-            outline: none;
-            margin-left: 5px;
-        }
-
-        /* On mouse-over */
-        .sidenav a:hover, .dropdown-btn:hover ,.dropdown-btn2:hover,.dropdown-btn3:hover{
-            color: white;
-        }
-
-        /* Main content */
-        .main {
-            margin-left: 200px; /* Same as the width of the sidenav */
-            font-size: 20px; /* Increased text to enable scrolling */
-            padding: 0px 10px;
-        }
-
-        /* Add an active class to the active dropdown button */
-        .active-item {
-            background-color: #D9A327;
-            color: white;
-        }
-
-        /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
-        .dropdown-container {
-            display: none;
-            background-color: #262626;
-            padding-left: 8px;
-        }
-
-        /* Optional: Style the caret down icon */
-        .fa-caret-down {
-            float: right;
-            padding-right: 8px;
-        }.sidenav a, .dropdown-btn ,.dropdown-btn2,.dropdown-btn3{
-            padding: 6px 8px 6px 16px;
-            text-decoration: none;
             font-size: 18px;
-            color: #FFF5EE;
+            color: #000000;
             display: block;
             border: none;
             background: none;
@@ -326,7 +320,7 @@
 
         /* Add an active class to the active dropdown button */
         .active-item {
-            color: white;
+            color: black;
             border-color: none;
             
         }
@@ -334,7 +328,7 @@
         /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
         .dropdown-container {
             display: block;
-            background-color: #262626;
+            background-color: #ffffff;
             padding-left: 8px;
         }
 
@@ -354,8 +348,6 @@
             list-style: none;
             border-radius: .25rem;
         }
-
-       
 
         a:active{
             color: blue;
@@ -668,6 +660,24 @@
                     <li class="active3 menulink fontlink"><a href="#about">เกี่ยวกับ</a></li>
                     <li class="active4 menulink fontlink"><a href="#contact">ติดต่อ</a></li>
                 </nav>
+                <li style="margin-left: -5%;margin-right: 2%;">
+                    <div class="links front layout-mdd-i-text" >
+                    @if(!isset($_SESSION['status']) == 'userM' & !isset($_SESSION['statusA']) == 'admin')
+
+                    @elseif (isset($_SESSION['status']) == 'user')
+                        @if(!isset($_SESSION['project']))
+                        <a href="addproject" style="font-weight: normal;margin-top:200px;"><span class="add-span-mdd"><i class="fas fa-plus-circle fa-lg " style="color: #A9A9A9;" title="สร้างผลงงานคุณ"></i> สร้างผลงงาน</span></a><br>
+                        @elseif(isset($_SESSION['project']))
+                        <a href="listdetil" style="font-weight: normal;" class="view"><span class="add-span-mdd"><i class="fas fa-book fa-lg " style="color: #A9A9A9;" title="ผลงงานคุณ"></i> ผลงงานคุณ</span></a><br>
+                        @endif
+                    @elseif (isset($_SESSION['statusA']) == 'admin')
+                    <div class="links front">
+                        <a href="homeadmin" class="view">ผู้ดูเเลระบบ</a><br>
+                    </div>
+                    @endif
+
+                    </div>
+                </li>
                 <div class="navbar-dark layoutaccout-MDD ">
                     <ul class="navbar-nav ml-auto ml-md-0">
 
@@ -879,20 +889,20 @@
                                 <div class="sb-sidenav-menu">
                                 <div class="nav">
                                     <br>
-                                        <div class="sidenav" >
-                                            <button class="dropdown-btn" style="border-top: 0.5px solid #fff;border-radius: 10%;">ระดับวิทยานิพนธ์
+                                    <div class="sidenav" >
+                                            <button class="dropdown-btn" style="border-top: 0.5px solid #000000;border-radius: 10%;">ระดับวิทยานิพนธ์
                                                 <i class="fa fa-caret-down fa-lg" style="width: 20px;"></i>
                                             </button>
                                             <div class="dropdown-container">
-                                                <a href="{{action('ProjectController@itemproject')}}" class="btn-control btn-default btn-outline-primaryy " style="font-size:17px;color:#fff;">ปริญญาตรี</a>
-                                                <a href="{{action('Project_MDDController@itemproject')}}" class="btn-control btn-default btn-outline-primaryy " style="font-size:17px;color:#fff;">ปริญญาเอก โท</a>
+                                                <a href="{{action('ProjectController@itemproject')}}" class="btn-default btn-outline-primaryy-sidenav " style="font-size:17px;">ปริญญาตรี</a>
+                                                <a href="{{action('Project_MDDController@itemproject')}}" class="btn-default btn-outline-primaryy-sidenav " style="font-size:17px;">ปริญญาเอก โท</a>
                                             </div>
-                                            <button class="dropdown-btn" style="border-top: 0.5px solid #fff;border-radius: 10%;">ประเภท
+                                            <button class="dropdown-btn" style="border-top: 0.5px solid #000000;border-radius: 10%;">ประเภท
                                                 <i class="fa fa-caret-down fa-lg" style="width: 20px;"></i>
                                             </button>
                                                 <div class="dropdown-container">
                                                     @foreach($chk_genre as $genre)
-                                                    <a href="genre/{{$genre->genre_id}}" class="btn-default btn-outline-primaryy" style="font-size:17px;color:#fff;">{{$genre->genre_name}}</a>
+                                                    <a href="genre/{{$genre->genre_id}}" class="btn-default btn-outline-primaryy-sidenav" style="font-size:17px;">{{$genre->genre_name}}</a>
                                                     <!-- <a href="#">โปรแกรมประยุกต์สำหรับอุปกรณ์เคลื่อนที่</a>
                                                     <a href="#">ไอโอที(IoT)</a>
                                                     <a href="#">ปัญญาประดิษฐ์(Ai)</a>
@@ -902,12 +912,12 @@
                                                 </div>
                                             
                                         
-                                            <button class="dropdown-btn" style="border-top: 0.5px solid #fff;border-radius: 10%;">หมวดหมู่
+                                            <button class="dropdown-btn" style="border-top: 0.5px solid #000000;border-radius: 10%;">หมวดหมู่
                                                 <i class="fa fa-caret-down fa-lg" style="width: 20px;"></i>
                                             </button>
                                                 <div class="dropdown-container">
                                                     @foreach($chk_category as $category)
-                                                    <a href="category/{{$category->category_id}}" class="btn-default btn-outline-primaryy" style="font-size:17px;color:#fff;">{{$category->category_name}}</a>
+                                                    <a href="category/{{$category->category_id}}" class="btn-default btn-outline-primaryy-sidenav" style="font-size:17px;">{{$category->category_name}}</a>
                                                     <!-- <a href="#">โปรแกรมประยุกต์สำหรับอุปกรณ์เคลื่อนที่</a>
                                                     <a href="#">ไอโอที(IoT)</a>
                                                     <a href="#">ปัญญาประดิษฐ์(Ai)</a>
@@ -915,7 +925,7 @@
                                                     <a href="#">ไอโอที(IoT)</a> -->
                                                     @endforeach
                                                 </div>
-
+      
                                         </div>
 
                                     </div>

@@ -47,9 +47,7 @@ class AutocompleteController extends Controller
     }
     function easysearch(Request $request)
     {   
-
-
-        
+        session_start();
         $keyword = $request->input('search');
         $_SESSION['keyword-s'] = $keyword;
         //$_SESSION['search'] = $request->input('search');
@@ -75,6 +73,7 @@ class AutocompleteController extends Controller
 
 
         //photos
+        
         $chkid = (isset($_SESSION['usersid'])) ? $_SESSION['usersid'] : '';
         $chkidadmin = (isset($_SESSION['adminid'])) ? $_SESSION['adminid'] : '';
         $imgaccount = DB::select("SELECT * FROM users WHERE U_id='$chkid'");

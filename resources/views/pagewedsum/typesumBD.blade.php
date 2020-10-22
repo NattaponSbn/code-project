@@ -61,7 +61,7 @@
 
            .name-scle{
                 font-size: 16px;
-                color: #FFFFFF;
+                color: #000000;
                 -ms-flex-item-align: center;
                     align-self: center;
                 margin-top: -30px;
@@ -106,13 +106,13 @@
            }
 
            .btn-outline-primaryy {
-                color: #D9A327;
-                border-color: #D9A327;
+            color: #000000;
+            /* background-color: #D9A327; */
+            border-color: #D9A327;
             }
 
             .btn-outline-primaryy:hover {
-                color: #fff;
-                background-color: #D9A327;
+                color: #D9A327;
                 border-color: #D9A327;
             }
 

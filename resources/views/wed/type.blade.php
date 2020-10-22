@@ -59,7 +59,7 @@
 
         .name-scle {
             font-size: 16px;
-            color: #FFFFFF;
+            color: #000000;
             -ms-flex-item-align: center;
             align-self: center;
             margin-top: -30px;
@@ -100,13 +100,13 @@
         }
 
         .btn-outline-primaryy {
-            color: #D9A327;
+            color: #000000;
+            /* background-color: #D9A327; */
             border-color: #D9A327;
         }
 
         .btn-outline-primaryy:hover {
-            color: #fff;
-            background-color: #D9A327;
+            color: #D9A327;
             border-color: #D9A327;
         }
 
@@ -132,6 +132,43 @@
         .btn-outline-primaryy:not(:disabled):not(.disabled):active:focus,
         .btn-outline-primaryy:not(:disabled):not(.disabled).active:focus,
         .show>.btn-outline-primaryy.dropdown-toggle:focus {
+            box-shadow: 0 0 0 0.1rem #fff;
+        }
+
+        .btn-outline-primaryy-sidenav {
+            color: #000000;
+            /* border-color: #D9A327; */
+        }
+
+        .btn-outline-primaryy-sidenav:hover {
+            color: #D9A327;
+            /* border-color: 1px solid #D9A327; */
+            /* background-color: #D9A327; */
+            text-decoration: underline;
+        }
+
+        .btn-outline-primaryy-sidenav:focus,
+        .btn-outline-primaryy-sidenav.focus {
+            box-shadow: 0 0 0 0.2rem rgba(52, 144, 220, 0.5);
+        }
+
+        .btn-outline-primaryy-sidenav.disabled,
+        .btn-outline-primaryy-sidenav:disabled {
+            color: #fff;
+            background-color: transparent;
+        }
+
+        .btn-outline-primaryy-sidenav:not(:disabled):not(.disabled):active,
+        .btn-outline-primaryy-sidenav:not(:disabled):not(.disabled).active,
+        .show>.btn-outline-primaryy-sidenav.dropdown-toggle {
+            color: #fff;
+            background-color: #D9A327;
+            border-color: #fff;
+        }
+
+        .btn-outline-primaryy-sidenav:not(:disabled):not(.disabled):active:focus,
+        .btn-outline-primaryy-sidenav:not(:disabled):not(.disabled).active:focus,
+        .show>.btn-outline-primaryy-sidenav.dropdown-toggle:focus {
             box-shadow: 0 0 0 0.1rem #fff;
         }
 
@@ -177,8 +214,8 @@
         .sidenav a, .dropdown-btn ,.dropdown-btn2,.dropdown-btn3{
             padding: 6px 8px 6px 16px;
             text-decoration: none;
-            font-size: 20px;
-            color: #818181;
+            font-size: 18px;
+            color: #000000;
             display: block;
             border: none;
             background: none;
@@ -187,11 +224,12 @@
             cursor: pointer;
             outline: none;
             margin-left: 5px;
+            font-family: 'Athiti', sans-serif;
         }
 
         /* On mouse-over */
         .sidenav a:hover, .dropdown-btn:hover ,.dropdown-btn2:hover,.dropdown-btn3:hover{
-            color: white;
+            color: #D9A327;
         }
 
         /* Main content */
@@ -203,14 +241,15 @@
 
         /* Add an active class to the active dropdown button */
         .active-item {
-            background-color: #D9A327;
-            color: white;
+            color: black;
+            border-color: none;
+            
         }
 
         /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
         .dropdown-container {
-            display: none;
-            background-color: #262626;
+            display: block;
+            background-color: #ffffff;
             padding-left: 8px;
         }
 
@@ -619,7 +658,7 @@
                                     </ul>
                                 </div>
                             </div>
-                        <?php } else if (isset($_SESSION['status']) == 'user') {
+                            <?php } else if (isset($_SESSION['status']) == 'user') {
                         ?>
 
                             <li class="nav-item dropdown">
@@ -659,12 +698,19 @@
                                                 </div>
                                             </div>
 
-                                            <a href="profile" class="top dropdown-item"><i class="zmdi zmdi-account"></i>โปรไฟล์</a>
+                                            <a href="{{url ('profile')}}" class="top dropdown-item"><i class="fas fa-user" style="margin-right: 2%;"></i>โปรไฟล์</a>
+                                            <div class="top dropdown-item" >
+                                                @if(!isset($_SESSION['project']))
+                                                <a href="{{url ('addproject')}}" class="view" style="color: black;text-decoration: none;"><i class="far fa-plus-square" style="margin-right: 2%;"></i>สร้างผลงาน</a><br>
+                                                @elseif(isset($_SESSION['project']))
+                                                <a href="{{url ('listdetil')}}" class="view" style="color: black;text-decoration: none;"><i class="fas fa-book" style="margin-right: 2%;"></i>ผลงานของฉัน</a><br>
+                                                @endif
+                                            </div>
                                             <a class="dropdown-item" href="logout" onclick="event.preventDefault();
-                                                                    document.getElementById('logout-form').submit();">
+                                                                    document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt" ></i>
                                                 {{ __('ออกจากระบบ') }}
                                             </a>
-                                            <form id="logout-form" action="logout" method="POST" style="display: none;">
+                                            <form id="logout-form" action="{{url ('logout')}}" method="POST" style="display: none;">
                                                 @csrf
                                             </form>
                                         </div>
@@ -714,9 +760,12 @@
                                                 </div>
                                             </div>
 
-                                            <a href="profileadmin" class="top dropdown-item"><i class="zmdi zmdi-account"></i>โปรไฟล์</a>
+                                            <a href="profileadmin" class="top dropdown-item"><i class="fas fa-user" style="margin-right: 2%;">โปรไฟล์</a>
+                                            <div class="top dropdown-item" >
+                                            <a href="{{url ('homeadmin')}}" class="view" style="color: black;text-decoration: none;"><i class="fas fa-book" style="margin-right: 2%;"></i>กลับไปหน้าผู้ดูเเลระบบ</a><br>
+                                            </div>
                                             <a class="dropdown-item" href="logout" onclick="event.preventDefault();
-                                                                document.getElementById('logout-form').submit();">
+                                                                document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt" ></i>
                                                 {{ __('ออกจากระบบ') }}
                                             </a>
                                             <form id="logout-form" action="logout" method="POST" style="display: none;">
@@ -748,12 +797,12 @@
                                             <a href="{{action('Project_MDDController@itemproject')}}"><button type="button" class="btn-control btn-default btn-outline-primaryy " style="font-size:18px;">ปริญญาเอก โท </button></a>
                                         </div><br>
                                         <div class="sidenav">
-                                            <button class="dropdown-btn">ประเภท
-                                                <i class="fa fa-caret-down"></i>
+                                        <button class="dropdown-btn" style="border-top: 0.5px solid #000000;border-radius: 10%;">ประเภท
+                                                <i class="fa fa-caret-down fa-lg" style="width: 20px;"></i>
                                             </button>
                                                 <div class="dropdown-container">
                                                     @foreach($chk_genre as $genre)
-                                                    <a href="{{$genre->genre_id}}">{{$genre->genre_name}}</a>
+                                                    <a href="{{$genre->genre_id}}" class=" btn-default btn-outline-primaryy-sidenav" style="font-size:17px;">{{$genre->genre_name}}</a>
                                                     <!-- <a href="#">โปรแกรมประยุกต์สำหรับอุปกรณ์เคลื่อนที่</a>
                                                     <a href="#">ไอโอที(IoT)</a>
                                                     <a href="#">ปัญญาประดิษฐ์(Ai)</a>
@@ -762,15 +811,28 @@
                                                     @endforeach
                                                 </div>
                                             
-                                        </div>
                                         
-                                        <div class="sidenav">
-                                            <button class="dropdown-btn">หมวดหมู่
-                                                <i class="fa fa-caret-down"></i>
+                                            <button class="dropdown-btn" style="border-top: 0.5px solid #000000;border-radius: 10%;">หมวดหมู่
+                                                <i class="fa fa-caret-down fa-lg" style="width: 20px;"></i>
                                             </button>
                                                 <div class="dropdown-container">
                                                     @foreach($chk_category as $category)
-                                                    <a href="{{$category->category_id}}">{{$category->category_name}}</a>
+                                                    <a href="{{$category->category_id}}" class="btn-default btn-outline-primaryy-sidenav" style="font-size:17px;">{{$category->category_name}}</a>
+                                                    <!-- <a href="#">โปรแกรมประยุกต์สำหรับอุปกรณ์เคลื่อนที่</a>
+                                                    <a href="#">ไอโอที(IoT)</a>
+                                                    <a href="#">ปัญญาประดิษฐ์(Ai)</a>
+                                                    <a href="#">ไอโอที(IoT)</a>
+                                                    <a href="#">ไอโอที(IoT)</a> -->
+                                                    @endforeach
+                                                </div>
+                                        
+
+                                            <button class="dropdown-btn " style="border-top: 0.5px solid #000000;border-radius: 10%;">ชนิดเอกสาร
+                                                <i class="fa fa-caret-down fa-lg" style="width: 20px;"></i>
+                                            </button>
+                                                <div class="dropdown-container">
+                                                    @foreach($chk_type as $type)
+                                                    <a href="{{$type->type_id}}" class="btn-default btn-outline-primaryy-sidenav" style="font-size:17px;">{{$type->type_name}}</a>
                                                     <!-- <a href="#">โปรแกรมประยุกต์สำหรับอุปกรณ์เคลื่อนที่</a>
                                                     <a href="#">ไอโอที(IoT)</a>
                                                     <a href="#">ปัญญาประดิษฐ์(Ai)</a>
@@ -780,21 +842,6 @@
                                                 </div>
                                         </div>
 
-                                        <div class="sidenav">
-                                            <button class="dropdown-btn">ชนิดเอกสาร
-                                                <i class="fa fa-caret-down"></i>
-                                            </button>
-                                                <div class="dropdown-container">
-                                                    @foreach($chk_type as $type)
-                                                    <a href="{{$type->type_id}}">{{$type->type_name}}</a>
-                                                    <!-- <a href="#">โปรแกรมประยุกต์สำหรับอุปกรณ์เคลื่อนที่</a>
-                                                    <a href="#">ไอโอที(IoT)</a>
-                                                    <a href="#">ปัญญาประดิษฐ์(Ai)</a>
-                                                    <a href="#">ไอโอที(IoT)</a>
-                                                    <a href="#">ไอโอที(IoT)</a> -->
-                                                    @endforeach
-                                                </div>
-                                        </div>
                                     </div>
                                 </div>
                             </nav>
@@ -843,38 +890,43 @@
             <div class="col-md-12">
                 <div class="tile1">
                     <div class="tile-body">
-                <div class="texthe1"><?php echo $type_name;?></div>
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                        <div class="table-responsive ">
-                            @foreach($chktype as $type)
-                                <a href="itemdetaliBD/{{$type->project_id}}">
-                                    <div class="column">
-                                        <div class="columnimg"><img src="\project\img_logo\<?php echo $type->logo; ?>" alt="" class="fromimg"></div></a>
-                                            <center><a href="itemdetaliBD/{{$type->project_id}}">
-                                                    <div class="textimg">
-                                                        <?php
-                                                        $str = $type->project_name;
-                                                        $count = utf8_strlen($str);
-                                                        create_str($count,$str,$type)
-                                                        ?></div>
-                                                </a>
-                                            </center>
-                                            <center><a href="itemtypeBD/{{$type->type_id}}">
-                                                    <div class="textimg2"><?php echo $type->type_name; ?></div>
-                                                </a>
-                                            </center>
-                                            <center>
-                                                <div class="rating">
-                                                    <?php 
-                                                        $rate = $type->AvgRate;
-                                                        rating_star($rate); 
-                                                    ?>
-                                                </div>
-                                            </center>
-                                    </div>            
-                            @endforeach
-                            </div>
+                        <div class="texthe1"><?php echo $type_name;?></div>
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                
+                                    @if(isset($chktype)?$chktype:'')
+                                    @foreach($chktype as $type)
+                                        <a href="itemdetaliBD/{{$type->project_id}}">
+                                            <div class="column">
+                                                <div class="columnimg"><img src="\project\img_logo\<?php echo $type->logo; ?>" alt="" class="fromimg"></div></a>
+                                                    <center><a href="itemdetaliBD/{{$type->project_id}}">
+                                                            <div class="textimg">
+                                                                <?php
+                                                                $str = $type->project_name;
+                                                                $count = utf8_strlen($str);
+                                                                create_str($count,$str,$type)
+                                                                ?></div>
+                                                        </a>
+                                                    </center>
+                                                    <center><a href="itemtypeBD/{{$type->type_id}}">
+                                                            <div class="textimg2"><?php echo $type->type_name; ?></div>
+                                                        </a>
+                                                    </center>
+                                                    <center>
+                                                        <div class="rating">
+                                                            <?php 
+                                                                $rate = $type->AvgRate;
+                                                                rating_star($rate); 
+                                                            ?>
+                                                        </div>
+                                                    </center>
+                                            </div>            
+                                    @endforeach
+                                    @else
+                                    <label for="" style="margin-left: 10%;margin-top:2%;">ไม่มีข้อมูล</label>
+                                    @endif
+                                </div>
+                            </div> 
                         </div>
                     </div>
                 </div>

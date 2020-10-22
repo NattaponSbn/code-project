@@ -2410,12 +2410,17 @@ class Autocomplete_MddController extends Controller
 
     function detailview(Request $request)
     {
+        session_start();
+        $chkid = (isset($_SESSION['usersid'])) ? $_SESSION['usersid'] : '';
+        $chkidadmin = (isset($_SESSION['adminid'])) ? $_SESSION['adminid'] : '';
+        $imgaccount = DB::select("SELECT * FROM users WHERE U_id='$chkid'");
+        $adminaccount = DB::select("SELECT * FROM admin_company WHERE admin_id='$chkidadmin'");
         $chk_type = DB::select("SELECT * FROM type_project");
         $chk_genre = DB::select("SELECT * FROM genre_project");
         $chk_category = DB::select("SELECT * FROM category_project");
         $chk_branch = DB::select("SELECT * FROM branch_project");
         $chk_year = DB::select("SELECT * FROM year_project");
         //print_r($chk_type);
-        return view('searchAVmdd', compact('chk_type','chk_genre','chk_category','chk_branch','chk_year'));
+        return view('searchAVmdd', compact('chk_type','chk_genre','chk_category','chk_branch','chk_year','imgaccount','adminaccount'));
     }
 }

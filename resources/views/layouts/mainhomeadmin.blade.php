@@ -1,15 +1,15 @@
 <?php 
-    if(isset($_SESSION['status'])=='user'){
-        header( "refresh: 0; url=/homeBD" );
-        exit(0);
-    }
-    elseif(isset($_SESSION['status'])=='admin'){
-        header('Location: /homeadmin');
-        exit(0);
-    }else{
-        header( "refresh: 0; url=/homeBD" );
-        exit(0);
-    }
+    // if(isset($_SESSION['status'])=='user'){
+    //     header( "refresh: 0; url=/homeBD" );
+    //     exit(0);
+    // }
+    // elseif(isset($_SESSION['statusA'])=='admin'){
+    //     header('Location:/homeadmin');
+    //     exit(0);
+    // }else{
+    //     header( "refresh: 0; url=/homeBD" );
+    //     exit(0);
+    // }
 ?>
 
 <!DOCTYPE html>
@@ -28,7 +28,7 @@
     <meta property="og:description"
         content="Vali is a responsive and free admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="Loaction" content="0;url=/homeadmin">
+    <meta http-equiv="Loaction" content="/homeadmin">
 
     <!-- Main CSS-->
     <link rel="stylesheet" type="text/css" href="css/main.css">
@@ -105,7 +105,7 @@
 
     .name-scle {
         font-size: 16px;
-        color: #FFFFFF;
+        color: #000000;
         -ms-flex-item-align: center;
         align-self: center;
         margin-top: -30px;
@@ -155,13 +155,13 @@
     }
 
     .btn-outline-primaryy {
-        color: #D9A327;
+        color: #000000;
+        /* background-color: #D9A327; */
         border-color: #D9A327;
     }
 
     .btn-outline-primaryy:hover {
-        color: #fff;
-        background-color: #D9A327;
+        color: #D9A327;
         border-color: #D9A327;
     }
 

@@ -63,7 +63,7 @@
 
            .name-scle{
                 font-size: 16px;
-                color: #FFFFFF;
+                color: #000000;
                 -ms-flex-item-align: center;
                     align-self: center;
                 margin-top: -30px;
@@ -108,16 +108,16 @@
            }
 
            .btn-outline-primaryy {
-                color: #D9A327;
-                border-color: #D9A327;
+            color: #000000;
+            /* background-color: #D9A327; */
+            border-color: #D9A327;
             }
 
             .btn-outline-primaryy:hover {
-                color: #fff;
-                background-color: #D9A327;
+                color: #D9A327;
                 border-color: #D9A327;
             }
-
+            
             .btn-outline-primaryy:focus,
             .btn-outline-primaryy.focus {
                 box-shadow: 0 0 0 0.2rem rgba(52, 144, 220, 0.5);
@@ -140,6 +140,43 @@
             .btn-outline-primaryy:not(:disabled):not(.disabled):active:focus,
             .btn-outline-primaryy:not(:disabled):not(.disabled).active:focus,
             .show > .btn-outline-primaryy.dropdown-toggle:focus {
+                box-shadow: 0 0 0 0.1rem #fff;
+            }
+
+            .btn-outline-primaryy-sidenav {
+                color: #000000;
+                /* border-color: #D9A327; */
+            }
+
+            .btn-outline-primaryy-sidenav:hover {
+                color: #D9A327;
+                /* border-color: 1px solid #D9A327; */
+                /* background-color: #D9A327; */
+                text-decoration: underline;
+            }
+
+            .btn-outline-primaryy-sidenav:focus,
+            .btn-outline-primaryy-sidenav.focus {
+                box-shadow: 0 0 0 0.2rem rgba(52, 144, 220, 0.5);
+            }
+
+            .btn-outline-primaryy-sidenav.disabled,
+            .btn-outline-primaryy-sidenav:disabled {
+                color: #fff;
+                background-color: transparent;
+            }
+
+            .btn-outline-primaryy-sidenav:not(:disabled):not(.disabled):active,
+            .btn-outline-primaryy-sidenav:not(:disabled):not(.disabled).active,
+            .show>.btn-outline-primaryy-sidenav.dropdown-toggle {
+                color: #fff;
+                background-color: #D9A327;
+                border-color: #fff;
+            }
+
+            .btn-outline-primaryy-sidenav:not(:disabled):not(.disabled):active:focus,
+            .btn-outline-primaryy-sidenav:not(:disabled):not(.disabled).active:focus,
+            .show>.btn-outline-primaryy-sidenav.dropdown-toggle:focus {
                 box-shadow: 0 0 0 0.1rem #fff;
             }
 
@@ -192,63 +229,63 @@
             }
 
             .sidenav a, .dropdown-btn ,.dropdown-btn2,.dropdown-btn3{
-            padding: 6px 8px 6px 16px;
-            text-decoration: none;
-            font-size: 18px;
-            color: #FFF5EE;
-            display: block;
-            border: none;
-            background: none;
-            width: 95%;
-            text-align: left;
-            cursor: pointer;
-            outline: none;
-            margin-left: 5px;
-            font-family: 'Athiti', sans-serif;
-        }
+                padding: 6px 8px 6px 16px;
+                text-decoration: none;
+                font-size: 18px;
+                color: #000000;
+                display: block;
+                border: none;
+                background: none;
+                width: 95%;
+                text-align: left;
+                cursor: pointer;
+                outline: none;
+                margin-left: 5px;
+                font-family: 'Athiti', sans-serif;
+            }
 
-        /* On mouse-over */
-        .sidenav a:hover, .dropdown-btn:hover ,.dropdown-btn2:hover,.dropdown-btn3:hover{
-            color: #D9A327;
-        }
+            /* On mouse-over */
+            .sidenav a:hover, .dropdown-btn:hover ,.dropdown-btn2:hover,.dropdown-btn3:hover{
+                color: #D9A327;
+            }
 
-        /* Main content */
-        .main {
-            margin-left: 200px; /* Same as the width of the sidenav */
-            font-size: 20px; /* Increased text to enable scrolling */
-            padding: 0px 10px;
-        }
+            /* Main content */
+            .main {
+                margin-left: 200px; /* Same as the width of the sidenav */
+                font-size: 20px; /* Increased text to enable scrolling */
+                padding: 0px 10px;
+            }
 
-        /* Add an active class to the active dropdown button */
-        .active-item {
-            color: white;
-            border-color: none;
-            
-        }
+            /* Add an active class to the active dropdown button */
+            .active-item {
+                color: black;
+                border-color: none;
+                
+            }
 
-        /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
-        .dropdown-container {
-            display: block;
-            background-color: #262626;
-            padding-left: 8px;
-        }
+            /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
+            .dropdown-container {
+                display: block;
+                background-color: #ffffff;
+                padding-left: 8px;
+            }
 
-        /* Optional: Style the caret down icon */
-        .fa-caret-down {
-            float: right;
-            padding-right: 8px;
-        }
+            /* Optional: Style the caret down icon */
+            .fa-caret-down {
+                float: right;
+                padding-right: 8px;
+            }
 
-        .breadcrumb-detail {
-            display: -ms-flexbox;
-            display: flex;
-            -ms-flex-wrap: wrap;
-            flex-wrap: wrap;
-            padding: .75rem 1rem;
-            margin-bottom: 1rem;
-            list-style: none;
-            border-radius: .25rem;
-        }
+            .breadcrumb-detail {
+                display: -ms-flexbox;
+                display: flex;
+                -ms-flex-wrap: wrap;
+                flex-wrap: wrap;
+                padding: .75rem 1rem;
+                margin-bottom: 1rem;
+                list-style: none;
+                border-radius: .25rem;
+            }
               
         </style>
     </head>
@@ -556,196 +593,225 @@
                     <li class="active3 menulink fontlink"><a href="#">เกี่ยวกับ</a></li>
                     <li class="active4 menulink fontlink"><a href="#">ติดต่อ</a></li>
                 </nav>
+                <li style="margin-left: -5%;margin-right: 2%;">
+                    <div class="links front layout-mdd-i-text" >
+                    @if(!isset($_SESSION['status']) == 'userM' & !isset($_SESSION['statusA']) == 'admin')
+
+                    @elseif (isset($_SESSION['status']) == 'user')
+                        @if(!isset($_SESSION['project']))
+                        <a href="addproject" style="font-weight: normal;margin-top:200px;"><span class="add-span-mdd"><i class="fas fa-plus-circle fa-lg " style="color: #A9A9A9;" title="สร้างผลงงานคุณ"></i> สร้างผลงงาน</span></a><br>
+                        @elseif(isset($_SESSION['project']))
+                        <a href="listdetil" style="font-weight: normal;" class="view"><span class="add-span-mdd"><i class="fas fa-book fa-lg " style="color: #A9A9A9;" title="ผลงงานคุณ"></i> ผลงงานคุณ</span></a><br>
+                        @endif
+                    @elseif (isset($_SESSION['statusA']) == 'admin')
+                    <div class="links front">
+                        <a href="homeadmin" class="view">ผู้ดูเเลระบบ</a><br>
+                    </div>
+                    @endif
+
+                    </div>
+                </li>
                 <div class="navbar-dark layoutaccout-MDD ">
                     <ul class="navbar-nav ml-auto ml-md-0">
 
-                        
-                    <?php 
-                            if(!isset($_SESSION['status'])=='user' & !isset($_SESSION['statusA'])=='admin') { ?>
-                                <div class="front nav-item" style="margin-top: px;font-family: 'Athiti', sans-serif;font-size: 16px;">
-                                        <a class="text-item"  id="userDropdown" href="login" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><button class="btn-login btn btn-outline-primaryy"><i class="fas fa-user-circle span-i-user"></i><div class="text-mage">เข้าสู่ระบบ</div></button></a>
-                                            <div class="dropdown-menu dropdown-menu-right" style="margin-top: 13px;" aria-labelledby="userDropdown">
-                                                <ul class="navbar-nav ml-auto">
-                                                    <div class="account-dropdown js-dropdown">
-                                                        <div class="info clearfix">
-                                                     
-                                                            <h3><div class="card-header">{{ __('เข้าสู่ระบบ') }}</div></h3>
-                                                            <div class="" style="font-family: 'Athiti', sans-serif;font-size: 16px;">
-                                                                <form method="POST" action="{{url ('loginBD')}}">
-                                                                    @csrf
+                        <?php
+                        if (!isset($_SESSION['status']) == 'user' & !isset($_SESSION['statusA']) == 'admin') { ?>
+                            <div class="front nav-item" style="margin-top: px;font-family: 'Athiti', sans-serif;font-size: 16px;">
+                                <a class="text-item" id="userDropdown" href="login" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><button class="btn-login btn btn-outline-primaryy"><i class="fas fa-user-circle span-i-user"></i>
+                                        <div class="text-mage">เข้าสู่ระบบ</div>
+                                    </button></a>
+                                <div class="dropdown-menu dropdown-menu-right" style="margin-top: 13px;" aria-labelledby="userDropdown">
+                                    <ul class="navbar-nav ml-auto">
+                                        <div class="account-dropdown js-dropdown">
+                                            <div class="info clearfix">
 
-                                                                    <div class="form-group row">
-                                                                        <div class="col-md-6">
-                                                                            <input id="username" type="username" class="form-control @error('email') is-invalid @enderror" style="width: 210px;height: 40px;margin-left:31px;" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus placeholder="ชื่อผู้ใช้ของคุณ">
+                                                <h3>
+                                                    <div class="card-header">{{ __('เข้าสู่ระบบ') }}</div>
+                                                </h3>
+                                                <div class="" style="font-family: 'Athiti', sans-serif;font-size: 16px;">
+                                                    <form method="POST" action="loginBD">
+                                                        @csrf
 
-                                                                            @error('username')
-                                                                                <span class="invalid-feedback" role="alert">
-                                                                                    <strong>{{ $message }}</strong>
-                                                                                </span>
-                                                                            @enderror
-                                                                        </div>
-                                                                    </div>
+                                                        <div class="form-group row">
+                                                            <div class="col-md-6">
+                                                                <input id="username" type="username" class="form-control @error('email') is-invalid @enderror" style="width: 210px;height: 40px;margin-left:31px;" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus placeholder="ชื่อผู้ใช้ของคุณ">
 
-                                                                    <div class="form-group row">
-                                                                        <div class="col-md-6">
-                                                                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" style="width: 210px; height: 40px;margin-left:31px;" name="password" required autocomplete="current-password" placeholder="รหัสผ่านของคุณ">
-
-                                                                            @error('password')
-                                                                                <span class="invalid-feedback" role="alert">
-                                                                                    <strong>{{ $message }}</strong>
-                                                                                </span>
-                                                                            @enderror
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <div class="form-group row">
-                                                                        <div class="col-md-6 offset-md-4">
-                                                                            <div class="form-check" style="margin-left:-71px;">
-                                                                                <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                                                                <label class="form-check-label" style="color: black;" for="remember">
-                                                                                    {{ __('จดจำฉันไว้') }}
-                                                                                </label>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-
-
-                                                                    <div class="form-group row mb-0">
-                                                        
-                                                                        
-                                                                        <div class="col-md-8 offset-md-4">
-                                                                            @if (Route::has('password.request'))
-                                                                                <a class="btn btn-link btn-re" style="margin-top:-10px; margin-left: 5px; " href="{{ route('password.request') }}">
-                                                                                    {{ __('ลืมรหัสผ่านใช่หรือไม่?') }}
-                                                                                </a>
-                                                                            @endif
-                                                                            <button type="submit" class="btn btn-primaryyy" style="width: 210px; margin-left:-70px; " >
-                                                                                ล็อกอิน
-                                                                            </button>
-
-                                                                            <div style="margin-left:-30px; margin-top: 10px;">คุณยังไม่มีบัญชี?</div> 
-                                                                            <a type="submit"  id="button" class="btn btn-link btn-layouts" style="margin-left:70px;margin-top:-49px;"  href="#" data-toggle="modal" data-target="#exampleModalCenter">สร้างบัญชี</a>    
-                                                                        </div>
-                                                                    </div>
-                                                                </form>
+                                                                @error('username')
+                                                                <span class="invalid-feedback" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                                @enderror
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                </ul>
+
+                                                        <div class="form-group row">
+                                                            <div class="col-md-6">
+                                                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" style="width: 210px; height: 40px;margin-left:31px;" name="password" required autocomplete="current-password" placeholder="รหัสผ่านของคุณ">
+
+                                                                @error('password')
+                                                                <span class="invalid-feedback" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group row">
+                                                            <div class="col-md-6 offset-md-4">
+                                                                <div class="form-check" style="margin-left:-71px;">
+                                                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+
+                                                                    <label class="form-check-label" style="color: black;" for="remember">
+                                                                        {{ __('จดจำฉันไว้') }}
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div class="form-group row mb-0">
+
+
+                                                            <div class="col-md-8 offset-md-4">
+                                                                @if (Route::has('password.request'))
+                                                                <a class="btn btn-link btn-re" style="margin-top:-10px; margin-left: 5px; " href="{{ route('password.request') }}">
+                                                                    {{ __('ลืมรหัสผ่านใช่หรือไม่?') }}
+                                                                </a>
+                                                                @endif
+                                                                <button type="submit" class="btn btn-primaryyy" style="width: 210px; margin-left:-70px; ">
+                                                                    ล็อกอิน
+                                                                </button>
+
+                                                                <div style="margin-left:-30px; margin-top: 10px;">คุณยังไม่มีบัญชี?</div>
+                                                                <a type="submit" id="button" class="btn btn-link btn-layouts" style="margin-left:70px;margin-top:-49px;" href="#" data-toggle="modal" data-target="#exampleModalCenter">สร้างบัญชี</a>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
                                             </div>
+                                        </div>
+                                    </ul>
                                 </div>
-                             <?php }
-                            
-                            else if (isset($_SESSION['status'])=='user'){
-                            ?>
-                            
-                                <li class="nav-item dropdown">
-                                
-                                    <a class="nav-link " id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            </div>
+                        <?php } else if (isset($_SESSION['status']) == 'user') {
+                        ?>
+
+                            <li class="nav-item dropdown">
+
+                                <a class="nav-link " id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     @foreach($imgaccount as $img)
-                                        <img class="rounded-circle user-sizes img-profile" src="/imgaccount/<?php echo $img->pathimg; ?>" alt="USer Atver" >
-                                        
+                                    <img class="rounded-circle user-sizes img-profile" src="imgaccount/<?php echo $img->pathimg; ?>" alt="USer Atver">
+
                                     @endforeach
                                     @foreach($imgaccount as $user)
-                                        <div class="name-scle dropdown-toggle "><?php echo $user->name;?></div> 
+                                    <div class="name-scle dropdown-toggle "><?php echo $user->name; ?></div>
                                     @endforeach
-                                    </a>
-                                  
-                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                                        <ul class="navbar-nav ml-auto">
-                                            <div class="account-dropdown js-dropdown">
-                                                <div class="info clearfix">
-                                                    <center><div class="image">
-                                                        <a href="profile">
-                                                        @foreach($imgaccount as $img)
-                                                            <img src="\imgaccount\<?php echo $img->pathimg; ?>" alt="" class="img-user-size user-avatar rounded-circle"/>
-                                                        @endforeach
-                                                        </a>
-
-                                                    </div></center>
-                                                    <div class="content">
-                                                        <h5 class="name">
-                                                        @foreach($imgaccount as $user)
-                                                            <span class="caret"><?php echo $user->name;?></span>
-                                                        
-                                                        </h5>
-                                                        <span class="email"><?php echo $user->email;?></span>
-                                                        @endforeach
-                                                    </div>
-                                                </div>
-                                            
-                                                <a href="profile" class="top dropdown-item"><i class="zmdi zmdi-account"></i>โปรไฟล์</a>
-                                                    <a class="dropdown-item" href="logout"
-                                                    onclick="event.preventDefault();
-                                                                    document.getElementById('logout-form').submit();">
-                                                        {{ __('ออกจากระบบ') }}
-                                                    </a>
-                                                    <form id="logout-form" action="{{url ('logout')}}" method="POST" style="display: none;">
-                                                        @csrf
-                                                    </form>
-                                            </div>    
-                                        </ul>
-                                    </div> 
-                                </li>
-                            <?php }
-
-                            // admin
-                            
-                            else  if (isset($_SESSION['statusA'])=='admin'){
-                                ?>
-                                    <li class="nav-item dropdown">
-                                
-                                <a class="nav-link " id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                @foreach($adminaccount as $img)
-                                    <img class="rounded-circle user-sizes img-profile" src="/img_admin/<?php echo $img->pathimg; ?>" alt="USer Atver" >
-                                    
-                                @endforeach
-                                @foreach($adminaccount as $user)
-                                    <div class="name-scle dropdown-toggle "><?php echo $user->admin_name;?></div> 
-                                @endforeach
                                 </a>
-                              
+
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                                     <ul class="navbar-nav ml-auto">
                                         <div class="account-dropdown js-dropdown">
                                             <div class="info clearfix">
-                                                <center><div class="image">
-                                                    <a href="profile">
-                                                    @foreach($adminaccount as $img)
-                                                        <img src="\img_admin\<?php echo $img->pathimg; ?>" alt="" class="img-user-size user-avatar rounded-circle"/>
-                                                    @endforeach
-                                                    </a>
+                                                <center>
+                                                    <div class="image">
+                                                        <a href="profile">
+                                                            @foreach($imgaccount as $img)
+                                                            <img src="imgaccount\<?php echo $img->pathimg; ?>" alt="" class="img-user-size user-avatar rounded-circle" />
+                                                            @endforeach
+                                                        </a>
 
-                                                </div></center>
+                                                    </div>
+                                                </center>
                                                 <div class="content">
                                                     <h5 class="name">
-                                                    @foreach($adminaccount as $user)
-                                                        <span class="caret"><?php echo $user->admin_name;?></span>
-                                                    
+                                                        @foreach($imgaccount as $user)
+                                                        <span class="caret"><?php echo $user->name; ?></span>
+
                                                     </h5>
-                                                    <span class="email"><?php echo $user->admin_email;?></span>
+                                                    <span class="email"><?php echo $user->email; ?></span>
                                                     @endforeach
                                                 </div>
                                             </div>
-                                        
-                                            <a href="profileadmin" class="top dropdown-item"><i class="zmdi zmdi-account"></i>โปรไฟล์</a>
-                                                <a class="dropdown-item" href="logout"
-                                                onclick="event.preventDefault();
-                                                                document.getElementById('logout-form').submit();">
-                                                    {{ __('ออกจากระบบ') }}
-                                                </a>
-                                                <form id="logout-form" action="logout" method="POST" style="display: none;">
-                                                    @csrf
-                                                </form>
-                                        </div>    
+
+                                            <a href="profile" class="top dropdown-item"><i class="fas fa-user" style="margin-right: 2%;"></i>โปรไฟล์</a>
+                                            <div class="top dropdown-item" >
+                                                @if(!isset($_SESSION['project']))
+                                                <a href="addproject" class="view" style="color: black;text-decoration: none;"><i class="far fa-plus-square" style="margin-right: 2%;"></i>สร้างผลงาน</a><br>
+                                                @elseif(isset($_SESSION['project']))
+                                                <a href="listdetil" class="view" style="color: black;text-decoration: none;"><i class="fas fa-book" style="margin-right: 2%;"></i>ผลงานของฉัน</a><br>
+                                                @endif
+                                            </div>
+                                            <a class="dropdown-item" href="logout" onclick="event.preventDefault();
+                                                                    document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt" ></i>
+                                                {{ __('ออกจากระบบ') }}
+                                            </a>
+                                            <form id="logout-form" action="logout" method="POST" style="display: none;">
+                                                @csrf
+                                            </form>
+                                        </div>
                                     </ul>
-                                </div> 
+                                </div>
                             </li>
-                        <?php }?>
+                        <?php }
+
+                        // admin
+
+                        else  if (isset($_SESSION['statusA']) == 'admin') {
+                        ?>
+                            <li class="nav-item dropdown">
+
+                                <a class="nav-link " id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    @foreach($adminaccount as $img)
+                                    <img class="rounded-circle user-sizes img-profile" src="img_admin/<?php echo $img->pathimg; ?>" alt="USer Atver">
+
+                                    @endforeach
+                                    @foreach($adminaccount as $user)
+                                    <div class="name-scle dropdown-toggle "><?php echo $user->admin_name; ?></div>
+                                    @endforeach
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                                    <ul class="navbar-nav ml-auto">
+                                        <div class="account-dropdown js-dropdown">
+                                            <div class="info clearfix">
+                                                <center>
+                                                    <div class="image">
+                                                        <a href="profile">
+                                                            @foreach($adminaccount as $img)
+                                                            <img src="img_admin\<?php echo $img->pathimg; ?>" alt="" class="img-user-size user-avatar rounded-circle" />
+                                                            @endforeach
+                                                        </a>
+
+                                                    </div>
+                                                </center>
+                                                <div class="content">
+                                                    <h5 class="name">
+                                                        @foreach($adminaccount as $user)
+                                                        <span class="caret"><?php echo $user->admin_name; ?></span>
+
+                                                    </h5>
+                                                    <span class="email"><?php echo $user->admin_email; ?></span>
+                                                    @endforeach
+                                                </div>
+                                            </div>
+
+                                            <a href="profileadmin" class="top dropdown-item"><i class="zmdi zmdi-account"></i>โปรไฟล์</a>
+                                            <a class="dropdown-item" href="logout" onclick="event.preventDefault();
+                                                                document.getElementById('logout-form').submit();">
+                                                {{ __('ออกจากระบบ') }}
+                                            </a>
+                                            <form id="logout-form" action="logout" method="POST" style="display: none;">
+                                                @csrf
+                                            </form>
+                                        </div>
+                                    </ul>
+                                </div>
+                            </li>
+                        <?php } ?>
                     </ul>
                 </div>
-            </header>
+               
+        </header>
             <aside class="app-sidebar">
                 <ul class="app-menu">
                     <li>
@@ -759,35 +825,51 @@
                                             <a href="{{action('Project_MDDController@itemproject')}}"><button type="button" class="btn-control btn-default btn-outline-primaryy " style="font-size:18px;">ปริญญาเอก โท </button></a>
                                             </div><br>
                                             <div class="sidenav" >
-                                                    <button class="dropdown-btn" style="border-top: 0.5px solid #fff;border-radius: 10%;">ประเภท
-                                                        <i class="fa fa-caret-down fa-lg" style="width: 20px;"></i>
-                                                    </button>
-                                                        <div class="dropdown-container">
-                                                            @foreach($chk_genre as $genre)
-                                                            <a href="genre/{{$genre->genre_id}}" class="btn-default btn-outline-primaryy" style="font-size:17px;color:#fff;">{{$genre->genre_name}}</a>
-                                                            <!-- <a href="#">โปรแกรมประยุกต์สำหรับอุปกรณ์เคลื่อนที่</a>
-                                                            <a href="#">ไอโอที(IoT)</a>
-                                                            <a href="#">ปัญญาประดิษฐ์(Ai)</a>
-                                                            <a href="#">ไอโอที(IoT)</a>
-                                                            <a href="#">ไอโอที(IoT)</a> -->
-                                                            @endforeach
-                                                        </div>
-                                                    
-                                            
-                                                    <button class="dropdown-btn" style="border-top: 0.5px solid #fff;border-radius: 10%;">หมวดหมู่
-                                                        <i class="fa fa-caret-down fa-lg" style="width: 20px;"></i>
-                                                    </button>
-                                                        <div class="dropdown-container">
-                                                            @foreach($chk_category as $category)
-                                                            <a href="category/{{$category->category_id}}" class="btn-default btn-outline-primaryy" style="font-size:17px;color:#fff;">{{$category->category_name}}</a>
-                                                            <!-- <a href="#">โปรแกรมประยุกต์สำหรับอุปกรณ์เคลื่อนที่</a>
-                                                            <a href="#">ไอโอที(IoT)</a>
-                                                            <a href="#">ปัญญาประดิษฐ์(Ai)</a>
-                                                            <a href="#">ไอโอที(IoT)</a>
-                                                            <a href="#">ไอโอที(IoT)</a> -->
-                                                            @endforeach
-                                                        </div>
+                                            <button class="dropdown-btn" style="border-top: 0.5px solid #000000;border-radius: 10%;">ประเภท
+                                                <i class="fa fa-caret-down fa-lg" style="width: 20px;"></i>
+                                            </button>
+                                                <div class="dropdown-container">
+                                                    @foreach($chk_genre as $genre)
+                                                    <a href="genre/{{$genre->genre_id}}" class=" btn-default btn-outline-primaryy-sidenav" style="font-size:17px;">{{$genre->genre_name}}</a>
+                                                    <!-- <a href="#">โปรแกรมประยุกต์สำหรับอุปกรณ์เคลื่อนที่</a>
+                                                    <a href="#">ไอโอที(IoT)</a>
+                                                    <a href="#">ปัญญาประดิษฐ์(Ai)</a>
+                                                    <a href="#">ไอโอที(IoT)</a>
+                                                    <a href="#">ไอโอที(IoT)</a> -->
+                                                    @endforeach
                                                 </div>
+                                            
+                                        
+                                            <button class="dropdown-btn" style="border-top: 0.5px solid #000000;border-radius: 10%;">หมวดหมู่
+                                                <i class="fa fa-caret-down fa-lg" style="width: 20px;"></i>
+                                            </button>
+                                                <div class="dropdown-container">
+                                                    @foreach($chk_category as $category)
+                                                    <a href="category/{{$category->category_id}}" class="btn-default btn-outline-primaryy-sidenav" style="font-size:17px;">{{$category->category_name}}</a>
+                                                    <!-- <a href="#">โปรแกรมประยุกต์สำหรับอุปกรณ์เคลื่อนที่</a>
+                                                    <a href="#">ไอโอที(IoT)</a>
+                                                    <a href="#">ปัญญาประดิษฐ์(Ai)</a>
+                                                    <a href="#">ไอโอที(IoT)</a>
+                                                    <a href="#">ไอโอที(IoT)</a> -->
+                                                    @endforeach
+                                                </div>
+                                        
+
+                                            <button class="dropdown-btn " style="border-top: 0.5px solid #000000;border-radius: 10%;">ชนิดเอกสาร
+                                                <i class="fa fa-caret-down fa-lg" style="width: 20px;"></i>
+                                            </button>
+                                                <div class="dropdown-container">
+                                                    @foreach($chk_type as $type)
+                                                    <a href="typeproject/{{$type->type_id}}" class="btn-default btn-outline-primaryy-sidenav" style="font-size:17px;">{{$type->type_name}}</a>
+                                                    <!-- <a href="#">โปรแกรมประยุกต์สำหรับอุปกรณ์เคลื่อนที่</a>
+                                                    <a href="#">ไอโอที(IoT)</a>
+                                                    <a href="#">ปัญญาประดิษฐ์(Ai)</a>
+                                                    <a href="#">ไอโอที(IoT)</a>
+                                                    <a href="#">ไอโอที(IoT)</a> -->
+                                                    @endforeach
+                                                </div>
+                                        </div>
+
 
                                             </div>
                                     </div>
@@ -989,7 +1071,7 @@
 
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>
         <script src="{{ asset('js/app.js') }}" defer></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

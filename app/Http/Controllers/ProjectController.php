@@ -64,12 +64,8 @@ class ProjectController extends Controller
         $fileproject='/fileproject/p_BD'.$nameimg;
 
         // file_chk
-        $foderchk = 'project/fileproject/p_chk';
-        $filePchk = $request->file('fileproject_chk');
-        $filenamechk = $request->file('fileproject_chk')->getClientOriginalName();
-        $namechk = '/'.rand() . '.' . $filenamechk;
-        $filePchk->move(public_path($foderchk),$namechk);
-        $fileproject_chk='/fileproject/p_chk'.$namechk;
+        
+        
 
         // //add keyword
         $keyword1 =$request->keyword_project_1;
@@ -177,9 +173,23 @@ class ProjectController extends Controller
         $project->logo=$logo;
         $project->file_p=$fileproject;
         $project->namefile=$filename;
-        $project->temp_file_chk=$fileproject_chk;
-        $project->temp_namefile_chk=$filenamechk;
+
+        
         $project->save();
+
+        //chk
+        if(isset($_POST['fileproject_chk'])?$_POST['fileproject_chk']:''){
+            $foderchk = 'project/fileproject/p_chk';
+            $filePchk = $request->file('fileproject_chk');
+            $filesize = $_FILES['fileproject_chk']['size'];
+            $filenamechk = $request->file('fileproject_chk')->getClientOriginalName();
+            $namechk = '/'.rand() . '.' . $filenamechk;
+            $filePchk->move(public_path($foderchk),$namechk);
+            $fileproject_chk='/fileproject/p_chk'.$namechk;
+            DB::insert("INSERT INTO file_ad(id_projectA, fileA_name, fileA_path, fileA_size) VALUES ('$nextid','$filenamechk','$fileproject_chk','$filesize')");
+        }else{
+
+        }
 
         //file_ad
         if(isset($_POST['filead'])?$_POST['filead']:''){
@@ -619,6 +629,7 @@ class ProjectController extends Controller
                         }
                     }else{
                         $viewcount0 = '0';
+                        // print_r($viewcount0);
                     }
                     
                     // $view0 = DB::select("SELECT login_log ");
@@ -626,6 +637,8 @@ class ProjectController extends Controller
                 }
             }else {
                 $itemlp0='';
+                $viewcount0 = '';
+                
             }
 
             
@@ -660,6 +673,7 @@ class ProjectController extends Controller
                 }
             }else {
                 $itemlp1='';
+                $viewcount1 = '';
             }
             
             if(isset($itemloop[2])? $itemloop[2]:'') {
@@ -692,6 +706,7 @@ class ProjectController extends Controller
                 }
             }else {
                 $itemlp2='';
+                $viewcount2 = '';
             }
 
             if(isset($itemloop[3])? $itemloop[3]:'') {
@@ -724,6 +739,7 @@ class ProjectController extends Controller
                 }
             }else {
                 $itemlp3='';
+                $viewcount3 = '';
             }
 
             if(isset($itemloop[4])? $itemloop[4]:'') {
@@ -756,6 +772,7 @@ class ProjectController extends Controller
                 }
             }else {
                 $itemlp4='';
+                $viewcount4 = '';
             }
             
             if(isset($itemloop[5])? $itemloop[5]:'') {
@@ -790,6 +807,7 @@ class ProjectController extends Controller
                 }
             }else {
                 $itemlp5='';
+                $viewcount5 = '';
             }
             
             if(isset($itemloop[6])? $itemloop[6]:'') {
@@ -821,6 +839,7 @@ class ProjectController extends Controller
                 }
             }else {
                 $itemlp6='';
+                $viewcount6 = '';
             }
             
             if(isset($itemloop[7])? $itemloop[7]:'') {
@@ -853,6 +872,7 @@ class ProjectController extends Controller
                 }
             }else {
                 $itemlp7='';
+                $viewcount7 = '';
             }
             
             if(isset($itemloop[8])? $itemloop[8]:'') {
@@ -886,9 +906,19 @@ class ProjectController extends Controller
                 }
             }else {
                 $itemlp8='';
+                $viewcount8 = '';
             }
         }else{
             $itemloop='';
+            $viewcount0 = '';
+            $viewcount1 = '';
+            $viewcount2 = '';
+            $viewcount3 = '';
+            $viewcount4 = '';
+            $viewcount5 = '';
+            $viewcount6 = '';
+            $viewcount7 = '';
+            $viewcount8 = '';
         }
 
         //genre(ไอโอที(IoT)) item 
@@ -1180,7 +1210,9 @@ class ProjectController extends Controller
 
         
         $itempop = DB::select("SELECT login_project,COUNT(login_project) AS countview FROM login_log GROUP BY login_project ORDER BY COUNT(login_project) DESC");
+        // echo '<pre>';
         // print_r($itempop);
+        // echo '</pre>';
         if(isset($itempop)?$itempop:''){
             $_SESSION['itempop']='itempop';
             if(isset($itempop[0])? $itempop[0]:'') {
@@ -1227,6 +1259,9 @@ class ProjectController extends Controller
                 // $avgpop1 = round($item1->ratesum,$percision=1);
                 $itempop1 = DB::select("SELECT * FROM projects,genre_project,type_project WHERE projects.type_id=type_project.type_id AND projects.genre_id=genre_project.genre_id
                 AND projects.project_id='$pop1'");
+                // echo'<pre>';
+                // print_r($itempop1);
+                // echo'</pre>';
 
                 $itemp1 = DB::select("SELECT AVG(rate_index) ratesum FROM rating_p,projects WHERE projects.project_id=rating_p.project_id AND projects.project_id='$pop1' GROUP BY rating_p.project_id ");
                 if(isset($itemp1)?$itemp1:''){

@@ -59,7 +59,7 @@
 
         .name-scle {
             font-size: 16px;
-            color: #FFFFFF;
+            color: #000000;
             -ms-flex-item-align: center;
             align-self: center;
             margin-top: -30px;
@@ -100,13 +100,13 @@
         }
 
         .btn-outline-primaryy {
-            color: #D9A327;
+            color: #000000;
+            /* background-color: #D9A327; */
             border-color: #D9A327;
         }
 
         .btn-outline-primaryy:hover {
-            color: #fff;
-            background-color: #D9A327;
+            color: #D9A327;
             border-color: #D9A327;
         }
 
@@ -128,6 +128,44 @@
             background-color: #D9A327;
             border-color: #fff;
         }
+
+        .btn-outline-primaryy-sidenav {
+            color: #000000;
+            /* border-color: #D9A327; */
+        }
+
+        .btn-outline-primaryy-sidenav:hover {
+            color: #D9A327;
+            /* border-color: 1px solid #D9A327; */
+            /* background-color: #D9A327; */
+            text-decoration: underline;
+        }
+
+        .btn-outline-primaryy-sidenav:focus,
+        .btn-outline-primaryy-sidenav.focus {
+            box-shadow: 0 0 0 0.2rem rgba(52, 144, 220, 0.5);
+        }
+
+        .btn-outline-primaryy-sidenav.disabled,
+        .btn-outline-primaryy-sidenav:disabled {
+            color: #fff;
+            background-color: transparent;
+        }
+
+        .btn-outline-primaryy-sidenav:not(:disabled):not(.disabled):active,
+        .btn-outline-primaryy-sidenav:not(:disabled):not(.disabled).active,
+        .show>.btn-outline-primaryy-sidenav.dropdown-toggle {
+            color: #fff;
+            background-color: #D9A327;
+            border-color: #fff;
+        }
+
+        .btn-outline-primaryy-sidenav:not(:disabled):not(.disabled):active:focus,
+        .btn-outline-primaryy-sidenav:not(:disabled):not(.disabled).active:focus,
+        .show>.btn-outline-primaryy-sidenav.dropdown-toggle:focus {
+            box-shadow: 0 0 0 0.1rem #fff;
+        }
+
 
         .btn-outline-primaryy:not(:disabled):not(.disabled):active:focus,
         .btn-outline-primaryy:not(:disabled):not(.disabled).active:focus,
@@ -172,6 +210,85 @@
         .font-Athiti {
             font-family: 'Athiti', sans-serif;
             font-weight: 600;
+        }
+
+        .sidenav a, .dropdown-btn ,.dropdown-btn2,.dropdown-btn3{
+            padding: 6px 8px 6px 16px;
+            text-decoration: none;
+            font-size: 18px;
+            color: #000000;
+            display: block;
+            border: none;
+            background: none;
+            width: 95%;
+            text-align: left;
+            cursor: pointer;
+            outline: none;
+            margin-left: 5px;
+            font-family: 'Athiti', sans-serif;
+        }
+
+        /* On mouse-over */
+        .sidenav a:hover, .dropdown-btn:hover ,.dropdown-btn2:hover,.dropdown-btn3:hover{
+            color: #D9A327;
+        }
+
+        /* Main content */
+        .main {
+            margin-left: 200px; /* Same as the width of the sidenav */
+            font-size: 20px; /* Increased text to enable scrolling */
+            padding: 0px 10px;
+        }
+
+        /* Add an active class to the active dropdown button */
+        .active-item {
+            color: black;
+            border-color: none;
+            
+        }
+
+        /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
+        .dropdown-container {
+            display: block;
+            background-color: #ffffff;
+            padding-left: 8px;
+        }
+
+        /* Optional: Style the caret down icon */
+        .fa-caret-down {
+            float: right;
+            padding-right: 8px;
+        }
+
+        .breadcrumb-detail {
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+            padding: .75rem 1rem;
+            margin-bottom: 1rem;
+            list-style: none;
+            border-radius: .25rem;
+        }
+
+        a:active{
+            color: blue;
+        }
+
+        a:hover{
+            color: blue;
+            
+        }
+
+        .front>a:hover {
+            color: #F5F5F5;
+            font-weight: bold;
+            
+        }
+
+        .imghover:hover{
+	        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            border: 1 solid black;
         }
     </style>
 </head>
@@ -701,51 +818,52 @@
                                             <a href="homeBD"><button type="button" class="btn-control btn-default btn-outline-primaryy " style="font-size:18px;">ปริญญาตรี</button></a>
                                             <a href="homeMDD"><button type="button" class="btn-control btn-default btn-outline-primaryy " style="font-size:18px;">ปริญญาเอก โท </button></a>
                                         </div><br>
-                                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages"> เว็บ
-                                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                        </a>
-                                        <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
-                                            <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                                <a class="nav-link" href="wed">ทั้งหมด</a>
-                                                <a class="nav-link" href="#">ติดตาม</a>
-                                                <a class="nav-link" href="#">ดูเเลสุขภาพ</a>
-                                                <a class="nav-link" href="#">ไร่สวน</a>
-                                            </nav>
+                                        <div class="sidenav" >
+                                            <button class="dropdown-btn" style="border-top: 0.5px solid #000000;border-radius: 10%;">ประเภท
+                                                <i class="fa fa-caret-down fa-lg" style="width: 20px;"></i>
+                                            </button>
+                                                <div class="dropdown-container">
+                                                    @foreach($chk_genre as $genre)
+                                                    <a href="genre/{{$genre->genre_id}}" class=" btn-default btn-outline-primaryy-sidenav" style="font-size:17px;">{{$genre->genre_name}}</a>
+                                                    <!-- <a href="#">โปรแกรมประยุกต์สำหรับอุปกรณ์เคลื่อนที่</a>
+                                                    <a href="#">ไอโอที(IoT)</a>
+                                                    <a href="#">ปัญญาประดิษฐ์(Ai)</a>
+                                                    <a href="#">ไอโอที(IoT)</a>
+                                                    <a href="#">ไอโอที(IoT)</a> -->
+                                                    @endforeach
+                                                </div>
+                                            
+                                        
+                                            <button class="dropdown-btn" style="border-top: 0.5px solid #000000;border-radius: 10%;">หมวดหมู่
+                                                <i class="fa fa-caret-down fa-lg" style="width: 20px;"></i>
+                                            </button>
+                                                <div class="dropdown-container">
+                                                    @foreach($chk_category as $category)
+                                                    <a href="category/{{$category->category_id}}" class="btn-default btn-outline-primaryy-sidenav" style="font-size:17px;">{{$category->category_name}}</a>
+                                                    <!-- <a href="#">โปรแกรมประยุกต์สำหรับอุปกรณ์เคลื่อนที่</a>
+                                                    <a href="#">ไอโอที(IoT)</a>
+                                                    <a href="#">ปัญญาประดิษฐ์(Ai)</a>
+                                                    <a href="#">ไอโอที(IoT)</a>
+                                                    <a href="#">ไอโอที(IoT)</a> -->
+                                                    @endforeach
+                                                </div>
+                                        
+
+                                            <button class="dropdown-btn " style="border-top: 0.5px solid #000000;border-radius: 10%;">ชนิดเอกสาร
+                                                <i class="fa fa-caret-down fa-lg" style="width: 20px;"></i>
+                                            </button>
+                                                <div class="dropdown-container">
+                                                    @foreach($chk_type as $type)
+                                                    <a href="typeproject/{{$type->type_id}}" class="btn-default btn-outline-primaryy-sidenav" style="font-size:17px;">{{$type->type_name}}</a>
+                                                    <!-- <a href="#">โปรแกรมประยุกต์สำหรับอุปกรณ์เคลื่อนที่</a>
+                                                    <a href="#">ไอโอที(IoT)</a>
+                                                    <a href="#">ปัญญาประดิษฐ์(Ai)</a>
+                                                    <a href="#">ไอโอที(IoT)</a>
+                                                    <a href="#">ไอโอที(IoT)</a> -->
+                                                    @endforeach
+                                                </div>
                                         </div>
 
-                                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">เว็บ&เว็บแอปพลิเคชั่น
-                                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                        </a>
-                                        <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-                                            <nav class="sb-sidenav-menu-nested nav ">
-                                                <a class="nav-link" href="wedapp">ทั้งหมด</a>
-                                                <a class="nav-link" href="#">ติดตาม</a>
-                                                <a class="nav-link" href="#">ดูเเละสุขภาพ</a>
-                                                <a class="nav-link" href="#">ไร่สวน</a>
-                                            </nav>
-                                        </div>
-                                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">แอปพลิเคชั่น
-                                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div></a>
-                                        <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-                                            <nav class="sb-sidenav-menu-nested nav">
-                                                <a class="nav-link" href="app">ทั้งหมด</a>
-                                                <a class="nav-link" href="#">ติดตาม</a>
-                                                <a class="nav-link" href="#">ดูเเละสุขภาพ</a>
-                                                <a class="nav-link" href="#">ไร่สวน</a>
-                                            </nav>
-                                        </div>
-                                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">เกม
-                                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div></a>
-                                        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-                                            <nav class="sb-sidenav-menu-nested nav">
-                                                <a class="nav-link" href="game">ทั้งหมด</a>
-                                                <a class="nav-link" href="#">ผจญภัย</a>
-                                                <a class="nav-link" href="#">ยุทธศาสตร์</a>
-                                                <a class="nav-link" href="#">ปริศนา</a>
-                                                <a class="nav-link" href="#">กีฬา</a>
-                                                <a class="nav-link" href="#">เเอ็กชัน</a>
-                                            </nav>
-                                        </div>
                                     </div>
                                 </div>
                             </nav>
@@ -876,6 +994,31 @@
                 $(".rateyo").rateYo()
             });
         </script>
+        <script>
+            test("dropdown-btn");
+            test("dropdown-btn2");
+            test("dropdown-btn3");
+            test("dropdown-btn4");
+            test("dropdown-btn5");
+            test("dropdown-btn6");
+            test("dropdown-btn7");
+            function test(input){
+                var dropdown2 = document.getElementsByClassName(input);
+                var i;
+
+                for (i = 0; i < dropdown2.length; i++) {
+                    dropdown2[i].addEventListener("click", function() {
+                    this.classList.toggle("active-item");
+                    var dropdownContent = this.nextElementSibling;
+                    if (dropdownContent.style.display === "block") {
+                        dropdownContent.style.display = "none";
+                    } else {
+                        dropdownContent.style.display = "block";
+                    }
+                    });
+                }
+            }
+            </script>
 
         <!-- The javascript plugin to display page loading on top-->
         <script src="js/plugins/pace.min.js"></script>

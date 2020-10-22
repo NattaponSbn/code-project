@@ -60,7 +60,7 @@
 
         .name-scle {
             font-size: 16px;
-            color: #FFFFFF;
+            color: #000000;
             -ms-flex-item-align: center;
             align-self: center;
             margin-top: -30px;
@@ -136,6 +136,43 @@
             box-shadow: 0 0 0 0.1rem #fff;
         }
 
+        .btn-outline-primaryy-sidenav {
+            color: #000000;
+            /* border-color: #D9A327; */
+        }
+
+        .btn-outline-primaryy-sidenav:hover {
+            color: #D9A327;
+            /* border-color: 1px solid #D9A327; */
+            /* background-color: #D9A327; */
+            text-decoration: underline;
+        }
+
+        .btn-outline-primaryy-sidenav:focus,
+        .btn-outline-primaryy-sidenav.focus {
+            box-shadow: 0 0 0 0.2rem rgba(52, 144, 220, 0.5);
+        }
+
+        .btn-outline-primaryy-sidenav.disabled,
+        .btn-outline-primaryy-sidenav:disabled {
+            color: #fff;
+            background-color: transparent;
+        }
+
+        .btn-outline-primaryy-sidenav:not(:disabled):not(.disabled):active,
+        .btn-outline-primaryy-sidenav:not(:disabled):not(.disabled).active,
+        .show>.btn-outline-primaryy-sidenav.dropdown-toggle {
+            color: #fff;
+            background-color: #D9A327;
+            border-color: #fff;
+        }
+
+        .btn-outline-primaryy-sidenav:not(:disabled):not(.disabled):active:focus,
+        .btn-outline-primaryy-sidenav:not(:disabled):not(.disabled).active:focus,
+        .show>.btn-outline-primaryy-sidenav.dropdown-toggle:focus {
+            box-shadow: 0 0 0 0.1rem #fff;
+        }
+
         .btn-primaryyy {
             font-size: 18px;
             color: #fff;
@@ -178,7 +215,7 @@
             padding: 6px 8px 6px 16px;
             text-decoration: none;
             font-size: 18px;
-            color: #FFF5EE;
+            color: #000000;
             display: block;
             border: none;
             background: none;
@@ -204,7 +241,7 @@
 
         /* Add an active class to the active dropdown button */
         .active-item {
-            color: white;
+            color: black;
             border-color: none;
             
         }
@@ -212,7 +249,7 @@
         /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
         .dropdown-container {
             display: block;
-            background-color: #262626;
+            background-color: #ffffff;
             padding-left: 8px;
         }
 
@@ -676,11 +713,10 @@
                                     </ul>
                                 </div>
                             </div>
-                        <?php } else if (isset($_SESSION['status']) == 'user') {
+                            <?php } else if (isset($_SESSION['status']) == 'user') {
                         ?>
-
+                            
                             <li class="nav-item dropdown">
-
                                 <a class="nav-link " id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     @foreach($imgaccount as $img)
                                     <img class="rounded-circle user-sizes img-profile" src="imgaccount/<?php echo $img->pathimg; ?>" alt="USer Atver">
@@ -690,7 +726,7 @@
                                     <div class="name-scle dropdown-toggle "><?php echo $user->name; ?></div>
                                     @endforeach
                                 </a>
-
+                                
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                                     <ul class="navbar-nav ml-auto">
                                         <div class="account-dropdown js-dropdown">
@@ -716,9 +752,16 @@
                                                 </div>
                                             </div>
 
-                                            <a href="profile" class="top dropdown-item"><i class="zmdi zmdi-account"></i>โปรไฟล์</a>
+                                            <a href="profile" class="top dropdown-item"><i class="fas fa-user" style="margin-right: 2%;"></i>โปรไฟล์</a>
+                                            <div class="top dropdown-item" >
+                                                @if(!isset($_SESSION['project']))
+                                                <a href="addproject" class="view" style="color: black;text-decoration: none;"><i class="far fa-plus-square" style="margin-right: 2%;"></i>สร้างผลงาน</a><br>
+                                                @elseif(isset($_SESSION['project']))
+                                                <a href="listdetil" class="view" style="color: black;text-decoration: none;"><i class="fas fa-book" style="margin-right: 2%;"></i>ผลงานของฉัน</a><br>
+                                                @endif
+                                            </div>
                                             <a class="dropdown-item" href="logout" onclick="event.preventDefault();
-                                                                    document.getElementById('logout-form').submit();">
+                                                                    document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt" ></i>
                                                 {{ __('ออกจากระบบ') }}
                                             </a>
                                             <form id="logout-form" action="logout" method="POST" style="display: none;">
@@ -735,7 +778,11 @@
                         else  if (isset($_SESSION['statusA']) == 'admin') {
                         ?>
                             <li class="nav-item dropdown">
-
+                           
+                                <div class="links front">
+                                    <a href="homeadmin" class="view"><i class="far fa-caret-square-left fa-lg" style="color:#212529; margin-right: 7px;margin-left: 10px;"></i>กลับสู่หน้าผู้ดูเเลระบบ</a><br>
+                                </div>
+                                   
                                 <a class="nav-link " id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     @foreach($adminaccount as $img)
                                     <img class="rounded-circle user-sizes img-profile" src="img_admin/<?php echo $img->pathimg; ?>" alt="USer Atver">
@@ -771,9 +818,12 @@
                                                 </div>
                                             </div>
 
-                                            <a href="profileadmin" class="top dropdown-item"><i class="zmdi zmdi-account"></i>โปรไฟล์</a>
+                                            <a href="profileadmin" class="top dropdown-item"><i class="fas fa-user" style="margin-right: 2%;"></i>โปรไฟล์</a>
+                                            <div class="links front">
+                                                <a href="homeadmin" class="view" style="color: black;text-decoration: none;"><i class="far fa-caret-square-left" style="margin-right: 2%;"></i>กลับสู่หน้าผู้ดูเเลระบบ</a><br>
+                                            </div>
                                             <a class="dropdown-item" href="logout" onclick="event.preventDefault();
-                                                                document.getElementById('logout-form').submit();">
+                                                                document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt"></i>
                                                 {{ __('ออกจากระบบ') }}
                                             </a>
                                             <form id="logout-form" action="logout" method="POST" style="display: none;">
@@ -805,50 +855,51 @@
                                             <a href="homeMDD"><button type="button" class="btn-control btn-default btn-outline-primaryy " style="font-size:18px;">ปริญญาเอก โท </button></a>
                                         </div><br>
                                         <div class="sidenav" >
-                                                <button class="dropdown-btn" style="border-top: 0.5px solid #fff;border-radius: 10%;">ประเภท
-                                                    <i class="fa fa-caret-down fa-lg" style="width: 20px;"></i>
-                                                </button>
-                                                    <div class="dropdown-container">
-                                                        @foreach($chk_genre as $genre)
-                                                        <a href="genre/{{$genre->genre_id}}" class="btn-default btn-outline-primaryy" style="font-size:17px;color:#fff;">{{$genre->genre_name}}</a>
-                                                        <!-- <a href="#">โปรแกรมประยุกต์สำหรับอุปกรณ์เคลื่อนที่</a>
-                                                        <a href="#">ไอโอที(IoT)</a>
-                                                        <a href="#">ปัญญาประดิษฐ์(Ai)</a>
-                                                        <a href="#">ไอโอที(IoT)</a>
-                                                        <a href="#">ไอโอที(IoT)</a> -->
-                                                        @endforeach
-                                                    </div>
-                                                
-                                           
-                                                <button class="dropdown-btn" style="border-top: 0.5px solid #fff;border-radius: 10%;">หมวดหมู่
-                                                    <i class="fa fa-caret-down fa-lg" style="width: 20px;"></i>
-                                                </button>
-                                                    <div class="dropdown-container">
-                                                        @foreach($chk_category as $category)
-                                                        <a href="category/{{$category->category_id}}" class="btn-default btn-outline-primaryy" style="font-size:17px;color:#fff;">{{$category->category_name}}</a>
-                                                        <!-- <a href="#">โปรแกรมประยุกต์สำหรับอุปกรณ์เคลื่อนที่</a>
-                                                        <a href="#">ไอโอที(IoT)</a>
-                                                        <a href="#">ปัญญาประดิษฐ์(Ai)</a>
-                                                        <a href="#">ไอโอที(IoT)</a>
-                                                        <a href="#">ไอโอที(IoT)</a> -->
-                                                        @endforeach
-                                                    </div>
+                                        <button class="dropdown-btn" style="border-top: 0.5px solid #000000;border-radius: 10%;">ประเภท
+                                                <i class="fa fa-caret-down fa-lg" style="width: 20px;"></i>
+                                            </button>
+                                                <div class="dropdown-container">
+                                                    @foreach($chk_genre as $genre)
+                                                    <a href="genre/{{$genre->genre_id}}" class=" btn-default btn-outline-primaryy-sidenav" style="font-size:17px;">{{$genre->genre_name}}</a>
+                                                    <!-- <a href="#">โปรแกรมประยุกต์สำหรับอุปกรณ์เคลื่อนที่</a>
+                                                    <a href="#">ไอโอที(IoT)</a>
+                                                    <a href="#">ปัญญาประดิษฐ์(Ai)</a>
+                                                    <a href="#">ไอโอที(IoT)</a>
+                                                    <a href="#">ไอโอที(IoT)</a> -->
+                                                    @endforeach
+                                                </div>
                                             
+                                        
+                                            <button class="dropdown-btn" style="border-top: 0.5px solid #000000;border-radius: 10%;">หมวดหมู่
+                                                <i class="fa fa-caret-down fa-lg" style="width: 20px;"></i>
+                                            </button>
+                                                <div class="dropdown-container">
+                                                    @foreach($chk_category as $category)
+                                                    <a href="category/{{$category->category_id}}" class="btn-default btn-outline-primaryy-sidenav" style="font-size:17px;">{{$category->category_name}}</a>
+                                                    <!-- <a href="#">โปรแกรมประยุกต์สำหรับอุปกรณ์เคลื่อนที่</a>
+                                                    <a href="#">ไอโอที(IoT)</a>
+                                                    <a href="#">ปัญญาประดิษฐ์(Ai)</a>
+                                                    <a href="#">ไอโอที(IoT)</a>
+                                                    <a href="#">ไอโอที(IoT)</a> -->
+                                                    @endforeach
+                                                </div>
+                                        
 
-                                                <button class="dropdown-btn " style="border-top: 0.5px solid #fff;border-radius: 10%;">ชนิดเอกสาร
-                                                    <i class="fa fa-caret-down fa-lg" style="width: 20px;"></i>
-                                                </button>
-                                                    <div class="dropdown-container">
-                                                        @foreach($chk_type as $type)
-                                                        <a href="typeproject/{{$type->type_id}}" class="btn-default btn-outline-primaryy" style="font-size:17px;color:#fff;">{{$type->type_name}}</a>
-                                                        <!-- <a href="#">โปรแกรมประยุกต์สำหรับอุปกรณ์เคลื่อนที่</a>
-                                                        <a href="#">ไอโอที(IoT)</a>
-                                                        <a href="#">ปัญญาประดิษฐ์(Ai)</a>
-                                                        <a href="#">ไอโอที(IoT)</a>
-                                                        <a href="#">ไอโอที(IoT)</a> -->
-                                                        @endforeach
-                                                    </div>
-                                            </div>
+                                            <button class="dropdown-btn " style="border-top: 0.5px solid #000000;border-radius: 10%;">ชนิดเอกสาร
+                                                <i class="fa fa-caret-down fa-lg" style="width: 20px;"></i>
+                                            </button>
+                                                <div class="dropdown-container">
+                                                    @foreach($chk_type as $type)
+                                                    <a href="typeproject/{{$type->type_id}}" class="btn-default btn-outline-primaryy-sidenav" style="font-size:17px;">{{$type->type_name}}</a>
+                                                    <!-- <a href="#">โปรแกรมประยุกต์สำหรับอุปกรณ์เคลื่อนที่</a>
+                                                    <a href="#">ไอโอที(IoT)</a>
+                                                    <a href="#">ปัญญาประดิษฐ์(Ai)</a>
+                                                    <a href="#">ไอโอที(IoT)</a>
+                                                    <a href="#">ไอโอที(IoT)</a> -->
+                                                    @endforeach
+                                                </div>
+                                        </div>
+
 
                                         </div>
                                 </div>

@@ -30,7 +30,7 @@
                                                                         <?php $status_p4 = $items->status_p;?>
                                                                             @foreach($itemlp4 as $items)
                                                                                 <a href="itemdetaliBD/{{$items->project_id}}"><div class="column" ><div class="columnimg"><img src="project\img_logo\<?php echo $items->logo;?>" alt="" class="fromimg"></div></a>
-                                                                                    <center><a href="itemdetaliBD/{{$items->project_id}}"><div class="textimg">
+                                                                                    <center><a href="itemdetaliBD/{{$items->project_id}}" title="<?php echo $items->project_name ?>"><div class="textimg">
                                                                                     <?php 
                                                                                         $str = $items->project_name;
                                                                                         $count = utf8_strlen("$str");
@@ -38,10 +38,11 @@
                                                                                     ?></div></a></center>
                                                                                     <center><a href="itemtypeBD/{{$items->type_id}}"><div class="textimg2"><?php echo $items->type_name;?></div></a></center>
                                                                                     <center>
-                                                                                        @if(isset($viewcount4)?$viewcount4:'')
-                                                                                            <?php $viewcount = $viewcount4; ?>
-                                                                                        @endif
-                                                                                        <?php create_star($svgrate4,$viewcount); ?>
+                                                                                        <?php create_star($svgrate4); ?>
+                                                                                    </center>
+                                                                                    <center>
+                                                                                        
+                                                                                        <?php formattter($viewcount4) ?>
                                                                                     </center>
                                                                                 </div>
                                                                             @endforeach
@@ -50,7 +51,7 @@
                                                                         <?php $status_p5 = $items->status_p;?>
                                                                             @foreach($itemlp5 as $items)
                                                                                 <a href="itemdetaliBD/{{$items->project_id}}"><div class="column" ><div class="columnimg"><img src="project\img_logo\<?php echo $items->logo;?>" alt="" class="fromimg"></div></a>
-                                                                                    <center><a href="itemdetaliBD/{{$items->project_id}}"><div class="textimg">
+                                                                                    <center><a href="itemdetaliBD/{{$items->project_id}}" title="<?php echo $items->project_name ?>"><div class="textimg">
                                                                                     <?php 
                                                                                         $str = $items->project_name;
                                                                                         $count = utf8_strlen("$str");
@@ -58,10 +59,11 @@
                                                                                     ?></div></a></center>
                                                                                     <center><a href="itemtypeBD/{{$items->type_id}}"><div class="textimg2"><?php echo $items->type_name;?></div></a></center>
                                                                                     <center>
-                                                                                        @if(isset($viewcount5)?$viewcount5:'')
-                                                                                            <?php $viewcount = $viewcount5; ?>
-                                                                                        @endif
-                                                                                        <?php create_star($svgrate5,$viewcount); ?>
+                                                                                        <?php create_star($svgrate5); ?>
+                                                                                    </center>
+                                                                                    <center>
+                                                                                        
+                                                                                        <?php formattter($viewcount5) ?>
                                                                                     </center>
                                                                                 </div>
                                                                             @endforeach
@@ -70,7 +72,7 @@
                                                                         <?php $status_p6 = $items->status_p;?>
                                                                             @foreach($itemlp6 as $items)
                                                                                 <a href="itemdetaliBD/{{$items->project_id}}"><div class="column" ><div class="columnimg"><img src="project\img_logo\<?php echo $items->logo;?>" alt="" class="fromimg"></div></a>
-                                                                                    <center><a href="itemdetaliBD/{{$items->project_id}}"><div class="textimg">
+                                                                                    <center><a href="itemdetaliBD/{{$items->project_id}}" title="<?php echo $items->project_name ?>"><div class="textimg">
                                                                                     <?php 
                                                                                         $str = $items->project_name;
                                                                                         $count = utf8_strlen("$str");
@@ -78,10 +80,12 @@
                                                                                     ?></div></a></center>
                                                                                     <center><a href="itemtypeBD/{{$items->type_id}}"><div class="textimg2"><?php echo $items->type_name;?></div></a></center>
                                                                                     <center>
-                                                                                        @if(isset($viewcount6)?$viewcount6:'')
-                                                                                            <?php $viewcount = $viewcount6; ?>
-                                                                                        @endif
-                                                                                        <?php create_star($svgrate6,$viewcount); ?>
+                                            
+                                                                                        <?php create_star($svgrate6); ?>
+                                                                                    </center>
+                                                                                    <center>
+                                                                                        
+                                                                                        <?php formattter($viewcount6) ?>
                                                                                     </center>
                                                                                 </div>
                                                                             @endforeach
@@ -90,7 +94,7 @@
                                                                         <?php $status_p7 = $items->status_p;?>
                                                                             @foreach($itemlp7 as $items)
                                                                                 <a href="itemdetaliBD/{{$items->project_id}}"><div class="column" ><div class="columnimg"><img src="project\img_logo\<?php echo $items->logo;?>" alt="" class="fromimg"></div></a>
-                                                                                    <center><a href="itemdetaliBD/{{$items->project_id}}"><div class="textimg">
+                                                                                    <center><a href="itemdetaliBD/{{$items->project_id}}" title="<?php echo $items->project_name ?>"><div class="textimg">
                                                                                     <?php 
                                                                                         $str = $items->project_name;
                                                                                         $count = utf8_strlen("$str");
@@ -98,10 +102,11 @@
                                                                                     ?></div></a></center>
                                                                                     <center><a href="itemtypeBD/{{$items->type_id}}"><div class="textimg2"><?php echo $items->type_name;?></div></a></center>
                                                                                     <center>
-                                                                                        @if(isset($viewcount7)?$viewcount7:'')
-                                                                                            <?php $viewcount = $viewcount7; ?>
-                                                                                        @endif
-                                                                                        <?php create_star($svgrate7,$viewcount); ?>
+                                                                                        <?php create_star($svgrate7); ?>
+                                                                                    </center>
+                                                                                    <center>
+                                                                                       
+                                                                                        <?php formattter($viewcount7) ?>
                                                                                     </center>
                                                                                 </div>
                                                                             @endforeach
@@ -110,7 +115,7 @@
                                                                         @elseif($status_p0=='0' & $status_p1=='0' & $status_p2=='0' & $status_p3=='1')
                                                                             @foreach($itemlp3 as $items)
                                                                                 <a href="itemdetaliBD/{{$items->project_id}}"><div class="column" ><div class="columnimg"><img src="project\img_logo\<?php echo $items->logo;?>" alt="" class="fromimg"></div></a>
-                                                                                    <center><a href="itemdetaliBD/{{$items->project_id}}"><div class="textimg">
+                                                                                    <center><a href="itemdetaliBD/{{$items->project_id}}" title="<?php echo $items->project_name ?>"><div class="textimg">
                                                                                     <?php 
                                                                                         $str = $items->project_name;
                                                                                         $count = utf8_strlen($str);
@@ -119,10 +124,11 @@
                                                                                     ?></div></a></center>
                                                                                     <center><a href="itemtypeBD/{{$items->type_id}}"><div class="textimg2"><?php echo $items->type_name;?></div></a></center>
                                                                                     <center>
-                                                                                        @if(isset($viewcount3)?$viewcount3:'')
-                                                                                            <?php $viewcount = $viewcount3; ?>
-                                                                                        @endif
-                                                                                        <?php create_star($svgrate3,$viewcount); ?>
+                                                                                        <?php create_star($svgrate3); ?>
+                                                                                    </center>
+                                                                                    <center>
+                                                                                        
+                                                                                        <?php formattter($viewcount3) ?>
                                                                                     </center>
                                                                                 </div>
                                                                             @endforeach
@@ -130,7 +136,7 @@
                                                                                 <?php $status_p4 = $items->status_p;?>
                                                                                     @foreach($itemlp4 as $items)
                                                                                         <a href="itemdetaliBD/{{$items->project_id}}"><div class="column" ><div class="columnimg"><img src="project\img_logo\<?php echo $items->logo;?>" alt="" class="fromimg"></div></a>
-                                                                                            <center><a href="itemdetaliBD/{{$items->project_id}}"><div class="textimg">
+                                                                                            <center><a href="itemdetaliBD/{{$items->project_id}}" title="<?php echo $items->project_name ?>"><div class="textimg">
                                                                                             <?php 
                                                                                                 $str = $items->project_name;
                                                                                                 $count = utf8_strlen($str);
@@ -138,10 +144,11 @@
                                                                                             ?></div></a></center>
                                                                                             <center><a href="itemtypeBD/{{$items->type_id}}"><div class="textimg2"><?php echo $items->type_name;?></div></a></center>
                                                                                             <center>
-                                                                                                @if(isset($viewcount4)?$viewcount4:'')
-                                                                                                    <?php $viewcount = $viewcount4; ?>
-                                                                                                @endif
-                                                                                                <?php create_star($svgrate4,$viewcount); ?>
+                                                                                                <?php create_star($svgrate4); ?>
+                                                                                            </center>
+                                                                                            <center>
+                                                                                                
+                                                                                                <?php formattter($viewcount4) ?>
                                                                                             </center>
                                                                                         </div>
                                                                                     @endforeach
@@ -150,7 +157,7 @@
                                                                                 <?php $status_p5 = $items->status_p;?>
                                                                                     @foreach($itemlp5 as $items)
                                                                                         <a href="itemdetaliBD/{{$items->project_id}}"><div class="column" ><div class="columnimg"><img src="project\img_logo\<?php echo $items->logo;?>" alt="" class="fromimg"></div></a>
-                                                                                            <center><a href="itemdetaliBD/{{$items->project_id}}"><div class="textimg">
+                                                                                            <center><a href="itemdetaliBD/{{$items->project_id}}" title="<?php echo $items->project_name ?>"><div class="textimg">
                                                                                             <?php 
                                                                                                 $str = $items->project_name;
                                                                                                 $count = utf8_strlen("$str");
@@ -158,10 +165,11 @@
                                                                                             ?></div></a></center>
                                                                                             <center><a href="itemtypeBD/{{$items->type_id}}"><div class="textimg2"><?php echo $items->type_name;?></div></a></center>
                                                                                             <center>
-                                                                                                @if(isset($viewcount5)?$viewcount5:'')
-                                                                                                    <?php $viewcount = $viewcount5; ?>
-                                                                                                @endif
-                                                                                                <?php create_star($svgrate5,$viewcount); ?>
+                                                                                                <?php create_star($svgrate5); ?>
+                                                                                            </center>
+                                                                                            <center>
+                                                                                                
+                                                                                                <?php formattter($viewcount5) ?>
                                                                                             </center>
                                                                                         </div>
                                                                                     @endforeach
@@ -170,7 +178,7 @@
                                                                                 <?php $status_p6 = $items->status_p;?>
                                                                                     @foreach($itemlp6 as $items)
                                                                                         <a href="itemdetaliBD/{{$items->project_id}}"><div class="column" ><div class="columnimg"><img src="project\img_logo\<?php echo $items->logo;?>" alt="" class="fromimg"></div></a>
-                                                                                            <center><a href="itemdetaliBD/{{$items->project_id}}"><div class="textimg">
+                                                                                            <center><a href="itemdetaliBD/{{$items->project_id}}" title="<?php echo $items->project_name ?>"><div class="textimg">
                                                                                             <?php 
                                                                                                 $str = $items->project_name;
                                                                                                 $count = utf8_strlen("$str");
@@ -178,10 +186,12 @@
                                                                                             ?></div></a></center>
                                                                                             <center><a href="itemtypeBD/{{$items->type_id}}"><div class="textimg2"><?php echo $items->type_name;?></div></a></center>
                                                                                             <center>
-                                                                                                @if(isset($viewcount6)?$viewcount6:'')
-                                                                                                    <?php $viewcount = $viewcount6; ?>
-                                                                                                @endif
-                                                                                                <?php create_star($svgrate6,$viewcount); ?>
+                                                                                                
+                                                                                                <?php create_star($svgrate6); ?>
+                                                                                            </center>
+                                                                                            <center>
+                                                                                                
+                                                                                                <?php formattter($viewcount6) ?>
                                                                                             </center>
                                                                                         </div>
                                                                                     @endforeach
@@ -189,7 +199,7 @@
                                                                         @elseif($status_p0=='0' & $status_p1=='0' & $status_p2=='1' & $status_p3=='1')
                                                                             @foreach($itemlp2 as $items)
                                                                                 <a href="itemdetaliBD/{{$items->project_id}}"><div class="column" ><div class="columnimg"><img src="project\img_logo\<?php echo $items->logo;?>" alt="" class="fromimg"></div></a>
-                                                                                    <center><a href="itemdetaliBD/{{$items->project_id}}"><div class="textimg">
+                                                                                    <center><a href="itemdetaliBD/{{$items->project_id}}" title="<?php echo $items->project_name ?>"><div class="textimg">
                                                                                     <?php 
                                                                                         $str = $items->project_name;
                                                                                         $count = utf8_strlen("$str");
@@ -197,16 +207,17 @@
                                                                                     ?></div></a></center>
                                                                                     <center><a href="itemtypeBD/{{$items->type_id}}"><div class="textimg2"><?php echo $items->type_name;?></div></a></center>
                                                                                     <center>
-                                                                                        @if(isset($viewcount2)?$viewcount2:'')
-                                                                                            <?php $viewcount = $viewcount2; ?>
-                                                                                        @endif
-                                                                                        <?php create_star($svgrate2,$viewcount); ?>
+                                                                                        <?php create_star($svgrate2); ?>
+                                                                                    </center>
+                                                                                    <center>
+                                                                                        
+                                                                                        <?php formattter($viewcount2) ?>
                                                                                     </center>
                                                                                 </div>
                                                                             @endforeach
                                                                             @foreach($itemlp3 as $items)
                                                                                 <a href="itemdetaliBD/{{$items->project_id}}"><div class="column" ><div class="columnimg"><img src="project\img_logo\<?php echo $items->logo;?>" alt="" class="fromimg"></div></a>
-                                                                                    <center><a href="itemdetaliBD/{{$items->project_id}}"><div class="textimg">
+                                                                                    <center><a href="itemdetaliBD/{{$items->project_id}}" title="<?php echo $items->project_name ?>"><div class="textimg">
                                                                                     <?php 
                                                                                         $str = $items->project_name;
                                                                                         $count = utf8_strlen("$str");
@@ -214,10 +225,12 @@
                                                                                     ?></div></a></center>
                                                                                     <center><a href="itemtypeBD/{{$items->type_id}}"><div class="textimg2"><?php echo $items->type_name;?></div></a></center>
                                                                                     <center>
-                                                                                        @if(isset($viewcount3)?$viewcount3:'')
-                                                                                            <?php $viewcount = $viewcount3; ?>
-                                                                                        @endif
-                                                                                        <?php create_star($svgrate3,$viewcount); ?>
+                                                                                        
+                                                                                        <?php create_star($svgrate3); ?>
+                                                                                    </center>
+                                                                                    <center>
+                                                                                        
+                                                                                        <?php formattter($viewcount3) ?>
                                                                                     </center>
                                                                                 </div>
                                                                             @endforeach
@@ -225,7 +238,7 @@
                                                                                 <?php $status_p4 = $items->status_p;?>
                                                                                     @foreach($itemlp4 as $items)
                                                                                         <a href="itemdetaliBD/{{$items->project_id}}"><div class="column" ><div class="columnimg"><img src="project\img_logo\<?php echo $items->logo;?>" alt="" class="fromimg"></div></a>
-                                                                                            <center><a href="itemdetaliBD/{{$items->project_id}}"><div class="textimg">
+                                                                                            <center><a href="itemdetaliBD/{{$items->project_id}}" title="<?php echo $items->project_name ?>"><div class="textimg">
                                                                                             <?php 
                                                                                                 $str = $items->project_name;
                                                                                                 $count = utf8_strlen("$str");
@@ -233,10 +246,12 @@
                                                                                             ?></div></a></center>
                                                                                             <center><a href="itemtypeBD/{{$items->type_id}}"><div class="textimg2"><?php echo $items->type_name;?></div></a></center>
                                                                                             <center>
-                                                                                                @if(isset($viewcount4)?$viewcount4:'')
-                                                                                                    <?php $viewcount = $viewcount4; ?>
-                                                                                                @endif
-                                                                                                <?php create_star($svgrate4,$viewcount); ?>
+                                                                                                
+                                                                                                <?php create_star($svgrate4); ?>
+                                                                                            </center>
+                                                                                            <center>
+                                                                                                
+                                                                                                <?php formattter($viewcount4) ?>
                                                                                             </center>
                                                                                         </div>
                                                                                     @endforeach
@@ -245,7 +260,7 @@
                                                                                 <?php $status_p5 = $items->status_p;?>
                                                                                     @foreach($itemlp5 as $items)
                                                                                         <a href="itemdetaliBD/{{$items->project_id}}"><div class="column" ><div class="columnimg"><img src="project\img_logo\<?php echo $items->logo;?>" alt="" class="fromimg"></div></a>
-                                                                                            <center><a href="itemdetaliBD/{{$items->project_id}}"><div class="textimg">
+                                                                                            <center><a href="itemdetaliBD/{{$items->project_id}}" title="<?php echo $items->project_name ?>"><div class="textimg">
                                                                                             <?php 
                                                                                                 $str = $items->project_name;
                                                                                                 $count = utf8_strlen("$str");
@@ -253,10 +268,12 @@
                                                                                             ?></div></a></center>
                                                                                             <center><a href="itemtypeBD/{{$items->type_id}}"><div class="textimg2"><?php echo $items->type_name;?></div></a></center>
                                                                                             <center>
-                                                                                                @if(isset($viewcount5)?$viewcount5:'')
-                                                                                                    <?php $viewcount = $viewcount5; ?>
-                                                                                                @endif
-                                                                                                <?php create_star($svgrate5,$viewcount); ?>
+                                                                                                
+                                                                                                <?php create_star($svgrate5); ?>
+                                                                                            </center>
+                                                                                            <center>
+                                                                                                
+                                                                                                <?php formattter($viewcount5) ?>
                                                                                             </center>
                                                                                         </div>
                                                                                     @endforeach
@@ -265,7 +282,7 @@
                                                                         @elseif($status_p0=='0' & $status_p1=='1' & $status_p2=='1' & $status_p3=='1')
                                                                             @foreach($itemlp1 as $items)
                                                                                 <a href="itemdetaliBD/{{$items->project_id}}"><div class="column" ><div class="columnimg"><img src="project\img_logo\<?php echo $items->logo;?>" alt="" class="fromimg"></div></a>
-                                                                                    <center><a href="itemdetaliBD/{{$items->project_id}}"><div class="textimg">
+                                                                                    <center><a href="itemdetaliBD/{{$items->project_id}}" title="<?php echo $items->project_name ?>"><div class="textimg">
                                                                                     <?php 
                                                                                         $str = $items->project_name;
                                                                                         $count = utf8_strlen("$str");
@@ -273,16 +290,18 @@
                                                                                     ?></div></a></center>
                                                                                     <center><a href="itemtypeBD/{{$items->type_id}}"><div class="textimg2"><?php echo $items->type_name;?></div></a></center>
                                                                                     <center>
-                                                                                        @if(isset($viewcount1)?$viewcount1:'')
-                                                                                            <?php $viewcount = $viewcount1; ?>
-                                                                                        @endif
-                                                                                        <?php create_star($svgrate1,$viewcount); ?>
+                                                                                        
+                                                                                        <?php create_star($svgrate1); ?>
+                                                                                    </center>
+                                                                                    <center>
+                                                                                       
+                                                                                        <?php formattter($viewcount1) ?>
                                                                                     </center>
                                                                                 </div>
                                                                             @endforeach
                                                                             @foreach($itemlp2 as $items)
                                                                                 <a href="itemdetaliBD/{{$items->project_id}}"><div class="column" ><div class="columnimg"><img src="project\img_logo\<?php echo $items->logo;?>" alt="" class="fromimg"></div></a>
-                                                                                    <center><a href="itemdetaliBD/{{$items->project_id}}"><div class="textimg">
+                                                                                    <center><a href="itemdetaliBD/{{$items->project_id}}" title="<?php echo $items->project_name ?>"><div class="textimg">
                                                                                     <?php 
                                                                                         $str = $items->project_name;
                                                                                         $count = utf8_strlen("$str");
@@ -290,16 +309,18 @@
                                                                                     ?></div></a></center>
                                                                                     <center><a href="itemtypeBD/{{$items->type_id}}"><div class="textimg2"><?php echo $items->type_name;?></div></a></center>
                                                                                     <center>
-                                                                                        @if(isset($viewcount2)?$viewcount2:'')
-                                                                                            <?php $viewcount = $viewcount2; ?>
-                                                                                        @endif
-                                                                                        <?php create_star($svgrate2,$viewcount); ?>
+                                                                                        
+                                                                                        <?php create_star($svgrate2); ?>
+                                                                                    </center>
+                                                                                    <center>
+                                                                                       
+                                                                                        <?php formattter($viewcount2) ?>
                                                                                     </center>
                                                                                 </div>
                                                                             @endforeach
                                                                             @foreach($itemlp3 as $items)
                                                                                 <a href="itemdetaliBD/{{$items->project_id}}"><div class="column" ><div class="columnimg"><img src="project\img_logo\<?php echo $items->logo;?>" alt="" class="fromimg"></div></a>
-                                                                                    <center><a href="itemdetaliBD/{{$items->project_id}}"><div class="textimg">
+                                                                                    <center><a href="itemdetaliBD/{{$items->project_id}}" title="<?php echo $items->project_name ?>"><div class="textimg">
                                                                                     <?php 
                                                                                         $str = $items->project_name;
                                                                                         $count = utf8_strlen("$str");
@@ -307,18 +328,20 @@
                                                                                     ?></div></a></center>
                                                                                     <center><a href="itemtypeBD/{{$items->type_id}}"><div class="textimg2"><?php echo $items->type_name;?></div></a></center>
                                                                                     <center>
-                                                                                        @if(isset($viewcount3)?$viewcount3:'')
-                                                                                            <?php $viewcount = $viewcount3; ?>
-                                                                                        @endif
-                                                                                        <?php create_star($svgrate3,$viewcount); ?>
+                                                                                        
+                                                                                        <?php create_star($svgrate3); ?>
+                                                                                    </center>
+                                                                                    <center>
+                                                                                       
+                                                                                        <?php formattter($viewcount3) ?>
                                                                                     </center>
                                                                                 </div>
                                                                             @endforeach
                                                                             @foreach($itemlp4 as $items)
                                                                                 <?php $status_p4 = $items->status_p;?>
                                                                                     @foreach($itemlp4 as $items)
-                                                                                        <a href="itemdetaliBD/{{$items->project_id}}"><div class="column" ><div class="columnimg"><img src="project\img_logo\<?php echo $items->logo;?>" alt="" class="fromimg"></div></a>
-                                                                                            <center><a href="itemdetaliBD/{{$items->project_id}}"><div class="textimg">
+                                                                                        <a href="itemdetaliBD/{{$items->project_id}}" ><div class="column" ><div class="columnimg"><img src="project\img_logo\<?php echo $items->logo;?>" alt="" class="fromimg"></div></a>
+                                                                                            <center><a href="itemdetaliBD/{{$items->project_id}}" title="<?php echo $items->project_name ?>"><div class="textimg">
                                                                                             <?php 
                                                                                                 $str = $items->project_name;
                                                                                                 $count = utf8_strlen("$str");
@@ -326,10 +349,12 @@
                                                                                             ?></div></a></center>
                                                                                             <center><a href="itemtypeBD/{{$items->type_id}}"><div class="textimg2"><?php echo $items->type_name;?></div></a></center>
                                                                                             <center>
-                                                                                                @if(isset($viewcount4)?$viewcount4:'')
-                                                                                                    <?php $viewcount = $viewcount4; ?>
-                                                                                                @endif
-                                                                                                <?php create_star($svgrate4,$viewcount); ?>
+                                                                                                
+                                                                                                <?php create_star($svgrate4); ?>
+                                                                                            </center>
+                                                                                            <center>
+                                                                                              
+                                                                                                <?php formattter($viewcount4) ?>
                                                                                             </center>
                                                                                         </div>
                                                                                     @endforeach
@@ -338,7 +363,7 @@
                                                                         @elseif($status_p0=='1' & $status_p1=='1' & $status_p2=='1' & $status_p3=='1')
                                                                             @foreach($itemlp0 as $items)
                                                                                 <a href="itemdetaliBD/{{$items->project_id}}"><div class="column" ><div class="columnimg"><img src="project\img_logo\<?php echo $items->logo;?>" alt="" class="fromimg"></div></a>
-                                                                                    <center><a href="itemdetaliBD/{{$items->project_id}}"><div class="textimg">
+                                                                                    <center><a href="itemdetaliBD/{{$items->project_id}}" title="<?php echo $items->project_name ?>"><div class="textimg">
                                                                                     <?php 
                                                                                         $str = $items->project_name;
                                                                                         $count = utf8_strlen($str);
@@ -346,16 +371,17 @@
                                                                                     ?></div></a></center>
                                                                                     <center><a href="itemtypeBD/{{$items->type_id}}"><div class="textimg2"><?php echo $items->type_name;?></div></a></center>
                                                                                     <center>
-                                                                                        @if(isset($viewcount0)?$viewcount0:'')
-                                                                                            <?php $viewcount = $viewcount0; ?>
-                                                                                        @endif
-                                                                                        <?php create_star($svgrate0,$viewcount); ?>
+                                                                                       
+                                                                                        <?php create_star($svgrate0); ?>
+                                                                                    </center>
+                                                                                    <center>
+                                                                                        <?php formattter($viewcount0); ?>
                                                                                     </center>
                                                                                 </div>
                                                                             @endforeach
                                                                             @foreach($itemlp1 as $items)
                                                                                 <a href="itemdetaliBD/{{$items->project_id}}"><div class="column" ><div class="columnimg"><img src="project\img_logo\<?php echo $items->logo;?>" alt="" class="fromimg"></div></a>
-                                                                                    <center><a href="itemdetaliBD/{{$items->project_id}}"><div class="textimg">
+                                                                                    <center><a href="itemdetaliBD/{{$items->project_id}}" title="<?php echo $items->project_name ?>"><div class="textimg">
                                                                                     <?php 
                                                                                         $str = $items->project_name;
                                                                                         $count = utf8_strlen($str);
@@ -363,16 +389,18 @@
                                                                                     ?></div></a></center>
                                                                                     <center><a href="itemtypeBD/{{$items->type_id}}"><div class="textimg2"><?php echo $items->type_name;?></div></a></center>
                                                                                     <center>
-                                                                                        @if(isset($viewcount1)?$viewcount1:'')
-                                                                                            <?php $viewcount = $viewcount1; ?>
-                                                                                        @endif
-                                                                                        <?php create_star($svgrate1,$viewcount); ?>
+                                                                                        
+                                                                                        <?php create_star($svgrate1); ?>
+                                                                                    </center>
+                                                                                    <center>
+                                                                                        
+                                                                                        <?php formattter($viewcount1) ?>
                                                                                     </center>
                                                                                 </div>
                                                                             @endforeach
                                                                             @foreach($itemlp2 as $items)
                                                                                 <a href="itemdetaliBD/{{$items->project_id}}"><div class="column" ><div class="columnimg"><img src="project\img_logo\<?php echo $items->logo;?>" alt="" class="fromimg"></div></a>
-                                                                                    <center><a href="itemdetaliBD/{{$items->project_id}}"><div class="textimg">
+                                                                                    <center><a href="itemdetaliBD/{{$items->project_id}}" title="<?php echo $items->project_name ?>"><div class="textimg">
                                                                                     <?php 
                                                                                         $str = $items->project_name;
                                                                                         $count = utf8_strlen($str);
@@ -380,16 +408,18 @@
                                                                                     ?></div></a></center>
                                                                                     <center><a href="itemtypeBD/{{$items->type_id}}"><div class="textimg2"><?php echo $items->type_name;?></div></a></center>
                                                                                     <center>
-                                                                                        @if(isset($viewcount2)?$viewcount2:'')
-                                                                                            <?php $viewcount = $viewcount2; ?>
-                                                                                        @endif
-                                                                                        <?php create_star($svgrate2,$viewcount); ?>
+                                                                                        
+                                                                                        <?php create_star($svgrate2); ?>
+                                                                                    </center>
+                                                                                    <center>
+                                                                                        
+                                                                                        <?php formattter($viewcount2) ?>
                                                                                     </center>
                                                                                 </div>
                                                                             @endforeach
                                                                             @foreach($itemlp3 as $items)
                                                                                 <a href="itemdetaliBD/{{$items->project_id}}"><div class="column" ><div class="columnimg"><img src="project\img_logo\<?php echo $items->logo;?>" alt="" class="fromimg"></div></a>
-                                                                                    <center><a href="itemdetaliBD/{{$items->project_id}}"><div class="textimg">
+                                                                                    <center><a href="itemdetaliBD/{{$items->project_id}}" title="<?php echo $items->project_name ?>"><div class="textimg">
                                                                                     <?php 
                                                                                         $str = $items->project_name;
                                                                                         $count = utf8_strlen($str);
@@ -397,17 +427,18 @@
                                                                                     ?></div></a></center>
                                                                                     <center><a href="itemtypeBD/{{$items->type_id}}"><div class="textimg2"><?php echo $items->type_name;?></div></a></center>
                                                                                     <center>
-                                                                                        @if(isset($viewcount3)?$viewcount3:'')
-                                                                                            <?php $viewcount = $viewcount3; ?>
-                                                                                        @endif
-                                                                                        <?php create_star($svgrate3,$viewcount); ?>
+                                                                                        <?php create_star($svgrate3); ?>
+                                                                                    </center>
+                                                                                    <center>
+                                                                                        
+                                                                                        <?php formattter($viewcount3) ?>
                                                                                     </center>
                                                                                 </div>
                                                                             @endforeach
                                                                         @elseif($status_p0=='1' & $status_p1=='0' & $status_p2=='0' & $status_p3=='1')
                                                                             @foreach($itemlp0 as $items)
                                                                                 <a href="itemdetaliBD/{{$items->project_id}}"><div class="column" ><div class="columnimg"><img src="project\img_logo\<?php echo $items->logo;?>" alt="" class="fromimg"></div></a>
-                                                                                    <center><a href="itemdetaliBD/{{$items->project_id}}"><div class="textimg">
+                                                                                    <center><a href="itemdetaliBD/{{$items->project_id}}" title="<?php echo $items->project_name ?>"><div class="textimg">
                                                                                     <?php 
                                                                                         $str = $items->project_name;
                                                                                         $count = utf8_strlen($str);
@@ -415,16 +446,17 @@
                                                                                     ?></div></a></center>
                                                                                     <center><a href="itemtypeBD/{{$items->type_id}}"><div class="textimg2"><?php echo $items->type_name;?></div></a></center>
                                                                                     <center>
-                                                                                        @if(isset($viewcount0)?$viewcount0:'')
-                                                                                            <?php $viewcount = $viewcount0; ?>
-                                                                                        @endif
-                                                                                        <?php create_star($svgrate0,$viewcount); ?>
+                                                                                        
+                                                                                        <?php create_star($svgrate0); ?>
+                                                                                    </center>
+                                                                                    <center>
+                                                                                        <?php formattter($viewcount0); ?>
                                                                                     </center>
                                                                                 </div>
                                                                             @endforeach
                                                                             @foreach($itemlp3 as $items)
                                                                                 <a href="itemdetaliBD/{{$items->project_id}}"><div class="column" ><div class="columnimg"><img src="project\img_logo\<?php echo $items->logo;?>" alt="" class="fromimg"></div></a>
-                                                                                    <center><a href="itemdetaliBD/{{$items->project_id}}"><div class="textimg">
+                                                                                    <center><a href="itemdetaliBD/{{$items->project_id}}" title="<?php echo $items->project_name ?>"><div class="textimg">
                                                                                     <?php 
                                                                                         $str = $items->project_name;
                                                                                         $count = utf8_strlen($str);
@@ -432,18 +464,19 @@
                                                                                     ?></div></a></center>
                                                                                     <center><a href="itemtypeBD/{{$items->type_id}}"><div class="textimg2"><?php echo $items->type_name;?></div></a></center>
                                                                                     <center>
-                                                                                        @if(isset($viewcount3)?$viewcount3:'')
-                                                                                            <?php $viewcount = $viewcount3; ?>
-                                                                                        @endif
-                                                                                        <?php create_star($svgrate3,$viewcount); ?>
+                                                                                       
+                                                                                        <?php create_star($svgrate3); ?>
+                                                                                    </center>
+                                                                                    <center>
+                                                                                        <?php formattter($viewcount3); ?>
                                                                                     </center>
                                                                                 </div>
                                                                             @endforeach
                                                                             @foreach($itemlp4 as $items)
                                                                                 <?php $status_p4 = $items->status_p;?>
                                                                                     @foreach($itemlp4 as $items)
-                                                                                        <a href="itemdetaliBD/{{$items->project_id}}"><div class="column" ><div class="columnimg"><img src="project\img_logo\<?php echo $items->logo;?>" alt="" class="fromimg"></div></a>
-                                                                                            <center><a href="itemdetaliBD/{{$items->project_id}}"><div class="textimg">
+                                                                                        <a href="itemdetaliBD/{{$items->project_id}}" ><div class="column" ><div class="columnimg"><img src="project\img_logo\<?php echo $items->logo;?>" alt="" class="fromimg"></div></a>
+                                                                                            <center><a href="itemdetaliBD/{{$items->project_id}}" title="<?php echo $items->project_name ?>"><div class="textimg">
                                                                                             <?php 
                                                                                                 $str = $items->project_name;
                                                                                                 $count = utf8_strlen($str);
@@ -451,10 +484,11 @@
                                                                                             ?></div></a></center>
                                                                                             <center><a href="itemtypeBD/{{$items->type_id}}"><div class="textimg2"><?php echo $items->type_name;?></div></a></center>
                                                                                             <center>
-                                                                                                @if(isset($viewcount4)?$viewcount4:'')
-                                                                                                    <?php $viewcount = $viewcount4; ?>
-                                                                                                @endif
-                                                                                                <?php create_star($svgrate4,$viewcount); ?>
+                                                                                                
+                                                                                                <?php create_star($svgrate4); ?>
+                                                                                            </center>
+                                                                                            <center>
+                                                                                                <?php formattter($viewcount4); ?>
                                                                                             </center>
                                                                                         </div>
                                                                                     @endforeach
@@ -463,7 +497,7 @@
                                                                                 <?php $status_p5 = $items->status_p;?>
                                                                                     @foreach($itemlp5 as $items)
                                                                                     <a href="itemdetaliBD/{{$items->project_id}}"><div class="column" ><div class="columnimg"><img src="project\img_logo\<?php echo $items->logo;?>" alt="" class="fromimg"></div></a>
-                                                                                        <center><a href="itemdetaliBD/{{$items->project_id}}"><div class="textimg">
+                                                                                        <center><a href="itemdetaliBD/{{$items->project_id}}" title="<?php echo $items->project_name ?>"><div class="textimg">
                                                                                         <?php 
                                                                                             $str = $items->project_name;
                                                                                             $count = utf8_strlen($str);
@@ -471,10 +505,11 @@
                                                                                         ?></div></a></center>
                                                                                         <center><a href="itemtypeBD/{{$items->type_id}}"><div class="textimg2"><?php echo $items->type_name;?></div></a></center>
                                                                                         <center>
-                                                                                            @if(isset($viewcount5)?$viewcount5:'')
-                                                                                                <?php $viewcount = $viewcount5; ?>
-                                                                                            @endif
-                                                                                            <?php create_star($svgrate5,$viewcount); ?>
+                                                                                           
+                                                                                            <?php create_star($svgrate5); ?>
+                                                                                        </center>
+                                                                                        <center>
+                                                                                            <?php formattter($viewcount5); ?>
                                                                                         </center>
                                                                                     </div>
                                                                                     @endforeach
@@ -483,7 +518,7 @@
                                                                         @elseif($status_p0=='1' & $status_p1=='0' & $status_p2=='1' & $status_p3=='1')
                                                                             @foreach($itemlp0 as $items)
                                                                                 <a href="itemdetaliBD/{{$items->project_id}}"><div class="column" ><div class="columnimg"><img src="project\img_logo\<?php echo $items->logo;?>" alt="" class="fromimg"></div></a>
-                                                                                    <center><a href="itemdetaliBD/{{$items->project_id}}"><div class="textimg">
+                                                                                    <center><a href="itemdetaliBD/{{$items->project_id}}" title="<?php echo $items->project_name ?>"><div class="textimg">
                                                                                     <?php 
                                                                                         $str = $items->project_name;
                                                                                         $count = utf8_strlen($str);
@@ -491,16 +526,17 @@
                                                                                     ?></div></a></center>
                                                                                     <center><a href="itemtypeBD/{{$items->type_id}}"><div class="textimg2"><?php echo $items->type_name;?></div></a></center>
                                                                                     <center>
-                                                                                        @if(isset($viewcount0)?$viewcount0:'')
-                                                                                            <?php $viewcount = $viewcount0; ?>
-                                                                                        @endif
-                                                                                        <?php create_star($svgrate0,$viewcount); ?>
+                                                                                        
+                                                                                        <?php create_star($svgrate0); ?>
+                                                                                    </center>
+                                                                                    <center>
+                                                                                        <?php formattter($viewcount0); ?>
                                                                                     </center>
                                                                                 </div>
                                                                             @endforeach
                                                                             @foreach($itemlp1 as $items)
                                                                                 <a href="itemdetaliBD/{{$items->project_id}}"><div class="column" ><div class="columnimg"><img src="project\img_logo\<?php echo $items->logo;?>" alt="" class="fromimg"></div></a>
-                                                                                    <center><a href="itemdetaliBD/{{$items->project_id}}"><div class="textimg">
+                                                                                    <center><a href="itemdetaliBD/{{$items->project_id}}" title="<?php echo $items->project_name ?>"><div class="textimg">
                                                                                     <?php 
                                                                                         $str = $items->project_name;
                                                                                         $count = utf8_strlen($str);
@@ -508,16 +544,17 @@
                                                                                     ?></div></a></center>
                                                                                     <center><a href="itemtypeBD/{{$items->type_id}}"><div class="textimg2"><?php echo $items->type_name;?></div></a></center>
                                                                                     <center>
-                                                                                        @if(isset($viewcount1)?$viewcount1:'')
-                                                                                            <?php $viewcount = $viewcount1; ?>
-                                                                                        @endif
-                                                                                        <?php create_star($svgrate1,$viewcount); ?>
+                                                                                        
+                                                                                        <?php create_star($svgrate1); ?>
+                                                                                    </center>
+                                                                                    <center>
+                                                                                        <?php formattter($viewcount1); ?>
                                                                                     </center>
                                                                                 </div>
                                                                             @endforeach
                                                                             @foreach($itemlp3 as $items)
                                                                                 <a href="itemdetaliBD/{{$items->project_id}}"><div class="column" ><div class="columnimg"><img src="project\img_logo\<?php echo $items->logo;?>" alt="" class="fromimg"></div></a>
-                                                                                    <center><a href="itemdetaliBD/{{$items->project_id}}"><div class="textimg">
+                                                                                    <center><a href="itemdetaliBD/{{$items->project_id}}" title="<?php echo $items->project_name ?>"><div class="textimg">
                                                                                     <?php 
                                                                                         $str = $items->project_name;
                                                                                         $count = utf8_strlen($str);
@@ -525,10 +562,8 @@
                                                                                     ?></div></a></center>
                                                                                     <center><a href="itemtypeBD/{{$items->type_id}}"><div class="textimg2"><?php echo $items->type_name;?></div></a></center>
                                                                                     <center>
-                                                                                        @if(isset($viewcount3)?$viewcount3:'')
-                                                                                            <?php $viewcount = $viewcount3; ?>
-                                                                                        @endif
-                                                                                        <?php create_star($svgrate3,$viewcount); ?>
+                                                                                       
+                                                                                        <?php create_star($svgrate3); ?>
                                                                                     </center>
                                                                                 </div>
                                                                             @endforeach
@@ -536,7 +571,7 @@
                                                                                 <?php $status_p4 = $items->status_p;?>
                                                                                     @foreach($itemlp4 as $items)
                                                                                     <a href="itemdetaliBD/{{$items->project_id}}"><div class="column" ><div class="columnimg"><img src="project\img_logo\<?php echo $items->logo;?>" alt="" class="fromimg"></div></a>
-                                                                                        <center><a href="itemdetaliBD/{{$items->project_id}}"><div class="textimg">
+                                                                                        <center><a href="itemdetaliBD/{{$items->project_id}}" title="<?php echo $items->project_name ?>"><div class="textimg">
                                                                                         <?php 
                                                                                             $str = $items->project_name;
                                                                                             $count = utf8_strlen($str);
@@ -544,10 +579,11 @@
                                                                                         ?></div></a></center>
                                                                                         <center><a href="itemtypeBD/{{$items->type_id}}"><div class="textimg2"><?php echo $items->type_name;?></div></a></center>
                                                                                         <center>
-                                                                                            @if(isset($viewcount4)?$viewcount4:'')
-                                                                                                <?php $viewcount = $viewcount4; ?>
-                                                                                            @endif
-                                                                                            <?php create_star($svgrate4,$viewcount); ?>
+                                                                                            
+                                                                                            <?php create_star($svgrate4); ?>
+                                                                                        </center>
+                                                                                        <center>
+                                                                                            <?php formattter($viewcount4); ?>
                                                                                         </center>
                                                                                     </div>
                                                                                     @endforeach
@@ -556,7 +592,7 @@
                                                                         @elseif($status_p0=='1' & $status_p1=='1' & $status_p2=='0' & $status_p3=='1')
                                                                             @foreach($itemlp0 as $items)
                                                                                 <a href="itemdetaliBD/{{$items->project_id}}"><div class="column" ><div class="columnimg"><img src="project\img_logo\<?php echo $items->logo;?>" alt="" class="fromimg"></div></a>
-                                                                                    <center><a href="itemdetaliBD/{{$items->project_id}}"><div class="textimg">
+                                                                                    <center><a href="itemdetaliBD/{{$items->project_id}}" title="<?php echo $items->project_name ?>"><div class="textimg">
                                                                                     <?php 
                                                                                         $str = $items->project_name;
                                                                                         $count = utf8_strlen($str);
@@ -567,13 +603,16 @@
                                                                                         @if(isset($viewcount0)?$viewcount0:'')
                                                                                             <?php $viewcount = $viewcount0; ?>
                                                                                         @endif
-                                                                                        <?php create_star($svgrate0,$viewcount); ?>
+                                                                                        <?php create_star($svgrate0); ?>
+                                                                                    </center>
+                                                                                    <center>
+                                                                                        <?php formattter($viewcount0); ?>
                                                                                     </center>
                                                                                 </div>
                                                                             @endforeach
                                                                             @foreach($itemlp1 as $items)
                                                                                 <a href="itemdetaliBD/{{$items->project_id}}"><div class="column" ><div class="columnimg"><img src="project\img_logo\<?php echo $items->logo;?>" alt="" class="fromimg"></div></a>
-                                                                                    <center><a href="itemdetaliBD/{{$items->project_id}}"><div class="textimg">
+                                                                                    <center><a href="itemdetaliBD/{{$items->project_id}}" title="<?php echo $items->project_name ?>"><div class="textimg">
                                                                                     <?php 
                                                                                         $str = $items->project_name;
                                                                                         $count = utf8_strlen($str);
@@ -584,13 +623,16 @@
                                                                                         @if(isset($viewcount1)?$viewcount1:'')
                                                                                             <?php $viewcount = $viewcount1; ?>
                                                                                         @endif
-                                                                                        <?php create_star($svgrate1,$viewcount); ?>
+                                                                                        <?php create_star($svgrate1); ?>
+                                                                                    </center>
+                                                                                    <center>
+                                                                                        <?php formattter($viewcount1); ?>
                                                                                     </center>
                                                                                 </div>
                                                                             @endforeach
                                                                             @foreach($itemlp2 as $items)
                                                                                 <a href="itemdetaliBD/{{$items->project_id}}"><div class="column" ><div class="columnimg"><img src="project\img_logo\<?php echo $items->logo;?>" alt="" class="fromimg"></div></a>
-                                                                                    <center><a href="itemdetaliBD/{{$items->project_id}}"><div class="textimg">
+                                                                                    <center><a href="itemdetaliBD/{{$items->project_id}}" title="<?php echo $items->project_name ?>"><div class="textimg">
                                                                                     <?php 
                                                                                         $str = $items->project_name;
                                                                                         $count = utf8_strlen($str);
@@ -601,7 +643,10 @@
                                                                                         @if(isset($viewcount2)?$viewcount2:'')
                                                                                             <?php $viewcount = $viewcount2; ?>
                                                                                         @endif
-                                                                                        <?php create_star($svgrate2,$viewcount); ?>
+                                                                                        <?php create_star($svgrate2); ?>
+                                                                                    </center>
+                                                                                    <center>
+                                                                                        <?php formattter($viewcount2); ?>
                                                                                     </center>
                                                                                 </div>
                                                                             @endforeach
@@ -609,7 +654,7 @@
                                                                                 <?php $status_p4 = $items->status_p;?>
                                                                                     @foreach($itemlp4 as $items)
                                                                                         <a href="itemdetaliBD/{{$items->project_id}}"><div class="column" ><div class="columnimg"><img src="project\img_logo\<?php echo $items->logo;?>" alt="" class="fromimg"></div></a>
-                                                                                            <center><a href="itemdetaliBD/{{$items->project_id}}"><div class="textimg">
+                                                                                            <center><a href="itemdetaliBD/{{$items->project_id}}" title="<?php echo $items->project_name ?>"><div class="textimg">
                                                                                             <?php 
                                                                                                 $str = $items->project_name;
                                                                                                 $count = utf8_strlen($str);
@@ -620,7 +665,10 @@
                                                                                                 @if(isset($viewcount4)?$viewcount4:'')
                                                                                                     <?php $viewcount = $viewcount4; ?>
                                                                                                 @endif
-                                                                                                <?php create_star($svgrate4,$viewcount); ?>
+                                                                                                <?php create_star($svgrate4); ?>
+                                                                                            </center>
+                                                                                            <center>
+                                                                                                <?php formattter($viewcount4); ?>
                                                                                             </center>
                                                                                         </div>
                                                                                     @endforeach
@@ -629,7 +677,7 @@
                                                                         @elseif($status_p0=='1' & $status_p1=='0' & $status_p2=='0' & $status_p3=='0')
                                                                             @foreach($itemlp0 as $items)
                                                                                 <a href="itemdetaliBD/{{$items->project_id}}"><div class="column" ><div class="columnimg"><img src="project\img_logo\<?php echo $items->logo;?>" alt="" class="fromimg"></div></a>
-                                                                                    <center><a href="itemdetaliBD/{{$items->project_id}}"><div class="textimg">
+                                                                                    <center><a href="itemdetaliBD/{{$items->project_id}}" title="<?php echo $items->project_name ?>"><div class="textimg">
                                                                                     <?php 
                                                                                         $str = $items->project_name;
                                                                                         $count = utf8_strlen($str);
@@ -637,10 +685,13 @@
                                                                                     ?></div></a></center>
                                                                                     <center><a href="itemtypeBD/{{$items->type_id}}"><div class="textimg2"><?php echo $items->type_name;?></div></a></center>
                                                                                     <center>
-                                                                                        @if(isset($viewcount0)?$viewcount0:'')
-                                                                                            <?php $viewcount = $viewcount0; ?>
+                                                                                        @if(isset($viewcount4)?$viewcount4:'')
+                                                                                            <?php $viewcount = $viewcount4; ?>
                                                                                         @endif
-                                                                                        <?php create_star($svgrate0,$viewcount); ?>
+                                                                                        <?php create_star($svgrate0); ?>
+                                                                                    </center>
+                                                                                    <center>
+                                                                                        <?php formattter($viewcount0); ?>
                                                                                     </center>
                                                                                 </div>
                                                                             @endforeach
@@ -648,7 +699,7 @@
                                                                                 <?php $status_p4 = $items->status_p;?>
                                                                                     @foreach($itemlp4 as $items)
                                                                                         <a href="itemdetaliBD/{{$items->project_id}}"><div class="column" ><div class="columnimg"><img src="project\img_logo\<?php echo $items->logo;?>" alt="" class="fromimg"></div></a>
-                                                                                            <center><a href="itemdetaliBD/{{$items->project_id}}"><div class="textimg">
+                                                                                            <center><a href="itemdetaliBD/{{$items->project_id}}" title="<?php echo $items->project_name ?>"><div class="textimg">
                                                                                             <?php 
                                                                                                 $str = $items->project_name;
                                                                                                 $count = utf8_strlen($str);
@@ -659,7 +710,10 @@
                                                                                                 @if(isset($viewcount4)?$viewcount4:'')
                                                                                                     <?php $viewcount = $viewcount4; ?>
                                                                                                 @endif
-                                                                                                <?php create_star($svgrate4,$viewcount); ?>
+                                                                                                <?php create_star($svgrate4); ?>
+                                                                                            </center>
+                                                                                            <center>
+                                                                                                <?php formattter($viewcount4); ?>
                                                                                             </center>
                                                                                         </div>
                                                                                     @endforeach
@@ -668,7 +722,7 @@
                                                                                 <?php $status_p5 = $items->status_p;?>
                                                                                     @foreach($itemlp6 as $items)
                                                                                         <a href="itemdetaliBD/{{$items->project_id}}"><div class="column" ><div class="columnimg"><img src="project\img_logo\<?php echo $items->logo;?>" alt="" class="fromimg"></div></a>
-                                                                                            <center><a href="itemdetaliBD/{{$items->project_id}}"><div class="textimg">
+                                                                                            <center><a href="itemdetaliBD/{{$items->project_id}}" title="<?php echo $items->project_name ?>"><div class="textimg">
                                                                                             <?php 
                                                                                                 $str = $items->project_name;
                                                                                                 $count = utf8_strlen($str);
@@ -679,7 +733,10 @@
                                                                                                 @if(isset($viewcount5)?$viewcount5:'')
                                                                                                     <?php $viewcount = $viewcount5; ?>
                                                                                                 @endif
-                                                                                                <?php create_star($svgrate5,$viewcount); ?>
+                                                                                                <?php create_star($svgrate5); ?>
+                                                                                            </center>
+                                                                                            <center>
+                                                                                                <?php formattter($viewcount5); ?>
                                                                                             </center>
                                                                                         </div>
                                                                                     @endforeach
@@ -688,7 +745,7 @@
                                                                                 <?php $status_p6 = $items->status_p;?>
                                                                                     @foreach($itemlp6 as $items)
                                                                                         <a href="itemdetaliBD/{{$items->project_id}}"><div class="column" ><div class="columnimg"><img src="project\img_logo\<?php echo $items->logo;?>" alt="" class="fromimg"></div></a>
-                                                                                            <center><a href="itemdetaliBD/{{$items->project_id}}"><div class="textimg">
+                                                                                            <center><a href="itemdetaliBD/{{$items->project_id}}" title="<?php echo $items->project_name ?>"><div class="textimg">
                                                                                             <?php 
                                                                                                 $str = $items->project_name;
                                                                                                 $count = utf8_strlen($str);
@@ -699,7 +756,10 @@
                                                                                                 @if(isset($viewcount6)?$viewcount6:'')
                                                                                                     <?php $viewcount = $viewcount6; ?>
                                                                                                 @endif
-                                                                                                <?php create_star($svgrate6,$viewcount); ?>
+                                                                                                <?php create_star($svgrate6); ?>
+                                                                                            </center>
+                                                                                            <center>
+                                                                                                <?php formattter($viewcount6); ?>
                                                                                             </center>
                                                                                         </div>
                                                                                     @endforeach
@@ -739,7 +799,7 @@
                                                     <?php $status_p3 = $items->status_p;?>
                                                     @foreach($itempop0 as $items)
                                                         <a href="itemdetaliBD/{{$items->project_id}}"><div class="column" ><div class="columnimg"><img src="project\img_logo\<?php echo $items->logo;?>" alt="" class="fromimg"></div></a>
-                                                            <center><a href="itemdetaliBD/{{$items->project_id}}"><div class="textimg">
+                                                            <center><a href="itemdetaliBD/{{$items->project_id}}" title="<?php echo $items->project_name ?>"><div class="textimg">
                                                             <?php 
                                                                 $str = $items->project_name;
                                                                 $count = utf8_strlen($str);
@@ -750,13 +810,16 @@
                                                                 @if(isset($viewcountp0)?$viewcountp0:'')
                                                                     <?php $viewcount = $viewcountp0; ?>
                                                                 @endif
-                                                                <?php create_star($avgpop0,$viewcount); ?>
+                                                                <?php create_star($avgpop0); ?>
+                                                            </center>
+                                                            <center>
+                                                                <?php formattter($viewcountp0); ?>
                                                             </center>
                                                         </div>
                                                     @endforeach
                                                     @foreach($itempop1 as $items)
                                                         <a href="itemdetaliBD/{{$items->project_id}}"><div class="column" ><div class="columnimg"><img src="project\img_logo\<?php echo $items->logo;?>" alt="" class="fromimg"></div></a>
-                                                            <center><a href="itemdetaliBD/{{$items->project_id}}"><div class="textimg">
+                                                            <center><a href="itemdetaliBD/{{$items->project_id}}" title="<?php echo $items->project_name ?>"><div class="textimg">
                                                             <?php 
                                                                 $str = $items->project_name;
                                                                 $count = utf8_strlen($str);
@@ -767,13 +830,16 @@
                                                                 @if(isset($viewcountp1)?$viewcountp1:'')
                                                                     <?php $viewcount = $viewcountp1; ?>
                                                                 @endif
-                                                                <?php create_star($avgpop1,$viewcount); ?>
+                                                                <?php create_star($avgpop1); ?>
+                                                            </center>
+                                                            <center>
+                                                                <?php formattter($viewcountp1); ?>
                                                             </center>
                                                         </div>
                                                     @endforeach
                                                     @foreach($itempop2 as $items)
                                                         <a href="itemdetaliBD/{{$items->project_id}}"><div class="column" ><div class="columnimg"><img src="project\img_logo\<?php echo $items->logo;?>" alt="" class="fromimg"></div></a>
-                                                            <center><a href="itemdetaliBD/{{$items->project_id}}"><div class="textimg">
+                                                            <center><a href="itemdetaliBD/{{$items->project_id}}" title="<?php echo $items->project_name ?>"><div class="textimg">
                                                             <?php 
                                                                 $str = $items->project_name;
                                                                 $count = utf8_strlen($str);
@@ -784,13 +850,18 @@
                                                                 @if(isset($viewcountp2)?$viewcountp2:'')
                                                                     <?php $viewcount = $viewcountp2; ?>
                                                                 @endif
-                                                                <?php create_star($avgpop2,$viewcount); ?>
+                                                                <?php create_star($avgpop2); ?>
+                                                            </center>
+                                                            <center>
+                                                                <?php formattter($viewcountp2); ?>
                                                             </center>
                                                         </div>
                                                     @endforeach
+                                                  
                                                     @foreach($itempop3 as $items)
+                                                  
                                                         <a href="itemdetaliBD/{{$items->project_id}}"><div class="column" ><div class="columnimg"><img src="project\img_logo\<?php echo $items->logo;?>" alt="" class="fromimg"></div></a>
-                                                            <center><a href="itemdetaliBD/{{$items->project_id}}"><div class="textimg">
+                                                            <center><a href="itemdetaliBD/{{$items->project_id}}" title="<?php echo $items->project_name ?>"><div class="textimg">
                                                             <?php 
                                                                 $str = $items->project_name;
                                                                 $count = utf8_strlen($str);
@@ -801,10 +872,16 @@
                                                                 @if(isset($viewcountp3)?$viewcountp3:'')
                                                                     <?php $viewcount = $viewcountp3; ?>
                                                                 @endif
-                                                                <?php create_star($avgpop3,$viewcount); ?>
+                                                                <?php create_star($avgpop3); ?>
+                                                            </center>
+                                                            <center>
+                                                                <?php formattter($viewcountp3); ?>
                                                             </center>
                                                         </div>
                                                     @endforeach
+                                                   
+                                                        
+                                                 
                                                 @endforeach
                                             @endforeach
                                         @endforeach
@@ -845,7 +922,7 @@
                                                                                     <?php $status_g4 = $items->status_p;?>
                                                                                         @foreach($itemlg4 as $items)
                                                                                             <a href="itemdetaliBD/{{$items->project_id}}"><div class="column" ><div class="columnimg"><img src="project\img_logo\<?php echo $items->logo;?>" alt="" class="fromimg"></div></a>
-                                                                                                <center><a href="itemdetaliBD/{{$items->project_id}}"><div class="textimg">
+                                                                                                <center><a href="itemdetaliBD/{{$items->project_id}}" title="<?php echo $items->project_name ?>><div class="textimg">
                                                                                                 <?php 
                                                                                                     $str = $items->project_name;
                                                                                                     $count = utf8_strlen($str);
@@ -865,8 +942,8 @@
                                                                                 @foreach($itemlg5 as $items)
                                                                                     <?php $status_g5 = $items->status_p;?>
                                                                                         @foreach($itemlg5 as $items)
-                                                                                            <a href="itemdetaliBD/{{$items->project_id}}"><div class="column" ><div class="columnimg"><img src="project\img_logo\<?php echo $items->logo;?>" alt="" class="fromimg"></div></a>
-                                                                                                <center><a href="itemdetaliBD/{{$items->project_id}}"><div class="textimg">
+                                                                                            <a href="itemdetaliBD/{{$items->project_id}}" title="<?php echo $items->project_name ?>z><div class="column" ><div class="columnimg"><img src="project\img_logo\<?php echo $items->logo;?>" alt="" class="fromimg"></div></a>
+                                                                                                <center><a href="itemdetaliBD/{{$items->project_id}}" title="<?php echo $items->project_name ?>><div class="textimg">
                                                                                                 <?php 
                                                                                                     $str = $items->project_name;
                                                                                                     $count = utf8_strlen($str);
@@ -887,7 +964,7 @@
                                                                                     <?php $status_g6 = $items->status_p;?>
                                                                                         @foreach($itemlg6 as $items)
                                                                                             <a href="itemdetaliBD/{{$items->project_id}}"><div class="column" ><div class="columnimg"><img src="project\img_logo\<?php echo $items->logo;?>" alt="" class="fromimg"></div></a>
-                                                                                                <center><a href="itemdetaliBD/{{$items->project_id}}"><div class="textimg">
+                                                                                                <center><a href="itemdetaliBD/{{$items->project_id}}" title="<?php echo $items->project_name ?>><div class="textimg">
                                                                                                 <?php 
                                                                                                     $str = $items->project_name;
                                                                                                     $count = utf8_strlen($str);
@@ -908,7 +985,7 @@
                                                                                     <?php $status_g7 = $items->status_p;?>
                                                                                         @foreach($itemlg7 as $items)
                                                                                             <a href="itemdetaliBD/{{$items->project_id}}"><div class="column" ><div class="columnimg"><img src="project\img_logo\<?php echo $items->logo;?>" alt="" class="fromimg"></div></a>
-                                                                                                <center><a href="itemdetaliBD/{{$items->project_id}}"><div class="textimg">
+                                                                                                <center><a href="itemdetaliBD/{{$items->project_id}}" title="<?php echo $items->project_name ?>><div class="textimg">
                                                                                                 <?php 
                                                                                                     $str = $items->project_name;
                                                                                                     $count = utf8_strlen($str);
@@ -929,7 +1006,7 @@
                                                                             @if(isset($itemlg3)?$itemlg3:'')
                                                                                 @foreach($itemlg3 as $items)
                                                                                     <a href="itemdetaliBD/{{$items->project_id}}"><div class="column" ><div class="columnimg"><img src="project\img_logo\<?php echo $items->logo;?>" alt="" class="fromimg"></div></a>
-                                                                                        <center><a href="itemdetaliBD/{{$items->project_id}}"><div class="textimg">
+                                                                                        <center><a href="itemdetaliBD/{{$items->project_id}}" title="<?php echo $items->project_name ?>><div class="textimg">
                                                                                         <?php 
                                                                                             $str = $items->project_name;
                                                                                             $count = utf8_strlen($str);
@@ -949,7 +1026,7 @@
                                                                                     <?php $status_g4 = $items->status_p;?>
                                                                                         @foreach($itemlg4 as $items)
                                                                                             <a href="itemdetaliBD/{{$items->project_id}}"><div class="column" ><div class="columnimg"><img src="project\img_logo\<?php echo $items->logo;?>" alt="" class="fromimg"></div></a>
-                                                                                                <center><a href="itemdetaliBD/{{$items->project_id}}"><div class="textimg">
+                                                                                                <center><a href="itemdetaliBD/{{$items->project_id}}" title="<?php echo $items->project_name ?>><div class="textimg">
                                                                                                 <?php 
                                                                                                     $str = $items->project_name;
                                                                                                     $count = utf8_strlen($str);
@@ -970,7 +1047,7 @@
                                                                                     <?php $status_g5 = $items->status_p;?>
                                                                                         @foreach($itemlg5 as $items)
                                                                                             <a href="itemdetaliBD/{{$items->project_id}}"><div class="column" ><div class="columnimg"><img src="project\img_logo\<?php echo $items->logo;?>" alt="" class="fromimg"></div></a>
-                                                                                                <center><a href="itemdetaliBD/{{$items->project_id}}"><div class="textimg">
+                                                                                                <center><a href="itemdetaliBD/{{$items->project_id}}" title="<?php echo $items->project_name ?>"><div class="textimg">
                                                                                                 <?php 
                                                                                                     $str = $items->project_name;
                                                                                                     $count = utf8_strlen($str);
@@ -991,7 +1068,7 @@
                                                                                     <?php $status_g6 = $items->status_p;?>
                                                                                         @foreach($itemlg6 as $items)
                                                                                         <a href="itemdetaliBD/{{$items->project_id}}"><div class="column" ><div class="columnimg"><img src="project\img_logo\<?php echo $items->logo;?>" alt="" class="fromimg"></div></a>
-                                                                                            <center><a href="itemdetaliBD/{{$items->project_id}}"><div class="textimg">
+                                                                                            <center><a href="itemdetaliBD/{{$items->project_id}}" title="<?php echo $items->project_name ?>"><div class="textimg">
                                                                                             <?php 
                                                                                                 $str = $items->project_name;
                                                                                                 $count = utf8_strlen($str);
@@ -1011,7 +1088,7 @@
                                                                             @if(isset($itemlg2)?$itemlg2:'')
                                                                                 @foreach($itemlg2 as $items)
                                                                                     <a href="itemdetaliBD/{{$items->project_id}}"><div class="column" ><div class="columnimg"><img src="project\img_logo\<?php echo $items->logo;?>" alt="" class="fromimg"></div></a>
-                                                                                        <center><a href="itemdetaliBD/{{$items->project_id}}"><div class="textimg">
+                                                                                        <center><a href="itemdetaliBD/{{$items->project_id}}" title="<?php echo $items->project_name ?>"><div class="textimg">
                                                                                         <?php 
                                                                                             $str = $items->project_name;
                                                                                             $count = utf8_strlen($str);
@@ -1029,7 +1106,7 @@
                                                                             @if(isset($itemlg3)?$itemlg3:'')
                                                                                 @foreach($itemlg3 as $items)
                                                                                     <a href="itemdetaliBD/{{$items->project_id}}"><div class="column" ><div class="columnimg"><img src="project\img_logo\<?php echo $items->logo;?>" alt="" class="fromimg"></div></a>
-                                                                                        <center><a href="itemdetaliBD/{{$items->project_id}}"><div class="textimg">
+                                                                                        <center><a href="itemdetaliBD/{{$items->project_id}}" title="<?php echo $items->project_name ?>"><div class="textimg">
                                                                                         <?php 
                                                                                             $str = $items->project_name;
                                                                                             $count = utf8_strlen($str);
@@ -1048,7 +1125,7 @@
                                                                                 @foreach($itemlg4 as $items)
                                                                                     <?php $status_g4 = $items->status_p;?>
                                                                                         @foreach($itemlg4 as $items)
-                                                                                            <a href="itemdetaliBD/{{$items->project_id}}"><div class="column" ><div class="columnimg"><img src="project\img_logo\<?php echo $items->logo;?>" alt="" class="fromimg"></div></a>
+                                                                                            <a href="itemdetaliBD/{{$items->project_id}}" title="<?php echo $items->project_name ?>"><div class="column" ><div class="columnimg"><img src="project\img_logo\<?php echo $items->logo;?>" alt="" class="fromimg"></div></a>
                                                                                                 <center><a href="itemdetaliBD/{{$items->project_id}}"><div class="textimg">
                                                                                                 <?php 
                                                                                                     $str = $items->project_name;
@@ -1069,7 +1146,7 @@
                                                                                 @foreach($itemlg5 as $items)
                                                                                     <?php $status_g5 = $items->status_p;?>
                                                                                         @foreach($itemlg5 as $items)
-                                                                                            <a href="itemdetaliBD/{{$items->project_id}}"><div class="column" ><div class="columnimg"><img src="project\img_logo\<?php echo $items->logo;?>" alt="" class="fromimg"></div></a>
+                                                                                            <a href="itemdetaliBD/{{$items->project_id}}" title="<?php echo $items->project_name ?>"><div class="column" ><div class="columnimg"><img src="project\img_logo\<?php echo $items->logo;?>" alt="" class="fromimg"></div></a>
                                                                                                 <center><a href="itemdetaliBD/{{$items->project_id}}"><div class="textimg">
                                                                                                 <?php 
                                                                                                     $str = $items->project_name;
@@ -1090,7 +1167,7 @@
                                                                             @if(isset($itemlg0)?$itemlg0:'')
                                                                                 @foreach($itemlg0 as $items)
                                                                                     <a href="itemdetaliBD/{{$items->project_id}}"><div class="column" ><div class="columnimg"><img src="project\img_logo\<?php echo $items->logo;?>" alt="" class="fromimg"></div></a>
-                                                                                        <center><a href="itemdetaliBD/{{$items->project_id}}"><div class="textimg">
+                                                                                        <center><a href="itemdetaliBD/{{$items->project_id}}" title="<?php echo $items->project_name ?>"><div class="textimg">
                                                                                         <?php 
                                                                                             $str = $items->project_name;
                                                                                             $count = utf8_strlen($str);
@@ -1108,7 +1185,7 @@
                                                                             @if(isset($itemlg1)?$itemlg1:'')
                                                                                 @foreach($itemlg1 as $items)
                                                                                     <a href="itemdetaliBD/{{$items->project_id}}"><div class="column" ><div class="columnimg"><img src="project\img_logo\<?php echo $items->logo;?>" alt="" class="fromimg"></div></a>
-                                                                                        <center><a href="itemdetaliBD/{{$items->project_id}}"><div class="textimg">
+                                                                                        <center><a href="itemdetaliBD/{{$items->project_id}}" title="<?php echo $items->project_name ?>"><div class="textimg">
                                                                                         <?php 
                                                                                             $str = $items->project_name;
                                                                                             $count = utf8_strlen($str);
@@ -1132,7 +1209,7 @@
                                                                                             $count = utf8_strlen("$str");
                                                                                             create_str($count,$str,$items);  
                                                                                         ?></div></a></center>
-                                                                                        <center><a href="itemtypeBD/{{$items->type_id}}"><div class="textimg2"><?php echo $items->type_name;?></div></a></center>
+                                                                                        <center><a href="itemtypeBD/{{$items->type_id}}" title="<?php echo $items->project_name ?>"><div class="textimg2"><?php echo $items->type_name;?></div></a></center>
                                                                                     </div>
                                                                                 @endforeach
                                                                                 @else
@@ -1146,7 +1223,7 @@
                                                                                     <?php $status_g5 = $items->status_p;?>
                                                                                         @foreach($itemlg5 as $items)
                                                                                         <a href="itemdetaliBD/{{$items->project_id}}"><div class="column" ><div class="columnimg"><img src="project\img_logo\<?php echo $items->logo;?>" alt="" class="fromimg"></div></a>
-                                                                                        <center><a href="itemdetaliBD/{{$items->project_id}}"><div class="textimg">
+                                                                                        <center><a href="itemdetaliBD/{{$items->project_id}}" title="<?php echo $items->project_name ?>"><div class="textimg">
                                                                                         <?php 
                                                                                             $str = $items->project_name;
                                                                                             $count = utf8_strlen("$str");
@@ -1167,7 +1244,7 @@
                                                                             @if(isset($itemlg0)?$itemlg0:'')
                                                                                 @foreach($itemlg0 as $items)
                                                                                     <a href="itemdetaliBD/{{$items->project_id}}"><div class="column" ><div class="columnimg"><img src="project\img_logo\<?php echo $items->logo;?>" alt="" class="fromimg"></div></a>
-                                                                                        <center><a href="itemdetaliBD/{{$items->project_id}}"><div class="textimg">
+                                                                                        <center><a href="itemdetaliBD/{{$items->project_id}}" title="<?php echo $items->project_name ?>"><div class="textimg">
                                                                                         <?php 
                                                                                             $str = $items->project_name;
                                                                                             $count = utf8_strlen($str);
@@ -1179,7 +1256,10 @@
                                                                                             @if(isset($viewcountg0)?$viewcountg0:'')
                                                                                                 <?php $viewcount = $viewcountg0; ?>
                                                                                             @endif
-                                                                                            <?php create_star($svgrateg0,$viewcount); ?>
+                                                                                            <?php create_star($svgrateg0); ?>
+                                                                                        </center>
+                                                                                        <center>
+                                                                                            <?php formattter($viewcountg0); ?>
                                                                                         </center>
                                                                                     </div>
                                                                                 @endforeach
@@ -1192,7 +1272,7 @@
                                                                             @if(isset($itemlg1)?$itemlg1:'')
                                                                                 @foreach($itemlg1 as $items)
                                                                                     <a href="itemdetaliBD/{{$items->project_id}}"><div class="column" ><div class="columnimg"><img src="project\img_logo\<?php echo $items->logo;?>" alt="" class="fromimg"></div></a>
-                                                                                        <center><a href="itemdetaliBD/{{$items->project_id}}"><div class="textimg">
+                                                                                        <center><a href="itemdetaliBD/{{$items->project_id}}" title="<?php echo $items->project_name ?>"><div class="textimg">
                                                                                         <?php 
                                                                                             $str = $items->project_name;
                                                                                             $count = utf8_strlen($str);
@@ -1204,7 +1284,10 @@
                                                                                             @if(isset($viewcountg1)?$viewcountg1:'')
                                                                                                 <?php $viewcount = $viewcountg1; ?>
                                                                                             @endif
-                                                                                            <?php create_star($svgrateg1,$viewcount); ?>
+                                                                                            <?php create_star($svgrateg1); ?>
+                                                                                        </center>
+                                                                                        <center>
+                                                                                            <?php formattter($viewcountg1); ?>
                                                                                         </center>
                                                                                         
                                                                                     </div>
@@ -1218,7 +1301,7 @@
                                                                             @if(isset($itemlg2)?$itemlg2:'')
                                                                                 @foreach($itemlg2 as $items)
                                                                                     <a href="itemdetaliBD/{{$items->project_id}}"><div class="column" ><div class="columnimg"><img src="project\img_logo\<?php echo $items->logo;?>" alt="" class="fromimg"></div></a>
-                                                                                        <center><a href="itemdetaliBD/{{$items->project_id}}"><div class="textimg">
+                                                                                        <center><a href="itemdetaliBD/{{$items->project_id}}" title="<?php echo $items->project_name ?>"><div class="textimg">
                                                                                         <?php 
                                                                                             $str = $items->project_name;
                                                                                             $count = utf8_strlen($str);
@@ -1230,7 +1313,10 @@
                                                                                             @if(isset($viewcountg2)?$viewcountg2:'')
                                                                                                 <?php $viewcount = $viewcountg2; ?>
                                                                                             @endif
-                                                                                            <?php create_star($svgrateg2,$viewcount); ?>
+                                                                                            <?php create_star($svgrateg2); ?>
+                                                                                        </center>
+                                                                                        <center>
+                                                                                            <?php formattter($viewcountg2); ?>
                                                                                         </center>
                                                                                     </div>
                                                                                 @endforeach
@@ -1243,18 +1329,21 @@
                                                                             @if(isset($itemlg3)?$itemlg3:'')
                                                                                 @foreach($itemlg3 as $items)
                                                                                     <a href="itemdetaliBD/{{$items->project_id}}"><div class="column" ><div class="columnimg"><img src="project\img_logo\<?php echo $items->logo;?>" alt="" class="fromimg"></div></a>
-                                                                                        <center><a href="itemdetaliBD/{{$items->project_id}}"><div class="textimg">
+                                                                                        <center><a href="itemdetaliBD/{{$items->project_id}}" title="<?php echo $items->project_name ?>"><div class="textimg">
                                                                                         <?php 
                                                                                             $str = $items->project_name;
                                                                                             $count = utf8_strlen($str);
                                                                                             create_str($count,$str,$items);  
                                                                                         ?></div></a></center>
-                                                                                        <center><a href="itemtypeBD/{{$items->type_id}}"><div class="textimg2"><?php echo $items->type_name;?></div></a></center>
+                                                                                        <center><a href="itemtypeBD/{{$items->type_id}}" title="<?php echo $items->project_name ?>"><div class="textimg2"><?php echo $items->type_name;?></div></a></center>
                                                                                         <center>
                                                                                             @if(isset($viewcountg3)?$viewcountg3:'')
                                                                                                 <?php $viewcount = $viewcountg3; ?>
                                                                                             @endif
-                                                                                            <?php create_star($svgrateg3,$viewcount); ?>
+                                                                                            <?php create_star($svgrateg3); ?>
+                                                                                        </center>
+                                                                                        <center>
+                                                                                            <?php formattter($viewcountg3); ?>
                                                                                         </center>
                                                                                     </div>
                                                                                 @endforeach
@@ -1280,7 +1369,10 @@
                                                                                             @if(isset($viewcountg0)?$viewcountg0:'')
                                                                                                 <?php $viewcount = $viewcountg0; ?>
                                                                                             @endif
-                                                                                            <?php create_star($svgrateg0,$viewcount); ?>
+                                                                                            <?php create_star($svgrateg0); ?>
+                                                                                        </center>
+                                                                                        <center>
+                                                                                            <?php formattter($viewcountg0); ?>
                                                                                         </center>
                                                                                     </div>
                                                                                 @endforeach
@@ -1304,7 +1396,10 @@
                                                                                             @if(isset($viewcountg3)?$viewcountg3:'')
                                                                                                 <?php $viewcount = $viewcountg3; ?>
                                                                                             @endif
-                                                                                            <?php create_star($svgrateg3,$viewcount); ?>
+                                                                                            <?php create_star($svgrateg3); ?>
+                                                                                        </center>
+                                                                                        <center>
+                                                                                            <?php formattter($viewcountg3); ?>
                                                                                         </center>
                                                                                     </div>
                                                                                 @endforeach
@@ -1330,7 +1425,10 @@
                                                                                                     @if(isset($viewcountg4)?$viewcountg4:'')
                                                                                                         <?php $viewcount = $viewcountg4; ?>
                                                                                                     @endif
-                                                                                                    <?php create_star($svgrateg4,$viewcount); ?>
+                                                                                                    <?php create_star($svgrateg4); ?>
+                                                                                                </center>
+                                                                                                <center>
+                                                                                                    <?php formattter($viewcountg4); ?>
                                                                                                 </center>
                                                                                             </div>
                                                                                         @endforeach
@@ -1357,7 +1455,10 @@
                                                                                                     @if(isset($viewcountg5)?$viewcountg5:'')
                                                                                                         <?php $viewcount = $viewcountg5; ?>
                                                                                                     @endif
-                                                                                                    <?php create_star($svgrateg5,$viewcount); ?>
+                                                                                                    <?php create_star($svgrateg5); ?>
+                                                                                                </center>
+                                                                                                <center>
+                                                                                                    <?php formattter($viewcountg5); ?>
                                                                                                 </center>
                                                                                             </div>
                                                                                         @endforeach
@@ -1385,7 +1486,10 @@
                                                                                             @if(isset($viewcountg0)?$viewcountg0:'')
                                                                                                 <?php $viewcount = $viewcountg0; ?>
                                                                                             @endif
-                                                                                            <?php create_star($svgrateg0,$viewcount); ?>
+                                                                                            <?php create_star($svgrateg0); ?>
+                                                                                        </center>
+                                                                                        <center>
+                                                                                            <?php formattter($viewcountg0); ?>
                                                                                         </center>
                                                                                     </div>
                                                                                 @endforeach
@@ -1409,7 +1513,10 @@
                                                                                             @if(isset($viewcountg1)?$viewcountg1:'')
                                                                                                 <?php $viewcount = $viewcountg1; ?>
                                                                                             @endif
-                                                                                            <?php create_star($svgrateg1,$viewcount); ?>
+                                                                                            <?php create_star($svgrateg1); ?>
+                                                                                        </center>
+                                                                                        <center>
+                                                                                            <?php formattter($viewcountg1); ?>
                                                                                         </center>
                                                                                     </div>
                                                                                 @endforeach
@@ -1433,7 +1540,10 @@
                                                                                             @if(isset($viewcountg3)?$viewcountg3:'')
                                                                                                 <?php $viewcount = $viewcountg3; ?>
                                                                                             @endif
-                                                                                            <?php create_star($svgrateg3,$viewcount); ?>
+                                                                                            <?php create_star($svgrateg3); ?>
+                                                                                        </center>
+                                                                                        <center>
+                                                                                            <?php formattter($viewcountg3); ?>
                                                                                         </center>
                                                                                     </div>
                                                                                 @endforeach
@@ -1459,7 +1569,10 @@
                                                                                                     @if(isset($viewcountg4)?$viewcountg4:'')
                                                                                                         <?php $viewcount = $viewcountg4; ?>
                                                                                                     @endif
-                                                                                                    <?php create_star($svgrateg4,$viewcount); ?>
+                                                                                                    <?php create_star($svgrateg4); ?>
+                                                                                                </center>
+                                                                                                <center>
+                                                                                                    <?php formattter($viewcountg4); ?>
                                                                                                 </center>
                                                                                             </div>
                                                                                         @endforeach
@@ -1486,7 +1599,10 @@
                                                                                             @if(isset($viewcountg0)?$viewcountg0:'')
                                                                                                 <?php $viewcount = $viewcountg0; ?>
                                                                                             @endif
-                                                                                            <?php create_star($svgrateg0,$viewcount); ?>
+                                                                                            <?php create_star($svgrateg0); ?>
+                                                                                        </center>
+                                                                                        <center>
+                                                                                            <?php formattter($viewcountg0); ?>
                                                                                         </center>
                                                                                     </div>
                                                                                 @endforeach
@@ -1510,7 +1626,10 @@
                                                                                             @if(isset($viewcountg1)?$viewcountg1:'')
                                                                                                 <?php $viewcount = $viewcountg1; ?>
                                                                                             @endif
-                                                                                            <?php create_star($svgrateg1,$viewcount); ?>
+                                                                                            <?php create_star($svgrateg1); ?>
+                                                                                        </center>
+                                                                                        <center>
+                                                                                            <?php formattter($viewcountg1); ?>
                                                                                         </center>
                                                                                     </div>
                                                                                 @endforeach
@@ -1534,7 +1653,10 @@
                                                                                             @if(isset($viewcountg2)?$viewcountg2:'')
                                                                                                 <?php $viewcount = $viewcountg2; ?>
                                                                                             @endif
-                                                                                            <?php create_star($svgrateg2,$viewcount); ?>
+                                                                                            <?php create_star($svgrateg2); ?>
+                                                                                        </center>
+                                                                                        <center>
+                                                                                            <?php formattter($viewcountg2); ?>
                                                                                         </center>
                                                                                     </div>
                                                                                 @endforeach
@@ -1560,7 +1682,10 @@
                                                                                                     @if(isset($viewcountg4)?$viewcountg4:'')
                                                                                                         <?php $viewcount = $viewcountg4; ?>
                                                                                                     @endif
-                                                                                                    <?php create_star($svgrateg4,$viewcount); ?>
+                                                                                                    <?php create_star($svgrateg4); ?>
+                                                                                                </center>
+                                                                                                <center>
+                                                                                                    <?php formattter($viewcountg4); ?>
                                                                                                 </center>
                                                                                             </div>
                                                                                         @endforeach
@@ -1587,7 +1712,10 @@
                                                                                             @if(isset($viewcountg0)?$viewcountg0:'')
                                                                                                 <?php $viewcount = $viewcountg0; ?>
                                                                                             @endif
-                                                                                            <?php create_star($svgrateg0,$viewcount); ?>
+                                                                                            <?php create_star($svgrateg0); ?>
+                                                                                        </center>
+                                                                                        <center>
+                                                                                            <?php formattter($viewcountg0); ?>
                                                                                         </center>
                                                                                     </div>
                                                                                 @endforeach
@@ -1613,7 +1741,10 @@
                                                                                                     @if(isset($viewcountg4)?$viewcountg4:'')
                                                                                                         <?php $viewcount = $viewcountg4; ?>
                                                                                                     @endif
-                                                                                                    <?php create_star($svgrateg4,$viewcount); ?>
+                                                                                                    <?php create_star($svgrateg4); ?>
+                                                                                                </center>
+                                                                                                <center>
+                                                                                                    <?php formattter($viewcountg4); ?>
                                                                                                 </center>
                                                                                             </div>
                                                                                         @endforeach
@@ -1640,7 +1771,10 @@
                                                                                                 @if(isset($viewcountg5)?$viewcountg5:'')
                                                                                                     <?php $viewcount = $viewcountg5; ?>
                                                                                                 @endif
-                                                                                                <?php create_star($svgrateg5,$viewcount); ?>
+                                                                                                <?php create_star($svgrateg5); ?>
+                                                                                            </center>
+                                                                                            <center>
+                                                                                                <?php formattter($viewcountg5); ?>
                                                                                             </center>
                                                                                         </div>
                                                                                         @endforeach
@@ -1668,7 +1802,10 @@
                                                                                                     @if(isset($viewcountg6)?$viewcountg6:'')
                                                                                                         <?php $viewcount = $viewcountg6; ?>
                                                                                                     @endif
-                                                                                                    <?php create_star($svgrateg6,$viewcount); ?>
+                                                                                                    <?php create_star($svgrateg6); ?>
+                                                                                                </center>
+                                                                                                <center>
+                                                                                                    <?php formattter($viewcountg6); ?>
                                                                                                 </center>
                                                                                             </div>
                                                                                         @endforeach
@@ -1834,17 +1971,18 @@
 
         function formattter($viewcount) {
             if ($viewcount >= 1000000) {
-                echo round($viewcount/ 1000000, 1).'หมื่น';
+                echo '<span class="countview">'.round($viewcount/ 1000000, 1).'หมื่น'.'</span><i class="fas fa-user i-view" style="color: #A9A9A9;"></i>';
             }
             else if ($viewcount >= 1000) {
-                echo round($viewcount/ 1000, 1). 'พัน';
+                echo '<span class="countview">'.round($viewcount/ 1000, 1). 'พัน'.'</span><i class="fas fa-user i-view" style="color: #A9A9A9;"></i>';
             }else{
-                echo $viewcount;
+                // echo $viewcount;
+                echo '<span class="countview">'.$viewcount.'</span><i class="fas fa-user i-view" style="color: #A9A9A9;"></i>';
             }
             
         }
 
-        function create_star($svgrate,$viewcount){
+        function create_star($svgrate){
             if(isset($svgrate)?$svgrate:''){
                 if($svgrate < 2 & $svgrate> 0){
                     echo'<div class="rating">';
@@ -1852,7 +1990,7 @@
                         if(isset($svgrate)?$svgrate:''){
                             echo'<span class=""> ('.(round($svgrate, $precision = 1)).')</span><br>';
                         }
-                        echo '<span class="countview">'.formattter($viewcount).'</span><i class="fas fa-user i-view" style="color: #A9A9A9;"></i>';
+                        // echo '<span class="countview">'.formattter($viewcount).'</span><i class="fas fa-user i-view" style="color: #A9A9A9;"></i>';
                     echo'</div>';
                 }
                 
@@ -1862,7 +2000,7 @@
                         if(isset($svgrate)?$svgrate:''){
                             echo'<span class=""> ('.(round($svgrate, $precision = 1)).')</span><br>';
                         }
-                        echo '<span class="countview">'.formattter($viewcount).'</span><i class="fas fa-user i-view" style="color: #A9A9A9;"></i>';
+                        // echo '<span class="countview">'.formattter($viewcount).'</span><i class="fas fa-user i-view" style="color: #A9A9A9;"></i>';
                     echo '</div>';
                 }
                 
@@ -1872,7 +2010,7 @@
                         if(isset($svgrate)?$svgrate:''){
                             echo'<span class=""> ('.(round($svgrate, $precision = 1)).')</span><br>';
                         }
-                        echo '<span class="countview">'.formattter($viewcount).'</span><i class="fas fa-user i-view" style="color: #A9A9A9;"></i>';
+                        // echo '<span class="countview">'.formattter($viewcount).'</span><i class="fas fa-user i-view" style="color: #A9A9A9;"></i>';
                     echo '</div>';
                 }
                 
@@ -1882,7 +2020,7 @@
                         if(isset($svgrate)?$svgrate:''){
                             echo'<span class=""> ('.(round($svgrate, $precision = 1)).')</span><br>';
                         } 
-                        echo '<span class="countview">'.formattter($viewcount).'</span><i class="fas fa-user i-view" style="color: #A9A9A9;"></i>';
+                        // echo '<span class="countview">'.formattter($viewcount).'</span><i class="fas fa-user i-view" style="color: #A9A9A9;"></i>';
                     echo'</div>';}
                 
                 elseif($svgrate >= 5){
@@ -1891,7 +2029,7 @@
                         if(isset($svgrate)?$svgrate:''){
                             echo'<span class=""> ('.(round($svgrate, $precision = 1)).')</span><br>';
                         }
-                        echo '<span class="countview">'.formattter($viewcount).'</span><i class="fas fa-user i-view" style="color: #A9A9A9;"></i>';
+                        // echo '<span class="countview">'.formattter($viewcount).'</span><i class="fas fa-user i-view" style="color: #A9A9A9;"></i>';
                     echo'</div>';
                     }
                 else{
@@ -1900,14 +2038,14 @@
                         if(isset($svgrate)?$svgrate:''){
                             echo'<span class=""> ('.(round($svgrate, $precision = 1)).')</span><br>';
                         }
-                        echo '<span class="countview">'.formattter($viewcount).'</span><i class="fas fa-user i-view" style="color: #A9A9A9;"></i>';
+                        // echo '<span class="countview">'.formattter($viewcount).'</span><i class="fas fa-user i-view" style="color: #A9A9A9;"></i>';
                     echo '</div>';}
             
                 }
             else{
                 echo'<div class="rating">';
-                    check_rating(0);  echo'<span class="">(0)</span><br>';
-                    echo '<span class="countview">'.formattter($viewcount).'</span><i class="fas fa-user i-view" style="color: #A9A9A9;"></i>';
+                    check_rating(0);  echo'<span class=""> (0)</span><br>';
+                    // echo '<span class="countview">'.formattter($viewcount).'</span><i class="fas fa-user i-view" style="color: #A9A9A9;"></i>';
                 echo'</div>';
             }    
         }

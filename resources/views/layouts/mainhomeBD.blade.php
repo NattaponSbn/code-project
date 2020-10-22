@@ -57,16 +57,7 @@
             border-radius: 5px;
         }
 
-        .name-scle {
-            font-size: 16px;
-            color: #FFFFFF;
-            -ms-flex-item-align: center;
-            align-self: center;
-            margin-top: -30px;
-            margin-left: 70px;
-            font-family: 'Athiti', sans-serif;
-
-        }
+        
 
         .img-top {
             background-image: url("img/background-body-addproject-5.jpg");
@@ -100,13 +91,13 @@
         }
 
         .btn-outline-primaryy {
-            color: #D9A327;
+            color: #000000;
+            /* background-color: #D9A327; */
             border-color: #D9A327;
         }
 
         .btn-outline-primaryy:hover {
-            color: #fff;
-            background-color: #D9A327;
+            color: #D9A327;
             border-color: #D9A327;
         }
 
@@ -132,6 +123,43 @@
         .btn-outline-primaryy:not(:disabled):not(.disabled):active:focus,
         .btn-outline-primaryy:not(:disabled):not(.disabled).active:focus,
         .show>.btn-outline-primaryy.dropdown-toggle:focus {
+            box-shadow: 0 0 0 0.1rem #fff;
+        }
+
+        .btn-outline-primaryy-sidenav {
+            color: #000000;
+            /* border-color: #D9A327; */
+        }
+
+        .btn-outline-primaryy-sidenav:hover {
+            color: #D9A327;
+            /* border-color: 1px solid #D9A327; */
+            /* background-color: #D9A327; */
+            text-decoration: underline;
+        }
+
+        .btn-outline-primaryy-sidenav:focus,
+        .btn-outline-primaryy-sidenav.focus {
+            box-shadow: 0 0 0 0.2rem rgba(52, 144, 220, 0.5);
+        }
+
+        .btn-outline-primaryy-sidenav.disabled,
+        .btn-outline-primaryy-sidenav:disabled {
+            color: #fff;
+            background-color: transparent;
+        }
+
+        .btn-outline-primaryy-sidenav:not(:disabled):not(.disabled):active,
+        .btn-outline-primaryy-sidenav:not(:disabled):not(.disabled).active,
+        .show>.btn-outline-primaryy-sidenav.dropdown-toggle {
+            color: #fff;
+            background-color: #D9A327;
+            border-color: #fff;
+        }
+
+        .btn-outline-primaryy-sidenav:not(:disabled):not(.disabled):active:focus,
+        .btn-outline-primaryy-sidenav:not(:disabled):not(.disabled).active:focus,
+        .show>.btn-outline-primaryy-sidenav.dropdown-toggle:focus {
             box-shadow: 0 0 0 0.1rem #fff;
         }
 
@@ -177,7 +205,7 @@
             padding: 6px 8px 6px 16px;
             text-decoration: none;
             font-size: 18px;
-            color: #FFF5EE;
+            color: #000000;
             display: block;
             border: none;
             background: none;
@@ -203,7 +231,7 @@
 
         /* Add an active class to the active dropdown button */
         .active-item {
-            color: white;
+            color: black;
             border-color: none;
             
         }
@@ -211,7 +239,7 @@
         /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
         .dropdown-container {
             display: block;
-            background-color: #262626;
+            background-color: #ffffff;
             padding-left: 8px;
         }
 
@@ -338,7 +366,7 @@
                         <div class="card-header">{{ __('สมัครสมาชิก') }}</div>
                     </h3>
                     <div class="card-body">
-                        <form method="POST" action="registers" ">
+                        <form method="POST" action="registers" method="POST">
                             @csrf
                             <div class="form-group row layoutname layoutname-BD">
 
@@ -578,13 +606,13 @@
 
                     @elseif (isset($_SESSION['status']) == 'user')
                         @if(!isset($_SESSION['project']))
-                        <a href="addproject" class="view"><i class="far fa-plus-square fa-lg i-hover" title="สร้างผลงงานคุณ"></i></a><br>
+                        <a href="addproject" style="font-weight: normal;"><span class="add-span"><i class="fas fa-plus-circle fa-lg " style="color: #A9A9A9;" title="สร้างผลงงานคุณ"></i> สร้างผลงงาน</span></a><br>
                         @elseif(isset($_SESSION['project']))
-                        <a href="listdetil" class="view"><i class="fas fa-book fa-lg i-hover" title="ผลงงานคุณ"></i></a><br>
+                        <a href="listdetil" style="font-weight: normal;" class="view"><span class="add-span"><i class="fas fa-book fa-lg " style="color: #A9A9A9;" title="ผลงงานคุณ"></i> ผลงงานคุณ</span></a><br>
                         @endif
                     @elseif (isset($_SESSION['statusA']) == 'admin')
                     <div class="links front">
-                        <a href="homeadmin" class="view">กลับสู่หน้าผู้ดูเเลระบบ</a><br>
+                        <a href="homeadmin" class="view">ผู้ดูเเลระบบ</a><br>
                     </div>
                     @endif
 
@@ -613,7 +641,7 @@
 
                                                         <div class="form-group row">
                                                             <div class="col-md-6">
-                                                                <input id="username" type="username" class="form-control @error('email') is-invalid @enderror" style="width: 210px;height: 40px;margin-left:31px;font-size: 16px;" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus placeholder="ชื่อผู้ใช้ของคุณ">
+                                                                <input id="username" type="username" class="form-control @error('email') is-invalid @enderror" style="width: 210px;height: 40px;margin-left:31px;font-size: 16px;" name="username" value="<?php if(isset($_SESSION['username'])?$_SESSION['username']:''){ echo $_SESSION['username'];}?>" required autocomplete="username" autofocus placeholder="ชื่อผู้ใช้ของคุณ">
 
                                                                 @error('username')
                                                                 <span class="invalid-feedback" role="alert">
@@ -812,19 +840,19 @@
                                 <div class="nav" >
                                     <br>
                                         <div class="sidenav" >
-                                            <button class="dropdown-btn" style="border-top: 0.5px solid #fff;border-radius: 10%;">ระดับวิทยานิพนธ์
+                                            <button class="dropdown-btn" style="border-top: 0.5px solid #000000;border-radius: 10%;">ระดับวิทยานิพนธ์
                                                 <i class="fa fa-caret-down fa-lg" style="width: 20px;"></i>
                                             </button>
                                             <div class="dropdown-container">
-                                                <a href="{{action('ProjectController@itemproject')}}" class="btn-control btn-default btn-outline-primaryy " style="font-size:17px;color:#fff;">ปริญญาตรี</a>
-                                                <a href="{{action('Project_MDDController@itemproject')}}" class="btn-control btn-default btn-outline-primaryy " style="font-size:17px;color:#fff;">ปริญญาเอก โท</a>
+                                                <a href="{{action('ProjectController@itemproject')}}" class="btn-default btn-outline-primaryy-sidenav " style="font-size:17px;">ปริญญาตรี</a>
+                                                <a href="{{action('Project_MDDController@itemproject')}}" class="btn-default btn-outline-primaryy-sidenav " style="font-size:17px;">ปริญญาเอก โท</a>
                                             </div>
-                                            <button class="dropdown-btn" style="border-top: 0.5px solid #fff;border-radius: 10%;">ประเภท
+                                            <button class="dropdown-btn" style="border-top: 0.5px solid #000000;border-radius: 10%;">ประเภท
                                                 <i class="fa fa-caret-down fa-lg" style="width: 20px;"></i>
                                             </button>
                                                 <div class="dropdown-container">
                                                     @foreach($chk_genre as $genre)
-                                                    <a href="genre/{{$genre->genre_id}}" class="btn-default btn-outline-primaryy" style="font-size:17px;color:#fff;">{{$genre->genre_name}}</a>
+                                                    <a href="genre/{{$genre->genre_id}}" class=" btn-default btn-outline-primaryy-sidenav" style="font-size:17px;">{{$genre->genre_name}}</a>
                                                     <!-- <a href="#">โปรแกรมประยุกต์สำหรับอุปกรณ์เคลื่อนที่</a>
                                                     <a href="#">ไอโอที(IoT)</a>
                                                     <a href="#">ปัญญาประดิษฐ์(Ai)</a>
@@ -834,12 +862,12 @@
                                                 </div>
                                             
                                         
-                                            <button class="dropdown-btn" style="border-top: 0.5px solid #fff;border-radius: 10%;">หมวดหมู่
+                                            <button class="dropdown-btn" style="border-top: 0.5px solid #000000;border-radius: 10%;">หมวดหมู่
                                                 <i class="fa fa-caret-down fa-lg" style="width: 20px;"></i>
                                             </button>
                                                 <div class="dropdown-container">
                                                     @foreach($chk_category as $category)
-                                                    <a href="category/{{$category->category_id}}" class="btn-default btn-outline-primaryy" style="font-size:17px;color:#fff;">{{$category->category_name}}</a>
+                                                    <a href="category/{{$category->category_id}}" class="btn-default btn-outline-primaryy-sidenav" style="font-size:17px;">{{$category->category_name}}</a>
                                                     <!-- <a href="#">โปรแกรมประยุกต์สำหรับอุปกรณ์เคลื่อนที่</a>
                                                     <a href="#">ไอโอที(IoT)</a>
                                                     <a href="#">ปัญญาประดิษฐ์(Ai)</a>
@@ -849,12 +877,12 @@
                                                 </div>
                                         
 
-                                            <button class="dropdown-btn " style="border-top: 0.5px solid #fff;border-radius: 10%;">ชนิดเอกสาร
+                                            <button class="dropdown-btn " style="border-top: 0.5px solid #000000;border-radius: 10%;">ชนิดเอกสาร
                                                 <i class="fa fa-caret-down fa-lg" style="width: 20px;"></i>
                                             </button>
                                                 <div class="dropdown-container">
                                                     @foreach($chk_type as $type)
-                                                    <a href="typeproject/{{$type->type_id}}" class="btn-default btn-outline-primaryy" style="font-size:17px;color:#fff;">{{$type->type_name}}</a>
+                                                    <a href="typeproject/{{$type->type_id}}" class="btn-default btn-outline-primaryy-sidenav" style="font-size:17px;">{{$type->type_name}}</a>
                                                     <!-- <a href="#">โปรแกรมประยุกต์สำหรับอุปกรณ์เคลื่อนที่</a>
                                                     <a href="#">ไอโอที(IoT)</a>
                                                     <a href="#">ปัญญาประดิษฐ์(Ai)</a>
@@ -921,7 +949,7 @@
         <script>
             $(window).scroll(function(){
                 var scroll = $(window).scrollTop();
-                $("#sider-in,#sidebar").css({
+                $("#sidebar").css({
                     // width: (100 + scroll/5) + "%",
                     height: (161 + scroll/-10)+ "%"
                 })
