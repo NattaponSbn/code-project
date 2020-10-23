@@ -148,9 +148,9 @@ class ProjectController extends Controller
         $project->project_name=$request->project_name;
         $project->name_en=$request->project_name_en;
         $project->des_project=$request->des_project;
-        // $dataproject->facebook=$request->facebook;
-        // $dataproject->email=$request->email;
-        // $dataproject->phone=$request->phone;
+        $dataproject->facebook_p=$request->facebook_p1;
+        $dataproject->email_p=$request->email_p1;
+        $dataproject->phone_p=$request->phone_p1;
         $project->type_id=$request->type_project;
         $project->genre_id=$request->genre_project;
         $project->category_id=$request->category_project;
@@ -170,6 +170,10 @@ class ProjectController extends Controller
         $project->owner_p3=$request->owner_p3;
         $project->owner_p4=$request->owner_p4;
         $project->advisor_p=$request->advisor_p;
+        $project->os_p=$request->os_p1;
+        $project->pro_run_p=$request->run_p1;
+        $project->pro_server=$request->server_p1;
+        $project->other_p=$request->other_p1;
         $project->logo=$logo;
         $project->file_p=$fileproject;
         $project->namefile=$filename;

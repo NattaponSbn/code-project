@@ -15174,7 +15174,7 @@ be a descendant of the grid when it is being dragged.
     z-index: 1030;
     padding-right: 15px;
     font-family: 'Athiti', sans-serif;
-    box-shadow: 0 12px 34px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 0px 20px rgba(0, 0, 0, 0.12);
 }
 
 @media (min-width: 768px) {
