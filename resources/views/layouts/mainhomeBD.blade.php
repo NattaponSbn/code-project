@@ -552,8 +552,17 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- main.css-->
                 <li class="app-search search-left">
-                    <form action='/search' method='GET'>
-                            <input class="app-search__input" name='search' id="search" type="text" placeholder="ค้นหา..." autocomplete="off">
+                    <form action='/search' method='GET' >
+                       
+                            <div class="input-group mb-3 app-search-input">
+                                <input type="text" class="form-control" name='search' id="search" style="width: 400px;border-right: #fff;" placeholder="ค้นหา..." aria-label="ค้นหา..." aria-describedby="basic-addon2" autocomplete="off">
+                                <div class="input-group-append" style="">
+                                    <button class="input-group-text" id="basic-addon2" style="background-color: #fff;border-left: #fff;" ><i class="fa fa-search"></i></button>
+                                </div>
+                                </div>
+                            </div>
+                        
+                            <!-- <input class="form-control " style="padding-right: 50%;" name='search' id="search" type="search" placeholder="ค้นหา..." autocomplete="off" ></div> -->
                             <div id="searchList">
                             </div>
                             <script>
@@ -588,13 +597,13 @@
                                 //     });  
                                 // });
                             </script>
-                            <button class="app-search__button" id="searchbt" ><i class="fa fa-search" ></i></button>
+                            
                             
                         
                         </form>
                 </li>
                 <!-- <div class="app-navbar__overlay" data-toggle="sidebar" aria-label="Hide Sidebar"></div> -->
-                <nav class="app-navmenu ">
+                <nav class="app-navmenu">
                     <li class="active1 menulink fontlink"><a href="homeBD">หน้าเเรก</a></li>
                     <li class="active2 menulink fontlink"><a href="SearchAdvance">ค้นหาเเบบละเอียด</a></li>
                     <li class="active3 menulink fontlink"><a href="#">เกี่ยวกับ</a></li>
@@ -743,7 +752,7 @@
                                             <a href="profile" class="top dropdown-item"><i class="fas fa-user" style="margin-right: 2%;"></i>โปรไฟล์</a>
                                             <div class="top dropdown-item" >
                                                 @if(!isset($_SESSION['project']))
-                                                <a href="addproject" class="view" style="color: black;text-decoration: none;"><i class="far fa-plus-square" style="margin-right: 2%;"></i>สร้างผลงาน</a><br>
+                                                <a href="addproject" class="view" style="color: black;text-decoration: none;"><i class="fas fa-plus-circle" style="margin-right: 2%;"></i>สร้างผลงาน</a><br>
                                                 @elseif(isset($_SESSION['project']))
                                                 <a href="listdetil" class="view" style="color: black;text-decoration: none;"><i class="fas fa-book" style="margin-right: 2%;"></i>ผลงานของฉัน</a><br>
                                                 @endif
@@ -984,6 +993,37 @@
                     });
                 }
             }
+            </script>
+
+            <script type="text/javascript">
+                $("#project_name").keyup(function(){
+                    var pattern_thai = /^[ก-๏\s]+$/u;
+                    var input_name_th = $("#project_name").val();
+                    if(input_name_th !='') {
+                        if(!input_name_th.match(pattern_thai)){
+                            alert("กรุณากรอกชื่อโครงงานภาษาไทย ให้ถูกต้อง");
+                            return false;
+                        }         
+                    }
+                    else{
+
+                    }
+                });
+
+                // $("#project_name_en").keyup(function(){
+                //     var pattern_eng = /^[a-zA-Z\s\(\)]+$/;
+                //     var input_name_en = $("#project_name_en").val();
+                //     if(input_name_en !='') {
+                //         if(!input_name_en.match(pattern_eng)){
+                //             alert("กรุณากรอกชื่อโครงงานภาษาอังกฤษ ให้ถูกต้อง");
+                //             return false;
+                //         }
+                //     }
+                //     else{
+
+                //     }
+                            
+                // });
             </script>
 
             <!-- The javascript plugin to display page loading on top-->

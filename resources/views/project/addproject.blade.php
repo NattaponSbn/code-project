@@ -500,8 +500,8 @@
                                                             </div>
                                                             <div class="form-group ">
                                                                 <div class="col-sm-12" style="margin-left:-25px;width: 100%;">
-                                                                    <label for="text" class="text-left fontdetail " style="margin-top:-20px;margin-left:25px;font-size: 14px;" title="โปรเเกรมที่ใช้รันโปรเเเกรม">อื่นๆ<span style="color: #A9A9A9;font-weight: normal;font-size: 14px;"> </span></label>
-                                                                    <textarea type="text" class="form-control"  name="other_p1" id="other_p1" placeholder="กรุณากรอกชื่อโปรเเกรมที่ใช้รันโปรเเเกรม" oninput="this.className = ''" title="อื่นๆ"></textarea>
+                                                                    <label for="text" class="text-left fontdetail " style="margin-top:-20px;margin-left:25px;font-size: 14px;" title="อื่นๆ">อื่นๆ<span style="color: #A9A9A9;font-weight: normal;font-size: 14px;"> </span></label>
+                                                                    <textarea type="text" class="form-control"  name="other_p1" id="other_p1" placeholder="อื่นๆ" oninput="this.className = ''" title="อื่นๆ"></textarea>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -640,6 +640,7 @@
                                             <div class="invalid-feedback">
                                                 กรุณาเลือกไฟล์
                                             </div>
+                                            <span id="file"></span>
                                         
                                         
                                             <center><label for="text" class="">อัปโหลดไฟล์เล่มโครงงาน<span style="color: red;font-size: 20;">*</span></label><br></center>
@@ -720,6 +721,53 @@
     <script type="text/javascript">
         $(document).ready(function(){
             $('[data-toggle="tooltip"]').tooltip();   
+        });
+    </script>
+
+    <script>
+        $("#file_ad").change(function() {
+            var file = document.getElementById('file_ad').value;
+            console.log(file);
+            var extension = file.substr((file.lastIndexOf('.') +1));
+                if (!/(pdf)$/ig.test(extension)) {
+                    alert("กรุณาเลือกเป็นไฟล์ PDF ให้ถูกต้อง");
+                    $("#file").val("");
+                    // console.log(file);
+                }
+           
+        });
+        $("#file_project").change(function() {
+            var file = document.getElementById('file_project').value;
+            console.log(file);
+            var extension = file.substr((file.lastIndexOf('.') +1));
+                if (!/(pdf)$/ig.test(extension)) {
+                    alert("กรุณาเลือกเป็นไฟล์ PDF ให้ถูกต้อง");
+                    $("#file").val("");
+                    // console.log(file);
+                }
+           
+        });
+        $("#fileslide").change(function() {
+            var file = document.getElementById('fileslide').value;
+            console.log(file);
+            var extension = file.substr((file.lastIndexOf('.') +1));
+                if (!/(pdf)$/ig.test(extension)) {
+                    alert("กรุณาเลือกเป็นไฟล์ PDF ให้ถูกต้อง");
+                    $("#file").val("");
+                    // console.log(file);
+                }
+           
+        });
+        $("#filepost").change(function() {
+            var file = document.getElementById('filepost').value;
+            console.log(file);
+            var extension = file.substr((file.lastIndexOf('.') +1));
+                if (!/(pdf)$/ig.test(extension)) {
+                    alert("กรุณาเลือกเป็นไฟล์ PDF ให้ถูกต้อง");
+                    $("#file").val("");
+                    // console.log(file);
+                }
+           
         });
     </script>
 

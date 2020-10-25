@@ -1947,9 +1947,17 @@
                 $strcut = $strcount2."...";
                 echo $strcut;
             }
-            elseif($count>80 & $count <150){
+            elseif($count>80 & $count <100){
                 $strcount = substr($str,0,-65);
-                $strcount1 = substr($strcount,0,-50);
+                $strcount1 = substr($strcount,0,-65);
+                $strcount2 = substr($strcount1,0,-85);
+                $strcount3 = substr($strcount2,0,-5);
+                $strcut = $strcount3."...";
+                echo $strcut;
+            }
+            elseif($count>100 & $count <150){
+                $strcount = substr($str,0,-65);
+                $strcount1 = substr($strcount,0,-85);
                 $strcount2 = substr($strcount1,0,-85);
                 $strcount3 = substr($strcount2,0,-5);
                 $strcut = $strcount3."...";

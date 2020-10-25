@@ -11360,7 +11360,7 @@ label.fontdetail {
     padding: 10px;
     text-align: center;
     font-size: 18px;
-    height: 100%;
+    height: 50%;
     /* ความสูงของ footer */
     width: 100%;
     font-family: 'Athiti', sans-serif;
@@ -11426,7 +11426,7 @@ label.fontdetail {
     /* real browsers */
     height: 100%;
     /* IE6 bug */
-    margin-bottom: -30%;
+    margin-bottom: -0%;
     /* กำหนด margin-bottom ให้ติดลบเท่ากับความสูงของ footer */
 }
 

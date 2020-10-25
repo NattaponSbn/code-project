@@ -520,7 +520,14 @@
             <ul class="app-nav">
                 <li class="app-search search-left">
                 <form action='searchmdd' method='GET'>
-                            <input class="app-search__input" name='search' id="search" type="text" placeholder="ค้นหา..." value="<?php echo $_SESSION['keyword-s']; ?>">
+                            <!-- <input class="app-search__input" name='search' id="search" type="text" placeholder="ค้นหา..." > -->
+                            <div class="input-group mb-3 app-search-input">
+                                <input type="text" class="form-control" name='searchmdd' id="searchmdd" style="width: 400px;border-right: #fff;" placeholder="ค้นหา..." aria-label="ค้นหา..." aria-describedby="basic-addon2" autocomplete="off" value="<?php echo $_SESSION['keyword-s']; ?>">
+                                <div class="input-group-append" style="">
+                                    <button class="input-group-text" id="basic-addon2" style="background-color: #fff;border-left: #fff;" ><i class="fa fa-search"></i></button>
+                                </div>
+                                </div>
+                            </div>
                             <div id="searchList">
                             </div>
                             <script>

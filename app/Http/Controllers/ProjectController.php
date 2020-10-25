@@ -52,17 +52,6 @@ class ProjectController extends Controller
         // return $bytes;
         // }//Close Functions.
 
-        $foder = 'project/fileproject/p_BD';
-        $fileP = $request->file('fileproject');
-        $filesize = $_FILES['fileproject']['size'];
-        // $fileZ = number_format($filesize / 1048576, 2) . ' MB';
-        // print_r($fileZ);
-        // print_r($asd);
-        $filename = $request->file('fileproject')->getClientOriginalName();
-        $nameimg = '/'.rand() . '.' . $filename;
-        $fileP->move(public_path($foder),$nameimg);
-        $fileproject='/fileproject/p_BD'.$nameimg;
-
         // file_chk
         
         
@@ -148,9 +137,9 @@ class ProjectController extends Controller
         $project->project_name=$request->project_name;
         $project->name_en=$request->project_name_en;
         $project->des_project=$request->des_project;
-        $dataproject->facebook_p=$request->facebook_p1;
-        $dataproject->email_p=$request->email_p1;
-        $dataproject->phone_p=$request->phone_p1;
+        $project->facebook_p=$request->facebook_p1;
+        $project->email_p=$request->email_p1;
+        $project->phone_p=$request->phone_p1;
         $project->type_id=$request->type_project;
         $project->genre_id=$request->genre_project;
         $project->category_id=$request->category_project;
@@ -175,36 +164,68 @@ class ProjectController extends Controller
         $project->pro_server=$request->server_p1;
         $project->other_p=$request->other_p1;
         $project->logo=$logo;
-        $project->file_p=$fileproject;
-        $project->namefile=$filename;
-
-        
+        // $project->file_p=$fileproject;
+        // $project->namefile=$filename;
         $project->save();
 
+        //file_book
+        if(isset($_POST['fileproject'])?$_POST['fileproject']:''){
+            $fileproject  = [
+                "fileproject" => "required|mimes:pdf|max:50000"
+            ];
+            if(isset($fileproject)?$fileproject:''){
+                $foder = 'project/fileproject/p_BD';
+                $fileP = $request->file('fileproject');
+                $filesize = $_FILES['fileproject']['size'];
+                $filename = $request->file('fileproject')->getClientOriginalName();
+                $nameimg = '/'.rand() . '.' . $filename;
+                $fileP->move(public_path($foder),$nameimg);
+                $fileproject='/fileproject/p_BD'.$nameimg;
+                DB::insert("INSERT INTO file_book(id_projectB, fileB_name, fileB_path, fileB_size) VALUES ('$nextid','$filename','$fileproject','$filesize')");
+            }else{
+
+            }
+        }else{
+
+        }
         //chk
         if(isset($_POST['fileproject_chk'])?$_POST['fileproject_chk']:''){
-            $foderchk = 'project/fileproject/p_chk';
-            $filePchk = $request->file('fileproject_chk');
-            $filesize = $_FILES['fileproject_chk']['size'];
-            $filenamechk = $request->file('fileproject_chk')->getClientOriginalName();
-            $namechk = '/'.rand() . '.' . $filenamechk;
-            $filePchk->move(public_path($foderchk),$namechk);
-            $fileproject_chk='/fileproject/p_chk'.$namechk;
-            DB::insert("INSERT INTO file_ad(id_projectA, fileA_name, fileA_path, fileA_size) VALUES ('$nextid','$filenamechk','$fileproject_chk','$filesize')");
+            $fileproject_chk  = [
+                "fileproject_chk" => "required|mimes:pdf|max:50000"
+            ];
+            if(isset($fileproject_chk)?$fileproject_chk:''){
+                $foderchk = 'project/fileproject/p_chk';
+                $filePchk = $request->file('fileproject_chk');
+                $filesize = $_FILES['fileproject_chk']['size'];
+                $filenamechk = $request->file('fileproject_chk')->getClientOriginalName();
+                $namechk = '/'.rand() . '.' . $filenamechk;
+                $filePchk->move(public_path($foderchk),$namechk);
+                $fileproject_chk='/fileproject/p_chk'.$namechk;
+                DB::insert("INSERT INTO file_ad(id_projectA, fileA_name, fileA_path, fileA_size) VALUES ('$nextid','$filenamechk','$fileproject_chk','$filesize')");
+            }else{
+
+            }
         }else{
 
         }
 
         //file_ad
         if(isset($_POST['filead'])?$_POST['filead']:''){
-            $foderad = 'project/fileproject/p_ad';
-            $filePad = $request->file('filead');
-            $filesize = $_FILES['filead']['size'];
-            $filenamead = $request->file('filead')->getClientOriginalName();
-            $namead = '/'.rand() . '.' . $filenamead;
-            $filePad->move(public_path($foderad),$namead);
-            $fileproject_ad='/fileproject/p_ad'.$namead;
-            DB::insert("INSERT INTO file_ad(id_projectA, fileA_name, fileA_path, fileA_size) VALUES ('$nextid','$filenamead','$fileproject_ad','$filesize')");
+            $filead  = [
+                "filead" => "required|mimes:pdf|max:50000"
+            ];
+            if(isset($filead)?$filead:''){
+                $foderad = 'project/fileproject/p_ad';
+                $filePad = $request->file('filead');
+                $filesize = $_FILES['filead']['size'];
+                $filenamead = $request->file('filead')->getClientOriginalName();
+                $namead = '/'.rand() . '.' . $filenamead;
+                $filePad->move(public_path($foderad),$namead);
+                $fileproject_ad='/fileproject/p_ad'.$namead;
+                DB::insert("INSERT INTO file_ad(id_projectA, fileA_name, fileA_path, fileA_size) VALUES ('$nextid','$filenamead','$fileproject_ad','$filesize')");
+            }else{
+
+            }
         }else{
             $fileproject_ad='';
         }
@@ -212,14 +233,21 @@ class ProjectController extends Controller
 
         //file_slide
         if(isset($_POST['fileslide'])?$_POST['fileslide']:'') {
-            $foderslide = 'project/fileproject/p_slide';
-            $filePslide = $request->file('fileslide');
-            $filesize = $_FILES['fileslide']['size'];
-            $filenameslide = $request->file('fileslide')->getClientOriginalName();
-            $nameslide = '/'.rand() . '.' . $filenameslide;
-            $filePslide->move(public_path($foderslide),$nameslide);
-            $fileproject_slide='/fileproject/p_slide'.$nameslide;
-            DB::insert("INSERT INTO file_slide(id_projectS, fileS_name, fileS_path, fileS_size) VALUES ('$nextid','$filenameslide','$fileproject_slide','$filesize')");
+            $fileslide  = [
+                "fileslide" => "required|mimes:pdf|max:50000"
+            ];
+            if(isset($fileslide)?$fileslide:''){
+                $foderslide = 'project/fileproject/p_slide';
+                $filePslide = $request->file('fileslide');
+                $filesize = $_FILES['fileslide']['size'];
+                $filenameslide = $request->file('fileslide')->getClientOriginalName();
+                $nameslide = '/'.rand() . '.' . $filenameslide;
+                $filePslide->move(public_path($foderslide),$nameslide);
+                $fileproject_slide='/fileproject/p_slide'.$nameslide;
+                DB::insert("INSERT INTO file_slide(id_projectS, fileS_name, fileS_path, fileS_size) VALUES ('$nextid','$filenameslide','$fileproject_slide','$filesize')");
+            }else{
+
+            }
         }else{
             $fileproject_slide='';
         }
@@ -479,7 +507,7 @@ class ProjectController extends Controller
         $chkidadmin = (isset($_SESSION['adminid'])) ? $_SESSION['adminid'] : '';
         $imgaccount = DB::select("SELECT * FROM users WHERE U_id='$chkid'");
         $adminaccount = DB::select("SELECT * FROM admin_company WHERE admin_id='$chkidadmin'");
-        $data = DB::select("SELECT * FROM type_project,genre_project,category_project,users,projects,img_project 
+        $data = DB::select("SELECT * FROM type_project,genre_project,category_project,users,projects,img_project
         WHERE users.U_id=projects.user_id and projects.project_id='$project_id' AND projects.type_id=type_project.type_id AND projects.genre_id=genre_project.genre_id 
         AND projects.category_id=category_project.category_id AND projects.project_id=img_project.p_id");
         // echo'<pre>';
@@ -1531,9 +1559,21 @@ class ProjectController extends Controller
         session_start();
         $chkid = (isset($_SESSION['usersid'])) ? $_SESSION['usersid'] : '';
         $chkidadmin = (isset($_SESSION['adminid'])) ? $_SESSION['adminid'] : '';
-        $item  = DB::select("SELECT * FROM type_project,genre_project,category_project,users,projects,img_project 
+        $item  = DB::select("SELECT * FROM type_project,genre_project,category_project,users,projects,img_project
         WHERE users.U_id=projects.user_id AND projects.type_id=type_project.type_id AND projects.genre_id=genre_project.genre_id 
         AND projects.category_id=category_project.category_id AND projects.project_id=img_project.p_id AND projects.project_id = '$project_id'"  );
+        
+        //ไฟล์บทคัดย่อ
+        $filead = DB::select("SELECT * FROM projects,file_ad WHERE projects.project_id=file_ad.id_projectA AND projects.project_id = '$project_id'" );
+        //ไฟล์เล่มโปรเจค
+        $filebook = DB::select("SELECT * FROM projects,file_book,type_project WHERE projects.project_id=file_book.id_projectB AND projects.type_id=type_project.type_id AND projects.project_id = '$project_id'" );
+        //ไฟล์โปสเตอร์
+        $filepostter = DB::select("SELECT * FROM projects,file_postter WHERE projects.project_id=file_postter.id_projectP AND projects.project_id = '$project_id'" );
+        //ไฟล์สไลด์
+        $fileslide = DB::select("SELECT * FROM projects,file_slide WHERE projects.project_id=file_slide.id_projectS AND projects.project_id = '$project_id'" );
+        //ลิ้งโค้ด
+        $linkcode = DB::select("SELECT * FROM projects,link_code WHERE projects.project_id=link_code.id_projectL AND projects.project_id = '$project_id'" );
+
         // print_r($item);
         $itemadmin  = DB::select("SELECT * FROM admin_company,owner_project,projects,type_project,genre_project,category_project
         WHERE owner_project.owner_id=projects.user_id AND admin_company.admin_id=projects.ad_id AND projects.type_id=type_project.type_id AND projects.genre_id=genre_project.genre_id 
@@ -1580,7 +1620,7 @@ class ProjectController extends Controller
         }
         
 
-        return view('project.itemdetaliBD',compact('item','project_id','imgback','itemadmin','imgaccount','adminaccount','chk_genre','chk_category','chk_type'));
+        return view('project.itemdetaliBD',compact('item','project_id','imgback','itemadmin','imgaccount','adminaccount','chk_genre','chk_category','chk_type','filead','filebook','filepostter','fileslide','linkcode'));
     }
 
     public function detailitemmdd($project_m_id){

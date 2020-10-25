@@ -15296,7 +15296,7 @@ be a descendant of the grid when it is being dragged.
 }
 
 .app-navmenu {
-    margin-left: -10px;
+    margin-left: -100px;
     display: flex;
     -ms-flex-item-align: center;
     align-self: center;
@@ -15421,6 +15421,37 @@ be a descendant of the grid when it is being dragged.
     border-color: #a7a5a3;
 }
 
+.app-search-input {
+    margin-left: -10%;
+    margin-top: 3%;
+    /* width: ; */
+    /* border-radius: 8px;
+    margin-top: 7%; */
+    /* background-color: rgba(255, 255, 255, 0.8);
+    -webkit-transition: background-color 0.3s ease;
+    -o-transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease;
+    border-color: #a7a5a3; */
+}
+
+.app-search-input-mdd {
+    margin-left: -8%;
+    align-items: center;
+    /* margin-top: 3%; */
+    /* border-radius: 8px;
+    margin-top: 7%; */
+    /* background-color: rgba(255, 255, 255, 0.8);
+    -webkit-transition: background-color 0.3s ease;
+    -o-transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease;
+    border-color: #a7a5a3; */
+}
+
+.app-search-input-size {
+    padding: 5px 10px;
+    padding-right: 200px;
+}
+
 .app-search__input:hover {
     padding: 5px 10px;
     padding-right: 200px;
@@ -15454,14 +15485,15 @@ be a descendant of the grid when it is being dragged.
 
 .app-search__button {
     position: absolute;
-    right: 0;
+    right: 30px;
     top: 10px;
-    bottom: 10px;
+    /* bottom: 10px;
     padding: 0 10px;
     border: 0;
     color: rgba(0, 0, 0, 0.8);
     background: none;
-    cursor: pointer;
+    cursor: pointer; */
+    margin-left: -30%;
 }
 
 .app-notification {

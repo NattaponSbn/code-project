@@ -9,7 +9,7 @@
                 <div class="texthe1">มาใหม่</div>
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <div class="table-responsive">
+                            
                                 @foreach($datas0 as $data_p)
                                     @if(isset($data_p->status_p)=='0')
                                         <a href="itemdetaliBD/{{$data_p->project_id}}">
@@ -28,6 +28,7 @@
                                                             <div class="textimg2"><?php echo $data_p->type_name; ?></div>
                                                         </a>
                                                     </center>
+                                                    
                                             </div>
                                     @endif              
                                 @endforeach
@@ -58,10 +59,11 @@
                                                         ?>
                                                     </div>
                                                     </center>
+                                                    
                                             </div>
                                     @endif
                                 @endforeach
-                            </div>
+                           
                         </div>
                     </div>
                 </div>
@@ -106,9 +108,31 @@
             $strcount2 = substr($strcount1,0,-5);
             $strcut = $strcount2."...";
             echo $strcut;
+        }elseif($count>50 & $count <80){
+            $strcount = substr($str,0,-65);
+            $strcount1 = substr($strcount,0,-50);
+            $strcount2 = substr($strcount1,0,-5);
+            $strcut = $strcount2."...";
+            echo $strcut;
+        }
+        elseif($count>80 & $count <100){
+            $strcount = substr($str,0,-65);
+            $strcount1 = substr($strcount,0,-65);
+            $strcount2 = substr($strcount1,0,-85);
+            $strcount3 = substr($strcount2,0,-5);
+            $strcut = $strcount3."...";
+            echo $strcut;
+        }
+        elseif($count>100 & $count <150){
+            $strcount = substr($str,0,-65);
+            $strcount1 = substr($strcount,0,-85);
+            $strcount2 = substr($strcount1,0,-85);
+            $strcount3 = substr($strcount2,0,-5);
+            $strcut = $strcount3."...";
+            echo $strcut;
         }else{
             echo $items->project_name;
-        } 
+        }  
     }
 
     function check_rating($rating) {
@@ -120,37 +144,83 @@
         }
     }
 
-    function rating_star($svgid){
-        if(isset($svgid)?$svgid:''){
-        if($svgid < 2 & $svgid> 0){
-            echo'<div class="rating">';
-            check_rating($svgid);if(isset($svgid)?$svgid:''){echo'<span class="">('.(round($svgid, $precision = 1)).'</span>)</div>';}}
-        
-        elseif($svgid >= 2 & $svgid < 3) {
-            echo'<div class="rating">';
-            check_rating($svgid);if(isset($svgid)?$svgid:''){echo'<span class="">('.(round($svgid, $precision = 1)).'</span>)</div>';}}
-        
-        
-        elseif($svgid >= 3 & $svgid < 4) {
-            echo'<div class="rating">';
-            check_rating($svgid);if(isset($svgid)?$svgid:''){echo'<span class="">('.(round($svgid, $precision = 1)).'</span>)</div>';}}
-        
-        
-        elseif($svgid >= 4 & $svgid < 5){
-            echo'<div class="rating">';
-            check_rating($svgid);if(isset($svgid)?$svgid:''){echo'<span class="">('.(round($svgid, $precision = 1)).'</span>)</div>';}} 
-        
-        elseif($svgid >= 5){
-        echo'<div class="rating">';
-            check_rating($svgid);if(isset($svgid)?$svgid:''){echo'<span class="">('.(round($svgid, $precision = 1)).'</span>)</div>';}}
-        else{
-            echo'<div class="rating">';
-            check_rating($svgid);if(isset($svgid)?$svgid:''){echo'<span class="">('.(round($svgid, $precision = 1)).'</span>)</div>';}}
-    
+    function formattter($viewcount) {
+        if ($viewcount >= 1000000) {
+            echo '<span class="countview">'.round($viewcount/ 1000000, 1).'หมื่น'.'</span><i class="fas fa-user i-view" style="color: #A9A9A9;"></i>';
         }
+        else if ($viewcount >= 1000) {
+            echo '<span class="countview">'.round($viewcount/ 1000, 1). 'พัน'.'</span><i class="fas fa-user i-view" style="color: #A9A9A9;"></i>';
+        }else{
+            // echo $viewcount;
+            echo '<span class="countview">'.$viewcount.'</span><i class="fas fa-user i-view" style="color: #A9A9A9;"></i>';
+        }
+        
+    }
+
+    function rating_star($svgrate){
+        if(isset($svgrate)?$svgrate:''){
+            if($svgrate < 2 & $svgrate> 0){
+                echo'<div class="rating">';
+                    check_rating($svgrate);
+                    if(isset($svgrate)?$svgrate:''){
+                        echo'<span class=""> ('.(round($svgrate, $precision = 1)).')</span><br>';
+                    }
+                    // echo '<span class="countview">'.formattter($viewcount).'</span><i class="fas fa-user i-view" style="color: #A9A9A9;"></i>';
+                echo'</div>';
+            }
+            
+            elseif($svgrate >= 2 & $svgrate < 3) {
+                echo'<div class="rating">';
+                    check_rating($svgrate);
+                    if(isset($svgrate)?$svgrate:''){
+                        echo'<span class=""> ('.(round($svgrate, $precision = 1)).')</span><br>';
+                    }
+                    // echo '<span class="countview">'.formattter($viewcount).'</span><i class="fas fa-user i-view" style="color: #A9A9A9;"></i>';
+                echo '</div>';
+            }
+            
+            elseif($svgrate >= 3 & $svgrate < 4) {
+                echo'<div class="rating">';
+                    check_rating($svgrate);
+                    if(isset($svgrate)?$svgrate:''){
+                        echo'<span class=""> ('.(round($svgrate, $precision = 1)).')</span><br>';
+                    }
+                    // echo '<span class="countview">'.formattter($viewcount).'</span><i class="fas fa-user i-view" style="color: #A9A9A9;"></i>';
+                echo '</div>';
+            }
+            
+            elseif($svgrate >= 4 & $svgrate < 5){
+                echo'<div class="rating">';
+                    check_rating($svgrate);
+                    if(isset($svgrate)?$svgrate:''){
+                        echo'<span class=""> ('.(round($svgrate, $precision = 1)).')</span><br>';
+                    } 
+                    // echo '<span class="countview">'.formattter($viewcount).'</span><i class="fas fa-user i-view" style="color: #A9A9A9;"></i>';
+                echo'</div>';}
+            
+            elseif($svgrate >= 5){
+                echo'<div class="rating">';
+                    check_rating($svgrate);
+                    if(isset($svgrate)?$svgrate:''){
+                        echo'<span class=""> ('.(round($svgrate, $precision = 1)).')</span><br>';
+                    }
+                    // echo '<span class="countview">'.formattter($viewcount).'</span><i class="fas fa-user i-view" style="color: #A9A9A9;"></i>';
+                echo'</div>';
+                }
+            else{
+                echo'<div class="rating">';
+                    check_rating($svgrate);
+                    if(isset($svgrate)?$svgrate:''){
+                        echo'<span class=""> ('.(round($svgrate, $precision = 1)).')</span><br>';
+                    }
+                    // echo '<span class="countview">'.formattter($viewcount).'</span><i class="fas fa-user i-view" style="color: #A9A9A9;"></i>';
+                echo '</div>';}
+        
+            }
         else{
             echo'<div class="rating">';
-                check_rating(0);  echo'<span class="">(0)</span>';
+                check_rating(0);  echo'<span class=""> (0)</span><br>';
+                // echo '<span class="countview">'.formattter($viewcount).'</span><i class="fas fa-user i-view" style="color: #A9A9A9;"></i>';
             echo'</div>';
         }    
     }

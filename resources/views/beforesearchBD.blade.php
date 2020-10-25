@@ -584,46 +584,51 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- main.css-->
                 <li class="app-search search-left">
-                    <form action='/search' method='GET'>
-                            <input class="app-search__input" name='search' id="search" type="text" placeholder="ค้นหา..." value="<?php echo $_SESSION['keyword-s']; ?>">
-                            <div id="searchList">
-                            </div>
-                            <script>
-                                var path="{{route('dropdownsearch')}}";
-                                $('input.typehead').typehead({
-                                    source:function (query,process){
-                                        return $.data(path,{query:name},function (data){
-                                            return process(data);
-                                        });
-                                    }
-                                });
-                                // $(document).ready(function(){
-                                // $('#project_name').keyup(function(){ 
-                                //         var keyword = $(this).val();
-                                //         if(keyword != '')
-                                //         {
-                                //         var _token = $('input[name="_token"]').val();
-                                //         $.ajax({
-                                //         url:"{{ route('search') }}",
-                                //         method:"GET",
-                                //         data:{keyword:keyword, _token:_token},
-                                //         success:function(data){
-                                //         $('#search').fadeIn();  
-                                //                     $('#searchList').html(data);
-                                //         }
-                                //         });
-                                //         }
-                                //     });
-                                //     $(document).on('click', 'li', function(){  
-                                //         $('#search').val($(this).text());  
-                                //         $('#searchList').fadeOut();  
-                                //     });  
-                                // });
-                            </script>
-                            <button class="app-search__button" id="searchbt" onclick="{{ Redirect::to('/search') }}"><i class="fa fa-search" ></i></button>
-                            
-                        
-                        </form>
+                <form action='/search' method='GET' >
+                       <div class="input-group mb-3 app-search-input">
+                           <input type="text" class="form-control" name='search' id="search" style="width: 400px;border-right: #fff;" placeholder="ค้นหา..." aria-label="ค้นหา..." aria-describedby="basic-addon2" autocomplete="off" value="<?php echo $_SESSION['keyword-s']; ?>">
+                           <div class="input-group-append" style="">
+                               <button class="input-group-text" id="basic-addon2" style="background-color: #fff;border-left: #fff;" ><i class="fa fa-search"></i></button>
+                           </div>
+                           </div>
+                       </div>
+                   
+                       <!-- <input class="form-control " style="padding-right: 50%;" name='search' id="search" type="search" placeholder="ค้นหา..." autocomplete="off" ></div> -->
+                       <div id="searchList">
+                       </div>
+                       <script>
+                           var path="{{route('dropdownsearch')}}";
+                           $('input.typehead').typehead({
+                               source:function (query,process){
+                                   return $.data(path,{query:name},function (data){
+                                       return process(data);
+                                   });
+                               }
+                           });
+                           // $(document).ready(function(){
+                           // $('#project_name').keyup(function(){ 
+                           //         var keyword = $(this).val();
+                           //         if(keyword != '')
+                           //         {
+                           //         var _token = $('input[name="_token"]').val();
+                           //         $.ajax({
+                           //         url:"{{ route('search') }}",
+                           //         method:"GET",
+                           //         data:{keyword:keyword, _token:_token},
+                           //         success:function(data){
+                           //         $('#search').fadeIn();  
+                           //                     $('#searchList').html(data);
+                           //         }
+                           //         });
+                           //         }
+                           //     });
+                           //     $(document).on('click', 'li', function(){  
+                           //         $('#search').val($(this).text());  
+                           //         $('#searchList').fadeOut();  
+                           //     });  
+                           // });
+                       </script>
+                   </form>
                 </li>
                 <!-- <div class="app-navbar__overlay" data-toggle="sidebar" aria-label="Hide Sidebar"></div> -->
                 <nav class="app-navmenu ">
@@ -632,6 +637,24 @@
                     <li class="active3 menulink fontlink"><a href="#">เกี่ยวกับ</a></li>
                     <li class="active4 menulink fontlink"><a href="#">ติดต่อ</a></li>
                 </nav>
+                <li style="margin-left: -10%;margin-right: 2%;">
+                    <div class="links front" style="font-size: 20px;">
+                    @if(!isset($_SESSION['status']) == 'userM' & !isset($_SESSION['statusA']) == 'admin')
+
+                    @elseif (isset($_SESSION['status']) == 'user')
+                        @if(!isset($_SESSION['project']))
+                        <a href="addproject" style="font-weight: normal;"><span class="add-span"><i class="fas fa-plus-circle fa-lg " style="color: #A9A9A9;" title="สร้างผลงงานคุณ"></i> สร้างผลงงาน</span></a><br>
+                        @elseif(isset($_SESSION['project']))
+                        <a href="listdetil" style="font-weight: normal;" class="view"><span class="add-span"><i class="fas fa-book fa-lg " style="color: #A9A9A9;" title="ผลงงานคุณ"></i> ผลงงานคุณ</span></a><br>
+                        @endif
+                    @elseif (isset($_SESSION['statusA']) == 'admin')
+                    <div class="links front">
+                        <a href="homeadmin" class="view">ผู้ดูเเลระบบ</a><br>
+                    </div>
+                    @endif
+
+                    </div>
+                </li>
                 <div class="navbar-dark layoutaccout">
                     <ul class="navbar-nav ml-auto ml-md-0">
                         <?php
@@ -755,7 +778,7 @@
                                             <a href="profile" class="top dropdown-item"><i class="fas fa-user" style="margin-right: 2%;"></i>โปรไฟล์</a>
                                             <div class="top dropdown-item" >
                                                 @if(!isset($_SESSION['project']))
-                                                <a href="addproject" class="view" style="color: black;text-decoration: none;"><i class="far fa-plus-square" style="margin-right: 2%;"></i>สร้างผลงาน</a><br>
+                                                <a href="addproject" class="view" style="color: black;text-decoration: none;"><i class="fas fa-plus-circle" style="margin-right: 2%;"></i>สร้างผลงาน</a><br>
                                                 @elseif(isset($_SESSION['project']))
                                                 <a href="listdetil" class="view" style="color: black;text-decoration: none;"><i class="fas fa-book" style="margin-right: 2%;"></i>ผลงานของฉัน</a><br>
                                                 @endif

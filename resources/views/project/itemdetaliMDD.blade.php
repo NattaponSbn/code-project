@@ -598,9 +598,54 @@
             <a href="{{action('Project_MDDController@itemproject')}}" class="app-header__logo font-Athiti" >ICTThesis</a> 
             <!-- main.css-->
             <ul class="app-nav">
-                <li class="app-search search-left">
-                    <input class="app-search__input" type="search" placeholder="ค้นหา...">
-                    <button class="app-search__button"><i class="fa fa-search"></i></button>
+            <li class="app-search search-left">
+                    
+                    <form action="{{url('searchmdd')}}" method="GET">
+                        <div class="input-group app-search-input-mdd">
+                            <input class="form-control" name='mddsearch' id="mddsearch" type="text" placeholder="ค้นหา..." style="width: 400px;border-right: #fff;" aria-label="ค้นหา..." aria-describedby="basic-addon2" autocomplete="off">
+                            
+                            <div class="input-group-append" >
+                                <button class="input-group-text" id="basic-addon2" style="background-color: #fff;border-left: #fff;" ><i class="fa fa-search"></i></button>
+                            </div>  
+                        </div>
+                        <div id="searchList">
+                        </div>
+                        <script>
+                            var path="{{route('dropdownsearch')}}";
+                            $('input.typehead').typehead({
+                                source:function (query,process){
+                                    return $.data(path,{query:name},function (data){
+                                        return process(data);
+                                    });
+                                }
+                            });
+                            // $(document).ready(function(){
+                            // $('#project_name').keyup(function(){ 
+                            //         var keyword = $(this).val();
+                            //         if(keyword != '')
+                            //         {
+                            //         var _token = $('input[name="_token"]').val();
+                            //         $.ajax({
+                            //         url:"{{ route('search') }}",
+                            //         method:"GET",
+                            //         data:{keyword:keyword, _token:_token},
+                            //         success:function(data){
+                            //         $('#search').fadeIn();  
+                            //                     $('#searchList').html(data);
+                            //         }
+                            //         });
+                            //         }
+                            //     });
+                            //     $(document).on('click', 'li', function(){  
+                            //         $('#search').val($(this).text());  
+                            //         $('#searchList').fadeOut();  
+                            //     });  
+                            // });
+                        </script>
+                        <!-- <button class="app-search__button" id="mddsearchbt" ><i class="fa fa-search" ></i></button> -->
+                        
+                    
+                    </form>
                 </li>
                 <!-- <div class="app-navbar__overlay" data-toggle="sidebar" aria-label="Hide Sidebar"></div> -->
                 <nav class="app-navmenu " >    

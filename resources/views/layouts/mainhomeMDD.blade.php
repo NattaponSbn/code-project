@@ -606,53 +606,59 @@
         </div>
     </div>
     <div class="app sidebar-mini ">
-        <header class="app-header">
+        <header class="app-header" >
             <!-- font Athiti -->
-            <a href="homeMDD" class="app-header__logo font-Athiti">ICTThesis</a>
+            <a href="homeMDD" class="app-header__logo font-Athiti" style="margin-left: 15px;">ICTThesis</a>
             <!-- main.css-->
             <ul class="app-nav">
                 <li class="app-search search-left">
                     
-                <form action="searchmdd" method="GET">
-                            <input class="app-search__input" name='mddsearch' id="mddsearch" type="text" placeholder="ค้นหา...">
-                            <div id="searchList">
-                            </div>
-                            <script>
-                                var path="{{route('dropdownsearch')}}";
-                                $('input.typehead').typehead({
-                                    source:function (query,process){
-                                        return $.data(path,{query:name},function (data){
-                                            return process(data);
-                                        });
-                                    }
-                                });
-                                // $(document).ready(function(){
-                                // $('#project_name').keyup(function(){ 
-                                //         var keyword = $(this).val();
-                                //         if(keyword != '')
-                                //         {
-                                //         var _token = $('input[name="_token"]').val();
-                                //         $.ajax({
-                                //         url:"{{ route('search') }}",
-                                //         method:"GET",
-                                //         data:{keyword:keyword, _token:_token},
-                                //         success:function(data){
-                                //         $('#search').fadeIn();  
-                                //                     $('#searchList').html(data);
-                                //         }
-                                //         });
-                                //         }
-                                //     });
-                                //     $(document).on('click', 'li', function(){  
-                                //         $('#search').val($(this).text());  
-                                //         $('#searchList').fadeOut();  
-                                //     });  
-                                // });
-                            </script>
-                            <button class="app-search__button" id="mddsearchbt" ><i class="fa fa-search" ></i></button>
+                    <form action="searchmdd" method="GET">
+                        <div class="input-group app-search-input-mdd">
+                            <input class="form-control" name='mddsearch' id="mddsearch" type="text" placeholder="ค้นหา..." style="width: 400px;border-right: #fff;" aria-label="ค้นหา..." aria-describedby="basic-addon2" autocomplete="off">
                             
+                            <div class="input-group-append" >
+                                <button class="input-group-text" id="basic-addon2" style="background-color: #fff;border-left: #fff;" ><i class="fa fa-search"></i></button>
+                            </div>  
+                        </div>
+                        <div id="searchList">
+                        </div>
+                        <script>
+                            var path="{{route('dropdownsearch')}}";
+                            $('input.typehead').typehead({
+                                source:function (query,process){
+                                    return $.data(path,{query:name},function (data){
+                                        return process(data);
+                                    });
+                                }
+                            });
+                            // $(document).ready(function(){
+                            // $('#project_name').keyup(function(){ 
+                            //         var keyword = $(this).val();
+                            //         if(keyword != '')
+                            //         {
+                            //         var _token = $('input[name="_token"]').val();
+                            //         $.ajax({
+                            //         url:"{{ route('search') }}",
+                            //         method:"GET",
+                            //         data:{keyword:keyword, _token:_token},
+                            //         success:function(data){
+                            //         $('#search').fadeIn();  
+                            //                     $('#searchList').html(data);
+                            //         }
+                            //         });
+                            //         }
+                            //     });
+                            //     $(document).on('click', 'li', function(){  
+                            //         $('#search').val($(this).text());  
+                            //         $('#searchList').fadeOut();  
+                            //     });  
+                            // });
+                        </script>
+                        <!-- <button class="app-search__button" id="mddsearchbt" ><i class="fa fa-search" ></i></button> -->
                         
-                        </form>
+                    
+                    </form>
                 </li>
                 <nav class="app-navmenu">
                     <li class="active1 menulink fontlink"><a href="homeMDD">หน้าเเรก</a></li>
@@ -660,13 +666,13 @@
                     <li class="active3 menulink fontlink"><a href="#about">เกี่ยวกับ</a></li>
                     <li class="active4 menulink fontlink"><a href="#contact">ติดต่อ</a></li>
                 </nav>
-                <li style="margin-left: -5%;margin-right: 2%;">
-                    <div class="links front layout-mdd-i-text" >
+                <li style="margin-left: -7%;margin-right: 0.5%;">
+                    <div class="links front layout-mdd-i-text-mdd" >
                     @if(!isset($_SESSION['status']) == 'userM' & !isset($_SESSION['statusA']) == 'admin')
 
                     @elseif (isset($_SESSION['status']) == 'user')
                         @if(!isset($_SESSION['project']))
-                        <a href="addproject" style="font-weight: normal;margin-top:200px;"><span class="add-span-mdd"><i class="fas fa-plus-circle fa-lg " style="color: #A9A9A9;" title="สร้างผลงงานคุณ"></i> สร้างผลงงาน</span></a><br>
+                        <a href="addproject" style="font-weight: normal;"><span class="add-span-mdd"><i class="fas fa-plus-circle fa-lg " style="color: #A9A9A9;" title="สร้างผลงงานคุณ"></i> สร้างผลงงาน</span></a><br>
                         @elseif(isset($_SESSION['project']))
                         <a href="listdetil" style="font-weight: normal;" class="view"><span class="add-span-mdd"><i class="fas fa-book fa-lg " style="color: #A9A9A9;" title="ผลงงานคุณ"></i> ผลงงานคุณ</span></a><br>
                         @endif
@@ -771,7 +777,7 @@
 
                                     @endforeach
                                     @foreach($imgaccount as $user)
-                                    <div class="name-scle dropdown-toggle "><?php echo $user->name; ?></div>
+                                    <div class="name-scle dropdown-toggle " style="margin-top:-19%;"><?php echo $user->name; ?></div>
                                     @endforeach
                                 </a>
 
