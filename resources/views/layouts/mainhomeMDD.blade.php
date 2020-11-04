@@ -40,16 +40,15 @@
     <title>ICTThesis</title>
 
     <style>
+       
         .user-size {
-            width: 100px;
-            margin-top: -5px;
-            margin-right: 30px;
-            margin-left: 30px;
-            padding-bottom: -10%;
+            margin-top: -3px;
         }
 
-        .img-user-size {
-            width: 100%;
+        .user-sizes {
+            width: 100px;
+            margin-top: -6px;
+            margin-left: 20px;
         }
 
         .content {
@@ -70,31 +69,6 @@
             background-color: white;
             border-radius: 5px;
         }
-
-        .name-scle {
-            font-size: 16px;
-            color: #000000;
-            -ms-flex-item-align: center;
-            align-self: center;
-            margin-top: -30px;
-            margin-left: 90px;
-        }
-
-        .span-i-user {
-            font-size: 33px;
-            color: none;
-            margin-left: -85px;
-            margin-top: -1.5px;
-            margin-right: -7px;
-        }
-
-        .text-mage {
-            font-size: 17px;
-            margin-left: 40px;
-            padding: 3px;
-            margin-top: -35px;
-        }
-
 
         body {
             background-image: url("img/background-MDD.jpg");
@@ -130,26 +104,11 @@
             margin-left: 50px;
         }
 
-        .top {
-            margin-top: 5px;
-        }
-
         .btn-login {
             height: 43px;
             margin-left: -20px;
             background-color: white;
             border-radius: 5px;
-        }
-
-        .name-scle {
-            font-size: 16px;
-            color: #000000;
-            -ms-flex-item-align: center;
-            align-self: center;
-            margin-top: -30px;
-            margin-left: 70px;
-            font-family: 'Athiti', sans-serif;
-
         }
 
         .img-top {
@@ -219,15 +178,14 @@
             box-shadow: 0 0 0 0.1rem #fff;
         }
 
-        /* mdd */
         .btn-outline-primaryy-sidenav {
             color: #000000;
-            border-color: #D9A327;
+            /* border-color: #D9A327; */
         }
 
         .btn-outline-primaryy-sidenav:hover {
             color: #D9A327;
-            border-color: #D9A327;
+            /* border-color: 1px solid #D9A327; */
             /* background-color: #D9A327; */
             text-decoration: underline;
         }
@@ -289,6 +247,11 @@
 
         .img-user-size {
             width: 100%;
+        }
+
+        .font-Athiti {
+            font-family: 'Athiti', sans-serif;
+            font-weight: 600;
         }
         .sidenav a, .dropdown-btn ,.dropdown-btn2,.dropdown-btn3{
             padding: 6px 8px 6px 16px;
@@ -431,7 +394,7 @@
                         <div class="card-header">{{ __('สมัครสมาชิก') }}</div>
                     </h3>
                     <div class="card-body">
-                        <form method="POST" action="registers">
+                        <form method="POST" action="{{URL::to('registers')}}">
                             @csrf
                             <div class="form-group row  " style="margin-left:5px;">
 
@@ -605,76 +568,84 @@
             </div>
         </div>
     </div>
+    <div class="wrapper">
     <div class="app sidebar-mini ">
-        <header class="app-header" >
+        <header class="app-header">
             <!-- font Athiti -->
-            <a href="homeMDD" class="app-header__logo font-Athiti" style="margin-left: 15px;">ICTThesis</a>
+            <nav class="app-menu navbar navbar-expand-lg navbar-light" style="height: 52px;">
+            <a href="homeMDD" class="app-header__logo font-Athiti">ICTThesis</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- main.css-->
-            <ul class="app-nav">
                 <li class="app-search search-left">
-                    
-                    <form action="searchmdd" method="GET">
-                        <div class="input-group app-search-input-mdd">
-                            <input class="form-control" name='mddsearch' id="mddsearch" type="text" placeholder="ค้นหา..." style="width: 400px;border-right: #fff;" aria-label="ค้นหา..." aria-describedby="basic-addon2" autocomplete="off">
-                            
-                            <div class="input-group-append" >
-                                <button class="input-group-text" id="basic-addon2" style="background-color: #fff;border-left: #fff;" ><i class="fa fa-search"></i></button>
-                            </div>  
-                        </div>
-                        <div id="searchList">
-                        </div>
-                        <script>
-                            var path="{{route('dropdownsearch')}}";
-                            $('input.typehead').typehead({
-                                source:function (query,process){
-                                    return $.data(path,{query:name},function (data){
-                                        return process(data);
-                                    });
-                                }
-                            });
-                            // $(document).ready(function(){
-                            // $('#project_name').keyup(function(){ 
-                            //         var keyword = $(this).val();
-                            //         if(keyword != '')
-                            //         {
-                            //         var _token = $('input[name="_token"]').val();
-                            //         $.ajax({
-                            //         url:"{{ route('search') }}",
-                            //         method:"GET",
-                            //         data:{keyword:keyword, _token:_token},
-                            //         success:function(data){
-                            //         $('#search').fadeIn();  
-                            //                     $('#searchList').html(data);
-                            //         }
-                            //         });
-                            //         }
-                            //     });
-                            //     $(document).on('click', 'li', function(){  
-                            //         $('#search').val($(this).text());  
-                            //         $('#searchList').fadeOut();  
-                            //     });  
-                            // });
-                        </script>
-                        <!-- <button class="app-search__button" id="mddsearchbt" ><i class="fa fa-search" ></i></button> -->
+                    <form action="{{URL::to('searchmdd')}}" method='GET' >
+                       
+                            <div class="input-group mb-3 app-search-input">
+                                <input type="text" class="form-control" name='mddsearch' id="mddsearch" style="width: 400px;border-right: #fff;" placeholder="ค้นหา..." aria-label="ค้นหา..." aria-describedby="basic-addon2" autocomplete="off">
+                                <div class="input-group-append" style="">
+                                    <button class="input-group-text" id="basic-addon2" style="background-color: #fff;border-left: #fff;" ><i class="fa fa-search"></i></button>
+                                </div>
+                                </div>
+                            </div>
                         
-                    
-                    </form>
+                            <!-- <input class="form-control " style="padding-right: 50%;" name='search' id="search" type="search" placeholder="ค้นหา..." autocomplete="off" ></div> -->
+                            <div id="searchList">
+                            </div>
+                            <script>
+                                var path="{{route('dropdownsearch')}}";
+                                $('input.typehead').typehead({
+                                    source:function (query,process){
+                                        return $.data(path,{query:name},function (data){
+                                            return process(data);
+                                        });
+                                    }
+                                });
+                                // $(document).ready(function(){
+                                // $('#project_name').keyup(function(){ 
+                                //         var keyword = $(this).val();
+                                //         if(keyword != '')
+                                //         {
+                                //         var _token = $('input[name="_token"]').val();
+                                //         $.ajax({
+                                //         url:"{{ route('search') }}",
+                                //         method:"GET",
+                                //         data:{keyword:keyword, _token:_token},
+                                //         success:function(data){
+                                //         $('#search').fadeIn();  
+                                //                     $('#searchList').html(data);
+                                //         }
+                                //         });
+                                //         }
+                                //     });
+                                //     $(document).on('click', 'li', function(){  
+                                //         $('#search').val($(this).text());  
+                                //         $('#searchList').fadeOut();  
+                                //     });  
+                                // });
+                            </script>
+                            
+                            
+                        
+                        </form>
                 </li>
+                <!-- <div class="app-navbar__overlay" data-toggle="sidebar" aria-label="Hide Sidebar"></div> -->
                 <nav class="app-navmenu">
                     <li class="active1 menulink fontlink"><a href="homeMDD">หน้าเเรก</a></li>
                     <li class="active2 menulink fontlink"><a href="SearchAdvancemdd">ค้นหาเเบบละเอียด</a></li>
-                    <li class="active3 menulink fontlink"><a href="#about">เกี่ยวกับ</a></li>
-                    <li class="active4 menulink fontlink"><a href="#contact">ติดต่อ</a></li>
+                    <li class="active3 menulink fontlink"><a href="#">เกี่ยวกับ</a></li>
+                    <li class="active4 menulink fontlink"><a href="#">ติดต่อ</a></li>
                 </nav>
-                <li style="margin-left: -7%;margin-right: 0.5%;">
-                    <div class="links front layout-mdd-i-text-mdd" >
+                <li style="margin-left: -10%;margin-right: 2%;">
+                    <div class="links front" style="font-size: 20px;">
                     @if(!isset($_SESSION['status']) == 'userM' & !isset($_SESSION['statusA']) == 'admin')
 
                     @elseif (isset($_SESSION['status']) == 'user')
                         @if(!isset($_SESSION['project']))
-                        <a href="addproject" style="font-weight: normal;"><span class="add-span-mdd"><i class="fas fa-plus-circle fa-lg " style="color: #A9A9A9;" title="สร้างผลงงานคุณ"></i> สร้างผลงงาน</span></a><br>
+                        <a href="addproject" style="font-weight: normal;"><span class="add-span"><i class="fas fa-plus-circle fa-lg " style="color: #A9A9A9;" title="สร้างผลงงานคุณ"></i> สร้างผลงงาน</span></a><br>
                         @elseif(isset($_SESSION['project']))
-                        <a href="listdetil" style="font-weight: normal;" class="view"><span class="add-span-mdd"><i class="fas fa-book fa-lg " style="color: #A9A9A9;" title="ผลงงานคุณ"></i> ผลงงานคุณ</span></a><br>
+                        <a href="listdetil" style="font-weight: normal;" class="view"><span class="add-span"><i class="fas fa-book fa-lg " style="color: #A9A9A9;" title="ผลงงานคุณ"></i> ผลงงานคุณ</span></a><br>
                         @endif
                     @elseif (isset($_SESSION['statusA']) == 'admin')
                     <div class="links front">
@@ -684,22 +655,22 @@
 
                     </div>
                 </li>
-                <div class="navbar-dark layoutaccout-MDD ">
+                <div class="navbar-dark layoutaccout">
+                    
                     <ul class="navbar-nav ml-auto ml-md-0">
-
                         <?php
                         if (!isset($_SESSION['status']) == 'user' & !isset($_SESSION['statusA']) == 'admin') { ?>
-                            <div class="front nav-item" style="margin-top: px;font-family: 'Athiti', sans-serif;font-size: 16px;">
+                            <div class="front nav-item" style="margin-top: px;font-family: 'Athiti', sans-serif;font-size: 16px;margin-right:-100px;">
                                 <a class="text-item" id="userDropdown" href="login" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><button class="btn-login btn btn-outline-primaryy"><i class="fas fa-user-circle span-i-user"></i>
-                                        <div class="text-mage">เข้าสู่ระบบ</div>
+                                        <div class="text-mage" >เข้าสู่ระบบ</div>
                                     </button></a>
-                                <div class="dropdown-menu dropdown-menu-right" style="margin-top: 13px;" aria-labelledby="userDropdown">
-                                    <ul class="navbar-nav ml-auto">
+                                <div class="dropdown-menu dropdown-menu-right" style="margin-right: -10%;" aria-labelledby="userDropdown">
+                                    <ul class="navbar-nav ml-auto" style="margin-right:-90px;">
                                         <div class="account-dropdown js-dropdown">
                                             <div class="info clearfix">
 
                                                 <h3>
-                                                    <div class="card-header">{{ __('เข้าสู่ระบบ') }}</div>
+                                                    <div class="card-header" style="margin-right:-15%;">{{ __('เข้าสู่ระบบ') }}</div>
                                                 </h3>
                                                 <div class="" style="font-family: 'Athiti', sans-serif;font-size: 16px;">
                                                     <form method="POST" action="loginBD">
@@ -707,7 +678,7 @@
 
                                                         <div class="form-group row">
                                                             <div class="col-md-6">
-                                                                <input id="username" type="username" class="form-control @error('email') is-invalid @enderror" style="width: 210px;height: 40px;margin-left:31px;" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus placeholder="ชื่อผู้ใช้ของคุณ">
+                                                                <input id="username" type="username" class="form-control @error('email') is-invalid @enderror" style="width: 210px;height: 40px;margin-left:31px;font-size: 16px;" name="username" value="<?php if(isset($_SESSION['username'])?$_SESSION['username']:''){ echo $_SESSION['username'];}?>" required autocomplete="username" autofocus placeholder="ชื่อผู้ใช้ของคุณ">
 
                                                                 @error('username')
                                                                 <span class="invalid-feedback" role="alert">
@@ -719,7 +690,7 @@
 
                                                         <div class="form-group row">
                                                             <div class="col-md-6">
-                                                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" style="width: 210px; height: 40px;margin-left:31px;" name="password" required autocomplete="current-password" placeholder="รหัสผ่านของคุณ">
+                                                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" style="width: 210px; height: 40px;margin-left:31px;font-size: 16px;" name="password" required autocomplete="current-password" placeholder="รหัสผ่านของคุณ">
 
                                                                 @error('password')
                                                                 <span class="invalid-feedback" role="alert">
@@ -731,12 +702,13 @@
 
                                                         <div class="form-group row">
                                                             <div class="col-md-6 offset-md-4">
-                                                                <div class="form-check" style="margin-left:-71px;">
+                                                                <div class="form-check" style="margin-left:-50px;">
                                                                     <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                                                    <label class="form-check-label" style="color: black;" for="remember">
+                                                                    <label class="form-check-label" style="color: black;font-size: 14px;margin-top:-8%;" for="remember">
                                                                         {{ __('จดจำฉันไว้') }}
                                                                     </label>
+
+                                                                    
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -751,7 +723,7 @@
                                                                     {{ __('ลืมรหัสผ่านใช่หรือไม่?') }}
                                                                 </a>
                                                                 @endif
-                                                                <button type="submit" class="btn btn-primaryyy" style="width: 210px; margin-left:-70px; ">
+                                                                <button type="submit" class="btn btn-primaryyy" style="width: 210px; margin-left:-58px; ">
                                                                     ล็อกอิน
                                                                 </button>
 
@@ -768,19 +740,18 @@
                             </div>
                         <?php } else if (isset($_SESSION['status']) == 'user') {
                         ?>
-
+                            
                             <li class="nav-item dropdown">
-
                                 <a class="nav-link " id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     @foreach($imgaccount as $img)
-                                    <img class="rounded-circle user-sizes img-profile" src="imgaccount/<?php echo $img->pathimg; ?>" alt="USer Atver">
+                                    <img class="rounded-circle user-sizes img-profile" src="{{URL::to('imgaccount/'.$img->pathimg)}}" alt="USer Atver">
 
                                     @endforeach
                                     @foreach($imgaccount as $user)
-                                    <div class="name-scle dropdown-toggle " style="margin-top:-19%;"><?php echo $user->name; ?></div>
+                                    <div class="name-scle dropdown-toggle "><?php echo $user->name; ?></div>
                                     @endforeach
                                 </a>
-
+                                
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                                     <ul class="navbar-nav ml-auto">
                                         <div class="account-dropdown js-dropdown">
@@ -789,7 +760,7 @@
                                                     <div class="image">
                                                         <a href="profile">
                                                             @foreach($imgaccount as $img)
-                                                            <img src="imgaccount\<?php echo $img->pathimg; ?>" alt="" class="img-user-size user-avatar rounded-circle" />
+                                                            <img src="{{URL::to('imgaccount/'.$img->pathimg)}}" alt="" class="img-user-size user-avatar rounded-circle" />
                                                             @endforeach
                                                         </a>
 
@@ -806,19 +777,19 @@
                                                 </div>
                                             </div>
 
-                                            <a href="profile" class="top dropdown-item"><i class="fas fa-user" style="margin-right: 2%;"></i>โปรไฟล์</a>
+                                            <a href="{{URL::to('profile')}}" class="top dropdown-item"><i class="fas fa-user" style="margin-right: 2%;"></i>โปรไฟล์</a>
                                             <div class="top dropdown-item" >
                                                 @if(!isset($_SESSION['project']))
-                                                <a href="addproject" class="view" style="color: black;text-decoration: none;"><i class="far fa-plus-square" style="margin-right: 2%;"></i>สร้างผลงาน</a><br>
+                                                <a href="{{URL::to('addproject')}}" class="view" style="color: black;text-decoration: none;"><i class="fas fa-plus-circle" style="margin-right: 2%;"></i>สร้างผลงาน</a><br>
                                                 @elseif(isset($_SESSION['project']))
-                                                <a href="listdetil" class="view" style="color: black;text-decoration: none;"><i class="fas fa-book" style="margin-right: 2%;"></i>ผลงานของฉัน</a><br>
+                                                <a href="{{URL::to('listdetil')}}" class="view" style="color: black;text-decoration: none;"><i class="fas fa-book" style="margin-right: 2%;"></i>ผลงานของฉัน</a><br>
                                                 @endif
                                             </div>
-                                            <a class="dropdown-item" href="logout" onclick="event.preventDefault();
+                                            <a class="dropdown-item" href="{{URL::to('logout')}}" onclick="event.preventDefault();
                                                                     document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt" ></i>
                                                 {{ __('ออกจากระบบ') }}
                                             </a>
-                                            <form id="logout-form" action="logout" method="POST" style="display: none;">
+                                            <form id="logout-form" action="{{URL::to('logout')}}" method="POST" style="display: none;">
                                                 @csrf
                                             </form>
                                         </div>
@@ -832,10 +803,14 @@
                         else  if (isset($_SESSION['statusA']) == 'admin') {
                         ?>
                             <li class="nav-item dropdown">
-
+                           
+                                <div class="links front">
+                                    <a href="homeadmin" class="view"><i class="far fa-caret-square-left fa-lg" style="color:#212529; margin-right: 7px;margin-left: 10px;"></i>กลับสู่หน้าผู้ดูเเลระบบ</a><br>
+                                </div>
+                                   
                                 <a class="nav-link " id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     @foreach($adminaccount as $img)
-                                    <img class="rounded-circle user-sizes img-profile" src="img_admin/<?php echo $img->pathimg; ?>" alt="USer Atver">
+                                    <img class="rounded-circle user-sizes img-profile" src="{{URL::to('img_admin/'.$img->pathimg)}}" alt="USer Atver">
 
                                     @endforeach
                                     @foreach($adminaccount as $user)
@@ -849,9 +824,9 @@
                                             <div class="info clearfix">
                                                 <center>
                                                     <div class="image">
-                                                        <a href="profile">
+                                                        <a href="{{URL::to('profile')}}">
                                                             @foreach($adminaccount as $img)
-                                                            <img src="img_admin\<?php echo $img->pathimg; ?>" alt="" class="img-user-size user-avatar rounded-circle" />
+                                                            <img src="{{URL::to('img_admin/'.$img->pathimg)}}" alt="" class="img-user-size user-avatar rounded-circle" />
                                                             @endforeach
                                                         </a>
 
@@ -868,12 +843,15 @@
                                                 </div>
                                             </div>
 
-                                            <a href="profileadmin" class="top dropdown-item"><i class="zmdi zmdi-account"></i>โปรไฟล์</a>
-                                            <a class="dropdown-item" href="logout" onclick="event.preventDefault();
-                                                                document.getElementById('logout-form').submit();">
+                                            <a href="{{URL::to('profileadmin')}}" class="top dropdown-item"><i class="fas fa-user" style="margin-right: 2%;"></i>โปรไฟล์</a>
+                                            <div class="links front">
+                                                <a href="{{URL::to('homeadmin')}}" class="view" style="color: black;text-decoration: none;"><i class="far fa-caret-square-left" style="margin-right: 2%;"></i>กลับสู่หน้าผู้ดูเเลระบบ</a><br>
+                                            </div>
+                                            <a class="dropdown-item" href="{{URL::to('logout')}}" onclick="event.preventDefault();
+                                                                document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt"></i>
                                                 {{ __('ออกจากระบบ') }}
                                             </a>
-                                            <form id="logout-form" action="logout" method="POST" style="display: none;">
+                                            <form id="logout-form" action="{{URL::to('logout')}}" method="POST" style="display: none;">
                                                 @csrf
                                             </form>
                                         </div>
@@ -883,19 +861,22 @@
                         <?php } ?>
                     </ul>
                 </div>
+            </div>
+            </nav>
                
         </header>
+        <div class="app-sidebar__overlay" data-toggle="sidebar" aria-label="Hide Sidebar"></div>
         <!-- app-sidebar css ของ main.css ส่วนของ เเท็บ ซ้ายมือ -->
         <aside class="app-sidebar" id="sidebar">
-            <ul class="app-menu">
-                <li>
-                <div id="layoutSidenav">
-                        <div id="layoutSidenav_nav">
-                            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-                                <div class="sb-sidenav-menu">
-                                <div class="nav">
+            <ul class="app-menu" >
+                <li >
+                    <div id="layoutSidenav" >
+                        <div id="layoutSidenav_nav" >
+                            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion" >
+                                <div class="sb-sidenav-menu" >
+                                <div class="nav" >
                                     <br>
-                                    <div class="sidenav" >
+                                        <div class="sidenav" >
                                             <button class="dropdown-btn" style="border-top: 0.5px solid #000000;border-radius: 10%;">ระดับวิทยานิพนธ์
                                                 <i class="fa fa-caret-down fa-lg" style="width: 20px;"></i>
                                             </button>
@@ -908,7 +889,7 @@
                                             </button>
                                                 <div class="dropdown-container">
                                                     @foreach($chk_genre as $genre)
-                                                    <a href="genre/{{$genre->genre_id}}" class="btn-default btn-outline-primaryy-sidenav" style="font-size:17px;">{{$genre->genre_name}}</a>
+                                                    <a href="genre/{{$genre->genre_id}}" class=" btn-default btn-outline-primaryy-sidenav" style="font-size:17px;">{{$genre->genre_name}}</a>
                                                     <!-- <a href="#">โปรแกรมประยุกต์สำหรับอุปกรณ์เคลื่อนที่</a>
                                                     <a href="#">ไอโอที(IoT)</a>
                                                     <a href="#">ปัญญาประดิษฐ์(Ai)</a>
@@ -931,7 +912,7 @@
                                                     <a href="#">ไอโอที(IoT)</a> -->
                                                     @endforeach
                                                 </div>
-      
+                                        
                                         </div>
 
                                     </div>
@@ -952,34 +933,8 @@
                     }
                 </style>
                 <p>
-                    <hr>
                 </p>
-
-                <div class="layoutlogre">
-                    <?php
-                     if (!isset($_SESSION['status']) == 'userM' & !isset($_SESSION['statusA']) == 'admin') {
-
-                    } else if (isset($_SESSION['status']) == 'userM') { ?>
-                        <div class="links front" style="font-size: 20px;">
-                            @if(!isset($_SESSION['projectmdd']))
-                            <a href="addproject" class="view"><i class="far fa-plus-square fa-lg " style="color:#212529; margin-right: 7px;margin-left: 10px;"></i>สร้างผลงาน</a><br>
-                            @elseif(isset($_SESSION['projectmdd']))
-                            <a href="listdetil" class="view"><i class="fas fa-book fa-lg" style="color:#212529; margin-right: 7px;margin-left: 10px;"></i>ผลงานของฉัน</a><br>
-                            @endif
-                        </div>
-                    <?php } else  if (isset($_SESSION['statusA']) == 'admin') { ?>
-                        <div class="links front">
-                            <a href="homeadmin" class="view"><i class="far fa-caret-square-left fa-lg" style="color:#212529; margin-right: 7px;margin-left: 10px;"></i>กลับสู่หน้าผู้ดูเเลระบบ</a><br>
-                        </div>
-                    <?php }
-                    else{
-                        
-                    }
-                    ?>
-                </div>
-                </li>
             </ul>
-
         </aside>
         <div class="img-top">@yield('content')</div>
 

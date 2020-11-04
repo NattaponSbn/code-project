@@ -31,12 +31,12 @@
             }
 
             $_SESSION['message'] = "successlogin";
-            header( "refresh: 0; url=/homeadmin" );
+            header( "refresh: 0; url=homeadmin" );
             exit(0);
         }else{
             $_SESSION['notpass'] = "null";
             // return back();
-            header( "refresh: 0; url=/homeBD" );
+            header( "refresh: 0; url=homeBD" );
             exit(0);
         }
     }
@@ -63,11 +63,11 @@
             if($dataproject){
                 $_SESSION['project'] = 'MDD';
             }
-            header( "refresh: 0; url=/homeMDD" );
+            header( "refresh: 0; url=homeMDD" );
             exit(0);
         }else{
             $_SESSION['notpass'] = "null";
-            header( "refresh: 0; url=/homeMDD" );
+            header( "refresh: 0; url=homeMDD" );
             exit(0);
         }
         

@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\DB;
 class Autocomplete_MddController extends Controller
 {
     public function searchmdd(Request $request){
-
         $keyword = $request->input('mddsearch');
         
         if(isset($keyword)?$keyword:''){
@@ -31,37 +30,43 @@ class Autocomplete_MddController extends Controller
             OR projectmdd.genre_id=genre_project.genre_id AND projectmdd.keyword_m_project3 LIKE '%$keyword%'
             OR projectmdd.genre_id=genre_project.genre_id AND projectmdd.keyword_m_project4 LIKE '%$keyword%'
             ");
-
-            $easysearchID = DB::select("SELECT * FROM projectmdd,genre_project
-            WHERE projectmdd.genre_id=genre_project.genre_id AND projectmdd.project_m_name LIKE '%$keyword%' 
-            OR projectmdd.genre_id=genre_project.genre_id AND projectmdd.keyword_m_project1 LIKE '%$keyword%'
-            OR projectmdd.genre_id=genre_project.genre_id AND projectmdd.keyword_m_project2 LIKE '%$keyword%' 
-            OR projectmdd.genre_id=genre_project.genre_id AND projectmdd.keyword_m_project3 LIKE '%$keyword%'
-            OR projectmdd.genre_id=genre_project.genre_id AND projectmdd.keyword_m_project4 LIKE '%$keyword%'
-            ");
-            compact('easysearchID');
-            foreach ($easysearch as $key_s) {
-                $key_similar1 = $key_s->keyword_m_project1;
-                $key_similar2 = $key_s->keyword_m_project2;
-                $key_similar3 = $key_s->keyword_m_project3;
-                $key_similar4 = $key_s->keyword_m_project4;
-                $search_id = $key_s->project_m_id;
-                $_SESSION['beforsearchmdd'] = 1;
-                
-                $similar = DB::select("SELECT *,ABS(projectmdd.project_m_id = '$search_id') AS pID
-                FROM projectmdd,genre_project
-                WHERE projectmdd.project_m_id != '$search_id' 
-                AND projectmdd.genre_id=genre_project.genre_id AND projectmdd.keyword_m_project1 LIKE '%$key_similar1%' 
-                OR projectmdd.genre_id=genre_project.genre_id AND projectmdd.keyword_m_project2 LIKE '%$key_similar2%' 
-                OR projectmdd.genre_id=genre_project.genre_id AND projectmdd.keyword_m_project3 LIKE '%$key_similar3%' 
-                OR projectmdd.genre_id=genre_project.genre_id AND projectmdd.keyword_m_project4 LIKE '%$key_similar4%' 
-                ORDER BY pID
-                LIMIT 4
+            if(isset($easysearch)?$easysearch:''){
+                $easysearchID = DB::select("SELECT * FROM projectmdd,genre_project
+                WHERE projectmdd.genre_id=genre_project.genre_id AND projectmdd.project_m_name LIKE '%$keyword%' 
+                OR projectmdd.genre_id=genre_project.genre_id AND projectmdd.keyword_m_project1 LIKE '%$keyword%'
+                OR projectmdd.genre_id=genre_project.genre_id AND projectmdd.keyword_m_project2 LIKE '%$keyword%' 
+                OR projectmdd.genre_id=genre_project.genre_id AND projectmdd.keyword_m_project3 LIKE '%$keyword%'
+                OR projectmdd.genre_id=genre_project.genre_id AND projectmdd.keyword_m_project4 LIKE '%$keyword%'
                 ");
-    
-                
-                return view('beforesearchMDD', compact('easysearch','imgaccount','adminaccount','similar','chk_genre','chk_category','chk_type'));
+                compact('easysearchID');
+                foreach ($easysearch as $key_s) {
+                    $key_similar1 = $key_s->keyword_m_project1;
+                    $key_similar2 = $key_s->keyword_m_project2;
+                    $key_similar3 = $key_s->keyword_m_project3;
+                    $key_similar4 = $key_s->keyword_m_project4;
+                    $search_id = $key_s->project_m_id;
+                    $_SESSION['beforsearchmdd'] = 1;
+                    
+                    $similar = DB::select("SELECT *,ABS(projectmdd.project_m_id = '$search_id') AS pID
+                    FROM projectmdd,genre_project
+                    WHERE projectmdd.project_m_id != '$search_id' 
+                    AND projectmdd.genre_id=genre_project.genre_id AND projectmdd.keyword_m_project1 LIKE '%$key_similar1%' 
+                    OR projectmdd.genre_id=genre_project.genre_id AND projectmdd.keyword_m_project2 LIKE '%$key_similar2%' 
+                    OR projectmdd.genre_id=genre_project.genre_id AND projectmdd.keyword_m_project3 LIKE '%$key_similar3%' 
+                    OR projectmdd.genre_id=genre_project.genre_id AND projectmdd.keyword_m_project4 LIKE '%$key_similar4%' 
+                    ORDER BY pID
+                    LIMIT 4
+                    ");
+        
+                    
+                    return view('beforesearchMDD', compact('easysearch','imgaccount','adminaccount','similar','chk_genre','chk_category','chk_type'));
+                }
+            }else{
+                $easysearch = '';
+                return view('beforesearchMDD', compact('easysearch','imgaccount','adminaccount','chk_genre','chk_category','chk_type'));
             }
+
+            
         }else{
             return back();
         }
@@ -71,20 +76,25 @@ class Autocomplete_MddController extends Controller
     function detailsearch(Request $request)
     {
        
-        
+        session_start();
         $keyword = $request->input('detailsearch');
+        if(isset($keyword)?$keyword:''){
+            $_SESSION['keyword-av-mdd']=$keyword;
         $genreproject = $request->input('genre_project');
         $categoryproject = $request->input('category_project');
         $typeproject = $request->input('type_project');
         $branch_project = $request->input('branch_project');
         $year_project = $request->input('year_project');
+        $chk_type = DB::select("SELECT * FROM type_project");
+        $chk_genre = DB::select("SELECT * FROM genre_project");
+        $chk_category = DB::select("SELECT * FROM category_project");
 
         if(isset($genreproject) =='' & isset($categoryproject) =='' & isset($typeproject) =='' & isset($branch_project) =='' & isset($year_project) ==''){
             $detailsearch = DB::select("SELECT * FROM projectmdd,type_project,genre_project,branch_project,category_project,year_project
                 WHERE projectmdd.type_id=type_project.type_id AND projectmdd.genre_id=genre_project.genre_id
                 AND projectmdd.branch_id=branch_project.branch_id AND projectmdd.category_id=category_project.category_id 
                 AND projectmdd.project_m_year=year_project.NO_Y          
-                AND projectmdd.project_name LIKE '%$keyword%' 
+                AND projectmdd.project_m_name LIKE '%$keyword%' 
                 
                 OR  projectmdd.type_id=type_project.type_id AND projectmdd.genre_id=genre_project.genre_id
                 AND projectmdd.branch_id=branch_project.branch_id AND projectmdd.category_id=category_project.category_id 
@@ -151,7 +161,7 @@ class Autocomplete_MddController extends Controller
                 WHERE projectmdd.type_id=type_project.type_id AND projectmdd.genre_id=genre_project.genre_id
                 AND projectmdd.branch_id=branch_project.branch_id AND projectmdd.category_id=category_project.category_id 
                 AND projectmdd.project_m_year=year_project.NO_Y AND projectmdd.project_m_year=$year_project          
-                AND projectmdd.project_name LIKE '%$keyword%' 
+                AND projectmdd.project_m_name LIKE '%$keyword%' 
                 
                 OR  projectmdd.type_id=type_project.type_id AND projectmdd.genre_id=genre_project.genre_id
                 AND projectmdd.branch_id=branch_project.branch_id AND projectmdd.category_id=category_project.category_id 
@@ -218,7 +228,7 @@ class Autocomplete_MddController extends Controller
                 WHERE projectmdd.type_id=type_project.type_id AND projectmdd.genre_id=genre_project.genre_id
                 AND projectmdd.branch_id=branch_project.branch_id AND projectmdd.category_id=category_project.category_id 
                 AND projectmdd.project_m_year=year_project.NO_Y AND projectmdd.branch_id=$branch_project           
-                AND projectmdd.project_name LIKE '%$keyword%' 
+                AND projectmdd.project_m_name LIKE '%$keyword%' 
                 
                 OR  projectmdd.type_id=type_project.type_id AND projectmdd.genre_id=genre_project.genre_id
                 AND projectmdd.branch_id=branch_project.branch_id AND projectmdd.category_id=category_project.category_id 
@@ -285,7 +295,7 @@ class Autocomplete_MddController extends Controller
                 WHERE projectmdd.type_id=type_project.type_id AND projectmdd.genre_id=genre_project.genre_id
                 AND projectmdd.branch_id=branch_project.branch_id AND projectmdd.category_id=category_project.category_id 
                 AND projectmdd.project_m_year=year_project.NO_Y AND projectmdd.project_m_year=$year_project
-                AND projectmdd.branch_id=$branch_project AND projectmdd.project_name LIKE '%$keyword%' 
+                AND projectmdd.branch_id=$branch_project AND projectmdd.project_m_name LIKE '%$keyword%' 
                 
                 OR  projectmdd.type_id=type_project.type_id AND projectmdd.genre_id=genre_project.genre_id
                 AND projectmdd.branch_id=branch_project.branch_id AND projectmdd.category_id=category_project.category_id 
@@ -356,7 +366,7 @@ class Autocomplete_MddController extends Controller
                 AND projectmdd.branch_id=branch_project.branch_id AND projectmdd.category_id=category_project.category_id 
                 AND projectmdd.project_m_year=year_project.NO_Y 
                 AND projectmdd.type_id=$typeproject           
-                AND projectmdd.project_name LIKE '%$keyword%' 
+                AND projectmdd.project_m_name LIKE '%$keyword%' 
                 
                 OR  projectmdd.type_id=type_project.type_id AND projectmdd.genre_id=genre_project.genre_id
                 AND projectmdd.branch_id=branch_project.branch_id AND projectmdd.category_id=category_project.category_id 
@@ -428,7 +438,7 @@ class Autocomplete_MddController extends Controller
                 AND projectmdd.branch_id=branch_project.branch_id AND projectmdd.category_id=category_project.category_id 
                 AND projectmdd.project_m_year=year_project.NO_Y AND projectmdd.project_m_year=$year_project            
                 AND projectmdd.type_id=$typeproject          
-                AND projectmdd.project_name LIKE '%$keyword%' 
+                AND projectmdd.project_m_name LIKE '%$keyword%' 
                 
                 OR  projectmdd.type_id=type_project.type_id AND projectmdd.genre_id=genre_project.genre_id
                 AND projectmdd.branch_id=branch_project.branch_id AND projectmdd.category_id=category_project.category_id 
@@ -499,7 +509,7 @@ class Autocomplete_MddController extends Controller
                 AND projectmdd.branch_id=branch_project.branch_id AND projectmdd.category_id=category_project.category_id 
                 AND projectmdd.project_m_year=year_project.NO_Y 
                 AND projectmdd.type_id=$typeproject AND projectmdd.branch_id=$branch_project           
-                AND projectmdd.project_name LIKE '%$keyword%' 
+                AND projectmdd.project_m_name LIKE '%$keyword%' 
                 
                 OR  projectmdd.type_id=type_project.type_id AND projectmdd.genre_id=genre_project.genre_id
                 AND projectmdd.branch_id=branch_project.branch_id AND projectmdd.category_id=category_project.category_id 
@@ -570,7 +580,7 @@ class Autocomplete_MddController extends Controller
                 AND projectmdd.branch_id=branch_project.branch_id AND projectmdd.category_id=category_project.category_id 
                 AND projectmdd.project_m_year=year_project.NO_Y AND projectmdd.project_m_year=$year_project
                 AND projectmdd.type_id=$typeproject AND projectmdd.branch_id=$branch_project           
-                AND projectmdd.project_name LIKE '%$keyword%' 
+                AND projectmdd.project_m_name LIKE '%$keyword%' 
                 
                 OR  projectmdd.type_id=type_project.type_id AND projectmdd.genre_id=genre_project.genre_id
                 AND projectmdd.branch_id=branch_project.branch_id AND projectmdd.category_id=category_project.category_id 
@@ -640,7 +650,7 @@ class Autocomplete_MddController extends Controller
                 WHERE projectmdd.type_id=type_project.type_id AND projectmdd.genre_id=genre_project.genre_id
                 AND projectmdd.branch_id=branch_project.branch_id AND projectmdd.category_id=category_project.category_id 
                 AND projectmdd.project_m_year=year_project.NO_Y AND projectmdd.category_id=$categoryproject 
-                AND projectmdd.project_name LIKE '%$keyword%' 
+                AND projectmdd.project_m_name LIKE '%$keyword%' 
                 
                 OR  projectmdd.type_id=type_project.type_id AND projectmdd.genre_id=genre_project.genre_id
                 AND projectmdd.branch_id=branch_project.branch_id AND projectmdd.category_id=category_project.category_id 
@@ -707,7 +717,7 @@ class Autocomplete_MddController extends Controller
                 AND projectmdd.branch_id=branch_project.branch_id AND projectmdd.category_id=category_project.category_id 
                 AND projectmdd.project_m_year=year_project.NO_Y AND projectmdd.project_m_year=$year_project
                 AND projectmdd.category_id=$categoryproject 
-                AND projectmdd.project_name LIKE '%$keyword%' 
+                AND projectmdd.project_m_name LIKE '%$keyword%' 
                 
                 OR  projectmdd.type_id=type_project.type_id AND projectmdd.genre_id=genre_project.genre_id
                 AND projectmdd.branch_id=branch_project.branch_id AND projectmdd.category_id=category_project.category_id 
@@ -778,7 +788,7 @@ class Autocomplete_MddController extends Controller
                 AND projectmdd.branch_id=branch_project.branch_id AND projectmdd.category_id=category_project.category_id 
                 AND projectmdd.project_m_year=year_project.NO_Y AND projectmdd.category_id=$categoryproject 
                 AND projectmdd.branch_id=$branch_project           
-                AND projectmdd.project_name LIKE '%$keyword%' 
+                AND projectmdd.project_m_name LIKE '%$keyword%' 
                 
                 OR  projectmdd.type_id=type_project.type_id AND projectmdd.genre_id=genre_project.genre_id
                 AND projectmdd.branch_id=branch_project.branch_id AND projectmdd.category_id=category_project.category_id 
@@ -850,7 +860,7 @@ class Autocomplete_MddController extends Controller
                 AND projectmdd.project_m_year=year_project.NO_Y AND projectmdd.project_m_year=$year_project
                 AND projectmdd.category_id=$categoryproject 
                 AND projectmdd.branch_id=$branch_project           
-                AND projectmdd.project_name LIKE '%$keyword%' 
+                AND projectmdd.project_m_name LIKE '%$keyword%' 
                 
                 OR  projectmdd.type_id=type_project.type_id AND projectmdd.genre_id=genre_project.genre_id
                 AND projectmdd.branch_id=branch_project.branch_id AND projectmdd.category_id=category_project.category_id 
@@ -925,7 +935,7 @@ class Autocomplete_MddController extends Controller
                 AND projectmdd.branch_id=branch_project.branch_id AND projectmdd.category_id=category_project.category_id 
                 AND projectmdd.project_m_year=year_project.NO_Y AND projectmdd.category_id=$categoryproject 
                 AND projectmdd.type_id=$typeproject         
-                AND projectmdd.project_name LIKE '%$keyword%' 
+                AND projectmdd.project_m_name LIKE '%$keyword%' 
                 
                 OR  projectmdd.type_id=type_project.type_id AND projectmdd.genre_id=genre_project.genre_id
                 AND projectmdd.branch_id=branch_project.branch_id AND projectmdd.category_id=category_project.category_id 
@@ -997,7 +1007,7 @@ class Autocomplete_MddController extends Controller
                 AND projectmdd.project_m_year=year_project.NO_Y AND projectmdd.project_m_year=$year_project
                 AND projectmdd.category_id=$categoryproject 
                 AND projectmdd.type_id=$typeproject           
-                AND projectmdd.project_name LIKE '%$keyword%' 
+                AND projectmdd.project_m_name LIKE '%$keyword%' 
                 
                 OR  projectmdd.type_id=type_project.type_id AND projectmdd.genre_id=genre_project.genre_id
                 AND projectmdd.branch_id=branch_project.branch_id AND projectmdd.category_id=category_project.category_id 
@@ -1072,7 +1082,7 @@ class Autocomplete_MddController extends Controller
                 AND projectmdd.branch_id=branch_project.branch_id AND projectmdd.category_id=category_project.category_id 
                 AND projectmdd.project_m_year=year_project.NO_Y AND projectmdd.category_id=$categoryproject 
                 AND projectmdd.type_id=$typeproject AND projectmdd.branch_id=$branch_project           
-                AND projectmdd.project_name LIKE '%$keyword%' 
+                AND projectmdd.project_m_name LIKE '%$keyword%' 
                 
                 OR  projectmdd.type_id=type_project.type_id AND projectmdd.genre_id=genre_project.genre_id
                 AND projectmdd.branch_id=branch_project.branch_id AND projectmdd.category_id=category_project.category_id 
@@ -1144,7 +1154,7 @@ class Autocomplete_MddController extends Controller
                 AND projectmdd.project_m_year=year_project.NO_Y AND projectmdd.project_m_year=$year_project
                 AND projectmdd.category_id=$categoryproject 
                 AND projectmdd.type_id=$typeproject AND projectmdd.branch_id=$branch_project           
-                AND projectmdd.project_name LIKE '%$keyword%' 
+                AND projectmdd.project_m_name LIKE '%$keyword%' 
                 
                 OR  projectmdd.type_id=type_project.type_id AND projectmdd.genre_id=genre_project.genre_id
                 AND projectmdd.branch_id=branch_project.branch_id AND projectmdd.category_id=category_project.category_id 
@@ -1219,7 +1229,7 @@ class Autocomplete_MddController extends Controller
                 AND projectmdd.branch_id=branch_project.branch_id AND projectmdd.category_id=category_project.category_id 
                 AND projectmdd.project_m_year=year_project.NO_Y 
                 AND projectmdd.genre_id=$genreproject           
-                AND projectmdd.project_name LIKE '%$keyword%' 
+                AND projectmdd.project_m_name LIKE '%$keyword%' 
                 
                 OR  projectmdd.type_id=type_project.type_id AND projectmdd.genre_id=genre_project.genre_id
                 AND projectmdd.branch_id=branch_project.branch_id AND projectmdd.category_id=category_project.category_id 
@@ -1290,7 +1300,7 @@ class Autocomplete_MddController extends Controller
                 AND projectmdd.branch_id=branch_project.branch_id AND projectmdd.category_id=category_project.category_id 
                 AND projectmdd.project_m_year=year_project.NO_Y AND projectmdd.project_m_year=$year_project
                 AND projectmdd.genre_id=$genreproject          
-                AND projectmdd.project_name LIKE '%$keyword%' 
+                AND projectmdd.project_m_name LIKE '%$keyword%' 
                 
                 OR  projectmdd.type_id=type_project.type_id AND projectmdd.genre_id=genre_project.genre_id
                 AND projectmdd.branch_id=branch_project.branch_id AND projectmdd.category_id=category_project.category_id 
@@ -1361,7 +1371,7 @@ class Autocomplete_MddController extends Controller
                 AND projectmdd.branch_id=branch_project.branch_id AND projectmdd.category_id=category_project.category_id 
                 AND projectmdd.project_m_year=year_project.NO_Y 
                 AND projectmdd.genre_id=$genreproject AND projectmdd.branch_id=$branch_project           
-                AND projectmdd.project_name LIKE '%$keyword%' 
+                AND projectmdd.project_m_name LIKE '%$keyword%' 
                 
                 OR  projectmdd.type_id=type_project.type_id AND projectmdd.genre_id=genre_project.genre_id
                 AND projectmdd.branch_id=branch_project.branch_id AND projectmdd.category_id=category_project.category_id 
@@ -1432,7 +1442,7 @@ class Autocomplete_MddController extends Controller
                 AND projectmdd.branch_id=branch_project.branch_id AND projectmdd.category_id=category_project.category_id 
                 AND projectmdd.project_m_year=year_project.NO_Y AND projectmdd.project_m_year=$year_project
                 AND projectmdd.genre_id=$genreproject AND projectmdd.branch_id=$branch_project           
-                AND projectmdd.project_name LIKE '%$keyword%' 
+                AND projectmdd.project_m_name LIKE '%$keyword%' 
                 
                 OR  projectmdd.type_id=type_project.type_id AND projectmdd.genre_id=genre_project.genre_id
                 AND projectmdd.branch_id=branch_project.branch_id AND projectmdd.category_id=category_project.category_id 
@@ -1504,7 +1514,7 @@ class Autocomplete_MddController extends Controller
                 AND projectmdd.project_m_year=year_project.NO_Y 
                 AND projectmdd.genre_id=$genreproject 
                 AND projectmdd.type_id=$typeproject           
-                AND projectmdd.project_name LIKE '%$keyword%' 
+                AND projectmdd.project_m_name LIKE '%$keyword%' 
                 
                 OR  projectmdd.type_id=type_project.type_id AND projectmdd.genre_id=genre_project.genre_id
                 AND projectmdd.branch_id=branch_project.branch_id AND projectmdd.category_id=category_project.category_id 
@@ -1580,7 +1590,7 @@ class Autocomplete_MddController extends Controller
                 AND projectmdd.project_m_year=year_project.NO_Y AND projectmdd.project_m_year=$year_project
                 AND projectmdd.genre_id=$genreproject 
                 AND projectmdd.type_id=$typeproject           
-                AND projectmdd.project_name LIKE '%$keyword%' 
+                AND projectmdd.project_m_name LIKE '%$keyword%' 
                 
                 OR  projectmdd.type_id=type_project.type_id AND projectmdd.genre_id=genre_project.genre_id
                 AND projectmdd.branch_id=branch_project.branch_id AND projectmdd.category_id=category_project.category_id 
@@ -1656,7 +1666,7 @@ class Autocomplete_MddController extends Controller
                 AND projectmdd.project_m_year=year_project.NO_Y AND projectmdd.project_m_year=$year_project
                 AND projectmdd.genre_id=$genreproject AND projectmdd.category_id=$categoryproject 
                 AND projectmdd.type_id=$typeproject AND projectmdd.branch_id=$branch_project           
-                AND projectmdd.project_name LIKE '%$keyword%' 
+                AND projectmdd.project_m_name LIKE '%$keyword%' 
                 
                 OR  projectmdd.type_id=type_project.type_id AND projectmdd.genre_id=genre_project.genre_id
                 AND projectmdd.branch_id=branch_project.branch_id AND projectmdd.category_id=category_project.category_id 
@@ -1732,7 +1742,7 @@ class Autocomplete_MddController extends Controller
                 AND projectmdd.project_m_year=year_project.NO_Y AND projectmdd.project_m_year=$year_project
                 AND projectmdd.genre_id=$genreproject 
                 AND projectmdd.type_id=$typeproject AND projectmdd.branch_id=$branch_project           
-                AND projectmdd.project_name LIKE '%$keyword%' 
+                AND projectmdd.project_m_name LIKE '%$keyword%' 
                 
                 OR  projectmdd.type_id=type_project.type_id AND projectmdd.genre_id=genre_project.genre_id
                 AND projectmdd.branch_id=branch_project.branch_id AND projectmdd.category_id=category_project.category_id 
@@ -1807,7 +1817,7 @@ class Autocomplete_MddController extends Controller
                 AND projectmdd.branch_id=branch_project.branch_id AND projectmdd.category_id=category_project.category_id 
                 AND projectmdd.project_m_year=year_project.NO_Y 
                 AND projectmdd.genre_id=$genreproject AND projectmdd.category_id=$categoryproject 
-                AND projectmdd.project_name LIKE '%$keyword%' 
+                AND projectmdd.project_m_name LIKE '%$keyword%' 
                 
                 OR  projectmdd.type_id=type_project.type_id AND projectmdd.genre_id=genre_project.genre_id
                 AND projectmdd.branch_id=branch_project.branch_id AND projectmdd.category_id=category_project.category_id 
@@ -1878,7 +1888,7 @@ class Autocomplete_MddController extends Controller
                 AND projectmdd.branch_id=branch_project.branch_id AND projectmdd.category_id=category_project.category_id 
                 AND projectmdd.project_m_year=year_project.NO_Y AND projectmdd.project_m_year=$year_project
                 AND projectmdd.genre_id=$genreproject AND projectmdd.category_id=$categoryproject 
-                AND projectmdd.project_name LIKE '%$keyword%' 
+                AND projectmdd.project_m_name LIKE '%$keyword%' 
                 
                 OR  projectmdd.type_id=type_project.type_id AND projectmdd.genre_id=genre_project.genre_id
                 AND projectmdd.branch_id=branch_project.branch_id AND projectmdd.category_id=category_project.category_id 
@@ -1950,7 +1960,7 @@ class Autocomplete_MddController extends Controller
                 AND projectmdd.project_m_year=year_project.NO_Y 
                 AND projectmdd.genre_id=$genreproject AND projectmdd.category_id=$categoryproject 
                 AND projectmdd.branch_id=$branch_project           
-                AND projectmdd.project_name LIKE '%$keyword%' 
+                AND projectmdd.project_m_name LIKE '%$keyword%' 
                 
                 OR  projectmdd.type_id=type_project.type_id AND projectmdd.genre_id=genre_project.genre_id
                 AND projectmdd.branch_id=branch_project.branch_id AND projectmdd.category_id=category_project.category_id 
@@ -2026,7 +2036,7 @@ class Autocomplete_MddController extends Controller
                 AND projectmdd.project_m_year=year_project.NO_Y AND projectmdd.project_m_year=$year_project
                 AND projectmdd.genre_id=$genreproject AND projectmdd.category_id=$categoryproject 
                 AND projectmdd.branch_id=$branch_project           
-                AND projectmdd.project_name LIKE '%$keyword%' 
+                AND projectmdd.project_m_name LIKE '%$keyword%' 
                 
                 OR  projectmdd.type_id=type_project.type_id AND projectmdd.genre_id=genre_project.genre_id
                 AND projectmdd.branch_id=branch_project.branch_id AND projectmdd.category_id=category_project.category_id 
@@ -2102,7 +2112,7 @@ class Autocomplete_MddController extends Controller
                 AND projectmdd.project_m_year=year_project.NO_Y 
                 AND projectmdd.genre_id=$genreproject AND projectmdd.category_id=$categoryproject 
                 AND projectmdd.type_id=$typeproject          
-                AND projectmdd.project_name LIKE '%$keyword%' 
+                AND projectmdd.project_m_name LIKE '%$keyword%' 
                 
                 OR  projectmdd.type_id=type_project.type_id AND projectmdd.genre_id=genre_project.genre_id
                 AND projectmdd.branch_id=branch_project.branch_id AND projectmdd.category_id=category_project.category_id 
@@ -2178,7 +2188,7 @@ class Autocomplete_MddController extends Controller
                 AND projectmdd.project_m_year=year_project.NO_Y AND projectmdd.project_m_year=$year_project
                 AND projectmdd.genre_id=$genreproject AND projectmdd.category_id=$categoryproject 
                 AND projectmdd.type_id=$typeproject           
-                AND projectmdd.project_name LIKE '%$keyword%' 
+                AND projectmdd.project_m_name LIKE '%$keyword%' 
                 
                 OR  projectmdd.type_id=type_project.type_id AND projectmdd.genre_id=genre_project.genre_id
                 AND projectmdd.branch_id=branch_project.branch_id AND projectmdd.category_id=category_project.category_id 
@@ -2255,7 +2265,7 @@ class Autocomplete_MddController extends Controller
                 AND projectmdd.project_m_year=year_project.NO_Y AND projectmdd.project_m_year=$year_project
                 AND projectmdd.genre_id=$genreproject AND projectmdd.category_id=$categoryproject 
                 AND projectmdd.type_id=$typeproject AND projectmdd.branch_id=$branch_project           
-                AND projectmdd.project_name LIKE '%$keyword%' 
+                AND projectmdd.project_m_name LIKE '%$keyword%' 
                 
                 OR  projectmdd.type_id=type_project.type_id AND projectmdd.genre_id=genre_project.genre_id
                 AND projectmdd.branch_id=branch_project.branch_id AND projectmdd.category_id=category_project.category_id 
@@ -2331,7 +2341,7 @@ class Autocomplete_MddController extends Controller
                 AND projectmdd.project_m_year=year_project.NO_Y AND projectmdd.project_m_year=$year_project
                 AND projectmdd.genre_id=$genreproject AND projectmdd.category_id=$categoryproject 
                 AND projectmdd.type_id=$typeproject AND projectmdd.branch_id=$branch_project           
-                AND projectmdd.project_name LIKE '%$keyword%' 
+                AND projectmdd.project_m_name LIKE '%$keyword%' 
                 
                 OR  projectmdd.type_id=type_project.type_id AND projectmdd.genre_id=genre_project.genre_id
                 AND projectmdd.branch_id=branch_project.branch_id AND projectmdd.category_id=category_project.category_id 
@@ -2405,8 +2415,15 @@ class Autocomplete_MddController extends Controller
         
         
         //print_r($detailsearch);
-        return view('beforesearchAVmdd', compact('detailsearch','similar','imgaccount','adminaccount'));
+        return view('beforesearchAVmdd', compact('detailsearch','similar','imgaccount','adminaccount','chk_genre','chk_category','chk_type'));
+    }else{
+            $chkid = (isset($_SESSION['usersid'])) ? $_SESSION['usersid'] : '';
+            $chkidadmin = (isset($_SESSION['adminid'])) ? $_SESSION['adminid'] : '';
+            $imgaccount = DB::select("SELECT * FROM users WHERE U_id='$chkid'");
+            $adminaccount = DB::select("SELECT * FROM admin_company WHERE admin_id='$chkidadmin'");
+        return back();
     }
+}
 
     function detailview(Request $request)
     {

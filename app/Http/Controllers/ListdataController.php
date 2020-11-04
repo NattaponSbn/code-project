@@ -54,11 +54,50 @@ class ListdataController extends Controller
         $adminaccount = DB::select("SELECT * FROM admin_company WHERE admin_id='$chkidadmin'");
         // $item = DB::select("SELECT * FROM projects,type_project WHERE projects.type_id=type_project.type_id and project_id='6'");
         $datas0 = DB::select("SELECT * FROM projects,type_project WHERE projects.type_id=type_project.type_id AND projects.status_p in ('0') ORDER BY projects.created_at DESC");
-        $datas1 = DB::select("SELECT *,AVG(rate_index) AS AvgRate  
-                                FROM projects,type_project,rating_p WHERE projects.type_id=type_project.type_id 
-                                AND projects.project_id=rating_p.project_id AND projects.status_p in ('1') 
-                                GROUP BY rating_p.project_id 
-                                ORDER BY projects.created_at DESC");
+        // $datas1 = DB::select("SELECT *,AVG(rate_index) AS AvgRate  
+        // FROM projects,type_project,rating_p WHERE projects.type_id=type_project.type_id 
+        // AND projects.project_id=rating_p.project_id AND projects.status_p in ('1') 
+        // GROUP BY rating_p.project_id 
+        // ORDER BY projects.created_at DESC LIMIT 20");
+        $temp = DB::select("SELECT * FROM projects,genre_project,type_project
+        WHERE projects.type_id=type_project.type_id AND projects.genre_id=genre_project.genre_id 
+        AND projects.status_p in ('1')
+        ORDER BY projects.created_at DESC LIMIT 20");
+
+            
+        foreach($temp as $data){
+            $ID = $data->project_id;
+            $temp_star = DB::select("SELECT *,AVG(rate_index) as AvgRate FROM rating_p WHERE rating_p.project_id = '$ID' GROUP BY rating_p.project_id");
+            compact('temp_star');
+            foreach($temp_star as $temp_star){
+                $idr = $temp_star->rating_id;
+                $idp = $temp_star->project_id;
+                $ida = $temp_star->AvgRate;
+                $chkvalur = DB::select("SELECT id_pro FROM temp_star WHERE id_pro='$idp'");
+                // print_r($chkvalur);
+                if(isset($chkvalur)?$chkvalur:''){
+                    DB::update("UPDATE temp_star SET id_star='$idr',avg_sum='$ida' WHERE id_pro='$idp'");
+                    DB::update("UPDATE projects SET fk_star='$idr' WHERE project_id='$idp'");
+                    // echo 'มีเเล้ว';
+                }else{
+                    DB::insert("INSERT INTO temp_star(id_star,id_pro, avg_sum) VALUES ('$idr','$idp','$ida')");
+                    DB::update("UPDATE projects SET fk_star='$idr' WHERE project_id='$idp'");
+                    // echo 'มีเเล้ว';
+                }
+            }
+            // echo'<pre>';
+            // print_r($temp_star);
+            // echo'</pre>';
+        }
+
+        $datas1 = DB::select("SELECT *,COUNT(login_project) AS countview FROM projects,genre_project,type_project,login_log,temp_star
+        WHERE projects.type_id=type_project.type_id AND projects.genre_id=genre_project.genre_id AND temp_star.id_star=projects.fk_star
+        AND projects.project_id=login_log.login_project
+        GROUP BY login_project ORDER BY projects.created_at DESC LIMIT 20");
+        // echo'<pre>';
+        //     print_r($datas1);
+        //     echo'</pre>';
+
         $datascount = count(DB::select("SELECT * FROM projects,type_project WHERE projects.type_id=type_project.type_id AND projects.status_p in ('1') ORDER BY projects.created_at DESC"));
         $chk_genre = DB::select("SELECT * FROM genre_project");
         $chk_category = DB::select("SELECT * FROM category_project");
@@ -80,7 +119,7 @@ class ListdataController extends Controller
         FROM projects,genre_project,type_project,rating_p 
         WHERE genre_project.genre_name in ('ไอโอที(IoT)') AND projects.status_p in ('1') 
         AND projects.type_id=type_project.type_id AND projects.genre_id=genre_project.genre_id AND projects.project_id=rating_p.project_id
-        GROUP BY rating_p.project_id");
+        GROUP BY rating_p.project_id LIMIT 20");
         // print_r($datas1);
         $chk_genre = DB::select("SELECT * FROM genre_project");
         $chk_category = DB::select("SELECT * FROM category_project");
@@ -94,20 +133,93 @@ class ListdataController extends Controller
         $chkidadmin = (isset($_SESSION['adminid'])) ? $_SESSION['adminid'] : '';
         $imgaccount = DB::select("SELECT * FROM users WHERE U_id='$chkid'");
         $adminaccount = DB::select("SELECT * FROM admin_company WHERE admin_id='$chkidadmin'");
+        $chk_genre = DB::select("SELECT * FROM genre_project");
+        $chk_category = DB::select("SELECT * FROM category_project");
+        $chk_type = DB::select("SELECT * FROM type_project");
         // $item = DB::select("SELECT * FROM projects,type_project WHERE projects.type_id=type_project.type_id and project_id='6'");
         $datas0 = DB::select("SELECT * FROM projects,genre_project,type_project WHERE genre_project.genre_name in ('ยอดนิยม') AND projects.status_p in ('0') AND projects.type_id=type_project.type_id AND projects.genre_id=genre_project.genre_id ");
-        $datas1 = DB::select("SELECT *,AVG(rate_index) AvgRate
-                    FROM rating_p,projects,genre_project,type_project
-                    WHERE projects.type_id=type_project.type_id AND projects.genre_id=genre_project.genre_id AND projects.project_id=rating_p.project_id
-                    GROUP BY rating_p.project_id
-                    HAVING AvgRate >=3
-                    ORDER BY AvgRate DESC");
-                    $count = count(DB::select("SELECT *,AVG(rate_index) AvgRate
-                    FROM rating_p,projects,genre_project,type_project
-                    WHERE projects.type_id=type_project.type_id AND projects.genre_id=genre_project.genre_id AND projects.project_id=rating_p.project_id
-                    GROUP BY rating_p.project_id
-                    HAVING AvgRate >=3
-                    ORDER BY AvgRate DESC"));
+        
+        $temp = DB::select("SELECT *,COUNT(login_project) AS countview FROM projects,genre_project,type_project,login_log 
+        WHERE projects.type_id=type_project.type_id AND projects.genre_id=genre_project.genre_id AND projects.project_id=login_log.login_project AND projects.status_p in ('1')
+        GROUP BY login_project ORDER BY COUNT(login_project) DESC LIMIT 20");
+
+        // DB::table('temp_star')->truncate();
+        compact('temp');
+        foreach($temp as $data){
+            $ID = $data->login_project;
+            $temp_star = DB::select("SELECT *,AVG(rate_index) as AvgRate FROM rating_p WHERE rating_p.project_id = '$ID' GROUP BY rating_p.project_id");
+            compact('temp_star');
+            foreach($temp_star as $temp_star){
+                $idr = $temp_star->rating_id;
+                $idp = $temp_star->project_id;
+                $ida = $temp_star->AvgRate;
+                $chkvalur = DB::select("SELECT id_pro FROM temp_star WHERE id_pro='$idp'");
+                // print_r($chkvalur);
+                if(isset($chkvalur)?$chkvalur:''){
+                    DB::update("UPDATE temp_star SET id_star='$idr',avg_sum='$ida' WHERE id_pro='$idp'");
+                    DB::update("UPDATE projects SET fk_star='$idr' WHERE project_id='$idp'");
+                    // echo 'มีเเล้ว';
+                }else{
+                    DB::insert("INSERT INTO temp_star(id_star,id_pro, avg_sum) VALUES ('$idr','$idp','$ida')");
+                    DB::update("UPDATE projects SET fk_star='$idr' WHERE project_id='$idp'");
+                    // echo 'มีเเล้ว';
+                }
+            }
+            // echo'<pre>';
+            // print_r($temp_star);
+            // echo'</pre>';
+        }
+
+        $datas1 = DB::select("SELECT *,COUNT(login_project) AS countview FROM projects,genre_project,type_project,login_log,temp_star
+        WHERE projects.type_id=type_project.type_id AND projects.genre_id=genre_project.genre_id AND projects.project_id=login_log.login_project 
+        AND  temp_star.id_star=projects.fk_star
+        GROUP BY login_project ORDER BY COUNT(login_project) DESC LIMIT 20");
+        return view('pagewedsum.pagePopular', compact('datas1', 'imgaccount', 'adminaccount','chk_genre','chk_category','chk_type'));
+        // echo'<pre>';
+        //     print_r($datas1);
+        //     echo'</pre>';
+
+
+        // compact('data');
+        // foreach($data as $data){
+        //     $ID = $data->login_project;
+        //     $datas1 = DB::select("SELECT *,AVG(rate_index) as AvgRate
+        //     FROM projects,genre_project,type_project,login_log,rating_p
+        //     WHERE projects.type_id=type_project.type_id AND projects.genre_id=genre_project.genre_id AND rating_p.project_id = '$ID'
+        //     GROUP BY rating_p.project_id");
+
+        //     $view = DB::select("SELECT COUNT(login_project) AS countview FROM login_log WHERE login_project = '$ID' GROUP BY login_project ");
+        //     // echo'<pre>';
+        //     // print_r($view);
+        //     // echo'</pre>';
+            
+        // }
+        // echo'<pre>';
+        //     print_r($datas1);
+        //     echo'</pre>';
+        
+       
+        // $datas1 = DB::select("SELECT login_project,COUNT(login_project) AS countview FROM login_log GROUP BY login_project ORDER BY COUNT(login_project) DESC");
+                    // echo'<pre>';
+                    // print_r($datas1);
+                    // echo'</pre>';
+                    // compact('datas1');
+                    // foreach($datas1 as $datas1){
+                    //     $datas = $datas1->project_id;
+                    //     $avg = DB::select("SELECT AVG(rate_index) AvgRate FROM rating_p,projects,genre_project,type_project
+                    //     WHERE projects.type_id=type_project.type_id AND projects.genre_id=genre_project.genre_id AND rating_p.project_id = '$datas'
+                    //     GROUP BY rating_p.project_id");
+                    //     // echo'<pre>';
+                    //     // print_r($avg);
+                    //     // echo'</pre>';
+                    // }
+                    // 
+                    // $count = count(DB::select("SELECT *,AVG(rate_index) AvgRate
+                    // FROM rating_p,projects,genre_project,type_project
+                    // WHERE projects.type_id=type_project.type_id AND projects.genre_id=genre_project.genre_id AND projects.project_id=rating_p.project_id
+                    // GROUP BY rating_p.project_id
+                    // HAVING AvgRate >=3
+                    // ORDER BY AvgRate DESC"));
         // for($i=0;$i<$count;$i++){
         //     $dataID = $datas[$i]->project_id;
         //     $datas1 = DB::select("SELECT *,AVG(rate_index) AvgRate
@@ -128,10 +240,7 @@ class ListdataController extends Controller
         // AND projects.type_id=type_project.type_id AND projects.genre_id=genre_project.genre_id AND projects.project_id=rating_p.project_id
         // GROUP BY rating_p.project_id");
         // print_r($datas1);
-        $chk_genre = DB::select("SELECT * FROM genre_project");
-        $chk_category = DB::select("SELECT * FROM category_project");
-        $chk_type = DB::select("SELECT * FROM type_project");
-        return view('pagewedsum.pagePopular', compact('datas1', 'imgaccount', 'adminaccount','chk_genre','chk_category','chk_type'));
+        
     }
 
     public function pursue(){
@@ -167,6 +276,30 @@ class ListdataController extends Controller
 
         
         return view('pagewedsum.MDD.pursue', compact('datas0', 'datas1', 'datasA1', 'imgaccount', 'adminaccount','chk_genre','chk_category','chk_type'));
+    }
+
+    public function advisor_p(){
+        // echo '1';
+        session_start();
+        $chkid = (isset($_SESSION['usersid'])) ? $_SESSION['usersid'] : '';
+        $chkidadmin = (isset($_SESSION['adminid'])) ? $_SESSION['adminid'] : '';
+        $imgaccount = DB::select("SELECT * FROM users WHERE U_id='$chkid'");
+        $adminaccount = DB::select("SELECT * FROM admin_company WHERE admin_id='$chkidadmin'");
+        $chk_genre = DB::select("SELECT * FROM genre_project");
+        $chk_category = DB::select("SELECT * FROM category_project");
+        $chk_type = DB::select("SELECT * FROM type_project");
+        $advisor_p = $_SESSION['advisor_p'];
+        if(isset($advisor_p)?$advisor_p:''){
+            $adv = DB::select("SELECT *,COUNT(login_project) AS countview FROM projects,login_log,temp_star,genre_project,type_project WHERE projects.advisor_p in ('$advisor_p') 
+            AND projects.type_id=type_project.type_id AND projects.genre_id=genre_project.genre_id AND projects.project_id=login_log.login_project 
+            AND temp_star.id_star=projects.fk_star GROUP BY login_project");
+            // echo '<pre>';
+            // print_r($adv);
+            // echo '</pre>';
+            return view('wed.advisor_p',compact('adv','imgaccount', 'adminaccount','chk_genre','chk_category','chk_type'));
+        }else{
+            return back();
+        }
     }
 
     function adduser(Request $request)
@@ -297,14 +430,14 @@ class ListdataController extends Controller
         $chkid = (isset($_SESSION['usersid'])) ? $_SESSION['usersid'] : '';
         $chkidadmin = (isset($_SESSION['adminid'])) ? $_SESSION['adminid'] : '';
         $imgaccount = DB::select("SELECT * FROM users WHERE U_id='$chkid'");
-        
+        $adminaccount = DB::select("SELECT * FROM admin_company WHERE admin_id='$chkidadmin'");
         $chk_genre = DB::select("SELECT * FROM genre_project");
         $chk_category = DB::select("SELECT * FROM category_project");
         $chk_type = DB::select("SELECT * FROM type_project");
 
-        $adminaccount = DB::select("SELECT * FROM admin_company WHERE admin_id='$chkidadmin'");
+        
         if(isset($chkid)?$chkid:''){
-            $list = DB::select("SELECT * FROM projects,type_project WHERE projects.type_id=type_project.type_id AND projects.user_id='$chkid'");
+            $list = DB::select("SELECT * FROM projects,type_project,users WHERE projects.type_id=type_project.type_id AND projects.user_id='$chkid' AND projects.user_id=users.U_id");
             // echo'<pre>';
             // print_r($list);
             // echo'</pre>';

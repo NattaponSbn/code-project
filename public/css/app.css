@@ -11164,6 +11164,8 @@ a.text-dark:focus {
     font-size: 45px;
     font-weight: bold;
     margin-left: 10px;
+    width: 75%;
+    padding: 0px 0px 0px 0px;
 }
 
 .text-N-d-s {
@@ -11175,12 +11177,30 @@ a.text-dark:focus {
     width: 80%;
 }
 
+.text-N-d-s-mdd {
+    /* margin-top: 1%; */
+    padding: 5px 0px 10px 0px;
+    display: table;
+    font-weight: bold;
+    margin-left: 2%;
+    width: 80%;
+}
+
 .text-N-d-si {
     margin-top: -10%;
     padding: 5px 0px 30px 0px;
     display: table;
     font-weight: bold;
     margin-left: 13%;
+    width: 80%;
+}
+
+.text-N-d-si-mdd {
+    /* margin-top: -10%; */
+    padding: 5px 0px 10px 0px;
+    display: table;
+    font-weight: bold;
+    margin-left: 2%;
     width: 80%;
 }
 
@@ -11494,4 +11514,22 @@ label.fontdetail {
 
 .text-downloadmdd:active {
     color: #0099FF;
+}
+
+#btn-layouts-coloum {
+    display: flex;
+}
+
+#btn-layouts-list {
+    display: none;
+}
+
+.btn-layouts-list-coloum {
+    float: right;
+    font-size: 15px;
+    margin-right: 10%;
+}
+
+.span-layout-text {
+    font-size: 16px;
 }

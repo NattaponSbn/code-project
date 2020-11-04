@@ -425,47 +425,61 @@
                             @csrf
                             @foreach($item as $datas)
                             <input type="text" name="project_id" id="project_id" style="display: none;" value="<?php echo $datas->project_id; ?>">
+                            
                             @endforeach
                             @foreach($itemadmin as $datas)
                             <input type="text" name="project_id" id="project_id" style="display: none;" value="<?php echo $datas->project_id; ?>">
+                            
                             @endforeach
                     </div>
-
-                    <button type="submit" target="_blank" class="btn btn-primary" >ดาวโหลดไฟล์เอกสาร</button>
+                    
+                    <button type="submit" target="_blank" class="btn btn-primary" id="button-download" onclick="myFunction()">ดาวโหลดไฟล์เอกสาร</button>
                     </form>
                 </div>
             </div>
         </div>
         @endif
+       
+            <!-- <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">ความพึ่งพอใจของเนื้อหา</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body"> -->
+                        <dialog id="myDialog" >
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">ความพึ่งพอใจของเนื้อหา</h5>
+                            <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"> -->
+                                <!-- <span aria-hidden="true">&times;</span> -->
+                            <!-- </button> -->
+                        </div>
+                            <form action="#" method="POST">
+                                @csrf
+                                @foreach($item as $datas)
+                                <input type="text" name="project_id" id="project_id" style="display: none;" value="<?php echo $datas->project_id; ?>">
+                                @endforeach
+                                @foreach($itemadmin as $datas)
+                                <input type="text" name="project_id" id="project_id" style="display: none;" value="<?php echo $datas->project_id; ?>">
+                                @endforeach
+                                <div class="rateyo" name="rating" id="rating" data-rateyo-rating="5" data-rateyo-num-stars="5" data-rateyo-score="3">
+                                </div>
+                                <input type="hidden" name="rating">
+                       
 
-        <!-- <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">ความพึ่งพอใจของเนื้อหา</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form action="#" method="POST">
-                            @csrf
-                            @foreach($item as $datas)
-                            <input type="text" name="project_id" id="project_id" style="display: none;" value="<?php echo $datas->project_id; ?>">
-                            @endforeach
-                            @foreach($itemadmin as $datas)
-                            <input type="text" name="project_id" id="project_id" style="display: none;" value="<?php echo $datas->project_id; ?>">
-                            @endforeach
-                            <div class="rateyo" name="rating" id="rating" data-rateyo-rating="5" data-rateyo-num-stars="5" data-rateyo-score="3">
-                            </div>
-                            <input type="hidden" name="rating">
-                    </div>
-
-                    <button type="submit" class="btn btn-primary">ตกลง</button>
-                    </form>
+                        <button type="submit" class="btn btn-primary">ตกลง</button>
+                        </form>
+                        </div>
+                         </div>
+                        </dialog>
+                    <!-- </div>
                 </div>
             </div>
-        </div> -->
+        </dialog> -->
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -665,7 +679,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- main.css-->
                 <li class="app-search search-left">
-                    <form action='/search' method='GET'>
+                    <form action="{{URL::to('search')}}" method="GET">
                         <div class="input-group mb-3 app-search-input">
                             <input type="text" class="form-control" style="width: 400px;border-right: #fff;" placeholder="ค้นหา..." aria-label="ค้นหา..." aria-describedby="basic-addon2" autocomplete="off">
                             <div class="input-group-append" style="">
@@ -714,8 +728,8 @@
                 </li>
                 <!-- <div class="app-navbar__overlay" data-toggle="sidebar" aria-label="Hide Sidebar"></div> -->
                 <nav class="app-navmenu ">
-                    <li class="active1 menulink fontlink"><a href="homeBD">หน้าเเรก</a></li>
-                    <li class="active2 menulink fontlink"><a href="SearchAdvance">ค้นหาเเบบละเอียด</a></li>
+                    <li class="active1 menulink fontlink"><a href="{{action('ProjectController@itemproject')}}">หน้าเเรก</a></li>
+                    <li class="active2 menulink fontlink"><a href="{{action('AutocompleteController@detailview')}}">ค้นหาเเบบละเอียด</a></li>
                     <li class="active3 menulink fontlink"><a href="#">เกี่ยวกับ</a></li>
                     <li class="active4 menulink fontlink"><a href="#">ติดต่อ</a></li>
                 </nav>
@@ -725,19 +739,20 @@
 
                     @elseif (isset($_SESSION['status']) == 'user')
                         @if(!isset($_SESSION['project']))
-                        <a href="addproject" style="font-weight: normal;"><span class="add-span"><i class="fas fa-plus-circle fa-lg " style="color: #A9A9A9;" title="สร้างผลงงานคุณ"></i> สร้างผลงงาน</span></a><br>
+                        <a href="{{url ('addproject')}}" style="font-weight: normal;"><span class="add-span"><i class="fas fa-plus-circle fa-lg " style="color: #A9A9A9;" title="สร้างผลงงานคุณ"></i> สร้างผลงงาน</span></a><br>
                         @elseif(isset($_SESSION['project']))
-                        <a href="listdetil" style="font-weight: normal;" class="view"><span class="add-span"><i class="fas fa-book fa-lg " style="color: #A9A9A9;" title="ผลงงานคุณ"></i> ผลงงานคุณ</span></a><br>
+                        <a href="{{url ('listdetil')}}" style="font-weight: normal;" class="view"><span class="add-span"><i class="fas fa-book fa-lg " style="color: #A9A9A9;" title="ผลงงานคุณ"></i> ผลงงานคุณ</span></a><br>
                         @endif
                     @elseif (isset($_SESSION['statusA']) == 'admin')
                     <div class="links front">
-                        <a href="homeadmin" class="view">ผู้ดูเเลระบบ</a><br>
+                        <a href="{{url('homeadmin')}}" class="view">ผู้ดูเเลระบบ</a><br>
                     </div>
                     @endif
 
                     </div>
                 </li>
                 <div class="navbar-dark layoutaccout">
+                    
                     <ul class="navbar-nav ml-auto ml-md-0">
                         <?php
                         if (!isset($_SESSION['status']) == 'user' & !isset($_SESSION['statusA']) == 'admin') { ?>
@@ -745,7 +760,7 @@
                                 <a class="text-item" id="userDropdown" href="login" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><button class="btn-login btn btn-outline-primaryy"><i class="fas fa-user-circle span-i-user"></i>
                                         <div class="text-mage" >เข้าสู่ระบบ</div>
                                     </button></a>
-                                <div class="dropdown-menu dropdown-menu-right" style="margin-top: px;" aria-labelledby="userDropdown">
+                                <div class="dropdown-menu dropdown-menu-right" style="margin-right: -10%;" aria-labelledby="userDropdown">
                                     <ul class="navbar-nav ml-auto" style="margin-right:-90px;">
                                         <div class="account-dropdown js-dropdown">
                                             <div class="info clearfix">
@@ -754,12 +769,12 @@
                                                     <div class="card-header" style="margin-right:-15%;">{{ __('เข้าสู่ระบบ') }}</div>
                                                 </h3>
                                                 <div class="" style="font-family: 'Athiti', sans-serif;font-size: 16px;">
-                                                    <form method="POST" action="{{url ('loginBD')}}">
+                                                    <form method="POST" action="loginBD">
                                                         @csrf
 
                                                         <div class="form-group row">
                                                             <div class="col-md-6">
-                                                                <input id="username" type="username" class="form-control @error('email') is-invalid @enderror" style="width: 210px;height: 40px;margin-left:31px;font-size: 16px;" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus placeholder="ชื่อผู้ใช้ของคุณ">
+                                                                <input id="username" type="username" class="form-control @error('email') is-invalid @enderror" style="width: 210px;height: 40px;margin-left:31px;font-size: 16px;" name="username" value="<?php if(isset($_SESSION['username'])?$_SESSION['username']:''){ echo $_SESSION['username'];}?>" required autocomplete="username" autofocus placeholder="ชื่อผู้ใช้ของคุณ">
 
                                                                 @error('username')
                                                                 <span class="invalid-feedback" role="alert">
@@ -821,28 +836,27 @@
                             </div>
                         <?php } else if (isset($_SESSION['status']) == 'user') {
                         ?>
-
+                            
                             <li class="nav-item dropdown">
-
                                 <a class="nav-link " id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     @foreach($imgaccount as $img)
-                                    <img class="rounded-circle user-sizes img-profile" src="/imgaccount/<?php echo $img->pathimg; ?>" alt="USer Atver">
+                                    <img class="rounded-circle user-sizes img-profile" src="{{URL::to('imgaccount/'.$img->pathimg)}}" alt="USer Atver">
 
                                     @endforeach
                                     @foreach($imgaccount as $user)
                                     <div class="name-scle dropdown-toggle "><?php echo $user->name; ?></div>
                                     @endforeach
                                 </a>
-
+                                
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                                     <ul class="navbar-nav ml-auto">
                                         <div class="account-dropdown js-dropdown">
                                             <div class="info clearfix">
                                                 <center>
                                                     <div class="image">
-                                                        <a href="profile">
+                                                        <a href="{{URL::to('profile')}}">
                                                             @foreach($imgaccount as $img)
-                                                            <img src="\imgaccount\<?php echo $img->pathimg; ?>" alt="" class="img-user-size user-avatar rounded-circle" />
+                                                            <img src="{{URL::to('imgaccount/'.$img->pathimg)}}" alt="" class="img-user-size user-avatar rounded-circle" />
                                                             @endforeach
                                                         </a>
 
@@ -859,19 +873,19 @@
                                                 </div>
                                             </div>
 
-                                            <a href="profile" class="top dropdown-item"><i class="fas fa-user" style="margin-right: 2%;"></i>โปรไฟล์</a>
+                                            <a href="{{URL::to('profile')}}" class="top dropdown-item"><i class="fas fa-user" style="margin-right: 2%;"></i>โปรไฟล์</a>
                                             <div class="top dropdown-item" >
                                                 @if(!isset($_SESSION['project']))
-                                                <a href="{{url ('addproject')}}" class="view" style="color: black;text-decoration: none;"><i class="far fa-plus-square" style="margin-right: 2%;"></i>สร้างผลงาน</a><br>
+                                                <a href="{{URL::to('addproject')}}" class="view" style="color: black;text-decoration: none;"><i class="fas fa-plus-circle" style="margin-right: 2%;"></i>สร้างผลงาน</a><br>
                                                 @elseif(isset($_SESSION['project']))
-                                                <a href="{{url ('listdetil')}}" class="view" style="color: black;text-decoration: none;"><i class="fas fa-book" style="margin-right: 2%;"></i>ผลงานของฉัน</a><br>
+                                                <a href="{{URL::to('listdetil')}}" class="view" style="color: black;text-decoration: none;"><i class="fas fa-book" style="margin-right: 2%;"></i>ผลงานของฉัน</a><br>
                                                 @endif
                                             </div>
-                                            <a class="dropdown-item" href="logout" onclick="event.preventDefault();
+                                            <a class="dropdown-item" href="{{URL::to('logout')}}" onclick="event.preventDefault();
                                                                     document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt" ></i>
                                                 {{ __('ออกจากระบบ') }}
                                             </a>
-                                            <form id="logout-form" action="{{url ('logout')}}" method="POST" style="display: none;">
+                                            <form id="logout-form" action="{{URL::to('logout')}}" method="POST" style="display: none;">
                                                 @csrf
                                             </form>
                                         </div>
@@ -885,10 +899,14 @@
                         else  if (isset($_SESSION['statusA']) == 'admin') {
                         ?>
                             <li class="nav-item dropdown">
-
+                           
+                                <div class="links front">
+                                    <a href="{{URL::to('homeadmin')}}" class="view"><i class="far fa-caret-square-left fa-lg" style="color:#212529; margin-right: 7px;margin-left: 10px;"></i>กลับสู่หน้าผู้ดูเเลระบบ</a><br>
+                                </div>
+                                   
                                 <a class="nav-link " id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     @foreach($adminaccount as $img)
-                                    <img class="rounded-circle user-sizes img-profile" src="/img_admin/<?php echo $img->pathimg; ?>" alt="USer Atver">
+                                    <img class="rounded-circle user-sizes img-profile" src="{{URL::to('img_admin/'.$img->pathimg)}}" alt="USer Atver">
 
                                     @endforeach
                                     @foreach($adminaccount as $user)
@@ -902,9 +920,9 @@
                                             <div class="info clearfix">
                                                 <center>
                                                     <div class="image">
-                                                        <a href="profile">
+                                                        <a href="{{URL::to('profile')}}">
                                                             @foreach($adminaccount as $img)
-                                                            <img src="\img_admin\<?php echo $img->pathimg; ?>" alt="" class="img-user-size user-avatar rounded-circle" />
+                                                            <img src="{{URL::to('img_admin/'.$img->pathimg)}}" alt="" class="img-user-size user-avatar rounded-circle" />
                                                             @endforeach
                                                         </a>
 
@@ -921,12 +939,15 @@
                                                 </div>
                                             </div>
 
-                                            <a href="profileadmin" class="top dropdown-item"><i class="zmdi zmdi-account"></i>โปรไฟล์</a>
-                                            <a class="dropdown-item" href="logout" onclick="event.preventDefault();
-                                                                document.getElementById('logout-form').submit();">
+                                            <a href="{{URL::to('profileadmin')}}" class="top dropdown-item"><i class="fas fa-user" style="margin-right: 2%;"></i>โปรไฟล์</a>
+                                            <div class="links front">
+                                                <a href="{{URL::to('homeadmin')}}" class="view" style="color: black;text-decoration: none;"><i class="far fa-caret-square-left" style="margin-right: 2%;"></i>กลับสู่หน้าผู้ดูเเลระบบ</a><br>
+                                            </div>
+                                            <a class="dropdown-item" href="{{URL::to('logout')}}" onclick="event.preventDefault();
+                                                                document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt"></i>
                                                 {{ __('ออกจากระบบ') }}
                                             </a>
-                                            <form id="logout-form" action="logout" method="POST" style="display: none;">
+                                            <form id="logout-form" action="{{URL::to('logout')}}" method="POST" style="display: none;">
                                                 @csrf
                                             </form>
                                         </div>
@@ -936,6 +957,7 @@
                         <?php } ?>
                     </ul>
                 </div>
+                
             </div>
             </nav>
                
@@ -1062,7 +1084,7 @@
                     <?php ?>
 
                 </ul><br>
-             
+                <a href=""></a>
                 <div class="tile" style="margin-top: -3%;">
                     <div class="tile-body">
                         <div class="row">
@@ -1070,13 +1092,13 @@
                                 @if(isset($item)?$item:'')
                                     @foreach($item as $datas)
                                     <div class="columnimgitem">
-                                        <img src="/project/img_logo/<?php echo $datas->logo; ?>" alt="" class="fromimg">
+                                        <img src="{{URL::to('project/img_logo/'.$datas->logo)}}" alt="USer Atver" class="fromimg">
                                     </div>
                                     @endforeach
                                 @else
                                     @foreach($itemadmin as $itemadmins)
                                     <div class="columnimgitem">
-                                        <img src="/project/img_logo/<?php echo $itemadmins->logo; ?>" alt="" class="fromimg">
+                                        <img src="{{URL::to('project/img_logo/'.$itemadmins->logo)}}" alt="USer Atver" class="fromimg">
                                     </div>
                                     @endforeach
                                 @endif
@@ -1148,17 +1170,17 @@
                                 <div class="carousel-inner">
                                     <div class="carousel-item active ">
                                         <div class="backgroundimgproject">
-                                            <img class="size-img-re"  src="/project/img_backgrund/<?php echo $datas->img_p_1; ?>" alt="First slide">
+                                            <img class="size-img-re"  src="{{URL::to('project/img_backgrund/'.$datas->img_p_1)}}" alt="First slide">
                                         </div>
                                     </div>
                                     <div class="carousel-item">
                                         <div class="backgroundimgprojectt">
-                                            <img class="size-img-re" src="/project/img_backgrund/<?php echo $datas->img_p_2; ?>" alt="Second slide">
+                                            <img class="size-img-re" src="{{URL::to('project/img_backgrund/'.$datas->img_p_2)}}" alt="Second slide">
                                         </div>
                                     </div>
                                     <div class="carousel-item">
                                         <div class="backgroundimgprojecttt">
-                                            <img class="size-img-re" src="/project/img_backgrund/<?php echo $datas->img_p_3; ?>" alt="Third slide">
+                                            <img class="size-img-re" src="{{URL::to('project/img_backgrund/'.$datas->img_p_3)}}" alt="Third slide">
                                         </div>
                                     </div>
                                 </div>
@@ -1238,8 +1260,8 @@
                                                                     ?>
                                                                 </td>
                                                             <tr>
-                                                                <td style="vertical-align: baseline;" ><label for="text"><b>อาจารย์ที่ปรึกษา :</b></label></td>
-                                                                <td style="vertical-align: baseline;" colspan=1><?php echo $datas->advisor_p; ?></td>
+                                                                <td style="vertical-align: baseline;" ><label for="text"><b>อาจารย์ที่ปรึกษา :</b></label></td><?php $_SESSION['advisor_p']=$datas->advisor_p; ?>
+                                                                <td style="vertical-align: baseline;" colspan=1><a href="{{url ('advisor_p')}} "><?php echo $datas->advisor_p; ?></a></td>
                                                             <tr>
                                                                 <td style="vertical-align: baseline;"><label for="text"><b>คำสำคัญ :</b></label></td>
                                                                 <td colspan=1 style="vertical-align: baseline;">
@@ -1501,7 +1523,7 @@
                                                                             @if(isset($datas)?$datas:'')
                                                                                 @if(isset($_SESSION['download_l'])?$_SESSION['download_l']:'')
                                                                                     <div class="column-download-after" title="<?php echo $linkcode = $datas->path_code; ?>">
-                                                                                        <a href="#" target="_blank" data-toggle="modal" data-target="#exampleModalLong">
+                                                                                        <a href="{{URL::to($datas->path_code)}}" target="_blank">
                                                                                             <center><b><label for="" class="column-download-after-text">ไฟล์โปรเเกรม</label></b></center>
                                                                                             <div class="column-download-icon">
                                                                                                 <center><i class="fas fa-file-code fa-2x" style="color: #0AFF00;"></i></center>
@@ -1510,7 +1532,7 @@
                                                                                     </div>
                                                                                 @else
                                                                                     <div class="column-download" title="<?php echo $linkcode = $datas->path_code; ?>">
-                                                                                        <a href="#" target="_blank" data-toggle="modal" data-target="#exampleModalLong">
+                                                                                        <a href="{{URL::to($datas->path_code)}}" target="_blank">
                                                                                             <center><b><label for="" class="column-download-text">ไฟล์โปรเเกรม</label></b></center>
                                                                                             <div class="column-download-icon">
                                                                                                 <center><i class="fas fa-file-code fa-2x" style="color: #0AFF00;"></i></center>
@@ -1582,8 +1604,8 @@
                                                             <td style="vertical-align: baseline;"><label for="text"><b>เจ้าของโครงงาน :</b></label></td>
                                                             <td colspan=1 style="vertical-align: baseline;"><?php echo $datas->owner_name; ?></td>
                                                         <tr>
-                                                            <td style="vertical-align: baseline;"><label for="text"><b>อาจารย์ที่ปรึกษา :</b></label></td>
-                                                            <td colspan=1 style="vertical-align: baseline;"><?php echo $datas->advisor_p; ?></td>
+                                                            <td style="vertical-align: baseline;"><label for="text"><b>อาจารย์ที่ปรึกษา :</b></label></td><?php $_SESSION['advisor_p']=$datas->advisor_p; ?>
+                                                            <td colspan=1 style="vertical-align: baseline;"><a href="{{url ('advisor_p')}}"><?php echo $datas->advisor_p; ?></a></td>
                                                         <tr>
                                                             <td style="vertical-align: baseline;"><label for="text"><b>คำสำคัญ :</b></label></td>
                                                             <td colspan=1 style="vertical-align: baseline;">
@@ -1849,8 +1871,8 @@
                                                                     <?php $linkcode = $datas->namefile; ?>
                                                                     @if(isset($linkcode)?$linkcode:'')
                                                                         @if(isset($_SESSION['download_l'])?$_SESSION['download_l']:'')
-                                                                            <div class="column-download-after" title="<?php echo $linkcode = $datas->namefile; ?>">
-                                                                                <a href="#" target="_blank" data-toggle="modal" data-target="#exampleModalLong">
+                                                                            <div class="column-download-after" title="<?php echo $linkcode = $datas->path_code; ?>">
+                                                                                <a href="{{URL::to($datas->path_code)}}" target="_blank" >
                                                                                     <center><b><label for="" class="column-download-after-text">ไฟล์โปรเเกรม</label></b></center>
                                                                                     <div class="column-download-icon">
                                                                                         <center><i class="fas fa-file-code fa-2x" style="color: #0AFF00;"></i></center>
@@ -1858,8 +1880,8 @@
                                                                                 </a>
                                                                             </div>
                                                                         @else
-                                                                            <div class="column-download" title="<?php echo $linkcode = $datas->namefile; ?>">
-                                                                                <a href="#" target="_blank" data-toggle="modal" data-target="#exampleModalLong">
+                                                                            <div class="column-download" title="<?php echo $linkcode = $datas->path_code; ?>">
+                                                                                <a href="{{URL::to($datas->path_code)}}" target="_blank" >
                                                                                     <center><b><label for="" class="column-download-text">ไฟล์โปรเเกรม</label></b></center>
                                                                                     <div class="column-download-icon">
                                                                                         <center><i class="fas fa-file-code fa-2x" style="color: #0AFF00;"></i></center>
@@ -1959,6 +1981,36 @@
         </script>
 
         <script>
+            function myFunction() {
+                setTimeout(function(){ document.getElementById("myDialog").showModal(); }, 3000); 
+                // $('#button-download').click(function(){
+                //     var projectid = document.getElementById("project_id").value;
+                //     var userid = document.getElementById("user_id").value;
+                //     // var _token = $('input[name="_token"]').val();
+                //     // console.log(user_id);
+                //     $.ajax({
+                //         type: "GET",
+                //         url: "{{URL::to('download_use')}}",
+                //         // contentType: "application/json; charset=utf-8",
+                //         dataType="json",
+                //         data: {projectid:'1',userid:'1'},
+                //         success:function(data)
+                //         {
+                //             // // console.log(data);
+                //             // alert(data);
+                //             // // if(data !== ''){
+                //             // //     setTimeout(function(){ document.getElementById("myDialog").showModal(); }, 3000);
+                //             // // }else{
+
+                //             // // }
+                //         },
+
+                //     });
+                // });
+
+            } 
+            </script>
+        <script>
             // Capture the "click" event of the link.
             var link = document.getElementById("the-link");
             link.addEventListener("click", function(evt) {
@@ -2035,6 +2087,8 @@
             return $l;
         } 
 
+        
+
         function create_str($count,$str,$datas) {
             // echo $count;
             if($count>20 & $count<25) {
@@ -2067,9 +2121,9 @@
                 $strcut = $strcount2."...";
                 echo $strcut;
             }
-            elseif($count>80 & $count <150){
+            elseif($count>80 & $count <120){
                 $strcount = substr($str,0,-65);
-                $strcount1 = substr($strcount,0,-50);
+                $strcount1 = substr($strcount,0,-65);
                 $strcount2 = substr($strcount1,0,-85);
                 $strcount3 = substr($strcount2,0,-5);
                 $strcut = $strcount3."...";

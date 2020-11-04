@@ -295,6 +295,11 @@ class ProjectController extends Controller
         $_SESSION['project'] = 'project';
         DB::INSERT("INSERT INTO rating_p(rating_id, rate_index, project_id) VALUES ('$nextidrate','0','$project_id')");
 
+        // $chkstar = DB::select("SELECT *,AVG(rate_index) as AvgRate
+        // FROM projects,genre_project,type_project,login_log,rating_p
+        // WHERE projects.type_id=type_project.type_id AND projects.genre_id=genre_project.genre_id AND rating_p.project_id = '$ID'
+        // GROUP BY rating_p.project_id");
+
         DB::table('temp_keyword')->truncate();
         return redirect('homeBD')->with('successappproject', 'สร้างผลงานเรียบร้อย');
     }
@@ -532,47 +537,255 @@ class ProjectController extends Controller
     public function editproject(Request $request) {
         session_start();
         $chkidproject = $_SESSION['usersid'];
-        $_SESSION['project'] = "successproject";
+        // $_SESSION['project'] = "successproject";
 
+        $ID = $request->input('project_id');
         $project_name = $request->input('project_name');
         $name_en = $request->input('project_name_en');
-        $keyword_project = $request->input('keyword_project');
         $des_project = $request->input('des_project');
+        $keyword_project1 = $request->input('keyword_project1');
+        $keyword_project2 = $request->input('keyword_project2');
+        $keyword_project3 = $request->input('keyword_project3');
+        $keyword_project4 = $request->input('keyword_project4');
+        $owner_p1 = $request->input('owner_project1');
+        $owner_p2 = $request->input('owner_project2');
+        $owner_p3 = $request->input('owner_project3');
+        $owner_p4 = $request->input('owner_project4');
+        $advisor_p = $request->input('advisor_project');
         $type_project = $request->input('type_project');
         $genre_project = $request->input('genre_project');
         $category_project = $request->input('category_project');
+        $year_project = $request->input('year_project');
         $facebook = $request->input('facebook');
         $email = $request->input('email');
         $phone = $request->input('phone');
-        
-        DB::update("UPDATE users,projects SET project_name = '$project_name', name_en = '$name_en' , keyword_project ='$keyword_project', des_project ='$des_project', type_id ='$type_project',
-        genre_id ='$genre_project', category_id ='$category_project', users.facebook = '$facebook', users.email = '$email', users.phone = '$phone' 
-        , projects.updated_at = CURRENT_TIMESTAMP(), users.updated_at = CURRENT_TIMESTAMP() WHERE users.U_id=projects.user_id AND U_id='$chkidproject'");
-        
 
-        // upload logo project
-        if(isset($_FILES['fileimg']['name']) || isset($_FILES['filelogo']['name'])) {
-            $this->validate($request,
-            ['filelogo' => 'required|image|mimes:png,jpeg|max:5048']);
+        
+        // echo $_FILES['fileimg'];
+
+        // if(isset($project_name)=='' & isset($name_en)=='' & isset($keyword_project1)=='' & isset($keyword_project2)=='' & isset($keyword_project3)=='' & isset($keyword_project4) & 
+        // isset($owner_p1)=='' & isset($owner_p2)=='' & isset($owner_p3)=='' & isset($owner_p4)=='' & isset($advisor_p)=='' & isset($des_project)=='' & isset($type_project)==''
+        // & isset($genre_project)=='' & isset($category_project)=='' & isset($facebook)=='' & isset($email)=='' & isset($phone)=='' & isset($_FILES['filelogo'])=='' & isset($_FILES['fileimg'])==''){
+        //     return back();
+        // }else{
+            // $project_name = $request->input('project_name');
+            if(isset($project_name)?$project_name:''){
+                $chk = DB::select("SELECT project_name FROM projects WHERE project_name in ('$project_name') ");
+                if(isset($chk)?$chk:''){
+                    // echo 'มีเเล้ว';
+                }else{
+                    DB::update("UPDATE projects SET project_name = '$project_name', projects.updated_at = CURRENT_TIMESTAMP() WHERE project_id='$ID'");
+                    $_SESSION['updatepass']='ok';
+                }
+            }else{
+                echo 'ไม่มีค่ามา';
+            }
+            if(isset($name_en)?$name_en:''){
+                $chk = DB::select("SELECT name_en FROM projects WHERE name_en in ('$name_en') ");
+                if(isset($chk)?$chk:''){
+                    // echo 'มีเเล้ว'; echo $name_en;
+                }else{
+                    DB::update("UPDATE projects SET name_en = '$name_en', projects.updated_at = CURRENT_TIMESTAMP() WHERE project_id='$ID'");
+                    $_SESSION['updatepass']='ok';
+                }
+            }else{
+                echo 'ไม่มีค่ามา';
+            }
+            if(isset($keyword_project1)?$keyword_project1:''){
+                $chk = DB::select("SELECT keyword_project1 FROM projects WHERE keyword_project1 in ('$keyword_project1') ");
+                if(isset($chk)?$chk:''){
+                    // echo 'มีเเล้ว'; echo $$keyword_project1;
+                }else{
+                    DB::update("UPDATE projects SET keyword_project1 = '$keyword_project1', projects.updated_at = CURRENT_TIMESTAMP() WHERE project_id='$ID'");
+                    $_SESSION['updatepass']='ok';
+                }
+            }
+            if(isset($keyword_project2)?$keyword_project2:''){
+                $chk = DB::select("SELECT keyword_project2 FROM projects WHERE keyword_project2 in ('$keyword_project2') ");
+                if(isset($chk)?$chk:''){
+                    // echo 'มีเเล้ว'; echo $$keyword_project1;
+                }else{
+                    DB::update("UPDATE projects SET keyword_project2 = '$keyword_project2', projects.updated_at = CURRENT_TIMESTAMP() WHERE project_id='$ID'");
+                    $_SESSION['updatepass']='ok';
+                }
+            }
+            if(isset($keyword_project3)?$keyword_project3:''){
+                $chk = DB::select("SELECT keyword_project3 FROM projects WHERE keyword_project3 in ('$keyword_project3') ");
+                if(isset($chk)?$chk:''){
+                    // echo 'มีเเล้ว'; echo $$keyword_project3;
+                }else{
+                    DB::update("UPDATE projects SET keyword_project3 = '$keyword_project3', projects.updated_at = CURRENT_TIMESTAMP() WHERE project_id='$ID'");
+                    $_SESSION['updatepass']='ok';
+                }
+            }
+            if(isset($keyword_project4)?$keyword_project4:''){
+                $chk = DB::select("SELECT keyword_project4 FROM projects WHERE keyword_project4 in ('$keyword_project4') ");
+                if(isset($chk)?$chk:''){
+                    // echo 'มีเเล้ว'; echo $$keyword_project3;
+                }else{
+                    DB::update("UPDATE projects SET keyword_project4 = '$keyword_project4', projects.updated_at = CURRENT_TIMESTAMP() WHERE project_id='$ID'");
+                    $_SESSION['updatepass']='ok';
+                }
+            }
+            if(isset($owner_p1)?$owner_p1:''){
+                $chk = DB::select("SELECT owner_p1 FROM projects WHERE owner_p1 in ('$owner_p1') ");
+                if(isset($chk)?$chk:''){
+                    // echo 'มีเเล้ว'; echo $$keyword_project3;
+                }else{
+                    DB::update("UPDATE projects SET owner_p1 = '$owner_p1', projects.updated_at = CURRENT_TIMESTAMP() WHERE project_id='$ID'");
+                    $_SESSION['updatepass']='ok';
+                }
+            }
+            if(isset($owner_p2)?$owner_p2:''){
+                $chk = DB::select("SELECT owner_p2 FROM projects WHERE owner_p2 in ('$owner_p2') ");
+                if(isset($chk)?$chk:''){
+                    // echo 'มีเเล้ว'; echo $$keyword_project3;
+                }else{
+                    DB::update("UPDATE projects SET owner_p2 = '$owner_p2', projects.updated_at = CURRENT_TIMESTAMP() WHERE project_id='$ID'");
+                    $_SESSION['updatepass']='ok';
+                }
+            }
+            if(isset($owner_p3)?$owner_p3:''){
+                $chk = DB::select("SELECT owner_p3 FROM projects WHERE owner_p3 in ('$owner_p3') ");
+                if(isset($chk)?$chk:''){
+                    // echo 'มีเเล้ว'; echo $$keyword_project3;
+                }else{
+                    DB::update("UPDATE projects SET owner_p3 = '$owner_p3', projects.updated_at = CURRENT_TIMESTAMP() WHERE project_id='$ID'");
+                    $_SESSION['updatepass']='ok';
+                }
+            }
+            if(isset($owner_p4)?$owner_p4:''){
+                $chk = DB::select("SELECT owner_p4 FROM projects WHERE owner_p4 in ('$owner_p4') ");
+                if(isset($chk)?$chk:''){
+                    // echo 'มีเเล้ว'; echo $$keyword_project3;
+                }else{
+                    DB::update("UPDATE projects SET owner_p4 = '$owner_p4', projects.updated_at = CURRENT_TIMESTAMP() WHERE project_id='$ID'");
+                    $_SESSION['updatepass']='ok';
+                }
+            }
+            
+            if(isset($advisor_p)?$advisor_p:''){
+                $chk = DB::select("SELECT advisor_p FROM projects WHERE advisor_p in ('$advisor_p') ");
+                if(isset($chk)?$chk:''){
+                    // echo 'มีเเล้ว'; echo $$keyword_project3;
+                }else{
+                    DB::update("UPDATE projects SET advisor_p = '$advisor_p', projects.updated_at = CURRENT_TIMESTAMP() WHERE project_id='$ID'");
+                    $_SESSION['updatepass']='ok';
+                }
+            }
+            if(isset($des_project)?$des_project:''){
+                $chk = DB::select("SELECT des_project FROM projects WHERE des_project in ('$des_project') ");
+                if(isset($chk)?$chk:''){
+                    // echo 'มีเเล้ว'; echo $$keyword_project3;
+                }else{
+                    DB::update("UPDATE projects SET des_project = '$des_project', projects.updated_at = CURRENT_TIMESTAMP() WHERE project_id='$ID'");
+                    $_SESSION['updatepass']='ok';
+                }
+            }
+            if(isset($type_project)?$type_project:''){
+                $chk = DB::select("SELECT type_id FROM projects WHERE type_id in ('$type_project') ");
+                if(isset($chk)?$chk:''){
+                    // echo 'มีเเล้ว'; echo $$keyword_project3;
+                }else{
+                    DB::update("UPDATE projects SET projects.type_id = '$type_project', projects.updated_at = CURRENT_TIMESTAMP() WHERE project_id='$ID'");
+                    $_SESSION['updatepass']='ok';
+                }
+            }
+            if(isset($genre_project)?$genre_project:''){
+                $chk = DB::select("SELECT genre_id FROM projects WHERE genre_id in ('$genre_project') ");
+                if(isset($chk)?$chk:''){
+                    // echo 'มีเเล้ว'; echo $$keyword_project3;
+                }else{
+                    DB::update("UPDATE projects SET genre_id = '$genre_project', projects.updated_at = CURRENT_TIMESTAMP() WHERE project_id='$ID'");
+                    $_SESSION['updatepass']='ok';
+                }
+            }
+            if(isset($category_project)?$category_project:''){
+                $chk = DB::select("SELECT category_id FROM projects WHERE category_id in ('$category_project') ");
+                if(isset($chk)?$chk:''){
+                    // echo 'มีเเล้ว'; echo $$keyword_project3;
+                }else{
+                    DB::update("UPDATE projects SET category_id = '$category_project', projects.updated_at = CURRENT_TIMESTAMP() WHERE project_id='$ID'");
+                    $_SESSION['updatepass']='ok';
+                }
+            }
+            if(isset($year_project)?$year_project:''){
+                $chk = DB::select("SELECT project_year FROM projects WHERE project_year in ('$year_project') ");
+                if(isset($chk)?$chk:''){
+                    // echo 'มีเเล้ว'; echo $$keyword_project3;
+                }else{
+                    DB::update("UPDATE projects SET project_year = '$year_project', projects.updated_at = CURRENT_TIMESTAMP() WHERE project_id='$ID'");
+                    $_SESSION['updatepass']='ok';
+                }
+            }
+            if(isset($facebook)?$facebook:''){
+                $chk = DB::select("SELECT facebook_p FROM projects WHERE facebook_p in ('$facebook') ");
+                if(isset($chk)?$chk:''){
+                    // echo 'มีเเล้ว'; echo $$keyword_project3;
+                }else{
+                    DB::update("UPDATE projects SET facebook_p = '$facebook', projects.updated_at = CURRENT_TIMESTAMP() WHERE project_id='$ID'");
+                    $_SESSION['updatepass']='ok';
+                }
+            }
+            if(isset($email)?$email:''){
+                $chk = DB::select("SELECT email_p FROM projects WHERE email_p in ('$email') ");
+                if(isset($chk)?$chk:''){
+                    // echo 'มีเเล้ว'; echo $$keyword_project3;
+                }else{
+                    DB::update("UPDATE projects SET email_p = '$email', projects.updated_at = CURRENT_TIMESTAMP() WHERE project_id='$ID'");
+                    $_SESSION['updatepass']='ok';
+                }
+            }
+            if(isset($phone)?$phone:''){
+                $chk = DB::select("SELECT phone_p FROM projects WHERE phone_p in ('$phone') ");
+                if(isset($chk)?$chk:''){
+                    // echo 'มีเเล้ว'; echo $$keyword_project3;
+                }else{
+                    DB::update("UPDATE projects SET phone_p = '$phone', projects.updated_at = CURRENT_TIMESTAMP() WHERE project_id='$ID'");
+                    $_SESSION['updatepass']='ok';
+                }
+            }
+        
+        
+        // DB::update("UPDATE projects SET project_name = '$project_name', name_en = '$name_en' , keyword_project1 ='$keyword_project1', 
+        // keyword_project2 ='$keyword_project2', keyword_project3 ='$keyword_project3', keyword_project4 ='$keyword_project4', advisor_p = '$advisor_p',
+        // des_project ='$des_project', type_id ='$type_project', owner_p1='$owner_p1',owner_p2='$owner_p2',owner_p3='$owner_p3',owner_p4='$owner_p4',
+        // genre_id ='$genre_project', category_id ='$category_project', facebook_p = '$facebook', email_p = '$email', phone_p = '$phone' 
+        // , projects.updated_at = CURRENT_TIMESTAMP() WHERE project_id='$ID'");
+       
+        $logofil = $_FILES['filelogo']['name'];
+        if(isset($logofil)?$logofil:''){
+            $this->validate($request,['filelogo' => 'required|image|mimes:png,jpeg|max:5048']);
+            $_SESSION['updatepass']='ok';
             $foder = 'project\img_logo';
-            $foderimg = 'project\img_backgrund';
             $filename = $request->file('filelogo')->getClientOriginalName();
-            $nameimg = rand() . '.' . $filename;
-            // $pathimg = $request->file('img')->store('imgaccount/',$nameimg);
             $pathimg = Image::make($request->file('filelogo'))->fit(170, 180, function ($constraint) {
                 $constraint->aspectRatio();
             });
+            $nameimg = rand() . '.' . $filename;
             $pathimg->save(public_path($foder. '/' .$nameimg));
             $logoproject=$nameimg;
-            // count มาจากการที่เลือกภาพมากี่ภาพ
-            $conut = count($_FILES['fileimg']['name']);
+            DB::update("UPDATE users,projects SET logo = '$logoproject', projects.updated_at = CURRENT_TIMESTAMP() WHERE users.U_id=projects.user_id AND projects.project_id='$ID'");
+        }else{
+            
+        }
 
+        $img_p = $_FILES['fileimg']['name'];
+        if(isset($img_p[0])?$img_p[0]:''){
+            // echo '1';
+            // $pathimg = $request->file('img')->store('imgaccount/',$nameimg);
+            //count มาจากการที่เลือกภาพมากี่ภาพ
+            $conut = count($_FILES['fileimg']['name']);
+            // echo  $conut;
+            // // echo '1';
             for($i=0; $i<$conut; $i++) {
-                // ทำการวน loop for จนครบ ตาม count 
+                // ทำการวน loop for จนครบ ตาม count
+                // $this->validate($request,
+                // ['fileimg[$i]' => 'required|image|mimes:png,jpeg|max:5048']);
                 $name=$request->file('fileimg')[$i];
                 // echo $name;
                 $foder = 'project\img_backgrund';
-                $filename =  $request->file('fileimg')[$i]->getClientOriginalName();
+                $filename = $request->file('fileimg')[$i]->getClientOriginalName();
                 $nameimg = rand() . '.' . $filename;
                 
                 $pathimg = Image::make($name)->fit(400, 250, function ($constraint) {
@@ -580,28 +793,142 @@ class ProjectController extends Controller
                     });
 
                 $pathimg->save(public_path($foder. '/' .$nameimg));
-                $fileimg = $nameimg;
+                // $fileimg = $nameimg;
                     // เมื่อ i ถึง ตำเเหน่งที่ 1 ให้ทำการเก็บค่า nameimg ไว้ใน fileimg0 เเล้วทำการอัพลง database
                 if ($i == 0) {
                     $fileimg0=$nameimg;
-                    DB::update("UPDATE users,projects,img_project SET img_p_1 = '$fileimg0' WHERE users.U_id=projects.user_id 
-                    AND projects.user_id=img_project.p_id AND U_id='$chkidproject'");
+                    echo $fileimg0;
+                    if(isset($fileimg0)?$fileimg0:''){
+                        $chk = DB::select("SELECT img_p_1 FROM img_project WHERE img_p_1 in ('$fileimg0')");
+                        if(isset($chk)?$chk:''){
+                            echo '1';
+                        }else{
+                            DB::update("UPDATE projects,img_project SET img_p_1 = '$fileimg0' , img_project.updated_at = CURRENT_TIMESTAMP() WHERE projects.project_id=img_project.p_id AND img_project.p_id='$ID'");
+                            $_SESSION['updatepass']='ok';
+                        }
+                    }else{}
+                    
                 }; echo '<br>';
                 if ($i == 1) {
                     $fileimg1=$nameimg;
-                    DB::update("UPDATE projects,img_project SET img_p_2 = '$fileimg1'
-                    WHERE projects.user_id=img_project.p_id AND img_project.p_id='$chkidproject'");
+                    if(isset($fileimg1)?$fileimg1:''){
+                        $chk = DB::select("SELECT img_p_2 FROM img_project WHERE img_p_2 in ('$fileimg1')");
+                        if(isset($chk)?$chk:''){
+
+                        }else{
+                            DB::update("UPDATE projects,img_project SET img_p_2 = '$fileimg1' , img_project.updated_at = CURRENT_TIMESTAMP() WHERE projects.project_id=img_project.p_id AND img_project.p_id='$ID'");
+                            $_SESSION['updatepass']='ok';  
+                        }
+                    }else{}
+
                 };
                 if ($i == 2) {
                     $fileimg2=$nameimg;
-                    DB::update("UPDATE projects,img_project SET img_p_3 = '$fileimg2', img_project.updated_at = CURRENT_TIMESTAMP() 
-                    WHERE projects.user_id=img_project.p_id AND img_project.p_id='$chkidproject'");
+                    if(isset($fileimg2)?$fileimg2:''){
+                        $chk = DB::select("SELECT img_p_2 FROM img_project WHERE img_p_2 in ('$fileimg2')");
+                        if(isset($chk)?$chk:''){
+
+                        }else{
+                            DB::update("UPDATE projects,img_project SET img_p_3 = '$fileimg2', img_project.updated_at = CURRENT_TIMESTAMP() WHERE projects.project_id=img_project.p_id AND img_project.p_id='$ID'");
+                            $_SESSION['updatepass']='ok';  
+                    }
+                    }else{}  
                 };     
             }
-        DB::update("UPDATE users,projects SET logo = '$logoproject', projects.updated_at = CURRENT_TIMESTAMP() WHERE users.U_id=projects.user_id AND U_id='$chkidproject'");
-        return redirect('projectview')->with('successupdate', 'อัพเดทข้อมูลเรียบร้อย');
+        }else{
+            // echo 'ไม่มีค่ามา';
         }
-    return redirect('projectview')->with('successupdate', 'อัพเดทข้อมูลเรียบร้อย');
+
+        return back();
+
+            //upload logo project
+            // if(isset($_FILES['filelogo']['name'])){
+            //     $this->validate($request,
+            //     ['filelogo' => 'required|image|mimes:png,jpeg|max:5048']);
+            //     $_SESSION['updatepass']='ok';
+            //     $foder = 'project\img_logo';
+            //     $filename = $request->file('filelogo')->getClientOriginalName();
+            //     $pathimg = Image::make($request->file('filelogo'))->fit(170, 180, function ($constraint) {
+            //         $constraint->aspectRatio();
+            //     });
+            //     $nameimg = rand() . '.' . $filename;
+            //     $pathimg->save(public_path($foder. '/' .$nameimg));
+            //     $logoproject=$nameimg;
+            //     DB::update("UPDATE users,projects SET logo = '$logoproject', projects.updated_at = CURRENT_TIMESTAMP() WHERE users.U_id=projects.user_id AND projects.project_id='$ID'");
+            // }elseif(isset($_FILES['fileimg'])){
+            //     $conut = count($_FILES['fileimg']);
+            //     print_r($conut);
+            // }
+
+            // if(isset($_FILES['fileimg']['name'])) {
+            //     echo '1';
+                
+            //     // $pathimg = $request->file('img')->store('imgaccount/',$nameimg);
+            //     // count มาจากการที่เลือกภาพมากี่ภาพ
+            //     // $conut = count($_FILES['fileimg']['name']);
+            //     // if($conut < 4){
+            //     //     echo '1';
+            //     //     for($i=0; $i<$conut; $i++) {
+            //     //         // ทำการวน loop for จนครบ ตาม count
+            //     //         // $this->validate($request,
+            //     //         // ['fileimg[$i]' => 'required|image|mimes:png,jpeg|max:5048']);
+            //     //         $name=$request->file('fileimg')[$i];
+            //     //         // echo $name;
+            //     //         $foder = 'project\img_backgrund';
+            //     //         $filename =  $request->file('fileimg')[$i]->getClientOriginalName();
+            //     //         $nameimg = rand() . '.' . $filename;
+                        
+            //     //         $pathimg = Image::make($name)->fit(400, 250, function ($constraint) {
+            //     //                 $constraint->aspectRatio();
+            //     //             });
+        
+            //     //         $pathimg->save(public_path($foder. '/' .$nameimg));
+            //     //         // $fileimg = $nameimg;
+            //     //             // เมื่อ i ถึง ตำเเหน่งที่ 1 ให้ทำการเก็บค่า nameimg ไว้ใน fileimg0 เเล้วทำการอัพลง database
+            //     //         if ($i == 0) {
+            //     //             $fileimg0=$nameimg;
+            //     //             if(isset($fileimg0)?$fileimg0:''){
+            //     //                 $chk = DB::select("SELECT img_p_1 FROM img_project WHERE img_project.p_id='$ID'");
+            //     //                 if(isset($chk)?$chk:''){
+
+            //     //                 }else{
+            //     //                     DB::update("UPDATE projects,img_project SET img_p_1 = '$fileimg0' , img_project.updated_at = CURRENT_TIMESTAMP() WHERE projects.project_id=img_project.p_id AND img_project.p_id='$ID'");
+            //     //                     $_SESSION['updatepass']='ok';
+            //     //                 }
+            //     //             }else{}
+                            
+            //     //         }; echo '<br>';
+            //     //         if ($i == 1) {
+            //     //             $fileimg1=$nameimg;
+            //     //             if(isset($fileimg1)?$fileimg1:''){
+            //     //                 $chk = DB::select("SELECT img_p_2 FROM img_project WHERE img_project.p_id='$ID'");
+            //     //                 if(isset($chk)?$chk:''){
+
+            //     //                 }else{
+            //     //                     DB::update("UPDATE projects,img_project SET img_p_2 = '$fileimg1' , img_project.updated_at = CURRENT_TIMESTAMP() WHERE projects.project_id=img_project.p_id AND img_project.p_id='$ID'");
+            //     //                     $_SESSION['updatepass']='ok';  
+            //     //                 }
+            //     //             }else{}
+  
+            //     //         };
+            //     //         if ($i == 2) {
+            //     //             $fileimg2=$nameimg;
+            //     //             if(isset($fileimg2)?$fileimg2:''){
+            //     //                 $chk = DB::select("SELECT img_p_2 FROM img_project WHERE img_project.p_id='$ID'");
+            //     //                 if(isset($chk)?$chk:''){
+
+            //     //                 }else{
+            //     //                     DB::update("UPDATE projects,img_project SET img_p_3 = '$fileimg2', img_project.updated_at = CURRENT_TIMESTAMP() WHERE projects.project_id=img_project.p_id AND img_project.p_id='$ID'");
+            //     //                     $_SESSION['updatepass']='ok';  
+            //     //             }
+            //     //             }else{}  
+            //     //         };     
+            //     //     }
+            //     // }else{
+            //     //     echo 'กรุณาใส่รูปใหม่';
+            //     // }
+            // }
+        // return back()->with('successupdate', 'อัพเดทข้อมูลเรียบร้อย');
     }
 
             // DB::update("UPDATE users,projects,img_project SET project_name = '$project_name', keyword_project ='$keyword_project', des_project ='$des_project', type_id ='$type_project',
@@ -2026,6 +2353,15 @@ class ProjectController extends Controller
         // // echo $data;
         return Http::get('https://www.prepostseo.com/plagiarism-checker');
 
+    }
+
+    public function chk_tampdownload_user(){
+        $projectid = $_GET['projectid'];
+        if(isset($projectid)?$projectid:''){
+            echo '<input type="text" value="'.$projectid.'">';
+        }else{
+           
+        }
     }
 
 }

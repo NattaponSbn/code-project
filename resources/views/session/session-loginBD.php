@@ -32,12 +32,12 @@
             }
 
             $_SESSION['message'] = "successlogin";
-            header( "refresh: 0; url=/homeadmin" );
+            header( "refresh: 0; url=homeadmin" );
             exit(0);
         }else{
             $_SESSION['notpass'] = "null";
             // return back();
-            header( "refresh: 0; url=/homeBD" );
+            header( "refresh: 0; url=homeBD" );
             exit(0);
         }
         
@@ -67,11 +67,11 @@
             }
             $_SESSION['username']=$user_log;
             $_SESSION['message'] = "successlogin";
-            header( "refresh: 0; url=/homeBD" );
+            header( "refresh: 0; url=homeBD" );
             exit(0);
         }else{
             $_SESSION['notpass'] = "null";
-            header( "refresh: 0; url=/homeBD" );
+            header( "refresh: 0; url=homeBD" );
             exit(0);
         }
 

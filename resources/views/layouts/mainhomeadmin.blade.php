@@ -412,7 +412,7 @@
                                 aria-haspopup="true" aria-expanded="false">
                                 @foreach($imgaccount as $img)
                                 <img class="rounded-circle user-sizes img-profile"
-                                    src="img_admin/<?php echo $img->pathimg; ?>" alt="User Avatar">
+                                    src="{{URL::to('img_admin/'.$img->pathimg)}}" alt="User Avatar">
                                 @endforeach
                                 <div class="name-scle dropdown-toggle"><?php echo $_SESSION['adminname'];?></div>
                             </a>
@@ -424,7 +424,7 @@
                                                 <div class="image">
                                                     <a href="profileadmin">
                                                         @foreach($imgaccount as $img)
-                                                        <img src="img_admin/<?php echo $img->pathimg; ?>" alt=""
+                                                        <img src="{{URL::to('img_admin/'.$img->pathimg)}}" alt=""
                                                             class="img-user-size user-avatar rounded-circle" />
                                                         @endforeach
                                                     </a>
@@ -440,11 +440,11 @@
 
                                         <a href="profileadmin" class="top dropdown-item"><i
                                                 class="zmdi zmdi-account"></i>โปรไฟล์</a>
-                                        <a class="dropdown-item" href="logout" onclick="event.preventDefault();
+                                        <a class="dropdown-item" href="{{URL::to('logout')}}" onclick="event.preventDefault();
                                                             document.getElementById('logout-form').submit();">
                                             {{ __('ออกจากระบบ') }}
                                         </a>
-                                        <form id="logout-form" action="logout" method="POST" style="display: none;">
+                                        <form id="logout-form" action="{{URL::to('logout')}}" method="POST" style="display: none;">
                                             @csrf
                                         </form>
 
@@ -466,10 +466,10 @@
                                 <div class="sb-sidenav-menu">
                                     <div class="nav">
                                         <div class="layoutlogre">
-                                            <a href="homeBD"><button type="button"
+                                            <a href="{{URL::to('homeBD')}}"><button type="button"
                                                     class="btn-control btn-default btn-outline-primaryy "
                                                     style="font-size:18px;font-family: 'Athiti', sans-serif;">ปริญญาตรี</button></a>
-                                            <a href="homeMDD"><button type="button"
+                                            <a href="{{URL::to('homeMDD')}}"><button type="button"
                                                     class="btn-control btn-default btn-outline-primaryy "
                                                     style="font-size:18px;font-family: 'Athiti', sans-serif;">ปริญญาเอก
                                                     โท </button></a>

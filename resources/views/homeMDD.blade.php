@@ -13,7 +13,7 @@
                                 <div class="column-mdd">
                                 <?php $status_m0 = $items->status_m ?>
                                     @if(isset($item_m0))
-                                        <div class="layoutMDD"><span class="layout-mdd-i-text"><span class="countviewmdd"><?php formattter($viewcount0) ?></span><i class="fas fa-user" style="color: #A9A9A9;"></i></span>
+                                        <div class="layoutMDD"><span class="layout-mdd-i-text"><span class="countviewmdd"><?php formattter($viewcount0) ?></span><i class="fas fa-user" style="color: #A9A9A9;" title="ยอดผู้ชม"></i></span>
                                             <a href="itemdetaliMDD/{{$items->project_m_id}}"><div class="textMDD-h" ><b><?php echo $items->project_m_name;?></b></div></a>
                                             <div class="textMDD" ><b>คำอธิบาย :</b> 
                                                 <?php 
@@ -39,7 +39,7 @@
                                 @if(isset($itemA0)?$itemA0:'')
                                 @foreach($itemA0 as $items)
                                     <div class="column-mdd">
-                                        <div class="layoutMDD"><span class="layout-mdd-i-text"><span class="countviewmdd"><?php formattter($viewcountA0) ?></span><i class="fas fa-user" style="color: #A9A9A9;"></i></span>
+                                        <div class="layoutMDD"><span class="layout-mdd-i-text"><span class="countviewmdd"><?php formattter($viewcountA0) ?></span><i class="fas fa-user" style="color: #A9A9A9;" title="ยอดผู้ชม"></i></span>
                                             <a href="itemdetaliMDD/{{$items->project_m_id}}"><div class="textMDD-h" ><b><?php echo $items->project_m_name;?></b></div></a>
                                             <div class="textMDD" ><b>คำอธิบาย :</b>
                                             <?php 
@@ -74,7 +74,7 @@
                                     <div class="column-mdd">
                                     <?php $status_m0 = $items->status_m ?>
                                         @if(isset($item_l0))
-                                            <div class="layoutMDD"><span class="layout-mdd-i-text"><span class="countviewmdd"><?php formattter($viewcount_l0) ?></span><i class="fas fa-user" style="color: #A9A9A9;"></i></span>
+                                            <div class="layoutMDD"><span class="layout-mdd-i-text"><span class="countviewmdd"><?php formattter($viewcount_l0) ?></span><i class="fas fa-user" style="color: #A9A9A9;" title="ยอดผู้ชม"></i></span>
                                                 <a href="itemdetaliMDD/{{$items->project_m_id}}"><div class="textMDD-h" ><b><?php echo $items->project_m_name;?></b></div></a>
                                                 <div class="textMDD" ><b>คำอธิบาย :</b> 
                                                     <?php 
@@ -100,7 +100,7 @@
                                 @if(isset($itemA_l0)?$itemA_l0:'')
                                     @foreach($itemA_l0 as $items)
                                         <div class="column-mdd">
-                                            <div class="layoutMDD"><span class="layout-mdd-i-text"><span class="countviewmdd"><?php formattter($viewcountA_l0) ?></span><i class="fas fa-user" style="color: #A9A9A9;"></i></span>
+                                            <div class="layoutMDD"><span class="layout-mdd-i-text"><span class="countviewmdd"><?php formattter($viewcountA_l0) ?></span><i class="fas fa-user" style="color: #A9A9A9;" title="ยอดผู้ชม"></i></span>
                                                 <a href="itemdetaliMDD/{{$items->project_m_id}}"><div class="textMDD-h" ><b><?php echo $items->project_m_name;?></b></div></a>
                                                 <div class="textMDD" ><b>คำอธิบาย :</b>
                                                 <?php 
@@ -135,7 +135,7 @@
                                         <div class="column-mdd">
                                         <?php $status_m0 = $items->status_m ?>
                                             @if(isset($item_h0))
-                                                <div class="layoutMDD"><span class="layout-mdd-i-text"><span class="countviewmdd"><?php formattter($viewcount_h0) ?></span><i class="fas fa-user" style="color: #A9A9A9;"></i></span>
+                                                <div class="layoutMDD"><span class="layout-mdd-i-text"><span class="countviewmdd"><?php formattter($viewcount_h0) ?></span><i class="fas fa-user" style="color: #A9A9A9;" title="ยอดผู้ชม"></i></span>
                                                     <a href="itemdetaliMDD/{{$items->project_m_id}}"><div class="textMDD-h" ><b><?php echo $items->project_m_name;?></b></div></a>
                                                     <div class="textMDD" ><b>คำอธิบาย :</b> 
                                                         <?php 
@@ -161,7 +161,7 @@
                                         @elseif(isset($itemA_h0)?$itemA_h0:'')
                                         @foreach($itemA_h0 as $items)
                                             <div class="column-mdd">
-                                                <div class="layoutMDD"><span class="layout-mdd-i-text"><span class="countviewmdd"><?php formattter($viewcountA_h0) ?></span><i class="fas fa-user" style="color: #A9A9A9;"></i></span>
+                                                <div class="layoutMDD"><span class="layout-mdd-i-text"><span class="countviewmdd"><?php formattter($viewcountA_h0) ?></span><i class="fas fa-user" style="color: #A9A9A9;" title="ยอดผู้ชม"></i></span>
                                                     <a href="itemdetaliMDD/{{$items->project_m_id}}"><div class="textMDD-h" ><b><?php echo $items->project_m_name;?></b></div></a>
                                                     <div class="textMDD" ><b>คำอธิบาย :</b>
                                                     <?php 
@@ -193,7 +193,7 @@
                                         <div class="column-mdd">
                                         <?php $status_m0 = $items->status_m ?>
                                             @if(isset($item_s0))
-                                                <div class="layoutMDD"><span class="layout-mdd-i-text"><span class="countviewmdd"><?php formattter($viewcount_s0) ?></span><i class="fas fa-user" style="color: #A9A9A9;"></i></span>
+                                                <div class="layoutMDD"><span class="layout-mdd-i-text"><span class="countviewmdd"><?php formattter($viewcount_s0) ?></span><i class="fas fa-user" style="color: #A9A9A9;" title="ยอดผู้ชม"></i></span>
                                                     <a href="itemdetaliMDD/{{$items->project_m_id}}"><div class="textMDD-h" ><b><?php echo $items->project_m_name;?></b></div></a>
                                                     <div class="textMDD" ><b>คำอธิบาย :</b> 
                                                         <?php 
@@ -219,7 +219,7 @@
                                         @elseif(isset($itemA_s0)?$itemA_s0:'')
                                         @foreach($itemA_s0 as $items)
                                             <div class="column-mdd">
-                                                <div class="layoutMDD"><span class="layout-mdd-i-text"><span class="countviewmdd"><?php formattter($viewcountA_s0) ?></span><i class="fas fa-user" style="color: #A9A9A9;"></i></span>
+                                                <div class="layoutMDD"><span class="layout-mdd-i-text"><span class="countviewmdd"><?php formattter($viewcountA_s0) ?></span><i class="fas fa-user" style="color: #A9A9A9;" ></i></span>
                                                     <a href="itemdetaliMDD/{{$items->project_m_id}}"><div class="textMDD-h" ><b><?php echo $items->project_m_name;?></b></div></a>
                                                     <div class="textMDD" ><b>คำอธิบาย :</b>
                                                     <?php 
@@ -252,7 +252,7 @@
                                         <div class="column-mdd">
                                         <?php $status_m0 = $items->status_m ?>
                                             @if(isset($item_g0))
-                                                <div class="layoutMDD"><span class="layout-mdd-i-text"><span class="countviewmdd"><?php formattter($viewcount_g0) ?></span><i class="fas fa-user" style="color: #A9A9A9;"></i></span>
+                                                <div class="layoutMDD"><span class="layout-mdd-i-text"><span class="countviewmdd"><?php formattter($viewcount_g0) ?></span><i class="fas fa-user" style="color: #A9A9A9;" title="ยอดผู้ชม"></i></span>
                                                     <a href="itemdetaliMDD/{{$items->project_m_id}}"><div class="textMDD-h" ><b><?php echo $items->project_m_name;?></b></div></a>
                                                     <div class="textMDD" ><b>คำอธิบาย :</b> 
                                                         <?php 
@@ -278,7 +278,7 @@
                                         @elseif(isset($itemA_g0)?$itemA_g0:'')
                                         @foreach($itemA_g0 as $items)
                                             <div class="column-mdd">
-                                                <div class="layoutMDD"><span class="layout-mdd-i-text"><span class="countviewmdd"><?php formattter($viewcountA_g0) ?></span><i class="fas fa-user" style="color: #A9A9A9;"></i></span>
+                                                <div class="layoutMDD"><span class="layout-mdd-i-text"><span class="countviewmdd"><?php formattter($viewcountA_g0) ?></span><i class="fas fa-user" style="color: #A9A9A9;" title="ยอดผู้ชม"></i></span>
                                                     <a href="itemdetaliMDD/{{$items->project_m_id}}"><div class="textMDD-h" ><b><?php echo $items->project_m_name;?></b></div></a>
                                                     <div class="textMDD" ><b>คำอธิบาย :</b>
                                                     <?php 

@@ -4690,15 +4690,15 @@ input[type=button].btn-block {
 }
 
 .layoutaccout {
-    margin-right: 80px;
+    margin-right: -3%;
     margin-left: -65px;
     margin-top: -0.5px auto;
 }
 
 .layoutaccout-MDD {
-    margin-right: 7%;
-    margin-left: -100px;
-    margin-top: 0.5%;
+    margin-right: 3%;
+    margin-left: -20px;
+    margin-top: 0.4%;
 }
 
 .layout-mdd-i-text-mdd {
@@ -6261,7 +6261,8 @@ a.close.disabled {
     touch-action: pan-y;
 }
 
-.carousel-inner {
+
+/* .carousel-inner {
     position: relative;
     width: 100%;
     overflow: hidden;
@@ -6271,7 +6272,7 @@ a.close.disabled {
     display: block;
     clear: both;
     content: "";
-}
+} */
 
 .carousel-item {
     position: relative;

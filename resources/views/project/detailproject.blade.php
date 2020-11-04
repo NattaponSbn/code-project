@@ -514,12 +514,6 @@
             color: red; 
         }
 
-        
-        .font-Athiti {
-            font-family: 'Athiti', sans-serif;
-            font-weight: 600;
-        }
-        
         .sidenav a, .dropdown-btn ,.dropdown-btn2,.dropdown-btn3{
             padding: 6px 8px 6px 16px;
             text-decoration: none;
@@ -617,6 +611,18 @@
 </script>
 @endif
 
+@if(isset($_SESSION['updatepass'])){
+    <script>
+        swal({
+            title: "อัพเดทข้อมูลเรียบร้อย",
+            icon: "success",
+            button: "ตกลง",
+        });
+    </script>
+<?php unset($_SESSION['updatepass']); ?>
+}
+@endif
+
 <body class="body1" style="font-family: 'Athiti', sans-serif;">
 <div class="app sidebar-mini ">
         <header class="app-header">
@@ -632,7 +638,7 @@
                 <!-- <div class="app-navbar__overlay" data-toggle="sidebar" aria-label="Hide Sidebar"></div> -->
                 <nav class="app-navmenu " style="margin-left: 1100px;">
                     <li class="active1 menulink fontlink"><a href="{{action('ProjectController@itemproject')}}">หน้าเเรก</a></li>
-                    <li class="active2 menulink fontlink"><a href="SearchAdvance">ค้นหาเเบบละเอียด</a></li>
+                    <li class="active2 menulink fontlink"><a href="{{url('SearchAdvance')}}">ค้นหาเเบบละเอียด</a></li>
                     <li class="active3 menulink fontlink"><a href="#">เกี่ยวกับ</a></li>
                     <li class="active4 menulink fontlink"><a href="#">ติดต่อ</a></li>
                 </nav>
@@ -642,13 +648,13 @@
 
                         @elseif (isset($_SESSION['status']) == 'user')
                             @if(!isset($_SESSION['project']))
-                            <a href="addproject" class="view"><i class="far fa-plus-square fa-lg i-hover" title="สร้างผลงงานคุณ"></i></a><br>
+                            <a href="{{url('addproject')}}" class="view"><i class="far fa-plus-square fa-lg i-hover" title="สร้างผลงงานคุณ"></i></a><br>
                             @elseif(isset($_SESSION['project']))
-                            <a href="listdetil" class="view"><i class="fas fa-book fa-lg i-hover" title="ผลงงานคุณ"></i></a><br>
+                            <a href="{{url('listdetil')}}" class="view"><i class="fas fa-book fa-lg i-hover" title="ผลงงานคุณ"></i></a><br>
                             @endif
                         @elseif (isset($_SESSION['statusA']) == 'admin')
                         <div class="links front">
-                            <a href="homeadmin" class="view">กลับสู่หน้าผู้ดูเเลระบบ</a><br>
+                            <a href="{{url('homeadmin')}}" class="view">กลับสู่หน้าผู้ดูเเลระบบ</a><br>
                         </div>
                         @endif
                     </div>
@@ -742,7 +748,7 @@
 
                                 <a class="nav-link " id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     @foreach($imgaccount as $img)
-                                    <img class="rounded-circle user-sizes img-profile" src="/imgaccount/<?php echo $img->pathimg; ?>" alt="USer Atver">
+                                    <img class="rounded-circle user-sizes img-profile" src="{{URL::to('imgaccount/'.$img->pathimg)}}" alt="USer Atver">
 
                                     @endforeach
                                     @foreach($imgaccount as $user)
@@ -758,7 +764,7 @@
                                                     <div class="image">
                                                         <a href="profile">
                                                             @foreach($imgaccount as $img)
-                                                            <img src="\imgaccount\<?php echo $img->pathimg; ?>" alt="" class="img-user-size user-avatar rounded-circle" />
+                                                            <img src="{{URL::to('imgaccount/'.$img->pathimg)}}" alt="" class="img-user-size user-avatar rounded-circle" />
                                                             @endforeach
                                                         </a>
 
@@ -804,7 +810,7 @@
 
                                 <a class="nav-link " id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     @foreach($adminaccount as $img)
-                                    <img class="rounded-circle user-sizes img-profile" src="/img_admin/<?php echo $img->pathimg; ?>" alt="USer Atver">
+                                    <img class="rounded-circle user-sizes img-profile" src="{{URL::to('img_admin/'.$img->pathimg)}}" alt="USer Atver">
 
                                     @endforeach
                                     @foreach($adminaccount as $user)
@@ -820,7 +826,7 @@
                                                     <div class="image">
                                                         <a href="profile">
                                                             @foreach($adminaccount as $img)
-                                                            <img src="\img_admin\<?php echo $img->pathimg; ?>" alt="" class="img-user-size user-avatar rounded-circle" />
+                                                            <img src="{{URL::to('img_admin/'.$img->pathimg)}}" alt="" class="img-user-size user-avatar rounded-circle" />
                                                             @endforeach
                                                         </a>
 
@@ -867,9 +873,9 @@
                                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                                     <div class="sb-sidenav-menu">
                                     <div class="nav">
-                                        <div class="font-Athiti">
-                                            <a href="{{action('ProjectController@itemproject')}}"><button type="button" class="btn-control btn-default btn-outline-primaryy " style="font-size:18px;">ปริญญาตรี</button></a>
-                                            <a href="{{action('Project_MDDController@itemproject')}}"><button type="button" class="btn-control btn-default btn-outline-primaryy " style="font-size:18px;">ปริญญาเอก โท </button></a>
+                                        <div class="font-Athiti" >
+                                            <a href="{{action('ProjectController@itemproject')}}"><button type="button" class="btn-control btn-default btn-outline-primaryy " style="font-size:18px;font-family: 'Athiti', sans-serif;">ปริญญาตรี</button></a>
+                                            <a href="{{action('Project_MDDController@itemproject')}}"><button type="button" class="btn-control btn-default btn-outline-primaryy " style="font-size:18px;font-family: 'Athiti', sans-serif;">ปริญญาเอก โท </button></a>
                                         </div><br>
                                             <div class="sidenav" >
                                                 
@@ -960,7 +966,7 @@
                         <li class="breadcrumb-item magne-right-text"><a href="#">เเสดงผลงาน</a></li>
                     </ul><br> -->
             
-                    <div class="tile" style="margin-left:20%;width: 60%;">
+                    <div class="tile" style="margin-left:20%;width: 80%;">
                         <script language="JavaScript">
                             function showPreviewlogo(ele) {
                                 $('#showlogo').attr('src', ele.value); // for IE
@@ -976,7 +982,7 @@
                             }
 
                             function showPreview(ele) {
-                                $('#showimage').attr('src', ele.value); // for IE
+                                // $('#showimage').attr('src', ele.value); // for IE
                                 if (ele.files && ele.files[0]) {
                                     var reader = new FileReader();
 
@@ -986,13 +992,32 @@
 
                                     reader.readAsDataURL(ele.files[0]);
                                 }
+                                if (ele.files && ele.files[1]) {
+                                    var reader = new FileReader();
+
+                                    reader.onload = function(e) {
+                                        $('#showimage1').attr('src', e.target.result);
+                                    }
+
+                                    reader.readAsDataURL(ele.files[1]);
+                                }
+                                if (ele.files && ele.files[2]) {
+                                    var reader = new FileReader();
+
+                                    reader.onload = function(e) {
+                                        $('#showimage2').attr('src', e.target.result);
+                                    }
+
+                                    reader.readAsDataURL(ele.files[2]);
+                                }
+                                
                             }
                         </script>
                         <div class="col-sm justify-content-center">
                             <center>
                                     <div class="containeradd textadd " style="font-size:30px;">เเก้ไขรายละเอียดผลงาน</div>
                             </center>
-                            <form id="addprojectfrom" action="editproject" method="POST" enctype="multipart/form-data">
+                            <form id="addprojectfrom" action="{{URL::to('editproject')}}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
                                 <center>
@@ -1002,7 +1027,7 @@
                                         <div class="col-md-4">
                                             @if(isset($dataimg)?$dataimg:'')
                                                 @foreach($dataimg as $imglogo)
-                                                <img id="showlogo" style="background:#9d9d9d;width:170px;height:180px;" src="\project\img_logo\<?php echo $imglogo->logo; ?>">
+                                                <img id="showlogo" style="background:#9d9d9d;width:170px;height:180px;" src="{{URL::to('project/img_logo/'.$imglogo->logo)}}">
                                                 @endforeach
                                                 @else
                                                 <img id="showlogo" style="background:#9d9d9d;width:170px;height:180px;" src="\img\fromimg.png">
@@ -1021,17 +1046,17 @@
                                                 <div class="carousel-inner">
                                                     <div class="carousel-item active ">
                                                         <div class="backgroundimgproject">
-                                                            <img class="size-img-re" width="100%" height="100%" src="/project/img_backgrund/<?php echo $datas->img_p_1; ?>" alt="First slide">
+                                                            <img class="size-img-re" id="showimage" width="100%" height="100%" src="{{URL::to('project/img_backgrund/'.$datas->img_p_1)}}" alt="First slide">
                                                         </div>
                                                     </div>
                                                     <div class="carousel-item">
                                                         <div class="backgroundimgprojectt">
-                                                            <img class="size-img-re" width="100%" height="100%" src="/project/img_backgrund/<?php echo $datas->img_p_2; ?>" alt="Second slide">
+                                                            <img class="size-img-re" id="showimage1" width="100%" height="100%" src="{{URL::to('project/img_backgrund/'.$datas->img_p_2)}}" alt="Second slide">
                                                         </div>
                                                     </div>
                                                     <div class="carousel-item">
                                                         <div class="backgroundimgprojecttt">
-                                                            <img class="size-img-re" width="100%" height="100%" src="/project/img_backgrund/<?php echo $datas->img_p_3; ?>" alt="Third slide">
+                                                            <img class="size-img-re" id="showimage2" width="100%" height="100%" src="{{URL::to('project/img_backgrund/'.$datas->img_p_3)}}" alt="Third slide">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1097,11 +1122,11 @@
 
                                         <label for="text" class="">โลโก้</label><span class="text-muted">(.png )</span><br>
                                         <span style="color: red;font-size: 20;">* <span class="danger_d">กรุณาใส่รูปโลโก้ผลงาน</span></span><br>
-                                        <input type="file" name="filelogo" id="fileimgToUpload" class="" OnChange="showPreviewlogo(this)"><br>
+                                        <input type="file" name="filelogo" id="fileimgToUpload" accept=".jpg, .jpeg, .png" class="" OnChange="showPreviewlogo(this)"><br>
 
                                         <label for="text" class="">รูปโชว์ผลงาน</label><span class="text-muted">(.png .jpeg)</span><br>
-                                        <span style="color: red;font-size: 20;">* <span class="danger_d">กรุณาใส่รูปโชว์ผลงาน ตัวอย่างเช่น หน้าจอผู้ใช้</span></span><br>
-                                        <input type="file" multiple[3] name="fileimg[]" id="fileToUpload" accept=".jpg, .jpeg, .png"  OnChange="showPreview(this)">
+                                        <span style="color: red;font-size: 20;">* <span class="danger_d">กรุณาใส่รูปโชว์ผลงาน ตัวอย่างเช่น หน้าจอผู้ใช้ *หมายเหตุ เลือกรูปได้ไม่เกิน 3 รูป</span></span><br>
+                                        <input type="file" multiple name="fileimg[]" id="fileToUpload" accept=".jpg, .jpeg, .png"  OnChange="showPreview(this)">
 
                                 </center>
 
@@ -1112,6 +1137,7 @@
                                         <div class="col">
                                             <div class="align-self-start " style="margin-left:40px;">
                                                 <div class="form-group">
+                                                    <input type="text" name="project_id" id="project_id" style="display: none;" value="{{$datas->project_id}}">
                                                     <label for="text" class="text-left fontdetail" style="margin-top:-20px;">ชื่อเรื่อง:</label>
                                                     <div class="col-sm-11">
                                                         <textarea type="text" class="form-control" name="project_name" id="project_name" rows="3" ><?php echo $datas->project_name; ?></textarea>
@@ -1158,25 +1184,45 @@
                                                 <div class="form-group">
                                                     <label for="text" class="text-left fontdetail" style="margin-top:-20px;">เจ้าของคนที่1: </label>
                                                     <div class="col-sm-10">
-                                                        <input type="text" class="form-control" name="owner_project1" id="owner_project1" value="">
+                                                        <input type="text" class="form-control" name="owner_project1" id="owner_project1" value="{{$datas->owner_p1}}">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="text" class="text-left fontdetail" style="margin-top:-20px;">เจ้าของคนที่2: </label>
                                                     <div class="col-sm-10">
-                                                        <input type="text" class="form-control" name="owner_project2" id="owner_project2" value="">
+                                                        <input type="text" class="form-control" name="owner_project2" id="owner_project2" value="{{$datas->owner_p2}}">
                                                     </div>
                                                 </div>
+                                                <?php $owner_p3 = $datas->owner_p3?>
+                                                @if(isset($owner_p3)?$owner_p3:'')
+                                                    <div class="form-group">
+                                                        <label for="text" class="text-left fontdetail" style="margin-top:-20px;">เจ้าของคนที่3: </label>
+                                                        <div class="col-sm-10">
+                                                            <input type="text" class="form-control" name="owner_project2" id="owner_project2" value="{{$datas->owner_p3}}">
+                                                        </div>
+                                                    </div>
+                                                @else
+                                                @endif
+                                                <?php $owner_p4 = $datas->owner_p4?>
+                                                @if(isset($owner_p4)?$owner_p4:'')
+                                                    <div class="form-group">
+                                                        <label for="text" class="text-left fontdetail" style="margin-top:-20px;">เจ้าของคนที่4: </label>
+                                                        <div class="col-sm-10">
+                                                            <input type="text" class="form-control" name="owner_project2" id="owner_project2" value="{{$datas->owner_p4}}">
+                                                        </div>
+                                                    </div>
+                                                @else
+                                                @endif
                                                 <div class="form-group">
                                                     <label for="text" class="text-left fontdetail" style="margin-top:-20px;">อาจารย์ที่ปรึกษา: </label>
                                                     <div class="col-sm-10">
-                                                        <input type="text" class="form-control" name="advisor_project" id="advisor_project" value="">
+                                                        <input type="text" class="form-control" name="advisor_project" id="advisor_project" value="{{$datas->advisor_p}}">
                                                     </div>
                                                 </div>
                                                 <div class="form-group ">
                                                     <label for="text" class="text-left fontdetail" style="margin-top:-20px;">ปีที่จัดทำเอกสาร: </label>
                                                     <div class="col-sm-10">
-                                                        <select name="year_project" class="form-control" id="year_project" oninput="this.className = ''">
+                                                        <select name="year_project" class="form-control" id="year_project">
                                                             <option value="" disabled selected>ปีที่จัดทำเอกสาร</option>
                                                             @foreach($chk_year as $year)
                                                             <option value="{{$year->NO_Y}}" 
@@ -1191,7 +1237,7 @@
                                                 <div class="form-group ">
                                                     <label for="text" class="text-left fontdetail" style="margin-top:-20px;">สาขา: </label>
                                                     <div class="col-sm-10">
-                                                        <select name="branch_project" class="form-control" id="branch_project" oninput="this.className = ''">
+                                                        <select name="branch_project" class="form-control" id="branch_project" >
                                                             <option value="" disabled selected>เลือกสาขา</option>
                                                             @foreach($chk_branch as $branch)
                                                             <option value="{{$branch->branch_id}}" 
@@ -1206,7 +1252,7 @@
                                                 <div class="form-group ">
                                                     <label for="text" class="text-left fontdetail" style="margin-top:-20px;">ชนิดเอกสาร:</label>
                                                     <div class="col-sm-10">
-                                                        <select name="type_project" class="form-control" id="type_project" oninput="this.className = ''">
+                                                        <select name="type_project" class="form-control" id="type_project" >
                                                             <option value="" disabled selected>เลือกชนิดเอกสาร</option>
                                                             @foreach($chk_type as $type)
                                                             <option value="{{$type->type_id}}" <?php if ($datas->type_id == $type->type_id) {
@@ -1219,7 +1265,7 @@
                                                 <div class="form-group ">
                                                     <label for="text" class="text-left fontdetail" style="margin-top:-20px;">ประเภท: </label>
                                                     <div class="col-sm-10">
-                                                        <select name="genre_project" class="form-control" id="genre_project" oninput="this.className = ''">
+                                                        <select name="genre_project" class="form-control" id="genre_project" >
                                                             <option value="" disabled selected>เลือกประเภท</option>
                                                             @foreach($chk_genre as $genre)
                                                             <option value="{{$genre->genre_id}}" <?php if ($datas->genre_id == $genre->genre_id) {
@@ -1232,7 +1278,7 @@
                                                 <div class="form-group ">
                                                     <label for="text" class="text-left fontdetail" style="margin-top:-20px;">หมวดหมู่: </label>
                                                     <div class="col-sm-10">
-                                                        <select name="category_project" class="form-control" id="category_project" oninput="this.className = ''">
+                                                        <select name="category_project" class="form-control" id="category_project" >
                                                             <option value="" disabled selected>เลือกหมวดหมู่</option>
                                                             @foreach($chk_category as $category)
                                                             <option value="{{$category->category_id}}" <?php if ($datas->category_id == $category->category_id) {
@@ -1247,12 +1293,12 @@
                                         </div>
                                         <div class="w-100"></div>
                                         <div class="col">
-                                            <div class="align-self-start " style="margin-left:40px;">
+                                            <div class="align-self-start " style="margin-left:40px;margin-top:-14%;">
                                                 
                                                 <div class="form-group">
-                                                    <label for="text" class="text-left fontdetail" style="margin-top:-20px;">คำอธิบายย่อ: </label>
+                                                    <label for="text" class="text-left fontdetail" style="">คำอธิบายย่อ: </label>
                                                     <div class="col-sm-12">
-                                                        <textarea type="text" class="form-control" rows="6" name="des_project" id="des_project"><?php echo $datas->des_project; ?></textarea>
+                                                        <textarea type="text" class="form-control" rows="8" name="des_project" id="des_project"><?php echo $datas->des_project; ?></textarea>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1260,26 +1306,26 @@
                                     <div class="col">
                                         <div class="align-self-start" style="margin-left:40px;">
                                             <center><label for="text" class="">ข้อมูลติดต่อ</label><br></center>
-                                            @foreach($datapubilc as $pubilc)
+                                            
                                             <div class="form-group ">
                                                 <label for="text" class="text-left fontdetail" style="margin-top:-20px;">Facebook: </label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" class="form-control" name="facebook" id="facebook" value="<?php echo $pubilc->facebook; ?>">
+                                                    <input type="text" class="form-control" name="facebook" id="facebook" value="<?php echo $datas->facebook_p; ?>">
                                                 </div>
                                             </div>
                                             <div class="form-group ">
                                                 <label for="text" class="text-left fontdetail" style="margin-top:-20px;">Email: </label>
                                                 <div class="col-sm-10">
-                                                    <input type="email" class="form-control" name="email" id="email" value="<?php echo $pubilc->email; ?>">
+                                                    <input type="email" class="form-control" name="email" id="email" value="<?php echo $datas->email_p; ?>">
                                                 </div>
                                             </div>
                                             <div class="form-group ">
                                                 <label for="text" class="text-left fontdetail" style="margin-top:-20px;">เบอร์โทร: </label>
                                                 <div class="col-sm-10">
-                                                    <input type="phone" class="form-control" name="phone" id="phone" value="<?php echo $pubilc->phone; ?>">
+                                                    <input type="text" pattern="[0-9]{1,}" title="กรอกตัวเลขเท่านั้น" maxlength="10" class="form-control" name="phone" id="phone" value="<?php echo $datas->phone_p; ?>">
                                                 </div>
                                             </div>
-                                            @endforeach
+                                            
                                         </div>
 
                                     </div>
@@ -1288,10 +1334,10 @@
                         </div>
 
                         <div style="overflow:10px;">
-                            <div style="float:center;">
-                                <a href="{{action('ListdataController@listdetil')}}"><button type="button" class="btnp btnnn">ย้อนกลับ</button></a>
+                            <div style="float:center;margin-left: 53%;">
+                                <a href="{{action('ListdataController@listdetil')}}"><button type="button" class="btnp btnnn">ยกเลิก</button></a>
                             </div>
-                            <div style="float:left; margin-left: 380px; margin-top: -41px;">
+                            <div style="float:right; margin-right: 7.5%; margin-top: -40px;">
                                 <button type="submit" class="btnn">เเก้ไข</button>
                             </div>
                         </div>
@@ -1304,6 +1350,8 @@
     </div>
     </div>
 
+
+    
     <script class="text/javascript">
         $('#type_project').change(function() {
             if ($(this).val() != "") {
@@ -1378,6 +1426,14 @@
     <script src="js/plugins/pace.min.js"></script>
     <!-- Page specific javascripts-->
     <script type="text/javascript" src="js/plugins/chart.js"></script>
+
+    <script>
+        $("#fileToUpload").on("change", function() {
+            if ($("#fileToUpload")[0].files.length > 3) {
+                alert("คุณเลือกรูปได้ไม่เกิน 3 รูป");
+            }
+        });
+    </script>
 
     <script>
         /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */

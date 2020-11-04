@@ -144,6 +144,17 @@ Route::get('testwork', function () {
     Route::get('itemdetaliBD','ProjectController@index');
     Route::get('itemdetaliBD/{project_id}','ProjectController@detailitem');
     Route::get('itemtypeBD/{type_id}','ProjectController@typeitem');
+
+    //chk_tampdownload_user
+    Route::get('download_use','ProjectController@tampdownload_user')->name('download_use');
+    
+    Route::get('pagedownload', function () {
+        return view('pagedownload');
+    });
+
+    //หาอาจารย์
+    Route::get('advisor_p','ListdataController@advisor_p');
+
     //itemclcikMDD
     Route::get('itemdetaliMDD','ProjectController@indexmdd');
     Route::get('itemdetaliMDD/{project_m_id}','ProjectController@detailitemmdd');
@@ -215,6 +226,8 @@ Route::post('loginMDD', function () {
 Route::post('logout', function () {
     return view('session.logout');
 });
+
+// Route::post('loginBD','login_pyController@auth_py');
 
 // Route::get('login', 'logintestController@index');
 Route::post('logintestt', 'logintestController@chkauthen');

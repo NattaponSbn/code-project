@@ -552,7 +552,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- main.css-->
                 <li class="app-search search-left">
-                    <form action='/search' method='GET' >
+                    <form action="{{URL::to('search')}}" method='GET' >
                        
                             <div class="input-group mb-3 app-search-input">
                                 <input type="text" class="form-control" name='search' id="search" style="width: 400px;border-right: #fff;" placeholder="ค้นหา..." aria-label="ค้นหา..." aria-describedby="basic-addon2" autocomplete="off">
@@ -636,7 +636,7 @@
                                 <a class="text-item" id="userDropdown" href="login" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><button class="btn-login btn btn-outline-primaryy"><i class="fas fa-user-circle span-i-user"></i>
                                         <div class="text-mage" >เข้าสู่ระบบ</div>
                                     </button></a>
-                                <div class="dropdown-menu dropdown-menu-right" style="margin-top: px;" aria-labelledby="userDropdown">
+                                <div class="dropdown-menu dropdown-menu-right" style="margin-right: -10%;" aria-labelledby="userDropdown">
                                     <ul class="navbar-nav ml-auto" style="margin-right:-90px;">
                                         <div class="account-dropdown js-dropdown">
                                             <div class="info clearfix">
@@ -716,7 +716,7 @@
                             <li class="nav-item dropdown">
                                 <a class="nav-link " id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     @foreach($imgaccount as $img)
-                                    <img class="rounded-circle user-sizes img-profile" src="imgaccount/<?php echo $img->pathimg; ?>" alt="USer Atver">
+                                    <img class="rounded-circle user-sizes img-profile" src="{{URL::to('imgaccount/'.$img->pathimg)}}" alt="USer Atver">
 
                                     @endforeach
                                     @foreach($imgaccount as $user)
@@ -730,9 +730,9 @@
                                             <div class="info clearfix">
                                                 <center>
                                                     <div class="image">
-                                                        <a href="profile">
+                                                        <a href="{{URL::to('profile')}}">
                                                             @foreach($imgaccount as $img)
-                                                            <img src="imgaccount\<?php echo $img->pathimg; ?>" alt="" class="img-user-size user-avatar rounded-circle" />
+                                                            <img src="{{URL::to('imgaccount/'.$img->pathimg)}}" alt="" class="img-user-size user-avatar rounded-circle" />
                                                             @endforeach
                                                         </a>
 
@@ -749,19 +749,19 @@
                                                 </div>
                                             </div>
 
-                                            <a href="profile" class="top dropdown-item"><i class="fas fa-user" style="margin-right: 2%;"></i>โปรไฟล์</a>
+                                            <a href="{{URL::to('profile')}}" class="top dropdown-item"><i class="fas fa-user" style="margin-right: 2%;"></i>โปรไฟล์</a>
                                             <div class="top dropdown-item" >
                                                 @if(!isset($_SESSION['project']))
-                                                <a href="addproject" class="view" style="color: black;text-decoration: none;"><i class="fas fa-plus-circle" style="margin-right: 2%;"></i>สร้างผลงาน</a><br>
+                                                <a href="{{URL::to('addproject')}}" class="view" style="color: black;text-decoration: none;"><i class="fas fa-plus-circle" style="margin-right: 2%;"></i>สร้างผลงาน</a><br>
                                                 @elseif(isset($_SESSION['project']))
-                                                <a href="listdetil" class="view" style="color: black;text-decoration: none;"><i class="fas fa-book" style="margin-right: 2%;"></i>ผลงานของฉัน</a><br>
+                                                <a href="{{URL::to('listdetil')}}" class="view" style="color: black;text-decoration: none;"><i class="fas fa-book" style="margin-right: 2%;"></i>ผลงานของฉัน</a><br>
                                                 @endif
                                             </div>
-                                            <a class="dropdown-item" href="logout" onclick="event.preventDefault();
+                                            <a class="dropdown-item" href="{{URL::to('logout')}}" onclick="event.preventDefault();
                                                                     document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt" ></i>
                                                 {{ __('ออกจากระบบ') }}
                                             </a>
-                                            <form id="logout-form" action="logout" method="POST" style="display: none;">
+                                            <form id="logout-form" action="{{URL::to('logout')}}" method="POST" style="display: none;">
                                                 @csrf
                                             </form>
                                         </div>
@@ -777,12 +777,12 @@
                             <li class="nav-item dropdown">
                            
                                 <div class="links front">
-                                    <a href="homeadmin" class="view"><i class="far fa-caret-square-left fa-lg" style="color:#212529; margin-right: 7px;margin-left: 10px;"></i>กลับสู่หน้าผู้ดูเเลระบบ</a><br>
+                                    <a href="{{URL::to('homeadmin')}}" class="view"><i class="far fa-caret-square-left fa-lg" style="color:#212529; margin-right: 7px;margin-left: 10px;"></i>กลับสู่หน้าผู้ดูเเลระบบ</a><br>
                                 </div>
                                    
                                 <a class="nav-link " id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     @foreach($adminaccount as $img)
-                                    <img class="rounded-circle user-sizes img-profile" src="img_admin/<?php echo $img->pathimg; ?>" alt="USer Atver">
+                                    <img class="rounded-circle user-sizes img-profile" src="{{URL::to('img_admin/'.$img->pathimg)}}" alt="USer Atver">
 
                                     @endforeach
                                     @foreach($adminaccount as $user)
@@ -796,9 +796,9 @@
                                             <div class="info clearfix">
                                                 <center>
                                                     <div class="image">
-                                                        <a href="profile">
+                                                        <a href="{{URL::to('profile')}}">
                                                             @foreach($adminaccount as $img)
-                                                            <img src="img_admin\<?php echo $img->pathimg; ?>" alt="" class="img-user-size user-avatar rounded-circle" />
+                                                            <img src="{{URL::to('img_admin/'.$img->pathimg)}}" alt="" class="img-user-size user-avatar rounded-circle" />
                                                             @endforeach
                                                         </a>
 
@@ -815,15 +815,15 @@
                                                 </div>
                                             </div>
 
-                                            <a href="profileadmin" class="top dropdown-item"><i class="fas fa-user" style="margin-right: 2%;"></i>โปรไฟล์</a>
+                                            <a href="{{URL::to('profileadmin')}}" class="top dropdown-item"><i class="fas fa-user" style="margin-right: 2%;"></i>โปรไฟล์</a>
                                             <div class="links front">
-                                                <a href="homeadmin" class="view" style="color: black;text-decoration: none;"><i class="far fa-caret-square-left" style="margin-right: 2%;"></i>กลับสู่หน้าผู้ดูเเลระบบ</a><br>
+                                                <a href="{{URL::to('homeadmin')}}" class="view" style="color: black;text-decoration: none;"><i class="far fa-caret-square-left" style="margin-right: 2%;"></i>กลับสู่หน้าผู้ดูเเลระบบ</a><br>
                                             </div>
-                                            <a class="dropdown-item" href="logout" onclick="event.preventDefault();
+                                            <a class="dropdown-item" href="{{URL::to('logout')}}" onclick="event.preventDefault();
                                                                 document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt"></i>
                                                 {{ __('ออกจากระบบ') }}
                                             </a>
-                                            <form id="logout-form" action="logout" method="POST" style="display: none;">
+                                            <form id="logout-form" action="{{URL::to('logout')}}" method="POST" style="display: none;">
                                                 @csrf
                                             </form>
                                         </div>

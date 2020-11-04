@@ -529,7 +529,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- main.css-->
                 <li class="app-search search-left">
-                    <form action="{{url ('/search')}}" method='GET'>
+                    <form action="{{URL::to('search')}}" method="GET">
                         <div class="input-group mb-3 app-search-input">
                                 <input type="text" class="form-control" name='search' id="search" style="width: 400px;border-right: #fff;" placeholder="ค้นหา..." aria-label="ค้นหา..." aria-describedby="basic-addon2" autocomplete="off">
                                 <div class="input-group-append" style="">
@@ -689,7 +689,7 @@
 
                                 <a class="nav-link " id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     @foreach($imgaccount as $img)
-                                    <img class="rounded-circle user-sizes img-profile" src="/imgaccount/<?php echo $img->pathimg; ?>" alt="USer Atver">
+                                    <img class="rounded-circle user-sizes img-profile" src="{{URL::to('imgaccount/'.$img->pathimg)}}" alt="USer Atver">
 
                                     @endforeach
                                     @foreach($imgaccount as $user)
@@ -705,7 +705,7 @@
                                                     <div class="image">
                                                         <a href="profile">
                                                             @foreach($imgaccount as $img)
-                                                            <img src="\imgaccount\<?php echo $img->pathimg; ?>" alt="" class="img-user-size user-avatar rounded-circle" />
+                                                            <img src="{{URL::to('imgaccount/'.$img->pathimg)}}" alt="" class="img-user-size user-avatar rounded-circle" />
                                                             @endforeach
                                                         </a>
 
@@ -730,11 +730,11 @@
                                                 <a href="{{url ('listdetil')}}" class="view" style="color: black;text-decoration: none;"><i class="fas fa-book" style="margin-right: 2%;"></i>ผลงานของฉัน</a><br>
                                                 @endif
                                             </div>
-                                            <a class="dropdown-item" href="logout" onclick="event.preventDefault();
+                                            <a class="dropdown-item" href="{{URL::to('logout')}}" onclick="event.preventDefault();
                                                                     document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt" ></i>
                                                 {{ __('ออกจากระบบ') }}
                                             </a>
-                                            <form id="logout-form" action="{{url ('logout')}}" method="POST" style="display: none;">
+                                            <form id="logout-form" action="{{URL::to('logout')}}" method="POST" style="display: none;">
                                                 @csrf
                                             </form>
                                         </div>
@@ -751,7 +751,7 @@
 
                                 <a class="nav-link " id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     @foreach($adminaccount as $img)
-                                    <img class="rounded-circle user-sizes img-profile" src="/img_admin/<?php echo $img->pathimg; ?>" alt="USer Atver">
+                                    <img class="rounded-circle user-sizes img-profile" src="{{URL::to('img_admin/'.$img->pathimg)}}" alt="USer Atver">
 
                                     @endforeach
                                     @foreach($adminaccount as $user)
@@ -767,7 +767,7 @@
                                                     <div class="image">
                                                         <a href="profile">
                                                             @foreach($adminaccount as $img)
-                                                            <img src="img_admin\<?php echo $img->pathimg; ?>" alt="" class="img-user-size user-avatar rounded-circle" />
+                                                            <img src="{{URL::to('img_admin/'.$img->pathimg)}}" alt="" class="img-user-size user-avatar rounded-circle" />
                                                             @endforeach
                                                         </a>
 
@@ -788,11 +788,11 @@
                                             <div class="top dropdown-item" >
                                             <a href="{{url ('homeadmin')}}" class="view" style="color: black;text-decoration: none;"><i class="fas fa-book" style="margin-right: 2%;"></i>กลับไปหน้าผู้ดูเเลระบบ</a><br>
                                             </div>
-                                            <a class="dropdown-item" href="logout" onclick="event.preventDefault();
+                                            <a class="dropdown-item" href="{{URL::to('logout')}}" onclick="event.preventDefault();
                                                                 document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt" ></i>
                                                 {{ __('ออกจากระบบ') }}
                                             </a>
-                                            <form id="logout-form" action="logout" method="POST" style="display: none;">
+                                            <form id="logout-form" action="{{URL::to('logout')}}" method="POST" style="display: none;">
                                                 @csrf
                                             </form>
                                         </div>
@@ -898,15 +898,18 @@
             <div class="col-md-12">
                 <div class="tile1">
                     <div class="tile-body">
-                        <div class="texthe1"><?php echo $category_name;?></div>
-                            
-                                <div class="carousel-item active">
+                        <div class="texthe1"><?php echo $category_name;?><div class="btn-layouts-list-coloum">
+                            <span class="span-layout-text">เเสดงรูปแแบบ</span>
+                            <div class=""><button title="เเสดงเเบบไอคอน" onclick="changecoloumn()"><i class="fas fa-file-image fa-lg"></i></button><button title="เเสดงเเบบลิสต์" onclick="changelist()"><i class="fas fa-bars fa-lg" ></i></button></div>
+                        </div></div>
+                            <div class="carousel-inner" style="padding:0px 0px 50px 0px;" id="btn-layouts-coloum">
+                                <div class="carousel-item active" >
                                 
                                     @if(isset($chkcategory)?$chkcategory:'')
                                     @foreach($chkcategory as $category)
                                         <a href="itemdetaliBD/{{$category->project_id}}">
-                                            <div class="column">
-                                                <div class="columnimg"><img src="\project\img_logo\<?php echo $category->logo; ?>" alt="" class="fromimg"></div></a>
+                                            <div class="column" >
+                                                <div class="columnimg"><img src="{{URL::to('project/img_logo/'.$category->logo)}}" alt="" class="fromimg"></div></a>
                                                     <center><a href="itemdetaliBD/{{$category->project_id}}">
                                                             <div class="textimg">
                                                                 <?php
@@ -934,7 +937,57 @@
                                     <label for="" style="margin-left: 10%;margin-top:2%;">ไม่มีข้อมูล</label>
                                     @endif
                                 </div>
-                            
+                            </div>
+                                <div class="carousel-inner" id="btn-layouts-list">
+                                <div class="carousel-item active">
+                                    <div class="row " style="padding:0px 0px 20px 0px;">
+                                        @if(isset($chkcategory)?$chkcategory:'')
+                                            @foreach($chkcategory as $category) 
+                                            <div class="column-s" style="width: 90%;margin-top:2%;">
+                                            <a href="itemdetaliBD/{{$category->project_id}}"><div class="imgfromming-s ">
+                                                    <div class="columnimgitem-s shadow-item">
+                                                        <img src="{{URL::to('project/img_logo/'.$category->logo)}}" alt="" class="fromimg" style="width: 100px;height: 110px;">
+                                                    </div>
+                                                </div>
+                                                <div class="text-N-d-s">
+                                                <a href="itemdetaliBD/{{$category->project_id}}"><label for="text" class="laout-text" >
+                                                        <?php 
+                                                            echo $str = $category->project_name;
+                                                        ?>
+                                                    </label></a>            
+                                                    <div class="text-auth-d">
+                                                        <label for="text">คำสำคัญ : 
+                                                            <?php 
+                                                                echo $str = $category->keyword_project1; 
+                                                            ?> 
+                                                            <?php 
+                                                                echo $str = $category->keyword_project2;
+                                                            ?> 
+                                                            <?php 
+                                                                echo $str = $category->keyword_project3; 
+                                                            ?> 
+                                                            <?php 
+                                                                echo $str = $category->keyword_project4;
+                                                            ?>
+                                                        </label>
+                                                    </div>
+                                                    <div class="text-auth-N-d">
+                                                        <label for="text">ประเภท : <?php echo $category->category_name; ?></label>
+                                                    </div>
+                                                    <div class="rating text-rating">
+                                                        <?php 
+                                                            $rate = $category->AvgRate;
+                                                            rating_star($rate); 
+                                                        ?>
+                                                    </div>
+                                                </div></a> 
+                                            </div>
+                                            @endforeach
+                                        @else
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -943,7 +996,6 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>
-        <script src="{{ asset('js/app.js') }}" defer></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="{{ asset('js/app.js') }}" defer></script>
@@ -967,6 +1019,18 @@
                     $(this).parent().find('input[name=rating]').val(rating); //add rating value to input field
                 });
             });
+        </script>
+
+        <script type="text/javascript">
+            function changecoloumn(){
+                document.getElementById("btn-layouts-coloum").style.display = "flex";
+                document.getElementById("btn-layouts-list").style.display = "none";
+            }
+
+            function changelist(){
+                document.getElementById("btn-layouts-coloum").style.display = "none";
+                document.getElementById("btn-layouts-list").style.display = "flex";
+            }
         </script>
 
         <script>
@@ -1026,9 +1090,14 @@
     }
     function create_str($count,$str,$category) {
         // echo $count;
-        if($count>20 & $count<=30) {
+        if($count>20 & $count<25) {
             $strcount = substr($str,0,-10);
             $strcount1 = substr($strcount,0,-8);
+            $strcut = $strcount1."...";
+            echo $strcut;
+        }elseif($count>25 & $count<30){
+            $strcount = substr($str,0,-10);
+            $strcount1 = substr($strcount,0,-20);
             $strcut = $strcount1."...";
             echo $strcut;
         }elseif($count>30 & $count <40){
@@ -1044,9 +1113,31 @@
             $strcount2 = substr($strcount1,0,-5);
             $strcut = $strcount2."...";
             echo $strcut;
+        }elseif($count>50 & $count <80){
+            $strcount = substr($str,0,-65);
+            $strcount1 = substr($strcount,0,-50);
+            $strcount2 = substr($strcount1,0,-5);
+            $strcut = $strcount2."...";
+            echo $strcut;
+        }
+        elseif($count>80 & $count <100){
+            $strcount = substr($str,0,-65);
+            $strcount1 = substr($strcount,0,-65);
+            $strcount2 = substr($strcount1,0,-85);
+            $strcount3 = substr($strcount2,0,-5);
+            $strcut = $strcount3."...";
+            echo $strcut;
+        }
+        elseif($count>100 & $count <150){
+            $strcount = substr($str,0,-65);
+            $strcount1 = substr($strcount,0,-85);
+            $strcount2 = substr($strcount1,0,-85);
+            $strcount3 = substr($strcount2,0,-5);
+            $strcut = $strcount3."...";
+            echo $strcut;
         }else{
             echo $category->project_name;
-        } 
+        }  
           
     }
 
@@ -1059,37 +1150,70 @@
         }
     }
 
-    function rating_star($svgid){
-        if(isset($svgid)?$svgid:''){
-        if($svgid < 2 & $svgid> 0){
-            echo'<div class="rating">';
-            check_rating($svgid);if(isset($svgid)?$svgid:''){echo'<span class="">('.(round($svgid, $precision = 1)).'</span>)</div>';}}
+    function rating_star($svgrate){
+        if(isset($svgrate)?$svgrate:''){
+            if($svgrate < 2 & $svgrate> 0){
+                echo'<div class="rating">';
+                    check_rating($svgrate);
+                    if(isset($svgrate)?$svgrate:''){
+                        echo'<span class=""> ('.(round($svgrate, $precision = 1)).')</span><br>';
+                    }
+                    // echo '<span class="countview">'.formattter($viewcount).'</span><i class="fas fa-user i-view" style="color: #A9A9A9;"></i>';
+                echo'</div>';
+            }
+            
+            elseif($svgrate >= 2 & $svgrate < 3) {
+                echo'<div class="rating">';
+                    check_rating($svgrate);
+                    if(isset($svgrate)?$svgrate:''){
+                        echo'<span class=""> ('.(round($svgrate, $precision = 1)).')</span><br>';
+                    }
+                    // echo '<span class="countview">'.formattter($viewcount).'</span><i class="fas fa-user i-view" style="color: #A9A9A9;"></i>';
+                echo '</div>';
+            }
+            
+            elseif($svgrate >= 3 & $svgrate < 4) {
+                echo'<div class="rating">';
+                    check_rating($svgrate);
+                    if(isset($svgrate)?$svgrate:''){
+                        echo'<span class=""> ('.(round($svgrate, $precision = 1)).')</span><br>';
+                    }
+                    // echo '<span class="countview">'.formattter($viewcount).'</span><i class="fas fa-user i-view" style="color: #A9A9A9;"></i>';
+                echo '</div>';
+            }
+            
+            elseif($svgrate >= 4 & $svgrate < 5){
+                echo'<div class="rating">';
+                    check_rating($svgrate);
+                    if(isset($svgrate)?$svgrate:''){
+                        echo'<span class=""> ('.(round($svgrate, $precision = 1)).')</span><br>';
+                    } 
+                    // echo '<span class="countview">'.formattter($viewcount).'</span><i class="fas fa-user i-view" style="color: #A9A9A9;"></i>';
+                echo'</div>';}
+            
+            elseif($svgrate >= 5){
+                echo'<div class="rating">';
+                    check_rating($svgrate);
+                    if(isset($svgrate)?$svgrate:''){
+                        echo'<span class=""> ('.(round($svgrate, $precision = 1)).')</span><br>';
+                    }
+                    // echo '<span class="countview">'.formattter($viewcount).'</span><i class="fas fa-user i-view" style="color: #A9A9A9;"></i>';
+                echo'</div>';
+                }
+            else{
+                echo'<div class="rating">';
+                    check_rating($svgrate);
+                    if(isset($svgrate)?$svgrate:''){
+                        echo'<span class=""> ('.(round($svgrate, $precision = 1)).')</span><br>';
+                    }
+                    // echo '<span class="countview">'.formattter($viewcount).'</span><i class="fas fa-user i-view" style="color: #A9A9A9;"></i>';
+                echo '</div>';}
         
-        elseif($svgid >= 2 & $svgid < 3) {
-            echo'<div class="rating">';
-            check_rating($svgid);if(isset($svgid)?$svgid:''){echo'<span class="">('.(round($svgid, $precision = 1)).'</span>)</div>';}}
-        
-        
-        elseif($svgid >= 3 & $svgid < 4) {
-            echo'<div class="rating">';
-            check_rating($svgid);if(isset($svgid)?$svgid:''){echo'<span class="">('.(round($svgid, $precision = 1)).'</span>)</div>';}}
-        
-        
-        elseif($svgid >= 4 & $svgid < 5){
-            echo'<div class="rating">';
-            check_rating($svgid);if(isset($svgid)?$svgid:''){echo'<span class="">('.(round($svgid, $precision = 1)).'</span>)</div>';}} 
-        
-        elseif($svgid >= 5){
-        echo'<div class="rating">';
-            check_rating($svgid);if(isset($svgid)?$svgid:''){echo'<span class="">('.(round($svgid, $precision = 1)).'</span>)</div>';}}
+            }
         else{
             echo'<div class="rating">';
-            check_rating($svgid);if(isset($svgid)?$svgid:''){echo'<span class="">('.(round($svgid, $precision = 1)).'</span>)</div>';}}
-    
-        }
-        else{
-            echo'<div class="rating">';
-                check_rating(0);  echo'<span class="">(0)</span>';
+                check_rating(0);  echo'<span class=""> (0)</span><br>';
+                // echo '<span class="countview">'.formattter($viewcount).'</span><i class="fas fa-user i-view" style="color: #A9A9A9;"></i>';
             echo'</div>';
         }    
     }

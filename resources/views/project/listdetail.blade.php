@@ -5,7 +5,7 @@
         
         <ul class="breadcrumb-detail" style="margin-left:800px;">
             <li class="breadcrumb-item active"><a href="{{action('ProjectController@itemproject')}}">หน้าหลัก</a></li>
-            <li class="breadcrumb-item"> รายชื่อผลงาน(<?php echo $_SESSION['nameuser']; ?>)</li>
+            <li class="breadcrumb-item"> รายชื่อผลงาน(@foreach($list as $data){{$data->name}}@endforeach)</li>
         </ul>
  
     <div class="container">
@@ -14,7 +14,7 @@
             <div class="col-md-12">
                 <div class="tile">
                     <div>
-                        <h3><i class="fa fa-th-list"></i> ผลงานของคุณ(<?php echo $_SESSION['nameuser']; ?>) <a href="addproject" title="สร้างผลงาน"><i class="fas fa-plus-square fa-lg i-add"></i></a></h3> 
+                        <h3><i class="fa fa-th-list"></i> ผลงานของคุณ({{$_SESSION['nameuser']}}) <a href="addproject" title="สร้างผลงาน"><i class="fas fa-plus-square fa-lg i-add"></i></a></h3> 
                     </div>
                     <div class="tile-body">
                         <div class="table-responsive-a">

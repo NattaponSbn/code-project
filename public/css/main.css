@@ -6680,7 +6680,8 @@ a.close.disabled {
     touch-action: pan-y;
 }
 
-.carousel-inner {
+
+/* .carousel-inner {
     position: relative;
     width: 100%;
     overflow: hidden;
@@ -6690,7 +6691,7 @@ a.close.disabled {
     display: block;
     clear: both;
     content: "";
-}
+} */
 
 .carousel-item {
     position: relative;
@@ -15284,6 +15285,18 @@ be a descendant of the grid when it is being dragged.
 }
 
 .app-search {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-item-align: center;
+    align-self: center;
+    margin-right: 600px;
+    padding: 10px 0;
+    font-family: 'Athiti', sans-serif;
+}
+
+.app-searchmdd {
     position: relative;
     display: -webkit-box;
     display: -ms-flexbox;

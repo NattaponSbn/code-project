@@ -24,6 +24,7 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/css/bootstrap.min.css" integrity="sha384-SI27wrMjH3ZZ89r4o+fGIJtnzkAnFs3E4qz9DIYioCQ5l9Rd/7UAa8DHcaL8jkWt" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <title>ICTThesis</title>
 
@@ -100,13 +101,13 @@
         }
 
         .btn-outline-primaryy {
-            color: #000000;
-            /* background-color: #D9A327; */
+            color: #D9A327;
             border-color: #D9A327;
         }
 
         .btn-outline-primaryy:hover {
-            color: #D9A327;
+            color: #fff;
+            background-color: #D9A327;
             border-color: #D9A327;
         }
 
@@ -127,6 +128,12 @@
             color: #fff;
             background-color: #D9A327;
             border-color: #fff;
+        }
+
+        .btn-outline-primaryy:not(:disabled):not(.disabled):active:focus,
+        .btn-outline-primaryy:not(:disabled):not(.disabled).active:focus,
+        .show>.btn-outline-primaryy.dropdown-toggle:focus {
+            box-shadow: 0 0 0 0.1rem #fff;
         }
 
         .btn-outline-primaryy-sidenav {
@@ -163,13 +170,6 @@
         .btn-outline-primaryy-sidenav:not(:disabled):not(.disabled):active:focus,
         .btn-outline-primaryy-sidenav:not(:disabled):not(.disabled).active:focus,
         .show>.btn-outline-primaryy-sidenav.dropdown-toggle:focus {
-            box-shadow: 0 0 0 0.1rem #fff;
-        }
-
-
-        .btn-outline-primaryy:not(:disabled):not(.disabled):active:focus,
-        .btn-outline-primaryy:not(:disabled):not(.disabled).active:focus,
-        .show>.btn-outline-primaryy.dropdown-toggle:focus {
             box-shadow: 0 0 0 0.1rem #fff;
         }
 
@@ -211,7 +211,6 @@
             font-family: 'Athiti', sans-serif;
             font-weight: 600;
         }
-
         .sidenav a, .dropdown-btn ,.dropdown-btn2,.dropdown-btn3{
             padding: 6px 8px 6px 16px;
             text-decoration: none;
@@ -272,12 +271,13 @@
         }
 
         a:active{
-            color: blue;
+            color: #7B68EE;
+            text-decoration: underline;
         }
 
         a:hover{
-            color: blue;
-            
+            color: #0099FF;
+            text-decoration: underline;
         }
 
         .front>a:hover {
@@ -290,10 +290,33 @@
 	        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
             border: 1 solid black;
         }
+
+        .labelmax{
+            width:20px;
+            overflow: hidden;
+        }
+
+        .breadcrumb-de {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+            padding: 0.75rem 1rem;
+            margin-bottom: 1rem;
+            list-style: none;
+            border-radius: 0.25rem;
+        }
+
+        .search-key {
+            /* background-color:yellow; */
+            color:#dd4b39;
+        }
+
     </style>
 </head>
 
-<body >
+<body style="font-family: 'Athiti', sans-serif;">
     <!-- successappproject -->
     @if ($message = Session::get('successappproject'))
     <script>
@@ -554,16 +577,16 @@
         <header class="app-header">
             <!-- font Athiti -->
             <nav class="app-menu navbar navbar-expand-lg navbar-light" style="height: 52px;">
-            <a href="{{url('homeMDD')}}" class="app-header__logo font-Athiti">ICTThesis</a>
+            <a href="homeBD" class="app-header__logo font-Athiti">ICTThesis</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- main.css-->
                 <li class="app-search search-left">
-                    <form action="{{URL::to('searchmdd')}}" method="GET" >
+                <form action="{{URL::to('search')}}" method="GET" >
                        <div class="input-group mb-3 app-search-input">
-                           <input type="text" class="form-control" name='mddsearch' id="mddsearch" style="width: 400px;border-right: #fff;" placeholder="ค้นหา..." aria-label="ค้นหา..." aria-describedby="basic-addon2" autocomplete="off" >
+                           <input type="text" class="form-control" name='search' id="search" style="width: 400px;border-right: #fff;" placeholder="ค้นหา..." aria-label="ค้นหา..." aria-describedby="basic-addon2" autocomplete="off">
                            <div class="input-group-append" style="">
                                <button class="input-group-text" id="basic-addon2" style="background-color: #fff;border-left: #fff;" ><i class="fa fa-search"></i></button>
                            </div>
@@ -609,8 +632,8 @@
                 </li>
                 <!-- <div class="app-navbar__overlay" data-toggle="sidebar" aria-label="Hide Sidebar"></div> -->
                 <nav class="app-navmenu ">
-                    <li class="active1 menulink fontlink"><a href="{{url ('homeMDD')}}">หน้าเเรก</a></li>
-                    <li class="active2 menulink fontlink"><a href="{{url ('SearchAdvancemdd')}}">ค้นหาเเบบละเอียด</a></li>
+                    <li class="active1 menulink fontlink"><a href="homeBD">หน้าเเรก</a></li>
+                    <li class="active2 menulink fontlink"><a href="SearchAdvance">ค้นหาเเบบละเอียด</a></li>
                     <li class="active3 menulink fontlink"><a href="#">เกี่ยวกับ</a></li>
                     <li class="active4 menulink fontlink"><a href="#">ติดต่อ</a></li>
                 </nav>
@@ -713,30 +736,29 @@
                                     </ul>
                                 </div>
                             </div>
-                        <?php } else if (isset($_SESSION['status']) == 'user') {
+                            <?php } else if (isset($_SESSION['status']) == 'user') {
                         ?>
-
+                            
                             <li class="nav-item dropdown">
-
                                 <a class="nav-link " id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     @foreach($imgaccount as $img)
-                                    <img class="rounded-circle user-sizes img-profile" src="{{URL::to('imgaccount\'.$img->pathimg)}}" alt="USer Atver">
+                                    <img class="rounded-circle user-sizes img-profile" src="{{URL::to('imgaccount/'.$img->pathimg)}}" alt="USer Atver">
 
                                     @endforeach
                                     @foreach($imgaccount as $user)
                                     <div class="name-scle dropdown-toggle "><?php echo $user->name; ?></div>
                                     @endforeach
                                 </a>
-
+                                
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                                     <ul class="navbar-nav ml-auto">
                                         <div class="account-dropdown js-dropdown">
                                             <div class="info clearfix">
                                                 <center>
                                                     <div class="image">
-                                                        <a href="profile">
+                                                        <a href="{{URL::to('profile')}}">
                                                             @foreach($imgaccount as $img)
-                                                            <img src="{{URL::to('imgaccount\'.$img->pathimg)}}" alt="" class="img-user-size user-avatar rounded-circle" />
+                                                            <img src="{{URL::to('imgaccount/'.$img->pathimg)}}" alt="" class="img-user-size user-avatar rounded-circle" />
                                                             @endforeach
                                                         </a>
 
@@ -779,10 +801,14 @@
                         else  if (isset($_SESSION['statusA']) == 'admin') {
                         ?>
                             <li class="nav-item dropdown">
-
+                           
+                                <div class="links front">
+                                    <a href="{{URL::to('homeadmin')}}" class="view"><i class="far fa-caret-square-left fa-lg" style="color:#212529; margin-right: 7px;margin-left: 10px;"></i>กลับสู่หน้าผู้ดูเเลระบบ</a><br>
+                                </div>
+                                   
                                 <a class="nav-link " id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     @foreach($adminaccount as $img)
-                                    <img class="rounded-circle user-sizes img-profile" src="{{URL::to('img_admin\'.$img->pathimg)}}" alt="USer Atver">
+                                    <img class="rounded-circle user-sizes img-profile" src="{{URL::to('img_admin/'.$img->pathimg)}}" alt="USer Atver">
 
                                     @endforeach
                                     @foreach($adminaccount as $user)
@@ -796,9 +822,9 @@
                                             <div class="info clearfix">
                                                 <center>
                                                     <div class="image">
-                                                        <a href="profile">
+                                                        <a href="{{URL::to('profile')}}">
                                                             @foreach($adminaccount as $img)
-                                                            <img src="{{URL::to('img_admin\'.$img->pathimg)}}" alt="" class="img-user-size user-avatar rounded-circle" />
+                                                            <img src="{{URL::to('img_admin/'.$img->pathimg)}}" alt="" class="img-user-size user-avatar rounded-circle" />
                                                             @endforeach
                                                         </a>
 
@@ -848,11 +874,11 @@
                                 <div class="sb-sidenav-menu">
                                     <div class="nav">
                                         <div class="font-Athiti">
-                                            <a href="{{URL::to('homeBD')}}"><button type="button" class="btn-control btn-default btn-outline-primaryy " style="font-size:18px;">ปริญญาตรี</button></a>
-                                            <a href="{{URL::to('homeMDD')}}"><button type="button" class="btn-control btn-default btn-outline-primaryy " style="font-size:18px;">ปริญญาเอก โท </button></a>
+                                            <a href="homeBD"><button type="button" class="btn-control btn-default btn-outline-primaryy " style="font-size:18px;">ปริญญาตรี</button></a>
+                                            <a href="homeMDD"><button type="button" class="btn-control btn-default btn-outline-primaryy " style="font-size:18px;">ปริญญาเอก โท </button></a>
                                         </div><br>
                                         <div class="sidenav" >
-                                            <button class="dropdown-btn" style="border-top: 0.5px solid #000000;border-radius: 10%;">ประเภท
+                                        <button class="dropdown-btn" style="border-top: 0.5px solid #000000;border-radius: 10%;">ประเภท
                                                 <i class="fa fa-caret-down fa-lg" style="width: 20px;"></i>
                                             </button>
                                                 <div class="dropdown-container">
@@ -896,7 +922,6 @@
                                                     @endforeach
                                                 </div>
                                         </div>
-
                                     </div>
                                 </div>
                             </nav>
@@ -919,145 +944,93 @@
                 </p>
 
                 <div class="layoutlogre">
-                   
+                    
                 </div>
                 </li>
             </ul>
         </aside>
-        <div class="rowcolumn-resolf" >
-            <div class="col-md-12">
-                <div class="tile1">
-                    <div class="tile-body">
-                        <div class="texthe1">ผลลัพธ์การค้นหา</div>
-                            <div class="container">
-                                <span style="margin-left: 2%;font-size:16px;color:#ff6c00;">ผลลัพธ์ของ "<?php echo $_SESSION['keyword-av-mdd']; ?>"</span>
-                            </div>
-                            <!-- <div class="table-responsive "> -->
-                                <div class="row">
-                                    @if(isset($detailsearch)?$detailsearch:'')
-                                        @foreach($detailsearch as $aftersearch) 
-                                        <div class="column-s">
-                                            <div class="text-N-d-s-mdd" >
-                                                <a href="itemdetaliMDD/{{$aftersearch->project_id}}"><label for="text" class="laout-text" >
-                                                        <?php 
-                                                            $str = $aftersearch->project_name;
-                                                            $keyword = $_SESSION['keyword-av-mdd'];
-                                                            $hilight = hilightkey($str,$keyword);
-                                                            echo $hilight;
-                                                        ?>
-                                                    </label></a>            
-                                                    <div class="text-auth-d">
-                                                        <label for="text">คำสำคัญ : 
-                                                            <?php 
-                                                                $str = $aftersearch->keyword_project1; 
-                                                                $keyword = $_SESSION['keyword-av-mdd'];
-                                                                $hilight = hilightkey($str,$keyword);
-                                                                echo $hilight;
-                                                            ?> 
-                                                            <?php 
-                                                                $str = $aftersearch->keyword_project2;
-                                                                $keyword = $_SESSION['keyword-av-mdd'];
-                                                                $hilight = hilightkey($str,$keyword);
-                                                                echo $hilight; 
-                                                            ?> 
-                                                            <?php 
-                                                                $str = $aftersearch->keyword_project3; 
-                                                                $keyword = $_SESSION['keyword-av-mdd'];
-                                                                $hilight = hilightkey($str,$keyword);
-                                                                echo $hilight;
-                                                            ?> 
-                                                            <?php 
-                                                                $str = $aftersearch->keyword_project4;
-                                                                $keyword = $_SESSION['keyword-av-mdd'];
-                                                                $hilight = hilightkey($str,$keyword);
-                                                                echo $hilight; 
-                                                            ?>
-                                                        </label>
-                                                    </div>
-                                                    <div class="text-auth-N-d">
-                                                        <label for="text">ประเภท : <?php echo $aftersearch->genre_name; ?></label>
-                                                    </div>
-                                                    <div class="rating text-rating">
-                                                        <?php 
-                                                            // $rate = $aftersearch->AvgRate;
-                                                            // rating_star($rate); 
-                                                        ?>
-                                                    </div>
+        <div class="rowcolumn1 img-top" >
+            <div class="" style="margin-left:18%;width: 80%;">
+                <div class="col-md-12" >
+                    <div class="tile ">
+                        <div class="tile-body">
+                            <label class="texthe1">อาจารย์ที่ปรึกษา </label>
+                                <div class="container">
+                                    <span style="margin-left: 2%;font-size:16px;color:#ff6c00;">ชื่ออาจารย์ '<?php echo $_SESSION['advisor_p']; ?>"</span>
+                                </div>
+                                <div class="row" >
+                                    @if(isset($adv)?$adv:'')
+                                        @foreach($adv as $aftersearch) 
+                                        <div class="column-s"><span class="layout-mdd-i-text"><span class="countviewmdd"><?php formattter($aftersearch->countview) ?></span><i class="fas fa-user" style="color: #A9A9A9;" title="ยอดผู้ชม"></i></span>
+                                        <a href="itemdetaliBD/{{$aftersearch->project_id}}"><div class="imgfromming-s ">
+                                                <div class="columnimgitem-s shadow-item " style="margin-top:1%;">
+                                                    <img src="{{URL::to('project/img_logo/'.$aftersearch->logo)}}" alt="" class="fromimg" style="width: 100px;height: 110px;">
                                                 </div>
-                                            </a>
-                                        </div>
-                                    
-                                @endforeach
-                                @else
-                                <p style="margin-left:100px;margin-top:30px;">" ไม่พบผลลัพธ์ในการค้นหา "</p>
-                            @endif
-                            <!-- </div> -->
-                        </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-    @if(!isset($_SESSION['beforsearch']))
-
-    @elseif(isset($_SESSION['beforsearch']))
-    <div class="rowcolumn-AV" >
-        <div class="col-md-12">
-            <div class="tile1">
-                <div class="tile-body">
-                    <div class="texthe1">ผลลัพธ์ที่ใกล้เคียง</div>
-
-                        @if(isset($detailsearch)?$detailsearch:'')
-                            @foreach($similar as $simiilar) 
-                                    
-                            <div class="column-si">
-                            
-                                        <div class="text-N-d-si-mdd">
-                                        <a href="itemdetaliBD/{{$simiilar->project_id}}"><label for="text" class="laout-text" >
-                                                <?php 
-                                                    echo $str = $simiilar->project_name;
-                                                ?>
-                                            </label></a>            
-                                            <div class="text-auth-d">
-                                                <label for="text">คำสำคัญ : 
+                                            </div>
+                                            <div class="text-N-d-s">
+                                            <a href="itemdetaliBD/{{$aftersearch->project_id}}"><label for="text" class="laout-text" >
                                                     <?php 
-                                                        echo $str = $simiilar->keyword_project1;  
-                                                    ?> 
-                                                    <?php 
-                                                        echo $str = $simiilar->keyword_project2;
-                                                    ?> 
-                                                    <?php 
-                                                        echo $str = $simiilar->keyword_project3; 
-                                                    ?> 
-                                                    <?php 
-                                                        echo $str = $simiilar->keyword_project4;
+                                                        echo $aftersearch->project_name;
                                                     ?>
-                                                </label>
-                                            </div>
-                                            <div class="text-auth-N-d">
-                                                <label for="text">ประเภท : <?php echo $simiilar->genre_name; ?></label>
-                                            </div>
-                                            <div class="rating text-rating">
-                                                <?php 
-                                                    // $rate = $aftersearch->AvgRate;
-                                                    // rating_star($rate); 
-                                                ?>
-                                            </div>
+                                                </label></a>            
+                                                <div class="text-auth-d">
+                                                    <label for="text">ประเภท : <?php echo $aftersearch->genre_name; ?></label>
+                                                </div>
+                                                <div class="text-auth-N-d">
+                                                    <label for="text">ผู้จัดทำ :
+                                                        <?php 
+                                                            $o1 = $aftersearch->owner_p1;
+                                                            if(isset($o1)?$o1:''){
+                                                                echo $aftersearch->owner_p1;
+                                                            }
+                                                            else{
+                                                                echo '-';
+                                                            }
+                                                            $o2 = $aftersearch->owner_p2;
+                                                            if(isset($o2)?$o2:''){
+                                                                echo ', '.$aftersearch->owner_p2;
+                                                            }
+                                                            $o3 = $aftersearch->owner_p3;
+                                                            if(isset($o3)?$o3:''){
+                                                                echo ', '.$aftersearch->owner_p2;
+                                                            }
+                                                            $o4 = $aftersearch->owner_p4;
+                                                            if(isset($o4)?$o4:''){
+                                                                echo ', '.$aftersearch->owner_p2;
+                                                            }
+                                                        ?>
+                                                    </label>
+                                                </div>
+                                                <div class="text-auth-N-d">
+                                                    <label for="text">อาจารย์ที่ปรึกษา : 
+                                                        <?php 
+                                                            $str = $aftersearch->advisor_p;
+                                                            $keyword = $_SESSION['advisor_p'];
+                                                            $hilight = hilite($str,$keyword);
+                                                            echo $hilight;  
+                                                        ?>
+                                                    </label>
+                                                </div>
+                                                <div class="rating text-rating">
+                                                    <?php 
+                                                        $rate = $aftersearch->avg_sum;
+                                                        rating_star($rate); 
+                                                    ?>
+                                                </div>
+                                            </div></a> 
                                         </div>
-                                    </div><br>
-                            
-                            @endforeach
-                            @else
-                                <p style="margin-left:100px;margin-top:30px;">" ไม่พบผลลัพธ์ในการค้นหา "</p>
-                            @endif
-                       
+                                        @endforeach
+                                        
+                                    @else
+                                    <p style="margin-left:100px;margin-top:30px;">" ไม่พบอาจารย์ที่ปรึกษา "</p>
+                                    @endif
+                                </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    @endif
+   
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>
         <script src="{{ asset('js/app.js') }}" defer></script>
@@ -1080,31 +1053,34 @@
                 $(".rateyo").rateYo()
             });
         </script>
-        <script>
-            test("dropdown-btn");
-            test("dropdown-btn2");
-            test("dropdown-btn3");
-            test("dropdown-btn4");
-            test("dropdown-btn5");
-            test("dropdown-btn6");
-            test("dropdown-btn7");
-            function test(input){
-                var dropdown2 = document.getElementsByClassName(input);
-                var i;
 
-                for (i = 0; i < dropdown2.length; i++) {
-                    dropdown2[i].addEventListener("click", function() {
-                    this.classList.toggle("active-item");
-                    var dropdownContent = this.nextElementSibling;
-                    if (dropdownContent.style.display === "block") {
-                        dropdownContent.style.display = "none";
-                    } else {
-                        dropdownContent.style.display = "block";
-                    }
-                    });
+        
+        <script>
+        /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
+        test("dropdown-btn");
+        test("dropdown-btn2");
+        test("dropdown-btn3");
+        test("dropdown-btn4");
+        test("dropdown-btn5");
+        test("dropdown-btn6");
+        test("dropdown-btn7");
+        function test(input){
+            var dropdown2 = document.getElementsByClassName(input);
+            var i;
+
+            for (i = 0; i < dropdown2.length; i++) {
+                dropdown2[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var dropdownContent = this.nextElementSibling;
+                if (dropdownContent.style.display === "block") {
+                    dropdownContent.style.display = "none";
+                } else {
+                    dropdownContent.style.display = "block";
                 }
+                });
             }
-            </script>
+        }
+        </script>
 
         <!-- The javascript plugin to display page loading on top-->
         <script src="js/plugins/pace.min.js"></script>
@@ -1123,7 +1099,16 @@
 
 </html>
 
-<?php
+    <?php
+
+        function hilite($data,$keyword){
+            if($data == $keyword){
+                echo '<font color=red>'.$keyword.'</font>';
+            }else{
+                echo 'ไม่ตรงกันกัน';
+            }
+        }
+            
         function hilightkey($data,$keyword){
             if (!preg_match('|^[a-zA-Zก-๛]+$|',$keyword)){
                 die('illegal keyword');
@@ -1144,80 +1129,35 @@
             return $l;
         } 
 
-        function create_str($count,$str,$aftersearch) {
-            // echo $count;
-            if($count>20 & $count<25) {
+        function formattter($viewcount) {
+            if ($viewcount >= 1000000) {
+                echo round($viewcount/ 1000000, 1).'หมื่น';
+            }
+            else if ($viewcount >= 1000) {
+                echo round($viewcount/ 1000, 1). 'พัน';
+            }else{
+                echo $viewcount;
+            }
+            
+        }
+    
+        function create_str($count,$str,$items) {
+            if($count>20) {
                 $strcount = substr($str,0,-10);
                 $strcount1 = substr($strcount,0,-8);
                 $strcut = $strcount1."...";
                 echo $strcut;
-            }elseif($count>25 & $count<30){
-                $strcount = substr($str,0,-10);
-                $strcount1 = substr($strcount,0,-20);
-                $strcut = $strcount1."...";
-                echo $strcut;
-            }elseif($count>30 & $count <40){
+            }elseif($count>30){
                 $strcount = substr($str,0,-10);
                 $strcount1 = substr($strcount,0,-8);
                 $strcount2 = substr($strcount1,0,-10);
                 $strcount3 = substr($strcount2,0,-8);
                 $strcut = $strcount3."...";
                 echo $strcut;
-            }elseif($count>40 & $count <50){
-                $strcount = substr($str,0,-50);
-                $strcount1 = substr($strcount,0,-50);
-                $strcount2 = substr($strcount1,0,-5);
-                $strcut = $strcount2."...";
-                echo $strcut;
-            }elseif($count>50 & $count <120){
-                $strcount = substr($str,0,-65);
-                $strcount1 = substr($strcount,0,-50);
-                $strcount2 = substr($strcount1,0,-5);
-                $strcut = $strcount2."...";
-                echo $strcut;
-            }else{
-                echo $aftersearch->project_name;
-            } 
-              
+            }else {
+                echo $items->project_m_name;
+            }  
         }
-
-        function create_str_simiilar($count,$str,$simiilar) {
-            // echo $count;
-            if($count>20 & $count<25) {
-                $strcount = substr($str,0,-10);
-                $strcount1 = substr($strcount,0,-8);
-                $strcut = $strcount1."...";
-                echo $strcut;
-            }elseif($count>25 & $count<30){
-                $strcount = substr($str,0,-10);
-                $strcount1 = substr($strcount,0,-20);
-                $strcut = $strcount1."...";
-                echo $strcut;
-            }elseif($count>30 & $count <40){
-                $strcount = substr($str,0,-10);
-                $strcount1 = substr($strcount,0,-8);
-                $strcount2 = substr($strcount1,0,-10);
-                $strcount3 = substr($strcount2,0,-8);
-                $strcut = $strcount3."...";
-                echo $strcut;
-            }elseif($count>40 & $count <50){
-                $strcount = substr($str,0,-50);
-                $strcount1 = substr($strcount,0,-50);
-                $strcount2 = substr($strcount1,0,-5);
-                $strcut = $strcount2."...";
-                echo $strcut;
-            }elseif($count>50 & $count <120){
-                $strcount = substr($str,0,-65);
-                $strcount1 = substr($strcount,0,-50);
-                $strcount2 = substr($strcount1,0,-5);
-                $strcut = $strcount2."...";
-                echo $strcut;
-            }else{
-                echo $simiilar->project_name;
-            } 
-              
-        }
-
         function check_rating($rating) {
             for($i=0;$i<floor($rating);$i++){
                 echo '<i class="fas fa-star" style="color: #ffb712;"></i>';
@@ -1233,7 +1173,7 @@
                     echo'<div class="rating">';
                         check_rating($svgid);
                         if(isset($svgid)?$svgid:''){
-                            echo'<span class=""> ('.(round($svgid, $precision = 1)).')</span><i class="fas fa-user" style="color: #A9A9A9;"></i>';
+                            echo'<span class=""> ('.(round($svgid, $precision = 1)).')</span>';
                         }
                     echo'</div>';
                 }
@@ -1242,7 +1182,7 @@
                     echo'<div class="rating">';
                         check_rating($svgid);
                         if(isset($svgid)?$svgid:''){
-                            echo'<span class=""> ('.(round($svgid, $precision = 1)).')</span><i class="fas fa-user" style="color: #A9A9A9;"></i>';
+                            echo'<span class=""> ('.(round($svgid, $precision = 1)).')</span>';
                         }
                     echo '</div>';
                 }
@@ -1251,7 +1191,7 @@
                     echo'<div class="rating">';
                         check_rating($svgid);
                         if(isset($svgid)?$svgid:''){
-                            echo'<span class=""> ('.(round($svgid, $precision = 1)).')</span><i class="fas fa-user" style="color: #A9A9A9;"></i>';
+                            echo'<span class=""> ('.(round($svgid, $precision = 1)).')</span>';
                         }
                     echo '</div>';
                 }
@@ -1260,7 +1200,7 @@
                     echo'<div class="rating">';
                         check_rating($svgid);
                         if(isset($svgid)?$svgid:''){
-                            echo'<span class=""> ('.(round($svgid, $precision = 1)).')</span><i class="fas fa-user" style="color: #A9A9A9;"></i>';
+                            echo'<span class=""> ('.(round($svgid, $precision = 1)).')</span>';
                         } 
                     echo'</div>';}
                 
@@ -1268,7 +1208,7 @@
                     echo'<div class="rating">';
                         check_rating($svgid);
                         if(isset($svgid)?$svgid:''){
-                            echo'<span class=""> ('.(round($svgid, $precision = 1)).')</span><i class="fas fa-user" style="color: #A9A9A9;"></i>';
+                            echo'<span class=""> ('.(round($svgid, $precision = 1)).')</span>';
                         }
                     echo'</div>';
                     }
@@ -1276,14 +1216,14 @@
                     echo'<div class="rating">';
                         check_rating($svgid);
                         if(isset($svgid)?$svgid:''){
-                            echo'<span class=""> ('.(round($svgid, $precision = 1)).')</span><i class="fas fa-user" style="color: #A9A9A9;"></i>';
+                            echo'<span class=""> ('.(round($svgid, $precision = 1)).')</span>';
                         }
                     echo '</div>';}
             
                 }
             else{
                 echo'<div class="rating">';
-                    check_rating(0);  echo'<span class="">(0)</span><i class="fas fa-user" style="color: #A9A9A9;"></i>';
+                    check_rating(0);  echo'<span class="">(0)</span>';
                 echo'</div>';
             }    
         }

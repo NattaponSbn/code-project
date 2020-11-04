@@ -1979,13 +1979,13 @@
 
         function formattter($viewcount) {
             if ($viewcount >= 1000000) {
-                echo '<span class="countview">'.round($viewcount/ 1000000, 1).'หมื่น'.'</span><i class="fas fa-user i-view" style="color: #A9A9A9;"></i>';
+                echo '<span class="countview" title="ยอดผู้ชม">'.round($viewcount/ 1000000, 1).'หมื่น'.'</span><i class="fas fa-user i-view" style="color: #A9A9A9;" title="ยอดผู้ชม"></i>';
             }
             else if ($viewcount >= 1000) {
-                echo '<span class="countview">'.round($viewcount/ 1000, 1). 'พัน'.'</span><i class="fas fa-user i-view" style="color: #A9A9A9;"></i>';
+                echo '<span class="countview" title="ยอดผู้ชม">'.round($viewcount/ 1000, 1). 'พัน'.'</span><i class="fas fa-user i-view" style="color: #A9A9A9;" title="ยอดผู้ชม"></i>';
             }else{
                 // echo $viewcount;
-                echo '<span class="countview">'.$viewcount.'</span><i class="fas fa-user i-view" style="color: #A9A9A9;"></i>';
+                echo '<span class="countview" title="ยอดผู้ชม">'.$viewcount.'</span><i class="fas fa-user i-view" style="color: #A9A9A9;" title="ยอดผู้ชม"></i>';
             }
             
         }

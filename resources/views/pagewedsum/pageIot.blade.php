@@ -6,8 +6,11 @@
             <div class="col-md-12">
                 <div class="tile1">
                     <div class="tile-body">
-                    <div class="texthe1">Iot</div>
-                    <div class="carousel-inner">
+                    <div class="texthe1">Iot<div class="btn-layouts-list-coloum">
+                            <span class="span-layout-text">เเสดงรูปแแบบ</span>
+                            <div class=""><button title="เเสดงเเบบไอคอน" onclick="changecoloumn()"><i class="fas fa-file-image fa-lg"></i></button><button title="เเสดงเเบบลิสต์" onclick="changelist()"><i class="fas fa-bars fa-lg" ></i></button></div>
+                        </div></div>
+                    <div class="carousel-inner" id="btn-layouts-coloum">
                         <div class="carousel-item active">
                             
                             @foreach($datas1 as $data_p)
@@ -46,12 +49,75 @@
                             @endforeach
                             
                         </div>
-                    </div>   
+                    </div>
+                    
+                    <div class="carousel-inner" id="btn-layouts-list">
+                        <div class="carousel-item active">
+                            <div class="row ">
+                                @if(isset($datas1)?$datas1:'')
+                                    @foreach($datas1 as $aftersearch) 
+                                    <div class="column-s"><span class="layout-mdd-i-text"><span class="countviewmdd"><?php  ?></span><i class="fas fa-user" style="color: #A9A9A9;"></i></span>
+                                    <a href="itemdetaliBD/{{$aftersearch->project_id}}"><div class="imgfromming-s ">
+                                            <div class="columnimgitem-s shadow-item">
+                                                <img src="{{URL::to('project/img_logo/'.$aftersearch->logo)}}" alt="USer Atve" class="fromimg" style="width: 100px;height: 110px;">
+                                            </div>
+                                        </div>
+                                        <div class="text-N-d-s">
+                                        <a href="itemdetaliBD/{{$aftersearch->project_id}}"><label for="text" class="laout-text" >
+                                                <?php 
+                                                    echo $str = $aftersearch->project_name;
+                                                ?>
+                                            </label></a>            
+                                            <div class="text-auth-d">
+                                                <label for="text">คำสำคัญ : 
+                                                    <?php 
+                                                        echo $str = $aftersearch->keyword_project1; 
+                                                    ?> 
+                                                    <?php 
+                                                        echo $str = $aftersearch->keyword_project2;
+                                                    ?> 
+                                                    <?php 
+                                                        echo $str = $aftersearch->keyword_project3; 
+                                                    ?> 
+                                                    <?php 
+                                                        echo $str = $aftersearch->keyword_project4;
+                                                    ?>
+                                                </label>
+                                            </div>
+                                            <div class="text-auth-N-d">
+                                                <label for="text">ประเภท : <?php echo $aftersearch->genre_name; ?></label>
+                                            </div>
+                                            <div class="rating text-rating">
+                                                <?php 
+                                                    // $rate = $aftersearch->avg_sum;
+                                                    // rating_star($rate); 
+                                                ?>
+                                            </div>
+                                        </div></a> 
+                                    </div>
+                                    @endforeach
+                                @else
+                                @endif
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div
     ></div>
 @stop
+
+<script type="text/javascript">
+    function changecoloumn(){
+        document.getElementById("btn-layouts-coloum").style.display = "flex";
+        document.getElementById("btn-layouts-list").style.display = "none";
+    }
+
+    function changelist(){
+        document.getElementById("btn-layouts-coloum").style.display = "none";
+        document.getElementById("btn-layouts-list").style.display = "flex";
+    }
+</script>
 
 <?php
     function utf8_strlen($str){
@@ -127,13 +193,25 @@
 
     function formattter($viewcount) {
         if ($viewcount >= 1000000) {
-            echo '<span class="countview">'.round($viewcount/ 1000000, 1).'หมื่น'.'</span><i class="fas fa-user i-view" style="color: #A9A9A9;"></i>';
+            echo '<span class="countview" title="ยอดผู้ชม">'.round($viewcount/ 1000000, 1).'หมื่น'.'</span><i class="fas fa-user i-view" style="color: #A9A9A9;" title="ยอดผู้ชม"></i>';
         }
         else if ($viewcount >= 1000) {
-            echo '<span class="countview">'.round($viewcount/ 1000, 1). 'พัน'.'</span><i class="fas fa-user i-view" style="color: #A9A9A9;"></i>';
+            echo '<span class="countview" title="ยอดผู้ชม">'.round($viewcount/ 1000, 1). 'พัน'.'</span><i class="fas fa-user i-view" style="color: #A9A9A9;" title="ยอดผู้ชม"></i>';
         }else{
             // echo $viewcount;
-            echo '<span class="countview">'.$viewcount.'</span><i class="fas fa-user i-view" style="color: #A9A9A9;"></i>';
+            echo '<span class="countview" title="ยอดผู้ชม">'.$viewcount.'</span><i class="fas fa-user i-view" style="color: #A9A9A9;" title="ยอดผู้ชม"></i>';
+        }
+        
+    }
+
+    function formatttertwo($viewcount) {
+        if ($viewcount >= 1000000) {
+            echo round($viewcount/ 1000000, 1).'หมื่น';
+        }
+        else if ($viewcount >= 1000) {
+            echo round($viewcount/ 1000, 1). 'พัน';
+        }else{
+            echo $viewcount;
         }
         
     }

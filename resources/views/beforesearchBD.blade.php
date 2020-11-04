@@ -584,7 +584,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- main.css-->
                 <li class="app-search search-left">
-                <form action='/search' method='GET' >
+                <form action="{{URL::to('search')}}" method="GET" >
                        <div class="input-group mb-3 app-search-input">
                            <input type="text" class="form-control" name='search' id="search" style="width: 400px;border-right: #fff;" placeholder="ค้นหา..." aria-label="ค้นหา..." aria-describedby="basic-addon2" autocomplete="off" value="<?php echo $_SESSION['keyword-s']; ?>">
                            <div class="input-group-append" style="">
@@ -632,8 +632,8 @@
                 </li>
                 <!-- <div class="app-navbar__overlay" data-toggle="sidebar" aria-label="Hide Sidebar"></div> -->
                 <nav class="app-navmenu ">
-                    <li class="active1 menulink fontlink"><a href="homeBD">หน้าเเรก</a></li>
-                    <li class="active2 menulink fontlink"><a href="SearchAdvance">ค้นหาเเบบละเอียด</a></li>
+                    <li class="active1 menulink fontlink"><a href="{{url ('homeBD')}}">หน้าเเรก</a></li>
+                    <li class="active2 menulink fontlink"><a href="{{url ('SearchAdvance')}}">ค้นหาเเบบละเอียด</a></li>
                     <li class="active3 menulink fontlink"><a href="#">เกี่ยวกับ</a></li>
                     <li class="active4 menulink fontlink"><a href="#">ติดต่อ</a></li>
                 </nav>
@@ -643,13 +643,13 @@
 
                     @elseif (isset($_SESSION['status']) == 'user')
                         @if(!isset($_SESSION['project']))
-                        <a href="addproject" style="font-weight: normal;"><span class="add-span"><i class="fas fa-plus-circle fa-lg " style="color: #A9A9A9;" title="สร้างผลงงานคุณ"></i> สร้างผลงงาน</span></a><br>
+                        <a href="{{URL::to('addproject')}}" style="font-weight: normal;"><span class="add-span"><i class="fas fa-plus-circle fa-lg " style="color: #A9A9A9;" title="สร้างผลงงานคุณ"></i> สร้างผลงงาน</span></a><br>
                         @elseif(isset($_SESSION['project']))
-                        <a href="listdetil" style="font-weight: normal;" class="view"><span class="add-span"><i class="fas fa-book fa-lg " style="color: #A9A9A9;" title="ผลงงานคุณ"></i> ผลงงานคุณ</span></a><br>
+                        <a href="{{URL::to('listdetil')}}" style="font-weight: normal;" class="view"><span class="add-span"><i class="fas fa-book fa-lg " style="color: #A9A9A9;" title="ผลงงานคุณ"></i> ผลงงานคุณ</span></a><br>
                         @endif
                     @elseif (isset($_SESSION['statusA']) == 'admin')
                     <div class="links front">
-                        <a href="homeadmin" class="view">ผู้ดูเเลระบบ</a><br>
+                        <a href="{{URL::to('homeadmin')}}" class="view">ผู้ดูเเลระบบ</a><br>
                     </div>
                     @endif
 
@@ -742,7 +742,7 @@
                             <li class="nav-item dropdown">
                                 <a class="nav-link " id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     @foreach($imgaccount as $img)
-                                    <img class="rounded-circle user-sizes img-profile" src="imgaccount/<?php echo $img->pathimg; ?>" alt="USer Atver">
+                                    <img class="rounded-circle user-sizes img-profile" src="{{URL::to('imgaccount/'.$img->pathimg)}}" alt="USer Atver">
 
                                     @endforeach
                                     @foreach($imgaccount as $user)
@@ -758,7 +758,7 @@
                                                     <div class="image">
                                                         <a href="profile">
                                                             @foreach($imgaccount as $img)
-                                                            <img src="imgaccount\<?php echo $img->pathimg; ?>" alt="" class="img-user-size user-avatar rounded-circle" />
+                                                            <img src="{{URL::to('imgaccount/'.$img->pathimg)}}" alt="" class="img-user-size user-avatar rounded-circle" />
                                                             @endforeach
                                                         </a>
 
@@ -775,19 +775,19 @@
                                                 </div>
                                             </div>
 
-                                            <a href="profile" class="top dropdown-item"><i class="fas fa-user" style="margin-right: 2%;"></i>โปรไฟล์</a>
+                                            <a href="{{URL::to('profile')}}" class="top dropdown-item"><i class="fas fa-user" style="margin-right: 2%;"></i>โปรไฟล์</a>
                                             <div class="top dropdown-item" >
                                                 @if(!isset($_SESSION['project']))
-                                                <a href="addproject" class="view" style="color: black;text-decoration: none;"><i class="fas fa-plus-circle" style="margin-right: 2%;"></i>สร้างผลงาน</a><br>
+                                                <a href="{{URL::to('addproject')}}" class="view" style="color: black;text-decoration: none;"><i class="fas fa-plus-circle" style="margin-right: 2%;"></i>สร้างผลงาน</a><br>
                                                 @elseif(isset($_SESSION['project']))
-                                                <a href="listdetil" class="view" style="color: black;text-decoration: none;"><i class="fas fa-book" style="margin-right: 2%;"></i>ผลงานของฉัน</a><br>
+                                                <a href="{{URL::to('listdetil')}}" class="view" style="color: black;text-decoration: none;"><i class="fas fa-book" style="margin-right: 2%;"></i>ผลงานของฉัน</a><br>
                                                 @endif
                                             </div>
-                                            <a class="dropdown-item" href="logout" onclick="event.preventDefault();
+                                            <a class="dropdown-item" href="{{URL::to('logout')}}" onclick="event.preventDefault();
                                                                     document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt" ></i>
                                                 {{ __('ออกจากระบบ') }}
                                             </a>
-                                            <form id="logout-form" action="logout" method="POST" style="display: none;">
+                                            <form id="logout-form" action="{{URL::to('logout')}}" method="POST" style="display: none;">
                                                 @csrf
                                             </form>
                                         </div>
@@ -808,7 +808,7 @@
                                    
                                 <a class="nav-link " id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     @foreach($adminaccount as $img)
-                                    <img class="rounded-circle user-sizes img-profile" src="img_admin/<?php echo $img->pathimg; ?>" alt="USer Atver">
+                                    <img class="rounded-circle user-sizes img-profile" src="{{URL::to('img_admin/'.$img->pathimg)}}" alt="USer Atver">
 
                                     @endforeach
                                     @foreach($adminaccount as $user)
@@ -824,7 +824,7 @@
                                                     <div class="image">
                                                         <a href="profile">
                                                             @foreach($adminaccount as $img)
-                                                            <img src="img_admin\<?php echo $img->pathimg; ?>" alt="" class="img-user-size user-avatar rounded-circle" />
+                                                            <img src="{{URL::to('img_admin/'.$img->pathimg)}}" alt="" class="img-user-size user-avatar rounded-circle" />
                                                             @endforeach
                                                         </a>
 
@@ -841,15 +841,15 @@
                                                 </div>
                                             </div>
 
-                                            <a href="profileadmin" class="top dropdown-item"><i class="fas fa-user" style="margin-right: 2%;"></i>โปรไฟล์</a>
+                                            <a href="{{URL::to('profileadmin')}}" class="top dropdown-item"><i class="fas fa-user" style="margin-right: 2%;"></i>โปรไฟล์</a>
                                             <div class="links front">
-                                                <a href="homeadmin" class="view" style="color: black;text-decoration: none;"><i class="far fa-caret-square-left" style="margin-right: 2%;"></i>กลับสู่หน้าผู้ดูเเลระบบ</a><br>
+                                                <a href="{{URL::to('homeadmin')}}" class="view" style="color: black;text-decoration: none;"><i class="far fa-caret-square-left" style="margin-right: 2%;"></i>กลับสู่หน้าผู้ดูเเลระบบ</a><br>
                                             </div>
-                                            <a class="dropdown-item" href="logout" onclick="event.preventDefault();
+                                            <a class="dropdown-item" href="{{URL::to('logout')}}" onclick="event.preventDefault();
                                                                 document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt"></i>
                                                 {{ __('ออกจากระบบ') }}
                                             </a>
-                                            <form id="logout-form" action="logout" method="POST" style="display: none;">
+                                            <form id="logout-form" action="{{URL::to('logout')}}" method="POST" style="display: none;">
                                                 @csrf
                                             </form>
                                         </div>
@@ -922,9 +922,7 @@
                                                     @endforeach
                                                 </div>
                                         </div>
-
-
-                                        </div>
+                                    </div>
                                 </div>
                             </nav>
                         </div>
@@ -946,22 +944,7 @@
                 </p>
 
                 <div class="layoutlogre">
-                    <?php
-                    if (!isset($_SESSION['status']) == 'user' & !isset($_SESSION['statusA']) == 'admin') {
-                    } else if (isset($_SESSION['status']) == 'user') { ?>
-                        <div class="links front" style="font-size: 20px;">
-                            @if(!isset($_SESSION['project']))
-                            <a href="addproject" class="view"><i class="fas fa-book fa-lg" style="color:#212529; margin-right: 7px;margin-left: 10px;"></i>สร้างผลงาน</a><br>
-                            @elseif(isset($_SESSION['project']))
-                            <a href="listdetil" class="view"><i class="fas fa-book fa-lg" style="color:#212529; margin-right: 7px;margin-left: 10px;"></i>ผลงานของฉัน</a><br>
-                            @endif
-                        </div>
-                    <?php } else  if (isset($_SESSION['statusA']) == 'admin') { ?>
-                        <div class="links front">
-                            <a href="homeadmin" class="view"><i class="fas fa-book fa-lg" style="color:#212529; margin-right: 7px;margin-left: 10px;"></i>กลับสู่หน้าผู้ดูเเลระบบ</a><br>
-                        </div>
-                    <?php }
-                    ?>
+                    
                 </div>
                 </li>
             </ul>
@@ -972,14 +955,16 @@
                     <div class="tile ">
                         <div class="tile-body">
                             <label class="texthe1">ผลลัพธ์การค้นหา </label>
-                                
+                                <div class="container">
+                                    <span style="margin-left: 2%;font-size:16px;color:#ff6c00;">ผลลัพธ์ของ '<?php echo $_SESSION['keyword-s']; ?>"</span>
+                                </div>
                                 <div class="row" >
                                     @if(isset($easysearch)?$easysearch:'')
                                         @foreach($easysearch as $aftersearch) 
                                         <div class="column-s">
-                                        <a href="itemdetaliBD/{{$aftersearch->project_id}}"><div class="imgfromming-s ">
+                                                <a href="itemdetaliBD/{{$aftersearch->project_id}}"><div class="imgfromming-s ">
                                                 <div class="columnimgitem-s shadow-item">
-                                                    <img src="/project/img_logo/<?php echo $aftersearch->logo; ?>" alt="" class="fromimg" style="width: 100px;height: 110px;">
+                                                    <img src="{{URL::to('project/img_logo/'.$aftersearch->logo)}}" alt="" class="fromimg" style="width: 100px;height: 110px;">
                                                 </div>
                                             </div>
                                             <div class="text-N-d-s">
@@ -1054,7 +1039,7 @@
                                     <div class="column-si">
                                         <a href="itemdetaliBD/{{$simiilar->project_id}}"><div class="imgfromming-s ">
                                             <div class="columnimgitem-s shadow-item">
-                                                <img src="/project/img_logo/<?php echo $simiilar->logo; ?>" alt="" class="fromimg" style="width: 100px;height: 110px;">
+                                                <img src="{{URL::to('project/img_logo/'.$simiilar->logo)}}" alt="" class="fromimg" style="width: 100px;height: 110px;">
                                             </div>
                                         </div>
                                         <div class="text-N-d-si">
