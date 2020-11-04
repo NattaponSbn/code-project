@@ -331,8 +331,7 @@ class ProjectController extends Controller
         
     }
 
-    public function list_keyword(Request $request)
-    {   
+    public function list_keyword(Request $request){   
 
         $listkey = DB::select("SELECT * FROM temp_keyword ");
         
@@ -387,8 +386,7 @@ class ProjectController extends Controller
         echo '<input type="text" class="rounded-0 border-info" name="keyword_project_1" id="keyword_project_1" value="'.$dse.'">';
     }
 
-    public function keyword(Request $request)
-    {
+    public function keyword(Request $request){
         if($request->key_p_1) {
             $key_p_1=$request->key_p_1;
             $chk_key = DB::select("SELECT * FROM keyword_p WHERE name_key LIKE '$key_p_1%' ");
@@ -491,6 +489,22 @@ class ProjectController extends Controller
         return $resdown;
         
 
+    }
+
+    public function star_s(Request $request){
+        session_start();
+        $rating = $request->rating;
+        $project_id = $request->project_id;
+        $userID = $_SESSION['usersid'];
+
+        $codeu = 'R';
+        $cont = count(DB::select("SELECT NO_R FROM rating_p"));
+        $nextint = $cont+1;
+        $string_id = substr("00".$nextint,-3);
+        $nextid = $codeu.$string_id;
+
+        DB::INSERT("INSERT INTO rating_p (rating_id, rate_index, project_id, users_id) VALUES ('$nextid','$rating','$project_id','$userID')");
+        return back();
     }
    
 
@@ -946,6 +960,7 @@ class ProjectController extends Controller
         $chk_genre = DB::select("SELECT * FROM genre_project");
         $chk_category = DB::select("SELECT * FROM category_project");
         $chk_type = DB::select("SELECT * FROM type_project");
+        $chk_branch = DB::select("SELECT * FROM branch_project");
 
         $chk_project = count(DB::select("SELECT No_PB FROM projects WHERE projects.status_p in ('1')"));
         if($chk_project>4){
@@ -1879,7 +1894,7 @@ class ProjectController extends Controller
         'imgaccount','adminaccount','itemgenre','sum_type_p','sum_project',
         'viewcountp0','viewcountp1','viewcountp2','viewcountp3','viewcountp4','viewcountp5','viewcountp6','viewcountp7',
         'svgrate0','svgrate1','svgrate2','svgrate3','svgrate4','svgrate5','svgrate6','svgrate7','svgrateg0','svgrateg1','svgrateg2','svgrateg3',
-        'itempop0','itempop1','itempop2','itempop3','itempop4','avgpop0','avgpop1','avgpop2','avgpop3','avgpop4','sum_pop_p','chk_genre','chk_category','chk_type'));
+        'itempop0','itempop1','itempop2','itempop3','itempop4','avgpop0','avgpop1','avgpop2','avgpop3','avgpop4','sum_pop_p','chk_genre','chk_category','chk_type','chk_branch'));
     }
 
     public function detailitem($project_id){
@@ -1912,6 +1927,7 @@ class ProjectController extends Controller
         $chk_genre = DB::select("SELECT * FROM genre_project");
         $chk_category = DB::select("SELECT * FROM category_project");
         $chk_type = DB::select("SELECT * FROM type_project");
+        $chk_branch = DB::select("SELECT * FROM branch_project");
 
         //chklog ที่เคยดาวน์โหลดไฟล์
         if(isset($_SESSION['usersid'])?$_SESSION['usersid']:''){
@@ -1947,7 +1963,7 @@ class ProjectController extends Controller
         }
         
 
-        return view('project.itemdetaliBD',compact('item','project_id','imgback','itemadmin','imgaccount','adminaccount','chk_genre','chk_category','chk_type','filead','filebook','filepostter','fileslide','linkcode'));
+        return view('project.itemdetaliBD',compact('item','project_id','imgback','itemadmin','imgaccount','adminaccount','chk_genre','chk_category','chk_type','filead','filebook','filepostter','fileslide','linkcode','chk_branch'));
     }
 
     public function detailitemmdd($project_m_id){
@@ -1968,6 +1984,7 @@ class ProjectController extends Controller
         $chk_type = DB::select("SELECT * FROM type_project");
         $chk_genre = DB::select("SELECT * FROM genre_project");
         $chk_category = DB::select("SELECT * FROM category_project");
+        $chk_branch = DB::select("SELECT * FROM branch_project");
 
         if(isset($_SESSION['usersid'])?$_SESSION['usersid']:''){
             $id = $_SESSION['usersid'];
@@ -2000,7 +2017,7 @@ class ProjectController extends Controller
             );
         }
 
-        return view('project.itemdetalimdd',compact('item','project_m_id','itemadmin','imgaccount','adminaccount','chk_type','chk_genre','chk_category'));
+        return view('project.itemdetalimdd',compact('item','project_m_id','itemadmin','imgaccount','adminaccount','chk_type','chk_genre','chk_category','chk_branch'));
     }
 
     public function typeitem($type_id){
@@ -2066,43 +2083,6 @@ class ProjectController extends Controller
         return view('project.itemdetaliMDD',compact('imgaccount','adminaccount','item'));
     }
 
-
-    // admin show
-    public function showdata() {
-        session_start();
-        $chkidadmin = (isset($_SESSION['adminid'])) ? $_SESSION['adminid'] : '';
-
-        $imgaccount = DB::select("SELECT * FROM admin_company WHERE admin_id='$chkidadmin'");
-
-        $project = DB::select("SELECT * FROM type_project,genre_project,category_project,users,projects,img_project,year_project
-        WHERE users.U_id=projects.user_id AND projects.type_id=type_project.type_id AND projects.genre_id=genre_project.genre_id 
-        AND projects.category_id=category_project.category_id AND projects.user_id=img_project.p_id AND projects.project_year=year_project.NO_Y");
-        // echo'<pre>';
-        // print_r($project);
-        // echo'</pre>';
-        $projectA = DB::select("SELECT * FROM type_project,genre_project,category_project,admin_company,owner_project,projects,img_project,year_project
-        WHERE owner_project.owner_id=projects.user_id and admin_company.admin_id=projects.ad_id AND projects.type_id=type_project.type_id AND projects.genre_id=genre_project.genre_id 
-        AND projects.category_id=category_project.category_id AND projects.user_id=img_project.p_id AND projects.project_year=year_project.NO_Y");
-
-        return view('admin.project',compact('project','imgaccount','projectA'));
-    }
-
-    public function showdatamdd() {
-        session_start();
-        $chkidadmin = (isset($_SESSION['adminid'])) ? $_SESSION['adminid'] : '';
-
-        $imgaccount = DB::select("SELECT * FROM admin_company WHERE admin_id='$chkidadmin'");
-
-        $projectmdd = DB::select("SELECT * FROM type_project,genre_project,category_project,users,projectmdd,year_project
-        WHERE users.U_id=projectmdd.user_id AND projectmdd.type_id=type_project.type_id AND projectmdd.genre_id=genre_project.genre_id 
-        AND projectmdd.category_id=category_project.category_id AND projectmdd.project_m_year=year_project.NO_Y");
-
-        $projectmddA = DB::select("SELECT * FROM type_project,genre_project,category_project,admin_company,owner_projectmdd,projectmdd,year_project
-        WHERE owner_projectmdd.owner_m_id=projectmdd.user_id and admin_company.admin_id=projectmdd.adm_id AND projectmdd.type_id=type_project.type_id AND projectmdd.genre_id=genre_project.genre_id 
-        AND projectmdd.category_id=category_project.category_id AND projectmdd.project_m_year=year_project.NO_Y ");
-
-        return view('admin.projectmdd',compact('projectmdd','imgaccount','projectmddA'));
-    }
     // editadmin
 
     public function editprojectbd(Request $request) {

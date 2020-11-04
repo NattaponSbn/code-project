@@ -68,10 +68,10 @@ class ProfileController extends Controller
             
             $name = $request->input('name');
             $gender = $request->input('gender');
-            $province = $request->input('province');
+            $branch = $request->input('branch');
             $email = $request->input('email');
             $username = $request->input('username');
-            DB::update("UPDATE users SET name = '$name', gender ='$gender', province ='$province', email ='$email',
+            DB::update("UPDATE users SET name = '$name', gender ='$gender', branch ='$branch', email ='$email',
             username ='$username', pathimg='$img', updated_at = CURRENT_TIMESTAMP() WHERE U_id='$chkuser'");
             return redirect('profile')->with('successupdate', 'อัพเดทข้อมูลเรียบร้อย');
         }
@@ -91,13 +91,13 @@ class ProfileController extends Controller
     {
         session_start();
         $chkidproject = $_SESSION['usersid'];
-        
+        $chk_branch = DB::select("SELECT * FROM branch_project");
         // $imgaccount = DB::select("SELECT * FROM imgaccount,users WHERE  AND id='$chkidproject'");
         $imgaccount = DB::select("SELECT * FROM users WHERE U_id='$chkidproject'");
        
         $user = DB::select("SELECT * FROM users WHERE U_id='$chkidproject'");
 
-        return view('profileuser',compact('user','imgaccount'));
+        return view('profileuser',compact('user','imgaccount','chk_branch'));
     }
 
  
@@ -111,10 +111,10 @@ class ProfileController extends Controller
     {
         $name = $request->input('name');
         $gender = $request->input('gender');
-        $province = $request->input('province');
+        $branch = $request->input('branch');
         $username = $request->input('username');
         $email = $request->input('email');
-        DB::update('UPDATE users SET name=?, gender=?, province=?, username=?, email=? WHERE U_id = ?',[$name,$gender,$province,$username,$email,$user_id]);
+        DB::update('UPDATE users SET name=?, gender=?, branch=?, username=?, email=? WHERE U_id = ?',[$name,$gender,$branch,$username,$email,$user_id]);
         return redirect('profileuser')->with('successupdate', 'อัพเดทข้อมูลเรียบร้อย');
 
         

@@ -22,6 +22,7 @@ class Autocomplete_MddController extends Controller
             $chk_genre = DB::select("SELECT * FROM genre_project");
             $chk_category = DB::select("SELECT * FROM category_project");
             $chk_type = DB::select("SELECT * FROM type_project");
+            $chk_branch = DB::select("SELECT * FROM branch_project");
             
             $easysearch = DB::select("SELECT * FROM projectmdd,genre_project
             WHERE projectmdd.genre_id=genre_project.genre_id AND projectmdd.project_m_name LIKE '%$keyword%' 
@@ -59,11 +60,11 @@ class Autocomplete_MddController extends Controller
                     ");
         
                     
-                    return view('beforesearchMDD', compact('easysearch','imgaccount','adminaccount','similar','chk_genre','chk_category','chk_type'));
+                    return view('beforesearchMDD', compact('easysearch','imgaccount','adminaccount','similar','chk_genre','chk_category','chk_type','chk_branch'));
                 }
             }else{
                 $easysearch = '';
-                return view('beforesearchMDD', compact('easysearch','imgaccount','adminaccount','chk_genre','chk_category','chk_type'));
+                return view('beforesearchMDD', compact('easysearch','imgaccount','adminaccount','chk_genre','chk_category','chk_type','chk_branch'));
             }
 
             
@@ -88,6 +89,7 @@ class Autocomplete_MddController extends Controller
         $chk_type = DB::select("SELECT * FROM type_project");
         $chk_genre = DB::select("SELECT * FROM genre_project");
         $chk_category = DB::select("SELECT * FROM category_project");
+        $chk_branch = DB::select("SELECT * FROM branch_project");
 
         if(isset($genreproject) =='' & isset($categoryproject) =='' & isset($typeproject) =='' & isset($branch_project) =='' & isset($year_project) ==''){
             $detailsearch = DB::select("SELECT * FROM projectmdd,type_project,genre_project,branch_project,category_project,year_project

@@ -102,7 +102,8 @@ class ListdataController extends Controller
         $chk_genre = DB::select("SELECT * FROM genre_project");
         $chk_category = DB::select("SELECT * FROM category_project");
         $chk_type = DB::select("SELECT * FROM type_project");
-        return view('pagewedsum.Newarrival', compact('datas0', 'datas1', 'imgaccount', 'adminaccount','datascount','chk_genre','chk_category','chk_type'));
+        $chk_branch = DB::select("SELECT * FROM branch_project");
+        return view('pagewedsum.Newarrival', compact('datas0', 'datas1', 'imgaccount', 'adminaccount','datascount','chk_genre','chk_category','chk_type','chk_branch'));
     }
 
 
@@ -124,7 +125,8 @@ class ListdataController extends Controller
         $chk_genre = DB::select("SELECT * FROM genre_project");
         $chk_category = DB::select("SELECT * FROM category_project");
         $chk_type = DB::select("SELECT * FROM type_project");
-        return view('pagewedsum.pageIot', compact('datas1', 'imgaccount', 'adminaccount','chk_genre','chk_category','chk_type'));
+        $chk_branch = DB::select("SELECT * FROM branch_project");
+        return view('pagewedsum.pageIot', compact('datas1', 'imgaccount', 'adminaccount','chk_genre','chk_category','chk_type','chk_branch'));
     }
 
     public function popular(){
@@ -136,6 +138,7 @@ class ListdataController extends Controller
         $chk_genre = DB::select("SELECT * FROM genre_project");
         $chk_category = DB::select("SELECT * FROM category_project");
         $chk_type = DB::select("SELECT * FROM type_project");
+        $chk_branch = DB::select("SELECT * FROM branch_project");
         // $item = DB::select("SELECT * FROM projects,type_project WHERE projects.type_id=type_project.type_id and project_id='6'");
         $datas0 = DB::select("SELECT * FROM projects,genre_project,type_project WHERE genre_project.genre_name in ('ยอดนิยม') AND projects.status_p in ('0') AND projects.type_id=type_project.type_id AND projects.genre_id=genre_project.genre_id ");
         
@@ -174,7 +177,7 @@ class ListdataController extends Controller
         WHERE projects.type_id=type_project.type_id AND projects.genre_id=genre_project.genre_id AND projects.project_id=login_log.login_project 
         AND  temp_star.id_star=projects.fk_star
         GROUP BY login_project ORDER BY COUNT(login_project) DESC LIMIT 20");
-        return view('pagewedsum.pagePopular', compact('datas1', 'imgaccount', 'adminaccount','chk_genre','chk_category','chk_type'));
+        return view('pagewedsum.pagePopular', compact('datas1', 'imgaccount', 'adminaccount','chk_genre','chk_category','chk_type','chk_branch'));
         // echo'<pre>';
         //     print_r($datas1);
         //     echo'</pre>';
@@ -273,9 +276,9 @@ class ListdataController extends Controller
         $chk_genre = DB::select("SELECT * FROM genre_project");
         $chk_category = DB::select("SELECT * FROM category_project");
         $chk_type = DB::select("SELECT * FROM type_project");
-
+        $chk_branch = DB::select("SELECT * FROM branch_project");
         
-        return view('pagewedsum.MDD.pursue', compact('datas0', 'datas1', 'datasA1', 'imgaccount', 'adminaccount','chk_genre','chk_category','chk_type'));
+        return view('pagewedsum.MDD.pursue', compact('datas0', 'datas1', 'datasA1', 'imgaccount', 'adminaccount','chk_genre','chk_category','chk_type','chk_branch'));
     }
 
     public function advisor_p(){
@@ -288,6 +291,7 @@ class ListdataController extends Controller
         $chk_genre = DB::select("SELECT * FROM genre_project");
         $chk_category = DB::select("SELECT * FROM category_project");
         $chk_type = DB::select("SELECT * FROM type_project");
+        $chk_branch = DB::select("SELECT * FROM branch_project");
         $advisor_p = $_SESSION['advisor_p'];
         if(isset($advisor_p)?$advisor_p:''){
             $adv = DB::select("SELECT *,COUNT(login_project) AS countview FROM projects,login_log,temp_star,genre_project,type_project WHERE projects.advisor_p in ('$advisor_p') 
@@ -296,7 +300,7 @@ class ListdataController extends Controller
             // echo '<pre>';
             // print_r($adv);
             // echo '</pre>';
-            return view('wed.advisor_p',compact('adv','imgaccount', 'adminaccount','chk_genre','chk_category','chk_type'));
+            return view('wed.advisor_p',compact('adv','imgaccount', 'adminaccount','chk_genre','chk_category','chk_type','chk_branch'));
         }else{
             return back();
         }
@@ -350,10 +354,11 @@ class ListdataController extends Controller
         $chk_genre = DB::select("SELECT * FROM genre_project");
         $chk_category = DB::select("SELECT * FROM category_project");
         $chk_type = DB::select("SELECT * FROM type_project");
+        $chk_branch = DB::select("SELECT * FROM branch_project");
         // echo'<pre>';
         // print_r($type_name);
         // echo'</pre>';
-        return view('wed.genre', compact('chkgenre','genre_name','imgaccount', 'adminaccount','chk_type','chk_category','chk_genre'));
+        return view('wed.genre', compact('chkgenre','genre_name','imgaccount', 'adminaccount','chk_type','chk_category','chk_genre','chk_branch'));
 
         // $chk_genre = DB::select("SELECT *,AVG(rate_index) AS AvgRate FROM projects,genre_project,type_project WHERE genre_project.genre_id='$genre_id' 
         // AND projects.genre_id = genre_project.genre_id AND projectmdd.status_p in ('1') AND projects.type_id=type_project.type_id");
@@ -385,10 +390,11 @@ class ListdataController extends Controller
         $chk_genre = DB::select("SELECT * FROM genre_project");
         $chk_category = DB::select("SELECT * FROM category_project");
         $chk_type = DB::select("SELECT * FROM type_project");
+        $chk_branch = DB::select("SELECT * FROM branch_project");
         // echo'<pre>';
         // print_r($chkcategory);
         // echo'</pre>';
-        return view('wed.category', compact('chkcategory','category_name','imgaccount', 'adminaccount','chk_type','chk_category','chk_genre'));
+        return view('wed.category', compact('chkcategory','category_name','imgaccount', 'adminaccount','chk_type','chk_category','chk_genre','chk_branch'));
 
         // $chk_category = DB::select("SELECT *,AVG(rate_index) AS AvgRate FROM projects,category_project,type_project WHERE genre_project.genre_id='$category_id' 
         // AND projects.category_id = category_project.category_id AND projects.status_p in ('1') AND projects.type_id=type_project.type_id");
@@ -419,10 +425,11 @@ class ListdataController extends Controller
         $chk_genre = DB::select("SELECT * FROM genre_project");
         $chk_category = DB::select("SELECT * FROM category_project");
         $chk_type = DB::select("SELECT * FROM type_project");
+        $chk_branch = DB::select("SELECT * FROM branch_project");
         // echo'<pre>';
         // print_r($type_name);
         // echo'</pre>';
-        return view('wed.type', compact('chktype','type_name','imgaccount', 'adminaccount','chk_type','chk_category','chk_genre'));
+        return view('wed.type', compact('chktype','type_name','imgaccount', 'adminaccount','chk_type','chk_category','chk_genre','chk_branch'));
     }
 
     public function listdetil(){
@@ -434,6 +441,7 @@ class ListdataController extends Controller
         $chk_genre = DB::select("SELECT * FROM genre_project");
         $chk_category = DB::select("SELECT * FROM category_project");
         $chk_type = DB::select("SELECT * FROM type_project");
+        $chk_branch = DB::select("SELECT * FROM branch_project");
 
         
         if(isset($chkid)?$chkid:''){
@@ -444,7 +452,18 @@ class ListdataController extends Controller
         }else{
             $null = $_SESSION['non'] = 'null';
         }
-        return view('project.listdetail',compact('list','imgaccount', 'adminaccount','chk_type','chk_category','chk_genre'));
+        return view('project.listdetail',compact('list','imgaccount', 'adminaccount','chk_type','chk_category','chk_genre','chk_branch'));
+    }
+
+    public function readinto(){
+        $file = 'คู่มือระบบจัดเก็บโครงงาน วิจัยและวิทยานิพนธ์.pdf';
+        $filename = 'คู่มือระบบจัดเก็บโครงงาน วิจัยและวิทยานิพนธ์.pdf';
+        // echo $filename;
+        header('Content-type: application/html');
+        header('Content-Disposition: inline; filename="' . $filename . '"');
+        header('Content-Transfer-Encoding: binary');
+        header('Accept-Ranges: bytes');
+        @readfile($file);
     }
 }
 

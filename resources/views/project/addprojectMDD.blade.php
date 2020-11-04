@@ -33,6 +33,13 @@
     <style>
         .body1 {
             background-image: url("img/background-body-addproject-3.jpg");
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-attachment: fixed;
+            -o-background-size: 100% 100%, auto;
+            -moz-background-size: 100% 100%, auto;
+            -webkit-background-size: 100% 100%, auto;
+            background-size: 100% 100%, auto;
         }
         .textadd {
             margin-top: 10px;
@@ -57,6 +64,13 @@
         .tile {
             /* background-color: #7CE1B5; */
             background-image: url("img/background-body-addproject-4.jpg");
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-attachment: fixed;
+            -o-background-size: 100% 100%, auto;
+            -moz-background-size: 100% 100%, auto;
+            -webkit-background-size: 100% 100%, auto;
+            background-size: 100% 100%, auto;
             margin-left: 200px;
             margin-right: 200px;
             
@@ -68,12 +82,12 @@
             margin: 0 10px;
             margin-right: 10px;
             background-color: #b150c7;
-            border: none;  
+            border: none;
             border-radius: 50%;
             display: inline-block;
             opacity: 0.5;
             float: center;
-            
+
         }
 
         .font {
@@ -98,31 +112,107 @@
         }
 
         input {
-            padding: 5px;
-            width: 30%;
-            font-size: 17px;
-            font-family: Raleway;
-            border: 1px solid #aaaaaa;
+            display: block;
+            width: 70%;
+            margin-left: 20px;
+            height: calc(1.6em + 0.75rem + 2px);
+            padding: 0.375rem 0.75rem;
+            font-size: 0.9rem;
+            font-weight: 400;
+            line-height: 1.6;
+            color: #495057;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #6c757d;
+            border-radius: 0.25rem;
+            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+            position: relative;
+            width: 100%;
+            padding-right: 15px;
+            padding-left: 15px;
+        }
+
+        .input-ses{
+            border-color: #38c172;
+        }
+
+        input.invalid {
+            border-color: #e3342f;
+        }
+
+        textarea {
+            display: block;
+            flex: 0 0 91.6666666667%;
+            max-width: 91.6666666667%;
+            width: 91.6666666667%;
+            margin-left: 20px;
+            padding: 0.375rem 0.75rem;
+            font-size: 0.9rem;
+            font-weight: 400;
+            line-height: 1.6;
+            color: #495057;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #6c757d;
+            border-radius: 0.25rem;
+            padding-right: 15px;
+            padding-left: 15px;
         }
 
         /* Mark input boxes that gets an error on validation: */
-        input.invalid {
-            background-color: #ffdddd;
-            border: 1px solid red;
-        }
+        
 
         select {
-            padding: 5px;
-            width: 30%;
-            font-size: 17px;
-            font-family: Raleway;
-            border: 1px solid #aaaaaa;
+            display: block;
+            width: 70%;
+            margin-left: 20px;
+            height: calc(1.6em + 0.75rem + 2px);
+            padding: 0.375rem 0.75rem;
+            font-size: 0.9rem;
+            font-weight: 400;
+            line-height: 1.6;
+            color: #495057;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #6c757d;
+            border-radius: 0.25rem;
+            transition: border-color 1s ease-in-out, box-shadow 0.15s ease-in-out;
+            position: relative;
+            width: 100%;
+            padding-right: 15px;
+            padding-left: 15px;
         }
 
         select.invalid {
-            background-color: #ffdddd;
-            border: 1px solid red;
+            border-color: #e3342f;
         }
+
+        textarea.invalid {
+            border-color: #e3342f;
+        }
+
+        input.success {
+            border-color: #38c172;
+        }
+
+        select.success {
+            border-color: #38c172;
+        }
+
+        textarea.success {
+            border-color: #38c172;
+        }
+
+        textarea:focus, input:focus{
+            outline: none;
+        }
+        
+        *:focus {
+            outline: none;
+        }
+
+        
+
 
         /* Hide all steps by default: */
         .tab {
@@ -130,7 +220,6 @@
         }
 
         button {
-            
             background-color: #4CAF50;
             color: #ffffff;
             border: none;
@@ -194,6 +283,7 @@
         .input-tbb {
             width: 29.1%;
         }
+
         .input-tbbb {
             width: 30.3%;
         }
@@ -202,61 +292,420 @@
             width: 29.9%;
         }
 
+        .danger {
+            background-color: #ffffcc;
+            width: 30%;
+            height: auto;
+            
+        }
+
+        .danger_d {
+            font-size: 15px;
+            color: red; 
+            font-weight: normal;
+        }
+
+        .form-control::placeholder {
+            color: #6c757d;
+            opacity: 1;
+            font-size: 14px;
+        }
+
+        .label-text-left-add {
+            margin-top: -20px;
+            margin-left: 25px;
+            font-size: 15px;
+        }
+
+        .span-request-add {
+            color: #A9A9A9;
+        }
+
+        .breadcrumb-add {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 0.75rem 1rem;
+            margin-bottom: 1rem;
+            list-style: none;
+            border-radius: 0.25rem;
+        }
+
     </style>
 </head>
 <body class="body1">
-
+<div class="addproject">
         <div class="border2">
-        <ul class="app-breadcrumb breadcrumb magne-right">
-            <li class="breadcrumb-item magne-right-text"><a href="{{action('ProjectController@itemproject')}}">หน้าหลัก</a></li>
-            <li class="breadcrumb-item magne-right-text"><a href="#">สร้างผลงาน</a></li>
-        </ul><br>
+            <ul class="app-breadcrumb breadcrumb-add magne-right">
+                <li class="breadcrumb-item magne-right-text"><a href="{{action('Project_MDDController@itemproject')}}">หน้าหลัก</a></li>
+                <li class="breadcrumb-item magne-right-text">สร้างผลงาน</li>
+            </ul><br>
             <div class="tile">
                 <div class="tile-body">
                     <div class="containeradd ">
                         <div style="text-align:center;margin-top:40px;">
                             <span class="step font">1</span>
                             <span class="step font">2</span>
-                        
+                            <span class="step font">3</span>
                         </div>
-                        <center><h1><div class="containeradd textadd" >กรอกรายละเอียดผลงาน</div></h1></center>
+                        <center>
+                            <h1>
+                                <div class="containeradd textadd">กรอกรายละเอียดผลงาน</div>
+                            </h1>
+                        </center>
                         <form id="addprojectfrom" action="insertprojectmdd" method="POST" enctype="multipart/form-data">
-                        @csrf    
-                        <div class="tab">
+                            @csrf
+                            <div class="tab">
                                 <center><label for="text" class="" style="margin-top: -5px;">ขั้นตอนที่ 1</label><br></center>
-                                <center><label for="text" class="">เกี่ยวกับผลงาน</label><br></center>
-                                <center style="margin-top:10px;margin-left:-40px;">ชื่อเรื่อง: <input type="text" class="" name="project_name" id="project_name" oninput="this.className = ''"><br></center>
-                                <center style="margin-top:10px;margin-left:-40px;">คำสำคัญ: <input type="text" class="" name="keyword_project" id="keyword_project" oninput="this.className = ''"><br></center>
-                                <center style="margin-top:10px;margin-left:-71px;">คำอธิบายย่อ: <input type="text" class="input-tb" name="des_project" id="des_project" oninput="this.className = ''"><br></center>
-                                
-                                <a href="homeMDD"><button type="button" class="btnnn ">ย้อนกลับ</button></a>
-                                
-                            </div>
+                                <div class="container">
 
+                                    <div class="align-self-start " style="margin-left: 30px;">
+                                        <div class="form-group">
+                                            <label for="text" class="text-left fontdetail" style="margin-top:-20px;margin-left:20px;">ชื่อเรื่อง(TH):<span style="color: red;font-size: 20;">*</span></label>
+                                            <div class="col-sm-12">
+                                                <textarea type="text" class="form-control" name="project_name" id="project_name"  oninput="this.className = ''" placeholder="ชื่อวิทยานิพนธ์ภาษาไทย" rows="4" title="ชื่อผลงานเป็นภาษาไทย"></textarea>   
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="text" class="text-left fontdetail control-label" style="margin-top:-20px;margin-left:20px;">ชื่อเรื่อง(EN):<span style="color: red;font-size: 20;">*</span></label>
+                                            <div class="col-sm-12">
+                                                <textarea type="text" class="form-control" name="project_name_en" id="project_name_en" oninput="this.className = ''" placeholder="ชื่อวิทยานิพนธ์ภาษาอังกฤษ" rows="4"  disabled title="ชื่อผลงานเป็นภาษาอังกฤษ"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="align-self-start " >
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="form-group ">
+                                                    <label for="text" class="text-left fontdetail" style="margin-top:-20px;margin-left:50px;">เจ้าของวิทยานิพนธ์:<span style="color: red;font-size: 20;">*<span class="danger_d">(ไม่ต้องระบุคำนำหน้า)</span></span></label>
+                                                    <div class="col-sm-11" style="margin-left:25px;">
+                                                        <label for="text" class="text-left fontdetail" style="margin-top:-20px;margin-left:25px;font-size: 15px;">คนที่ 1</label>
+                                                        <input type="text" class="form-control"  name="owner_p1" id="owner_p1" placeholder="กรุณากรอกชื่อเเละนามสกุล" oninput="this.className = ''" disabled title="ชื่อเจ้าของผลงานคนที่ 1">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group ">
+                                                    <div class="col-sm-11" style="margin-left:25px;">
+                                                        <label for="text" class="text-left fontdetail" style="margin-top:-20px;margin-left:25px;font-size: 15px;">คนที่ 3</label>
+                                                        <input type="text" class="form-control"  name="owner_p3" id="owner_p3" placeholder="กรุณากรอกชื่อเเละนามสกุล" oninput="this.className = ''" disabled title="ชื่อเจ้าของผลงานคนที่ 3">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group ">
+                                                    <label for="text" class="text-left fontdetail" style="margin-top:-20px;margin-left:50px;">อาจารย์ที่ปรึกษา:<span style="color: red;font-size: 20;">*</span></label>
+                                                    <div class="col-sm-11" style="margin-left:25px;">
+                                                        <input type="text" class="form-control"  name="advisor_p" id="advisor_p" placeholder="กรุณากรอกชื่ออาจารย์ที่ปรึกษา" oninput="this.className = ''" disabled title="ชื่ออาจารย์ที่ปรึกษา" autocomplete="off">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="form-group" >
+                                                    <div class="col-sm-11" style="margin-left:-25px;">
+                                                        <label for="text" class="text-left fontdetail" style="margin-top:10%;margin-left:20px;font-size: 15px;">คนที่ 2</label>
+                                                        <div class="input-owner">
+                                                            <input type="text" class="form-control"  name="owner_p2" id="owner_p2" placeholder="กรุณากรอกชื่อเเละนามสกุล" oninput="this.className = ''" disabled title="ชื่อเจ้าของผลงานคนที่ 2">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group" >
+                                                    <div class="col-sm-11" style="margin-left:-25px;">
+                                                        <label for="text" class="text-left fontdetail" style="margin-top:-23px;margin-left:20px;font-size: 15px;">คนที่ 4</label>
+                                                        <div class="input-owner">
+                                                            <input type="text" class="form-control" name="owner_p4" id="owner_p4" placeholder="กรุณากรอกชื่อเเละนามสกุล" oninput="this.className = ''" disabled title="ชื่อเจ้าของผลงานคนที่ 4">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group " >
+                                                    <label for="text" class="text-left fontdetail" style="margin-top:-20px;">สาขาวิชา:<span style="color: red;font-size: 20;">*</span></label>
+                                                    <div class="col-sm-11" style="margin-left:-25px;">
+                                                        <select name="branch_project" class="form-control " id="branch_project" oninput="this.className = ''" disabled title="เลือกสาขาวิชาของคุณ">
+                                                            <option value="" disabled selected>เลือกสาขาวิชา</option>
+                                                            @foreach($chk_branch as $branch)
+                                                            <option value="{{$branch->branch_id}}">{{$branch->branch_name}}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="w-100">
+                                                <div class="container">
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <div class="form-group ">
+                                                                <label for="text" class="text-left fontdetail"  style="margin-top:-20px;margin-left:50px;">ปีที่จัดทำเอกสาร:<span style="color: red;font-size: 20;">*<span class="danger_d" style="font-size: 14px;">(พ.ศ.)</span></span></label>
+                                                                <div class="col-sm-11" style="margin-left:25px;">
+                                                                    <!-- <input type="text" class="form-control"  name="year_project" id="year_project" maxlength="4" placeholder="กรอกปีที่จัดทำเอกสาร เช่น 2561" oninput="this.className = ''" disabled> -->
+                                                                    <select name="year_project" class="form-control" id="year_project" oninput="this.className = ''" disabled title="เลือกปีของเอกสารของคุณ">
+                                                                        <option value="" disabled selected>เลือกปีของเอกสาร</option>
+                                                                        @foreach($chk_year as $year)
+                                                                        <option value="{{$year->NO_Y}}">{{$year->year}}</option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group ">
+                                                                <label for="text" class="text-left fontdetail"  style="margin-top:-20px;margin-left:50px;">ชนิดเอกสาร:<span style="color: red;font-size: 20;">*</span></label>
+                                                                <div class="col-sm-11" style="margin-left:25px;">
+                                                                    <select name="type_project" class="form-control " id="type_project" oninput="this.className = ''" disabled title="เลือกชนิดเอกสารของคุณ">
+                                                                        <option value="" disabled selected>เลือกชนิดเอกสาร</option>
+                                                                        @foreach($chk_type as $type)
+                                                                        <option value="{{$type->type_id}}">{{$type->type_name}}</option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col">
+                                                            <div class="form-group ">
+                                                                <label for="text" class="text-left fontdetail" style="margin-top:-20px;">ประเภทเอกสาร:<span style="color: red;font-size: 20;">*</span></label>
+                                                                <div class="col-sm-11" style="margin-left:-25px;">
+                                                                    <select name="genre_project" class="form-control" id="genre_project" oninput="this.className = ''" disabled title="เลือกประเภทเอกสารของคุณ">
+                                                                        <option value="" disabled selected>เลือกประเภทเอกสาร</option>
+                                                                        @foreach($chk_genre as $genre)
+                                                                        <option value="{{$genre->genre_id}}">{{$genre->genre_name}}</option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group ">
+                                                                <label for="text" class="text-left fontdetail" style="margin-top:-20px;">หมวดหมู่เอกสาร:<span style="color: red;font-size: 20;">*</span></label>
+                                                                <div class="col-sm-11" style="margin-left:-25px;">
+                                                                    <select name="category_project" class="form-control" id="category_project" oninput="this.className = ''" disabled title="เลือกหมวดหมู่เอกสารของคุณ">
+                                                                        <option value="" disabled selected>เลือกหมวดหมู่เอกสาร</option>
+                                                                        @foreach($chk_category as $category)
+                                                                        <option value="{{$category->category_id}}">{{$category->category_name}}</option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="w-100">
+                                                <div class="container">
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <div class="form-group ">
+                                                                <label for="text" class="text-left fontdetail" style="margin-top:-20px;margin-left:50px;">ข้อมูลจำเพาะ<span style="color: red;font-size: 18;">*</span><span class="danger_d">ถ้ามี</span></label>
+                                                                <div class="col-sm-11" style="margin-left:25px;">
+                                                                    <label for="text" class="text-left fontdetail " style="margin-top:-20px;margin-left:25px;font-size: 14px;" title="ระบบปฏิบัติการที่ใช้ในการสร้างโปรเเกรม">ระบบปฏิบัติการ<span style="color: #A9A9A9;font-weight: normal;font-size: 14px;"> เช่น Windowns,ios ฯลฯ</span></label>
+                                                                    <input type="text" class="form-control"  name="os_p1" id="os_p1" placeholder="กรุณากรอกชื่อระบบปฏิบัติการ" oninput="this.className = ''" title="กรอกชื่อระบบปฏิบัติการที่ใช้ในการสร้างโปรเเกรม">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group ">
+                                                                <div class="col-sm-11" style="margin-left:25px;">
+                                                                    <label for="text" class="text-left fontdetail " style="margin-top:-20px;margin-left:25px;font-size: 14px;" title="โปรเเกรมจำลองเซิฟเวอร์">โปรเเกรมจำลองเซิฟเวอร์<span style="color: #A9A9A9;font-weight: normal;font-size: 14px;"> เช่น xampp v3.2.4 </span></label>
+                                                                    <input type="text" class="form-control"  name="server_p1" id="cop_p1" placeholder="กรุณากรอกชื่อโปรเเกรมจำลองเซิฟเวอร์" oninput="this.className = ''" title="กรอกชื่อโปรเเกรมจำลองเซิฟเวอร์">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col">
+                                                            <div class="form-group ">
+                                                                <div class="col-sm-11" style="margin-left:-25px;">
+                                                                    <label for="text" class="text-left fontdetail " style="margin-top:10%;margin-left:25px;font-size: 14px;" title="โปรเเกรมที่ใช้รันโปรเเเกรม">โปรเเกรม<span style="color: #A9A9A9;font-weight: normal;font-size: 14px;"> เช่น Visual Studio Code v.15.0.1 </span></label>
+                                                                    <input type="text" class="form-control"  name="run_p1" id="run_p1" placeholder="กรุณากรอกชื่อโปรเเกรมที่ใช้รันโปรเเเกรม" oninput="this.className = ''" title="กรอกชื่อโปรเเกรมที่ใช้รันโปรเเเกรม">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group ">
+                                                                <div class="col-sm-12" style="margin-left:-25px;width: 100%;">
+                                                                    <label for="text" class="text-left fontdetail " style="margin-top:-20px;margin-left:25px;font-size: 14px;" title="อื่นๆ">อื่นๆ<span style="color: #A9A9A9;font-weight: normal;font-size: 14px;"> </span></label>
+                                                                    <textarea type="text" class="form-control"  name="other_p1" id="other_p1" placeholder="อื่นๆ" oninput="this.className = ''" title="อื่นๆ"></textarea>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="w-100">
+                                                <div class="container">
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <div class="form-group ">
+                                                                <label for="text" class="text-left fontdetail" style="margin-top:-20px;margin-left:50px;">ช่องทางการติดต่อ<span style="color: red;font-size: 18;">*</span><span class="danger_d">ถ้ามี</span></label>
+                                                                <div class="col-sm-11" style="margin-left:25px;">
+                                                                    <label for="text" class="text-left fontdetail " style="margin-top:-20px;margin-left:25px;font-size: 14px;" title="email ของคุณ">Email</label>
+                                                                    <input type="text" class="form-control"  name="email_p1" id="email_p1" placeholder="กรุณากรอก email ของคุณ" oninput="this.className = ''" title="กรอก email ของคุณ">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group ">
+                                                                <div class="col-sm-11" style="margin-left:25px;">
+                                                                    <label for="text" class="text-left fontdetail " style="margin-top:-20px;margin-left:25px;font-size: 14px;" title="เบอร์โทรศัพท์ของคุณ">เบอร์โทรศัพท์</label>
+                                                                    <input type="text" class="form-control"  name="phone_p1" id="phone_p1" placeholder="กรุณากรอกเบอร์โทรศัพท์ของคุณ" oninput="this.className = ''" title="กรอกเบอร์โทรศัพท์ของคุณ">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col">
+                                                            <div class="form-group ">
+                                                                <div class="col-sm-11" style="margin-left:-25px;">
+                                                                    <label for="text" class="text-left fontdetail " style="margin-top:10%;margin-left:25px;font-size: 14px;" title="facebook ของคุณ">Facebook</label>
+                                                                    <input type="text" class="form-control"  name="facebook_p1" id="facebook_p1" placeholder="กรุณากรอก facebook ของคุณ" oninput="this.className = ''" title="กรุณากรอก facebook ของคุณ">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="overflow:10px;">
+                                <a href="homeBD"><button type="button" class="btnnn ">ยกเลิก</button></a>
+                                </div>
+                            </div>
                             <div class="tab">
                                 <center><label for="text" class="">ขั้นตอนที่ 2</label><br></center>
-                                <center style="margin-top:10px;margin-left:-63px;">ชนิดเอกสาร: <select name="type_project" class="select-tbb" id="type_project" oninput="this.className = ''">
-                                            <option value="" disabled selected>เลือกชนิดเอกสาร</option>
-                                            @foreach($chk_type as $type)
-                                                <option value="{{$type->type_id}}">{{$type->type_name}}</option>
-                                            @endforeach
-                                        </select><br></center>
-                                       
-                                <center style="margin-top:10px;margin-left:-40px;">ประเภท: <select name="genre_project" class="select-tbbb" id="genre_project" oninput="this.className = ''">
-                                            <option value="" disabled selected>เลือกประเภท</option>
-                                            @foreach($chk_genre as $genre)
-                                                <option value="{{$genre->genre_id}}">{{$genre->genre_name}}</option>
-                                            @endforeach
-                                        </select><br></center>
-                                <center style="margin-top:10px;margin-left:-50px;">หมวดหมู่: <select name="category_project" class="select-tbbbb" id="category_project" oninput="this.className = ''">
-                                            <option value="" disabled selected>เลือกหมวดหมู่</option>
-                                            @foreach($chk_category as $category)
-                                                <option value="{{$category->category_id}}">{{$category->category_name}}</option>
-                                            @endforeach
-                                        </select><br></center>
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-sm">
+                                        <div class="align-self-start " style="margin-left:30px;">
+                                            <div class="form-group">
+                                                <label for="text" class="text-left fontdetail" style="margin-top:-20px;">คำอธิบายย่อ:<span style="color: red;font-size: 20;">* <span class="danger_d">ป้อนบทคัดย่อลงช่องข้างล่างนี้เพื่อหาคำสำคัญ</span></span></label>
+                                                <div class="col-sm-11">
+                                                    <textarea type="text" class="form-control" name="des_project" id="des_project" rows="7" oninput="this.className = ''" data-toggle="tooltip" data-placement="top" title="ใส่บทคัทย่อ หลังจากนั้นกดปุ่มค้นหาคำสำคัญ" autofocus></textarea>
+                                                </div><br>
+                                                <center><button type="button" class="Sse_des" id="des_p" onClick="UpdateStatus()" >เเนะนำคำสำคัญ</button></center>
+                                            </div>
+
+                                        </div>
+                                        <div class="align-self-start " style="margin-left:120px;">
+                                            <div class="form-group">
+                                                <label for="text" class="text-left fontdetail" style="margin-top:-20px;">คำสำคัญ1:</label>
+                                                @if(!isset($_SESSION['keyid1']))
+                                                <div class="col-sm-8" id="listkey1">
+                                                    <input type="text" class="hol" name="keyword_project_1" id="keyword_project_1" >
+                                                </div>
+                                                @elseif(isset($_SESSION['keyid1']))
+                                                <div class="col-sm-8" id="listkey1">
+                                                    
+                                                </div>
+                                                @endif
+                                                <div class="col-md-5" style="position: relative;margin-top: -2px;margin-left: 125px;">
+                                                    <div class="list-group" id="show-list">
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="form-group">
+                                                <label for="text" class="text-left fontdetail" style="margin-top:-20px;">คำสำคัญ2:</label>
+                                                @if(!isset($_SESSION['keyid2']))
+                                                <div class="col-sm-8" id="listkey2">
+                                                    <input type="text" class="hol" name="keyword_project_2" id="keyword_project_2" >
+                                                </div>
+                                                @elseif(isset($_SESSION['keyid2']))
+                                                <div class="col-md-5" style="position: relative;margin-top: -2px;margin-left: 125px;">
+                                                    <div class="list-group2" id="show-list2">
+
+                                                    </div>
+                                                </div>
+                                                @endif
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="text" class="text-left fontdetail" style="margin-top:-20px;">คำสำคัญ3:</label>
+                                                @if(!isset($_SESSION['keyid3']))
+                                                <div class="col-sm-8" id="listkey3">
+                                                    <input type="text" class="" name="keyword_project_3" id="keyword_project_3" >
+                                                </div>
+                                                @elseif(isset($_SESSION['keyid4']))
+                                                <div class="col-md-5" style="position: relative;margin-top: -2px;margin-left: 125px;">
+                                                    <div class="list-group3" id="show-list3">
+
+                                                    </div>
+                                                </div>
+                                                @endif
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <label for="text" class="text-left fontdetail" style="margin-top:-20px;">คำสำคัญ4:</label>
+                                                @if(!isset($_SESSION['keyid3']))
+                                                <div class="col-sm-8" id="listkey4">
+                                                    <input type="text" class="" name="keyword_project_4" id="keyword_project_4" >
+                                                </div>
+                                                @elseif(isset($_SESSION['keyid4']))
+                                                <div class="col-md-5" style="position: relative;margin-top: -2px;margin-left: 125px;">
+                                                    <div class="list-group4" id="show-list4">
+
+                                                    </div>
+                                                </div>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            
+                        </div>
+
+                            <div class="tab">
+                                <center><label for="text" class="" style="margin-top: -5px;">ขั้นตูดอนที่ 3</label><br></center>
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col">
+                                            <center><label for="text" class="">อัปโหลดไฟล์บทคัดย่อ<span style="color: red;font-size: 20;">*</span></label><br></center>
+                                            <center><p class="danger">เลือกไฟล์ต้องเป็น .pdf เท่านั้น</p></center>
+                                            <input type="file" class="file-upload" name="filead" id="file_ad" accept=".pdf" required>      
+                                            <div class="invalid-feedback">
+                                                กรุณาเลือกไฟล์
+                                            </div>
+                                            <span id="file"></span>
+                                        
+                                        
+                                            <center><label for="text" class="">อัปโหลดไฟล์เล่มโครงงาน<span style="color: red;font-size: 20;">*</span></label><br></center>
+                                            <center><p class="danger">เลือกไฟล์ต้องเป็น .pdf เท่านั้น</p></center>
+                                            <input type="file" class="file-upload" name="fileproject" id="file_project" accept=".pdf" required>      
+                                            <div class="invalid-feedback">
+                                                กรุณาเลือกไฟล์
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col">
+                                            <center><label for="text" class="">อัปโหลดไฟล์สไลด์นำเสนอ<span style="color: red;font-size: 20;">*</span></label><br></center>
+                                            <center><p class="danger">เลือกไฟล์ต้องเป็น .pdf เท่านั้น</p></center>
+                                            <input type="file" class="file-upload"  name="fileslide" id="fileslide" accept=".pdf" required>      
+                                            <div class="invalid-feedback">
+                                                กรุณาเลือกไฟล์
+                                            </div>
+                                       
+                                            <center><label for="text" class="">อัปโหลดไฟล์โปสเตอร์<span style="color: red;font-size: 20;">*</span></label><br></center>
+                                            <center><p class="danger">เลือกไฟล์ต้องเป็น .pdf เท่านั้น</p></center>
+                                            <input type="file" class="file-upload" name="filepost" id="filepost" accept=".pdf" required>      
+                                            <div class="invalid-feedback">
+                                                กรุณาเลือกไฟล์
+                                            </div>
+                                        </div>
+                                      
+                                        <div class="w-100">
+                                            <center><label for="text" class="">วางลิ้ง Source Code<span style="color: red;font-size: 20;">*</span></label><br></center>
+                                            <div class="form-group">
+                                            <center><div class="col-sm-8">
+                                                    <input type="text" class="form-control" name="linkcode" id="linkcode">
+                                                </div></center>
+                                                <center><p class="danger_d">**(กรุณาวางลิ้งจาก Github)**</p></center>
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="w-100">
+                                            <div class="col">
+                                                <center><label for="text" class="">อัปโหลดไฟล์เอกสารตรวจสอบเอกสาร<span style="color: red;font-size: 20;">*</span></label><br></center>
+                                                <center><p class="danger_d">**กรุณาตรวจสอบเอกสารผ่านเว็บไซต์นี้<a href="https://www.prepostseo.com/plagiarism-checker" target="_blank">คลิก</a>เเละทำการดาวน์โหลดไฟล์เอกสารเพื่อนำมาอัปโหลด**</p></center>
+                                                <center><div style="width: 40%;">
+                                                    <input type="file" class="" name="fileproject_chk" id="file_project_chk" accept=".pdf" required>      
+                                                    <div class="invalid-feedback">
+                                                        กรุณาเลือกไฟล์
+                                                    </div>
+                                                </div></center>
+                                            </div>
+                                        </div>
+                                       
+                                    </div>
+                                </div>
+
+                            </div>
+
                             <div style="overflow:10px;">
+                                
                                 <div style="float:center;">
                                     <button type="button" id="prevBtn" class="btnp btnnn" onclick="nextPrev(-1)">ย้อนกลับ</button>
                                 </div>
@@ -265,175 +714,986 @@
                                 </div>
                             </div>
                         </form>
-                         
                     </div>
                 </div>
             </div>
         </div>
+    </div>
          
-        <script class="text/javascript">
-            $('#type_project').change(function(){
-                if($(this).val()!=""){
-                    var type_project=$(this).val();
-                    var _token=$('input[name="_token"]').val();
-                    $.ajax({
-                        url:"{{route('insertproject')}}",
-                        method:'POST',
-                        data:{type_project:type_project,_token:_token}
-                    })
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();   
+        });
+    </script>
+
+    <script>
+        $("#file_ad").change(function() {
+            var file = document.getElementById('file_ad').value;
+            console.log(file);
+            var extension = file.substr((file.lastIndexOf('.') +1));
+                if (!/(pdf)$/ig.test(extension)) {
+                    alert("กรุณาเลือกเป็นไฟล์ PDF ให้ถูกต้อง");
+                    $("#file").val("");
+                    // console.log(file);
                 }
-            });
+           
+        });
+        $("#file_project").change(function() {
+            var file = document.getElementById('file_project').value;
+            console.log(file);
+            var extension = file.substr((file.lastIndexOf('.') +1));
+                if (!/(pdf)$/ig.test(extension)) {
+                    alert("กรุณาเลือกเป็นไฟล์ PDF ให้ถูกต้อง");
+                    $("#file").val("");
+                    // console.log(file);
+                }
+           
+        });
+        $("#fileslide").change(function() {
+            var file = document.getElementById('fileslide').value;
+            console.log(file);
+            var extension = file.substr((file.lastIndexOf('.') +1));
+                if (!/(pdf)$/ig.test(extension)) {
+                    alert("กรุณาเลือกเป็นไฟล์ PDF ให้ถูกต้อง");
+                    $("#file").val("");
+                    // console.log(file);
+                }
+           
+        });
+        $("#filepost").change(function() {
+            var file = document.getElementById('filepost').value;
+            console.log(file);
+            var extension = file.substr((file.lastIndexOf('.') +1));
+                if (!/(pdf)$/ig.test(extension)) {
+                    alert("กรุณาเลือกเป็นไฟล์ PDF ให้ถูกต้อง");
+                    $("#file").val("");
+                    // console.log(file);
+                }
+           
+        });
+    </script>
+
+    <script>
+       let SpacialCharacter = /[`~!@#$%^&*_|+\-=?;:.<>\\\/]/gi;
+        //จับ Event key
+        $('textarea[type=text]').on("keypress", function(event) {
+            var keyChar = String.fromCharCode(event.keyCode);
+
+            var output = SpacialCharacter.test(keyChar);
+                
+            var text = $(this).val();
             
-            $('#genre_project').change(function(){
-                if($(this).val()!=""){
-                    var genre_project=$(this).val();
-                    var _token=$('input[name="_token"]').val();
-                    $.ajax({
-                        url:"{{route('insertproject')}}",
-                        method:'POST',
-                        data:{genre_project:genre_project,_token:_token}
-                    })
-                }
-            });
+            $(this).val(text.replace(SpacialCharacter, ''));
+            
+            
+            console.log(event.key);
+            
+            return !output;
+        });
 
-            $('#category_project').change(function(){
-                if($(this).val()!=""){
-                    var category_project=$(this).val();
-                    var _token=$('input[name="_token"]').val();
-                    $.ajax({
-                        url:"{{route('insertproject')}}",
-                        method:'POST',
-                        data:{category_project:category_project,_token:_token}
-                    })
-                }
-            });
-        </script>
+        $('textarea[type=text]').bind('paste', function (e){
+            //keydown or keyup
+            $(e.target).keyup(getInput);
+        });
+        
+        function getInput(e){
+                var inputText = $(e.target).val();
+            $(this).val(inputText.replace(SpacialCharacter, ''));
+                $(e.target).unbind('keyup');
+        }
 
-        <!-- <script>
-            if ($message = Session::get('success')) {
-                    swal({
-                        title: "เกิดข้อผิดพลาด",
-                        text: "กรุณากรอกข้อมูลให้ครบ",
-                        icon: "warning",
-                        button: "ตกลง",
-                        });
-                    }else {
-                        swal({
-                            title: "เรียบร้อย",
-                            text: "ข้อมูลได้บันทึกเรียบร้อยเเล้ว",
-                            icon: "success",
-                            button: "ตกลง",
-                            });
-            }
-        </script> -->
+    </script>
 
-        <script>
-            var currentTab = 0; // Current tab is set to be the first tab (0)
-            showTab(currentTab); // Display the current tab
-            function showTab(n) {
-                // This function will display the specified tab of the form...
-                var x = document.getElementsByClassName("tab");
-                x[n].style.display = "block";
-                //... and fix the Previous/Next buttons:
-                if (n == 0) {
-                    document.getElementById("prevBtn").style.display = "none";
-                } else {
-                    document.getElementById("prevBtn").style.display = "inline";
-                }
-                if (n == (x.length - 1)) {
-                    document.getElementById("nextBtn").innerHTML = "ยืนยัน";  
-                    document.getElementById("nextBtn").innerHTML = "ถัดไป";
-                }
-                //... and run a function that will display the correct step indicator:
-                fixStepIndicator(n)
-            }
-            function nextPrev(n) {
-                // This function will figure out which tab to display
-                // นำค่าที่ได้จาก class tab มาเก็บไว้ที่ตัวเเปร x
-                var x = document.getElementsByClassName("tab");
-                // Exit the function if any field in the current tab is invalid:
-                //เช็คข้อมูลว่ามีใน textbox หรือไม่ ไปเช็คที่ฟังก์ชัน validateForm เเละ retrun false ไป 
-                if (n == 1 && !validateForm()) return false;
-                // Hide the current tab:
-                
-                x[currentTab].style.display = "none";
-                // Increase or decrease the current tab by 1:
-                currentTab = currentTab + n;
-                // if you have reached the end of the form...
-                if (currentTab >= x.length) {
-                    // ... the form gets submitted:
-                    document.getElementById("addprojectfrom").submit();
-                    
-                }
-                // Otherwise, display the correct tab:
-                showTab(currentTab);
-            }
+    <script type="text/javascript">
+        function UpdateStatus(){
+            var var1= document.getElementById("des_project").value;
+            $.ajax({
+                    method:"GET",
+                    url:"{{route('adddes_project')}}",    
+                    data:{'data1':var1},
+                    success:function(responsedata){
+                        // $('#keyword_project_1').html(responsedata);
+                    }
+            })
+        }     
+    </script>
 
+    <script type="text/javascript">
+        // $("#project_name").keyup(function(){
+        //     var pattern_thai = /^[ก-๏\s]+$/u;
+        //     var input_name_th = $("#project_name").val();
+        //     if(input_name_th !='') {
+        //         if(!input_name_th.match(pattern_thai)){
+        //             alert("กรุณากรอกชื่อโครงงานภาษาไทย ให้ถูกต้อง");
+        //             return false;
+        //         }         
+        //     }
+        //     else{
 
-            function uploadPrev(n) {
-                // This function will figure out which tab to display
-                // นำค่าที่ได้จาก class tab มาเก็บไว้ที่ตัวเเปร x
-                var x = document.getElementsByClassName("tab");
-                // Exit the function if any field in the current tab is invalid:
-                //เช็คข้อมูลว่ามีใน textbox หรือไม่ ไปเช็คที่ฟังก์ชัน validateForm เเละ retrun false ไป 
-                if (n == 1 && !validateForm()) return false;
-                // Hide the current tab:
-                
-                x[currentTab].style.display = "none";
-                // Increase or decrease the current tab by 1:
-                currentTab = currentTab + n;
-                // if you have reached the end of the form...
-                if (currentTab >= x.length) {
-                    // ... the form gets submitted:
-                    document.getElementById("addeprojectfrom").submit();
+        //     }
+        // });
+
+        $("#project_name_en").keyup(function(){
+            var pattern_eng = /^[a-zA-Z\s\(\)]+$/;
+            var input_name_en = $("#project_name_en").val();
+            if(input_name_en !='') {
+                if(!input_name_en.match(pattern_eng)){
+                    alert("กรุณากรอกชื่อโครงงานภาษาอังกฤษ ให้ถูกต้อง");
                     return false;
                 }
-                // Otherwise, display the correct tab:
-                showTabupload(currentTab);
             }
-            function validateForm() {
-                // This function deals with validation of the form fields
-                var x, y, i, z, valid = true;
-                x = document.getElementsByClassName("tab");
-                y = x[currentTab].getElementsByTagName("input");
-                z = x[currentTab].getElementsByTagName("select");
-                // A loop that checks every input field in the current tab:
-                for (i = 0; i < y.length; i++) {
-                    // If a field is empty...
-                    if (y[i].value == "") {
-                    // add an "invalid" class to the field:
-                    y[i].className += " invalid";
-                    // and set the current valid status to false
-                    valid = false;
+            else{
+
+            }
+                       
+        });
+    </script>
+
+    <script type="text/javascript">
+        $("#des_p").bind("click", function() {
+            var des = document.getElementById("des_project").value;
+            $.ajax({
+                    method:"GET",
+                    url:"{{route('list_keyword')}}",    
+                    data:{key1:des},
+                    success:function(response){
+                        $('#listkey1').html(response);
+                        
                     }
+                })
+        });
+
+        $("#des_p").bind("click", function() {
+            var des = document.getElementById("des_project").value;
+            $.ajax({
+                    method:"GET",
+                    url:"{{route('list_keyword')}}",    
+                    data:{key2:des},
+                    success:function(response){
+                        $('#listkey2').html(response);
+                        
+                    }
+                })
+        });
+
+        $("#des_p").bind("click", function() {
+            var des = document.getElementById("des_project").value;
+            $.ajax({
+                    method:"GET",
+                    url:"{{route('list_keyword')}}",    
+                    data:{key3:des},
+                    success:function(response){
+                        $('#listkey3').html(response);
+                        
+                    }
+                })
+        });
+
+        $("#des_p").bind("click", function() {
+            var des = document.getElementById("des_project").value;
+            $.ajax({
+                    method:"GET",
+                    url:"{{route('list_keyword')}}",    
+                    data:{key4:des},
+                    success:function(response){
+                        $('#listkey4').html(response);
+                        
+                    }
+                })
+        });
+    </script>
+
+    <script>
+        // $('#owner_p1').click(function() {
+        //         var data= document.getElementById("owner_p1").value;
+        //         if(data!=''){
+        //             document.getElementById("owner_p2").disabled = false;
+        //             // document.getElementById("type_project").disabled = true;
+        //         }else{
+        //             document.getElementById("owner_p2").disabled = true;
+        //         }
+        //     })
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $('#project_name').keyup(function() {
+                var data= document.getElementById("project_name").value;
+                if(data!=''){
+                    document.getElementById("project_name_en").disabled = false;
+                    // document.getElementById("type_project").disabled = true;
+                }else{
+                    document.getElementById("project_name_en").disabled = true;
                 }
-                for (i = 0; i < z.length; i++) {
-                    // If a field is empty...
-                    if (z[i].value == "") {
+            })
+            $('#project_name_en').keyup(function() {
+                var data= document.getElementById("project_name_en").value;
+                if(data!=''){
+                    document.getElementById("owner_p1").disabled = false;
+                    // document.getElementById("type_project").disabled = true;
+                }else{
+                    document.getElementById("owner_p1").disabled = true;
+                }
+            })
+            $('#owner_p1').keyup(function() {
+                var data= document.getElementById("owner_p1").value;
+                if(data!=''){
+                    document.getElementById("owner_p2").disabled = false;
+                    // document.getElementById("type_project").disabled = true;
+                }else{
+                    document.getElementById("owner_p2").disabled = true;
+                }
+            })
+            $('#owner_p2').keyup(function() {
+                var data= document.getElementById("owner_p2").value;
+                if(data!=''){
+                    document.getElementById("owner_p3").disabled = false;
+                    // document.getElementById("type_project").disabled = true;
+                }else{
+                    document.getElementById("owner_p3").disabled = true;
+                }
+            })
+            $('#owner_p3').keyup(function() {
+                var data= document.getElementById("owner_p3").value;
+                if(data!=''){
+                    document.getElementById("owner_p4").disabled = false;
+                    // document.getElementById("type_project").disabled = true;
+                }else{
+                    document.getElementById("owner_p4").disabled = true;
+                }
+            })
+            $('#owner_p1').keyup(function() {
+                var data= document.getElementById("owner_p1").value;
+                if(data!=''){
+                    document.getElementById("advisor_p").disabled = false;
+                    // document.getElementById("type_project").disabled = true;
+                }else{
+                    document.getElementById("advisor_p").disabled = true;
+                }
+            })
+            $('#advisor_p').keyup(function() {
+                var data= document.getElementById("advisor_p").value;
+                if(data!=''){
+                    document.getElementById("branch_project").disabled = false;
+                    // document.getElementById("type_project").disabled = true;
+                }else{
+                    document.getElementById("branch_project").disabled = true;
+                }
+            })
+            $('#branch_project').change(function() {
+                var data= document.getElementById("branch_project").value;
+                if(data!=''){
+                    document.getElementById("year_project").disabled = false;
+                    // document.getElementById("type_project").disabled = true;
+                }else{
+                    document.getElementById("year_project").disabled = true;
+                }
+            })
+            $('#year_project').change(function() {
+                var data= document.getElementById("year_project").value;
+                if(data!=''){
+                    document.getElementById("type_project").disabled = false;
+                    // document.getElementById("type_project").disabled = true;
+                }else{
+                    document.getElementById("type_project").disabled = true;
+                }
+            })
+            $('#type_project').change(function() {
+                var data= document.getElementById("type_project").value;
+                if(data!=''){
+                    document.getElementById("genre_project").disabled = false;
+                    // document.getElementById("type_project").disabled = true;
+                }else{
+                    document.getElementById("genre_project").disabled = true;
+                }
+            })
+            $('#genre_project').change(function() {
+                var data= document.getElementById("genre_project").value;
+                if(data!=''){
+                    document.getElementById("category_project").disabled = false;
+                    // document.getElementById("type_project").disabled = true;
+                }else{
+                    document.getElementById("category_project").disabled = true;
+                }
+            })
+        });
+    </script>
+        
+    <!-- <script type="text/javascript">
+        function UpdateStatus(){  
+            //make an ajax call and get status value using the same 'id'
+            var var1= document.getElementById("des_project").value;
+            var _token = $('input[name="_token"]').val();
+            $.ajax({
+                    method:"POST",
+                    url:"{{route('des_project')}}",    
+                    data:{data1:var1,_token: _token},
+                    success:function(responsedata){
+                        $('#hok').html(responsedata);
+                    }
+                })
+            document.getElementById("keyword_project_1").disabled = false;
+            document.getElementById("keyword_project_2").disabled = false;
+            document.getElementById("keyword_project_3").disabled = false;
+            document.getElementById("keyword_project_4").disabled = false;
+        }
+    </script> -->
+
+    <script type="text/javascript">
+
+        $(document).ready(function() {
+            $('#keyword_project_1').keyup(function() {
+                var key_p_1 = $(this).val();
+                var _token = $('input[name="_token"]').val();
+                if (key_p_1 != '') {
+                    $.ajax({
+                        url: "{{route('keyword_project')}}",
+                        method: 'POST',
+                        data: {
+                            key_p_1: key_p_1,
+                            _token: _token
+                        },
+                        success: function(response) {
+                            $('#show-list').html(response);
+                        }
+                    });
+                } else {
+                    $('#show-list').html('');
+                }
+                $(document).on('click', 'a', function() {
+                    $('#keyword_project_1').val($(this).text());
+                    $('#show-list').html('');
+
+                });
+            });
+        });
+
+        $(document).ready(function() {
+            $('#keyword_project_2').keyup(function() {
+                var key_p_2 = $(this).val();
+                var _token = $('input[name="_token"]').val();
+                if (key_p_2 != '') {
+                    $.ajax({
+                        url: "{{route('keyword_project')}}",
+                        method: 'POST',
+                        data: {
+                            key_p_2: key_p_2,
+                            _token: _token
+                        },
+                        success: function(response) {
+                            $('#show-list2').html(response);
+                        }
+                    });
+                } else {
+                    $('#show-list2').html('');
+                }
+                $(document).on('click', 'a', function() {
+                    $('#keyword_project_2').val($(this).text());
+                    $('#show-list2').html('');
+                });
+            });
+        });
+
+        $(document).ready(function() {
+            $('#keyword_project_3').keyup(function() {
+                var key_p_3 = $(this).val();
+                var _token = $('input[name="_token"]').val();
+                if (key_p_3 != '') {
+                    $.ajax({
+                        url: "{{route('keyword_project')}}",
+                        method: 'POST',
+                        data: {
+                            key_p_3: key_p_3,
+                            _token: _token
+                        },
+                        success: function(response) {
+                            $('#show-list3').html(response);
+                        }
+                    });
+                } else {
+                    $('#show-list3').html('');
+                }
+                $(document).on('click', 'a', function() {
+                    $('#keyword_project_3').val($(this).text());
+                    $('#show-list3').html('');
+                });
+            });
+        });
+
+        $(document).ready(function() {
+            $('#keyword_project_4').keyup(function() {
+                var key_p_4 = $(this).val();
+                var _token = $('input[name="_token"]').val();
+                if (key_p_4 != '') {
+                    $.ajax({
+                        url: "{{route('keyword_project')}}",
+                        method: 'POST',
+                        data: {
+                            key_p_4: key_p_4,
+                            _token: _token
+                        },
+                        success: function(response) {
+                            $('#show-list4').html(response);
+                        }
+                    });
+                } else {
+                    $('#show-list4').html('');
+                }
+                $(document).on('click', 'a', function() {
+                    $('#keyword_project_4').val($(this).text());
+                    $('#show-list4').html('');
+                });
+            });
+        });
+    </script>
+
+    <script class="text/javascript">
+        $('#type_project').change(function() {
+            if ($(this).val() != "") {
+                var type_project = $(this).val();
+                var _token = $('input[name="_token"]').val();
+                $.ajax({
+                    url: "{{route('insertproject')}}",
+                    method: 'POST',
+                    data: {
+                        type_project: type_project,
+                        _token: _token
+                    }
+                })
+            }
+        });
+
+        $('#genre_project').change(function() {
+            if ($(this).val() != "") {
+                var genre_project = $(this).val();
+                var _token = $('input[name="_token"]').val();
+                $.ajax({
+                    url: "{{route('insertproject')}}",
+                    method: 'POST',
+                    data: {
+                        genre_project: genre_project,
+                        _token: _token
+                    }
+                })
+            }
+        });
+
+        $('#category_project').change(function() {
+            if ($(this).val() != "") {
+                var category_project = $(this).val();
+                var _token = $('input[name="_token"]').val();
+                $.ajax({
+                    url: "{{route('insertproject')}}",
+                    method: 'POST',
+                    data: {
+                        category_project: category_project,
+                        _token: _token
+                    }
+                })
+            }
+        });
+    </script>
+
+    <script>
+        var currentTab = 0; // Current tab is set to be the first tab (0)
+        showTab(currentTab); // Display the current tab
+        function showTab(n) {
+            // This function will display the specified tab of the form...
+            var x = document.getElementsByClassName("tab");
+            x[n].style.display = "block";
+            //... and fix the Previous/Next buttons:
+            if (n == 0) {
+                document.getElementById("prevBtn").style.display = "none";
+            } else {
+                document.getElementById("prevBtn").style.display = "inline";
+            }
+            if (n == (x.length - 1)) {
+                document.getElementById("nextBtn").innerHTML = "ยืนยัน";
+                // document.getElementById("nextBtn").innerHTML = "ถัดไป";
+            }
+            //... and run a function that will display the correct step indicator:
+            fixStepIndicator(n)
+        }
+        function nextPrev(n) {
+            // This function will figure out which tab to display
+            // นำค่าที่ได้จาก class tab มาเก็บไว้ที่ตัวเเปร x
+            var x = document.getElementsByClassName("tab");
+           
+            // Exit the function if any field in the current tab is invalid:
+            //เช็คข้อมูลว่ามีใน textbox หรือไม่ ไปเช็คที่ฟังก์ชัน validateForm เเละ retrun false ไป 
+            if (n == 1 && !validateForm()) return false;
+            // Hide the current tab:
+            x[currentTab].style.display = "none";
+            // Increase or decrease the current tab by 1:
+            currentTab = currentTab + n;
+            // if you have reached the end of the form...
+            if (currentTab >= x.length) {
+                // ... the form gets submitted:
+                document.getElementById("addprojectfrom").submit();
+               
+            }
+            // Otherwise, display the correct tab:
+            showTab(currentTab);
+        }
+        function uploadPrev(n) {
+            // This function will figure out which tab to display
+            // นำค่าที่ได้จาก class tab มาเก็บไว้ที่ตัวเเปร x
+            var x = document.getElementsByClassName("tab");
+            // Exit the function if any field in the current tab is invalid:
+            //เช็คข้อมูลว่ามีใน textbox หรือไม่ ไปเช็คที่ฟังก์ชัน validateForm เเละ retrun false ไป 
+            if (n == 1 && !validateForm()) return false;
+            // Hide the current tab:
+            x[currentTab].style.display = "none";
+            // Increase or decrease the current tab by 1:
+            currentTab = currentTab + n;
+            // if you have reached the end of the form...
+            if (currentTab >= x.length) {
+                // ... the form gets submitted:
+                document.getElementById("addeprojectfrom").submit();
+                return false;
+            }
+            // Otherwise, display the correct tab:
+            showTabupload(currentTab);
+        }
+        function validateForm() {
+            // This function deals with validation of the form fields
+            var x, y, i, z, valid = true;
+            x = document.getElementsByClassName("tab");
+            // h = document.getElementsByClassName("input-owner");
+            // k = x[currentTab].getElementsByTagName("textarea");
+            k = x[currentTab].getElementsByTagName("textarea");
+            y = x[currentTab].getElementsByTagName("input");
+            z = x[currentTab].getElementsByTagName("select");
+            
+            
+            // for (i = 0; i < y.length; i++) {
+            //     // If a field is empty...
+            //     if (y[0].value == "") {
+            //         // add an "invalid" class to the field:
+            //         y[0].className += " invalid";
+            //         // and set the current valid status to false
+            //         $(document).change(function() {
+            //             for (i = 0; i < y.length; i++) {
+            //                 if(y[0].value == ""){
+            //                     y[0].className += " invalid";
+                                
+            //                     valid = false;
+            //                 }else{
+            //                     y[0].className += " success";
+            //                 }
+                            
+            //             }
+            //         })
+            //         valid = false;
+            //     }
+            //     else if(y[0].value !== ""){
+            //         y[0].className += " success";
+            //         $(document).change(function() {
+            //             for (i = 0; i < y.length; i++) {
+            //                 if(y[0].value == ""){
+            //                     y[0].className += " success";
+                                
+            //                     valid = false;
+            //                 }else{
+            //                     y[0].className += " invalid";
+            //                 }
+                            
+            //             }
+            //         })
+            //     }
+            // }
+
+            // for (i = 0; i < y.length; i++) {
+            //     // If a field is empty...
+            //     if (y[2].value == "") {
+            //         // add an "invalid" class to the field:
+            //         y[2].className += " invalid";
+            //         // and set the current valid status to false
+            //         $(document).change(function() {
+            //             for (i = 0; i < y.length; i++) {
+            //                 if(y[2].value == ""){
+            //                     y[2].className += " invalid";
+                                
+            //                     valid = false;
+            //                 }else{
+            //                     y[2].className += " success";
+            //                 }
+                            
+            //             }
+            //         })
+            //         valid = false;
+            //     }
+            //     else if(y[2].value !== ""){
+            //         y[2].className += " success";
+            //         $(document).change(function() {
+            //             for (i = 0; i < y.length; i++) {
+            //                 if(y[2].value == ""){
+            //                     y[2].className += " success";
+                                
+            //                     valid = false;
+            //                 }else{
+            //                     y[2].className += " invalid";
+            //                 }
+                            
+            //             }
+            //         })
+            //     }
+            // }
+            // A loop that checks every input field in the current tab:
+            // for (i = 0; i < 8; i++) {
+                // If a field is empty...
+                // if (y[0]) {
+                //     if (y[0].value == "") {
+                //     // add an "invalid" class to the field:
+                //     y[0].className += " invalid";
+                //     // and set the current valid status to false
+                //     $(document).keyup(function() {
+                       
+                //             if(y[0].value == ""){
+                //                 y[0].className += " invalid";
+                //                 valid = false;
+                //             }else{
+                //                 y[0].className += " success";
+                //             }
+                //     })
+                //     valid = false;
+                //     }
+                //     else if(y[0].value !== ""){
+                //         y[0].className += " success";
+                //         $(document).keyup(function() {
+                            
+                //             if(y[0].value == ""){
+                //                 y[0].className += " success";
+                                
+                //                 valid = false;
+                //             }else{
+                //                 y[0].className += " invalid";
+                //             }
+                //         })
+                //     }
+                // }
+
+                // if(y[2].value !== ""){
+                //     if (y[2].value == "") {
+                //     // add an "invalid" class to the field:
+                //     y[2].className += " invalid";
+                //     // and set the current valid status to false
+                //     $(document).keyup(function() {
+                       
+                //             if(y[2].value == ""){
+                //                 y[2].className += " invalid";
+                //                 valid = false;
+                //             }else{
+                //                 y[2].className += " success";
+                //             }
+                //     })
+                //     valid = false;
+                //     }
+                //     else if(y[2].value !== ""){
+                //         y[2].className += " success";
+                //         $(document).keyup(function() {
+                            
+                //             if(y[2].value == ""){
+                //                 y[2].className += " success";
+                                
+                //                 valid = false;
+                //             }else{
+                //                 y[2].className += " invalid";
+                //             }
+                //         })
+                //     }
+                // }
+                // else{
+                //         valid = false;
+                //     }
+    
+                
+                // else if(y[i=2]) {
+                //     if(y[2].value == "") {
+                //     // add an "invalid" class to the field:
+                //     y[2].className += " invalid";
+                //     // and set the current valid status to false
+                //     $(document).keyup(function() {
+                       
+                //         if(y[2].value == ""){
+                //             y[2].className += " invalid";
+                //             valid = false;
+                //         }else{
+                //             y[2].className += " success";
+                //         }
+                //     })
+                //     valid = false;
+                //     }
+                //     else if(y[2].value !== ""){
+                //         y[2].className += " success";
+                //         $(document).keyup(function() {
+                            
+                //             if(y[2].value == ""){
+                //                 y[2].className += " success";
+                                
+                //                 valid = false;
+                //             }else{
+                //                 y[2].className += " invalid";
+                //             }
+                //         })
+                //     }
+                // }
+                
+
+                // if (y[5].value == "") {
+                //     // add an "invalid" class to the field:
+                //     y[5].className += " invalid";
+                //     // and set the current valid status to false
+                //     $(document).keyup(function() {
+                       
+                //             if(y[5].value == ""){
+                //                 y[5].className += " invalid";
+                //                 valid = false;
+                //             }else{
+                //                 y[5].className += " success";
+                //             }
+                //     })
+                //     valid = false;
+                // }
+                // else if(y[5].value !== ""){
+                //     y[5].className += " success";
+                //     $(document).keyup(function() {
+                        
+                //             if(y[5].value == ""){
+                //                 y[5].className += " success";
+                                
+                //                 valid = false;
+                //             }else{
+                //                 y[5].className += " invalid";
+                //             }
+                            
+                       
+                //     })
+                // }
+
+                // if (y[6].value == "") {
+                //     // add an "invalid" class to the field:
+                //     y[6].className += " invalid";
+                //     // and set the current valid status to false
+                //     $(document).keyup(function() {
+                       
+                //             if(y[6].value == ""){
+                //                 y[6].className += " invalid";
+                //                 valid = false;
+                //             }else{
+                //                 y[6].className += " success";
+                //             }
+                //     })
+                //     valid = false;
+                // }
+                // else if(y[6].value !== ""){
+                //     y[6].className += " success";
+                //     $(document).keyup(function() {
+                        
+                //             if(y[6].value == ""){
+                //                 y[6].className += " success";
+                                
+                //                 valid = false;
+                //             }else{
+                //                 y[6].className += " invalid";
+                //             }
+                            
+                       
+                //     })
+                // }
+
+                // if (y[7].value == "") {
+                //     // add an "invalid" class to the field:
+                //     y[7].className += " invalid";
+                //     // and set the current valid status to false
+                //     $(document).keyup(function() {
+                       
+                //             if(y[7].value == ""){
+                //                 y[7].className += " invalid";
+                //                 valid = false;
+                //             }else{
+                //                 y[7].className += " success";
+                //             }
+                //     })
+                //     valid = false;
+                // }
+                // else if(y[7].value !== ""){
+                //     y[7].className += " success";
+                //     $(document).keyup(function() {
+                        
+                //             if(y[7].value == ""){
+                //                 y[7].className += " success";
+                                
+                //                 valid = false;
+                //             }else{
+                //                 y[7].className += " invalid";
+                //             }
+                            
+                       
+                //     })
+                // }
+
+                // if (y[8].value == "") {
+                //     // add an "invalid" class to the field:
+                //     y[8].className += " invalid";
+                //     // and set the current valid status to false
+                //     $(document).keyup(function() {
+                       
+                //             if(y[8].value == ""){
+                //                 y[8].className += " invalid";
+                //                 valid = false;
+                //             }else{
+                //                 y[8].className += " success";
+                //             }
+                //     })
+                //     valid = false;
+                // }
+                // else if(y[8].value !== ""){
+                //     y[8].className += " success";
+                //     $(document).keyup(function() {
+                        
+                //             if(y[8].value == ""){
+                //                 y[8].className += " success";
+                                
+                //                 valid = false;
+                //             }else{
+                //                 y[8].className += " invalid";
+                //             }
+                            
+                       
+                //     })
+                // }
+                
+            // }
+            for (i = 0; i < z.length; i++) {
+                // If a field is empty...
+                if (z[i].value == "") {
                     // add an "invalid" class to the field:
                     z[i].className += " invalid";
                     // and set the current valid status to false
+                    $(document).change(function() {
+                        for (i = 0; i < z.length; i++) {
+                            if(z[i].value == ""){
+                                z[i].className += " invalid";
+                                
+                                valid = false;
+                            }else{
+                                z[i].className += " success";
+                            }
+                            
+                        }
+                    })
                     valid = false;
-                    }
                 }
-                // If the valid status is true, mark the step as finished and valid:
-                if (valid) {
-                    document.getElementsByClassName("step")[currentTab].className += " finish";
+                else if(z[i].value !== ""){
+                   
+                    z[i].className += " success";
+                    $(document).change(function() {
+                        for (i = 0; i < z.length; i++) {
+                            if(z[i].value == ""){
+                                z[i].className += " success";
+                                
+                                valid = false;
+                            }else{
+                                z[i].className += " invalid";
+                            }
+                            
+                        }
+                    })
                 }
-                return valid; // return the valid status
             }
-            function fixStepIndicator(n) {
-                // This function removes the "active" class of all steps...
-                var i, x = document.getElementsByClassName("step");
-                for (i = 0; i < x.length; i++) {
-                    x[i].className = x[i].className.replace(" active", "");
+         
+            // If a field is empty...
+            for (i = 0; i < k.length; i++) {
+                // If a field is empty...
+                if (k[0].value == "") {
+                    // add an "invalid" class to the field:
+                    k[0].className += " invalid";
+                    // and set the current valid status to false
+                    $(document).change(function() {
+                        for (i = 0; i < k.length; i++) {
+                            if(k[0].value == ""){
+                                k[0].className += " invalid";
+                                
+                                valid = false;
+                            }else{
+                                k[0].className += " success";
+                            }
+                            
+                        }
+                    })
+                    valid = false;
                 }
-                //... and adds the "active" class on the current step:
-                x[n].className += " active";
+                else if(k[0].value !== ""){
+                    k[0].className += " success";
+                    $(document).change(function() {
+                        for (i = 0; i < k.length; i++) {
+                            if(k[0].value == ""){
+                                k[0].className += " success";
+                                
+                                valid = false;
+                            }else{
+                                k[0].className += " invalid";
+                            }
+                            
+                        }
+                    })
+                }
             }
 
-           
-        </script>
+            for (i = 0; i < k[1]; i++) {
+                // If a field is empty...
+                if (k[1].value == "") {
+                    // add an "invalid" class to the field:
+                    k[1].className += " invalid";
+                    // and set the current valid status to false
+                    $(document).change(function() {
+                        for (i = 0; i < k[1]; i++) {
+                            if(k[1].value == ""){
+                                k[1].className += " invalid";
+                                
+                                valid = false;
+                            }else{
+                                k[1].className += " success";
+                            }
+                            
+                        }
+                    })
+                    valid = false;
+                }
+                else if(k[1].value !== ""){
+                    k[0].className += " success";
+                    $(document).change(function() {
+                        for (i = 0; i < k.length; i++) {
+                            if(k[1].value == ""){
+                                k[1].className += " success";
+                                
+                                valid = false;
+                            }else{
+                                k[1].className += " invalid";
+                            }
+                            
+                        }
+                    })
+                }
+            }
+            
+            // If the valid status is true, mark the step as finished and valid:
+            if (valid) {
+                document.getElementsByClassName("step")[currentTab].className += " finish";
+            }
+            return valid; // return the valid status
+        }
+        function fixStepIndicator(n) {
+            // This function removes the "active" class of all steps...
+            var i, x = document.getElementsByClassName("step");
+            for (i = 0; i < x.length; i++) {
+                x[i].className = x[i].className.replace(" active", "");
+            }
+            //... and adds the "active" class on the current step:
+            x[n].className += " active";
+        }
+    </script>
 
         <script src="{{ asset('js/app.js') }}" defer></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>

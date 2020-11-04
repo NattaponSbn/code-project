@@ -320,25 +320,28 @@
                         ให้แก่รุ่นต่อๆไปได้นำมาประยุกต์ใช้กับผลงานของนิสิตหรือนำมาพัฒนาต่อยอดแก่ผู้ที่สนใจ อีกทั้งยังช่วยลดปัญหาการสุญหายของเอกสาร และลดการใช้ทรัพยากรกระดาษอีกด้วย 
                     </p>  
                 </div>
-                <div class="col" style="margin-top: 3.1%;">
-                    <label for="text" id="contact">ติดต่อ</label>
+                <div class="col" style="margin-top: 3.1%;" id="contact">
+                    <label for="text" >ติดต่อ</label>
                     <!-- <p><i class="fas fa-home mr-3"></i> New York, NY 10012, US</p> -->
-                    <p><i class="fas fa-envelope mr-3"></i> ohmsbn@gmail.com</p>
+                    <p><i class="fas fa-envelope mr-3"></i> 60020637@up.ac.th,<br>      60020673@up.ac.th</p>
                     <p><i class="fas fa-phone mr-3"></i>099-247-927-1</p>
                 </div>
                 <div class="col" style="margin-top: 3%;">
                     <label for="text">เเผนผังเว็บไซต์</label>
-                    <a href=""><p>คู่มือเว็บไซต์</p></a>
-                    <a href=""><p>คู่มือเว็บไซร์</p></a>
-                    <a href=""><p>คู่มือเว็บไซร์</p></a>
-                    <a href=""><p>คู่มือเว็บไซร์</p></a>
+                    <a href="{{URL::to('manual_wed')}}" target="_blank"><p>คู่มือเว็บไซต์</p></a>
+                    <a href=""><p></p></a>
+                    <a href=""><p></p></a>
+                    <a href=""><p></p></a>
                  
                 </div>
                 </div>
                 <div class="w-100"></div>
                 <div class="col"></div>
                 <div class="col">
-                    <p>© 2020 ลิขสิทธิ์:</p>
+                    <p>© 2020 ลิขสิทธิ์, ระบบจัดเก็บโครงงานวิจัย และวิทยานิพนธ์ของนิสิต 
+                    <br>
+                        คณะเทคโนโลยีสารสนเทศและการสื่อสาร มหาวิทยาลัยพะเยา
+                    </p>
                 </div>
                 <div class="col"></div>
             </div>

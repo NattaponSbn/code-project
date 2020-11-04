@@ -8,7 +8,7 @@
 
     isset($_SESSION['usernameguest']);
     session_destroy();
-    header( "refresh: 0; url=/homeBD?logout=success" );
+    header( "refresh: 0; url=homeBD?logout=success" );
     exit(0);
     
     

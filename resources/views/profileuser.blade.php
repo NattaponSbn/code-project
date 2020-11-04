@@ -36,11 +36,13 @@
         }
 
         .layout-imgup{
-            margin-left: 100px;
+            margin-right: 38%;
+            margin-left: 38%;
         }
 
         .layout-content{
-            margin-left: 550px;
+            margin-right: 20%;
+            margin-left: 20%;
         }
 
         .layout-input{
@@ -72,25 +74,25 @@
     @endif
   
         <script language="JavaScript">
-            function showPreview(ele)
-            {
-                    $('#showimg').attr('src', ele.value); // for IE
-                    if (ele.files && ele.files[0]) {
-                        var reader = new FileReader();
-                        
-                        reader.onload = function (e) {
-                            $('#showimg').attr('src', e.target.result);
-                        }
-                        reader.readAsDataURL(ele.files[0]);
+            function showPreviewlogo(ele) {
+                $('#profile').attr('src', ele.value); // for IE
+                if (ele.files && ele.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function(e) {
+                        $('#profile').attr('src', e.target.result);
                     }
+
+                    reader.readAsDataURL(ele.files[0]);
+                }
             }
         </script>
-    	<div class="col-sm-9 layout-content">
+    	<div class="layout-content">
         
-          <div class="tab-content">
+          <div class="tab-content" >
             <div class="tab-pane active" id="home">
-                <center style="margin-left:-650px;margin-top:40px;"><div class="col-sm-10"><h1>โปรไฟล์</h1></div></center>
-                  <form class="form" action="profileupdate" method="POST" id="registrationForm" enctype="multipart/form-data">
+                <center style="margin-left:30%;margin-right: 30%;margin-top:40px;"><div class="col-sm-10"><h1>โปรไฟล์</h1></div></center>
+                  <form class="form" action="{{URL::to('profileupdate')}}" method="POST" id="registrationForm" enctype="multipart/form-data">
                     {{csrf_field()}}
                     @foreach($user as $users)
                     <input type = "hidden" name = "_token" value = "<?php echo csrf_token(); ?>">
@@ -98,143 +100,78 @@
                         <div class="row">
                             <div class="col-sm-3 layout-imgup"><!--left col-->
                                 <div class="text-center">
-                                @foreach($imgaccount as $img)
-                                    <img src="imgaccount\<?php echo $img->pathimg; ?>" id="showimg" name="showimg" class="avatar img-circle img-thumbnail" alt="imgupload">
-                                @endforeach
+                                    @foreach($imgaccount as $img)
+                                        <img id="profile" name="showimg" src="{{URL::to('imgaccount/'.$img->pathimg)}}" class="avatar img-circle img-thumbnail" alt="imgupload">
+                                    @endforeach
+                                    <span style="color: red;">(รูปภาพ ต้องเป็น .png หรือ jpg เท่านั้น เเละขนาดภาพต้องไม่เกิน 3 MB)</span>
                                     <h6>อัพโหลดรูปภาพของคุณ...</h6>
-                                    <input type="file" class="text-center center-block file-upload image" name="img" OnChange="showPreview(this)">
+                                    <input type="file" class="text-center center-block file-upload image" accept=".jpg, .jpeg, .png" name="img" OnChange="showPreviewlogo(this)">
                                 </div></hr><br>
                             </div><!--/col-3-->
                         </div>
                     </div>
-                    
-                    
-                    <div class="form-group">
-                          <div class="col-xs-6" style="margin-top:10px;">
-                              <label for="name"><h5>ชื่อ-สุกล</h5></label>
-                              <input type="text" class="form-control front layoutprovince-size" name="name" id="name" placeholder="ชื่อ-สุกล" 
-                              value="{{ $users->name }}">
-                          </div>
-                      </div>
-                      <div class="form-group ">
-                          <div class="col-xs-6 layout">
-                              <label for="gender"><h5>เพศ</h5></label>
-                              <select name="gender" id="gender" class="layoutprovince-size form-control front"placeholder="enter phone">
-                                <option value="" disabled selected>เลือกเพศ</option>
-                                <option value="ชาย" <?php if($users->gender =="ชาย"){ echo 'selected' ; } ?>>ชาย</option>
-                                <option value="หญิง" <?php if($users->gender =="หญิง"){ echo  'selected' ; } ?>>หญิง</option>
-                                </select>
-                          </div>
-                      </div>
-          
-                      <div class="form-group ">
-                          <div class="col-xs-6 ">
-                             <label for="province"><h5>จังหวัด</h5></label>
-                             <select name="province" id="province" class="layoutprovince-size form-control front">
-                                <option value="" disabled selected >เลือกจังหวัด</option>
-                                <option value="กรุงเทพมหานคร" <?php if($users->province=="กรุงเทพมหานคร"){ echo 'selected' ; } ?>>กรุงเทพมหานคร</option>
-                                <option value="กระบี่" <?php if($users->province=="กรุงเทพมหานคร"){ echo 'selected' ; } ?>>กระบี่ </option>
-                                <option value="กาญจนบุรี" <?php if($users->province=="กระบี่"){ echo 'selected' ; } ?>>กาญจนบุรี </option>
-                                <option value="กาฬสินธุ์" <?php if($users->province=="กาญจนบุรี"){ echo 'selected' ; } ?>>กาฬสินธุ์ </option>
-                                <option value="กำแพงเพชร" <?php if($users->province=="กำแพงเพชร"){ echo 'selected' ; } ?>>กำแพงเพชร </option>
-                                <option value="ขอนแก่น" <?php if($users->province=="ขอนแก่น"){ echo 'selected' ; } ?>>ขอนแก่น</option>
-                                <option value="ชัยนาท" <?php if($users->province=="ชัยนาท"){ echo 'selected' ; } ?>>ชัยนาท </option>
-                                <option value="ชัยภูมิ" <?php if($users->province=="ชัยภูมิ"){ echo 'selected' ; } ?>>ชัยภูมิ </option>
-                                <option value="ชุมพร" <?php if($users->province=="ชุมพร"){ echo 'selected' ; } ?>>ชุมพร </option>
-                                <option value="ชลบุรี" <?php if($users->province=="ชลบุรี"){ echo 'selected' ; } ?>>ชลบุรี </option>
-                                <option value="เชียงใหม่" <?php if($users->province=="เชียงใหม่"){ echo 'selected' ; } ?>>เชียงใหม่ </option>
-                                <option value="เชียงราย" <?php if($users->province=="เชียงราย"){ echo 'selected' ; } ?>>เชียงราย </option>
-                                <option value="ตรัง" <?php if($users->province=="ตรัง"){ echo 'selected' ; } ?>>ตรัง </option>
-                                <option value="ตราด" <?php if($users->province=="ตราด"){ echo 'selected' ; } ?>>ตราด </option>
-                                <option value="ตาก" <?php if($users->province=="ตาก"){ echo 'selected' ; } ?>>ตาก </option>
-                                <option value="นครนายก" <?php if($users->province=="นครนายก"){ echo 'selected' ; } ?>>นครนายก </option>
-                                <option value="นครปฐม" <?php if($users->province=="นครปฐม"){ echo 'selected' ; } ?>>นครปฐม </option>
-                                <option value="นครพนม" <?php if($users->province=="นครพนม"){ echo 'selected' ; } ?>>นครพนม </option>
-                                <option value="นครราชสีมา" <?php if($users->province=="นครราชสีมา"){ echo 'selected' ; } ?>>นครราชสีมา </option>
-                                <option value="นครศรีธรรมราช" <?php if($users->province=="นครศรีธรรมราช"){ echo 'selected' ; } ?>>นครศรีธรรมราช </option>
-                                <option value="นครสวรรค์" <?php if($users->province=="นครสวรรค์"){ echo 'selected' ; } ?>>นครสวรรค์ </option>
-                                <option value="นราธิวาส" <?php if($users->province=="นราธิวาส"){ echo 'selected' ; } ?>>นราธิวาส </option>
-                                <option value="น่าน" <?php if($users->province=="น่าน"){ echo 'selected' ; } ?>>น่าน </option>
-                                <option value="นนทบุรี" <?php if($users->province=="นนทบุรี"){ echo 'selected' ; } ?>>นนทบุรี </option>
-                                <option value="บึงกาฬ" <?php if($users->province=="บึงกาฬ"){ echo 'selected' ; } ?>>บึงกาฬ</option>
-                                <option value="บุรีรัมย์" <?php if($users->province=="บุรีรัมย์"){ echo 'selected' ; } ?>>บุรีรัมย์</option>
-                                <option value="ประจวบคีรีขันธ์" <?php if($users->province=="ประจวบคีรีขันธ์"){ echo 'selected' ; } ?>>ประจวบคีรีขันธ์ </option>
-                                <option value="ปทุมธานี" <?php if($users->province=="ปทุมธานี"){ echo 'selected' ; } ?>>ปทุมธานี </option>
-                                <option value="ปราจีนบุรี" <?php if($users->province=="ปราจีนบุรี"){ echo 'selected' ; } ?>>ปราจีนบุรี </option>
-                                <option value="ปัตตานี" <?php if($users->province=="ปัตตานี"){ echo 'selected' ; } ?>>ปัตตานี </option>
-                                <option value="พะเยา" <?php if($users->province=="พะเยา"){ echo 'selected' ; } ?>>พะเยา </option>
-                                <option value="พระนครศรีอยุธยา" <?php if($users->province=="พระนครศรีอยุธยา"){ echo 'selected' ; } ?>>พระนครศรีอยุธยา </option>
-                                <option value="พังงา" <?php if($users->province=="พังงา"){ echo 'selected' ; } ?>>พังงา </option>
-                                <option value="พิจิตร" <?php if($users->province=="พิจิตร"){ echo 'selected' ; } ?>>พิจิตร </option>
-                                <option value="พิษณุโลก" <?php if($users->province=="พิษณุโลก"){ echo 'selected' ; } ?>>พิษณุโลก </option>
-                                <option value="เพชรบุรี" <?php if($users->province=="เพชรบุรี"){ echo 'selected' ; } ?>>เพชรบุรี </option>
-                                <option value="เพชรบูรณ์" <?php if($users->province=="เพชรบูรณ์"){ echo 'selected' ; } ?>>เพชรบูรณ์ </option>
-                                <option value="แพร่" <?php if($users->province=="แพร่"){ echo 'selected' ; } ?>>แพร่ </option>
-                                <option value="พัทลุง" <?php if($users->province=="พัทลุง"){ echo 'selected' ; } ?>>พัทลุง </option>
-                                <option value="ภูเก็ต" <?php if($users->province=="ภูเก็ต"){ echo 'selected' ; } ?>>ภูเก็ต </option>
-                                <option value="มหาสารคาม" <?php if($users->province=="มหาสารคาม"){ echo 'selected' ; } ?>>มหาสารคาม </option>
-                                <option value="มุกดาหาร" <?php if($users->province=="มุกดาหาร"){ echo 'selected' ; } ?>>มุกดาหาร </option>
-                                <option value="แม่ฮ่องสอน" <?php if($users->province=="แม่ฮ่องสอน"){ echo 'selected' ; } ?>>แม่ฮ่องสอน </option>
-                                <option value="ยโสธร" <?php if($users->province=="ยโสธร"){ echo 'selected' ; } ?>>ยโสธร </option>
-                                <option value="ยะลา" <?php if($users->province=="ยะลา"){ echo 'selected' ; } ?>>ยะลา </option>
-                                <option value="ร้อยเอ็ด" <?php if($users->province=="ร้อยเอ็ด"){ echo 'selected' ; } ?>>ร้อยเอ็ด </option>
-                                <option value="ระนอง" <?php if($users->province=="ระนอง"){ echo 'selected' ; } ?>>ระนอง </option>
-                                <option value="ระยอง" <?php if($users->province=="ระยอง"){ echo 'selected' ; } ?>>ระยอง </option>
-                                <option value="ราชบุรี" <?php if($users->province=="ราชบุรี"){ echo 'selected' ; } ?>>ราชบุรี</option>
-                                <option value="ลพบุรี" <?php if($users->province=="ลพบุรี"){ echo 'selected' ; } ?>>ลพบุรี </option>
-                                <option value="ลำปาง" <?php if($users->province=="ลำปาง"){ echo 'selected' ; } ?>>ลำปาง </option>
-                                <option value="ลำพูน" <?php if($users->province=="ลำพูน"){ echo 'selected' ; } ?>>ลำพูน </option>
-                                <option value="เลย" <?php if($users->province=="เลย"){ echo 'selected' ; } ?>>เลย </option>
-                                <option value="ศรีสะเกษ" <?php if($users->province=="ศรีสะเกษ"){ echo 'selected' ; } ?>>ศรีสะเกษ</option>
-                                <option value="สกลนคร" <?php if($users->province=="สกลนคร"){ echo 'selected' ; } ?>>สกลนคร</option>
-                                <option value="สงขลา" <?php if($users->province=="สงขลา"){ echo 'selected' ; } ?>>สงขลา </option>
-                                <option value="สมุทรสาคร" <?php if($users->province=="สมุทรสาคร"){ echo 'selected' ; } ?>>สมุทรสาคร </option>
-                                <option value="สมุทรปราการ" <?php if($users->province=="สมุทรปราการ"){ echo 'selected' ; } ?>>สมุทรปราการ </option>
-                                <option value="สมุทรสงคราม" <?php if($users->province=="สมุทรสงคราม"){ echo 'selected' ; } ?>>สมุทรสงคราม </option>
-                                <option value="สระแก้ว" <?php if($users->province=="สระแก้ว"){ echo 'selected' ; } ?>>สระแก้ว </option>
-                                <option value="สระบุรี" <?php if($users->province=="สระบุรี"){ echo 'selected' ; } ?>>สระบุรี </option>
-                                <option value="สิงห์บุรี" <?php if($users->province=="สิงห์บุรี"){ echo 'selected' ; } ?>>สิงห์บุรี </option>
-                                <option value="สุโขทัย" <?php if($users->province=="สุโขทัย"){ echo 'selected' ; } ?>>สุโขทัย </option>
-                                <option value="สุพรรณบุรี" <?php if($users->province=="สุพรรณบุรี"){ echo 'selected' ; } ?>>สุพรรณบุรี </option>
-                                <option value="สุราษฎร์ธานี" <?php if($users->province=="สุราษฎร์ธานี"){ echo 'selected' ; } ?>>สุราษฎร์ธานี </option>
-                                <option value="สุรินทร์" <?php if($users->province=="สุรินทร์"){ echo 'selected' ; } ?>>สุรินทร์ </option>
-                                <option value="สตูล" <?php if($users->province=="สตูล"){ echo 'selected' ; } ?>>สตูล </option>
-                                <option value="หนองคาย" <?php if($users->province=="หนองคาย"){ echo 'selected' ; } ?>>หนองคาย </option>
-                                <option value="หนองบัวลำภู" <?php if($users->province=="หนองบัวลำภู"){ echo 'selected' ; } ?>>หนองบัวลำภู </option>
-                                <option value="อำนาจเจริญ" <?php if($users->province=="อำนาจเจริญ"){ echo 'selected' ; } ?>>อำนาจเจริญ </option>
-                                <option value="อุดรธานี" <?php if($users->province=="อุดรธานี"){ echo 'selected' ; } ?>>อุดรธานี </option>
-                                <option value="อุตรดิตถ์" <?php if($users->province=="อุตรดิตถ์"){ echo 'selected' ; } ?>>อุตรดิตถ์ </option>
-                                <option value="อุทัยธานี" <?php if($users->province=="อุทัยธานี"){ echo 'selected' ; } ?>>อุทัยธานี </option>
-                                <option value="อุบลราชธานี" <?php if($users->province=="อุบลราชธานี"){ echo 'selected' ; } ?>>อุบลราชธานี</option>
-                                <option value="อ่างทอง" <?php if($users->province=="อ่างทอง"){ echo 'selected' ; } ?>>อ่างทอง </option>
-                            </select>
-                          </div>
-                      </div>
-                      <div class="form-group">
-                          
-                          <div class="col-xs-6">
-                              <label for="email"><h5>อีเมล</h5></label>
-                              <input type="email" class="form-control layoutprovince-size front" name="email" id="email" placeholder="you@email.com" title="enter your email."
-                              value="<?php echo $users->email; ?>">
-                          </div>
-                      </div>
-                      <div class="form-group">
-                          
-                          <div class="col-xs-6">
-                              <label for="username"><h5>ชื่อผู้ใช้</h5></label>
-                              <input type="text" class="form-control layoutprovince-size front" name="username" id="username" placeholder="you@email.com" title="enter your email."
-                              value="<?php echo $users->username; ?>">
-                          </div>
-                      </div>
-                      @endforeach
-                      <div class="form-group">
-                           <div class="col-xs-12">
-                                <br>
-                              	<button class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
-                                <a href="homeBD"><button  class="btn btn-lg" type="button"  >กลับ</button></a>
-                               	<!-- <button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button> -->
+                    <div class="container " style="margin-left:28%;margin-right:28%;">
+                        <div class="form-group">
+                            <div class="form-row">
+                                <div class="col">
+                                    <div class="col-sm-5" style="margin-top:10px;">
+                                        <label for="name"><h5>ชื่อ-สุกล</h5></label>
+                                        <input type="text" class="form-control front layoutprovince-size" name="name" id="name" placeholder="ชื่อ-สุกล" 
+                                        value="{{ $users->name }}">
+                                    </div>
+                                </div>
                             </div>
-                      </div>
+                        </div>
+                        <div class="form-group ">
+                            <div class="col-sm-5">
+                                <label for="gender"><h5>เพศ</h5></label>
+                                <select name="gender" id="gender" class="form-control"placeholder="enter phone">
+                                    <option value="" disabled selected>เลือกเพศ</option>
+                                    <option value="ชาย" <?php if($users->gender =="ชาย"){ echo 'selected' ; } ?>>ชาย</option>
+                                    <option value="หญิง" <?php if($users->gender =="หญิง"){ echo  'selected' ; } ?>>หญิง</option>
+                                    </select>
+                            </div>
+                        </div>
+            
+                        <div class="form-group ">
+                            <div class="col-sm-5">
+                                <label for="text"><h5>สาขาวิชา</h5></label>
+                                <select name="branch" id="branch" class="form-control">
+                                    <option value="" disabled selected >เลือกสาขาวิชา</option>
+                                    @foreach($chk_branch as $branch)
+                                        <option value="{{$branch->branch_id}}" 
+                                            <?php if ($users->branch == $branch->branch_id) {
+                                                echo 'selected';
+                                            } ?>>{{$branch->branch_name}}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-5">
+                                <label for="email"><h5>อีเมล</h5></label>
+                                <input type="email" class="form-control" name="email" id="email" placeholder="you@email.com" title="enter your email."
+                                value="<?php echo $users->email; ?>">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-5">
+                                <label for="username"><h5>ชื่อผู้ใช้</h5></label>
+                                <input type="text" class="form-control" name="username" id="username" placeholder="you@email.com" title="enter your email."
+                                value="<?php echo $users->username; ?>">
+                            </div>
+                        </div>
+                        @endforeach
+                        <div class="form-group" style="margin-left:10%;">
+                            <div class="col-xs-12">
+                                <br>
+                                <button class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> อัพเดท</button>
+                                <a href="homeBD"><button  class="btn btn-lg" type="button"  >กลับ</button></a>
+                                <!-- <button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button> -->
+                            </div>
+                        </div>
+                    </div>            
               	</form>
               
               <hr>
@@ -251,6 +188,35 @@
 
         </div><!--/col-9-->
     </div><!--/row-->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="js/formimg.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="../themes/fas/theme.js" type="text/javascript"></script>
+    <script src="../themes/explorer-fas/theme.js" type="text/javascript"></script>
+    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="js/jquery-3.3.1.min.js"></script>
+
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="js/scripts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+    <script src="assets/demo/datatables-demo.js"></script>
+    <!-- The javascript plugin to display page loading on top-->
+    <script src="js/plugins/pace.min.js"></script>
+    <!-- Page specific javascripts-->
+    <script type="text/javascript" src="js/plugins/chart.js"></script>
 
     
 </body>

@@ -61,7 +61,9 @@ class Project_MDDController extends Controller
         $chk_genre = DB::select("SELECT * FROM genre_project");
         $chk_category = DB::select("SELECT * FROM category_project");
         $chk_branch = DB::select("SELECT * FROM branch_project");
-        return view('project.addprojectMDD',compact('chk_type','chk_genre','chk_category','chk_branch'));
+        $chk_year = DB::select("SELECT * FROM year_project");
+
+        return view('project.addprojectMDD',compact('chk_type','chk_genre','chk_category','chk_branch','chk_year'));
     }
 
     // join หน้า detailprject เเละโชว์ข้อมูล project
@@ -107,6 +109,7 @@ class Project_MDDController extends Controller
         $chk_genre = DB::select("SELECT * FROM genre_project");
         $chk_category = DB::select("SELECT * FROM category_project");
         $chk_type = DB::select("SELECT * FROM type_project");
+        $chk_branch = DB::select("SELECT * FROM branch_project");
 
         $chk_follow = count(DB::select("SELECT NO_PM FROM projectmdd,category_project WHERE projectmdd.status_m in ('1') AND projectmdd.category_id=category_project.category_id AND category_project.category_name in ('เกษตร')"));
         $sum_follow = $chk_follow;
@@ -877,7 +880,8 @@ class Project_MDDController extends Controller
         // $chk_type = DB::select("SELECT * FROM type_project");
 
         return view('homeMDD',compact('item_m0','item_m1','item_h0','item_h1','item_g0','item_g1','item_l0','item_l1','item_s0','item_l1','svgrate0','svgrateA','adminaccount','userimg','viewcountA0','viewcount0',
-        'viewcountA_h0','viewcount_h0','viewcountA_g0','viewcount_g0','viewcountA_l0','viewcount_l0','viewcountA_s0','viewcount_s0','imgaccount','sum_follow','chk_health','sum_game','itemA1','itemA0','itemA_h0','itemA_h1','itemA_g0','itemA_g1','itemA_l0','itemA_l1','itemA_s0','itemA_s1','chk_genre','chk_category','chk_type'));
+        'viewcountA_h0','viewcount_h0','viewcountA_g0','viewcount_g0','viewcountA_l0','viewcount_l0','viewcountA_s0','viewcount_s0','imgaccount','sum_follow','chk_health','sum_game','itemA1','itemA0','itemA_h0',
+        'itemA_h1','itemA_g0','itemA_g1','itemA_l0','itemA_l1','itemA_s0','itemA_s1','chk_genre','chk_category','chk_type','chk_branch'));
     }
     
     public function editprojectadmin(Request $request) {

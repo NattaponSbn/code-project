@@ -70,6 +70,13 @@
         .tile {
             /* background-color: #7CE1B5; */
             background-image: url("img/background-body-addproject-4.jpg");
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-attachment: fixed;
+            -o-background-size: 100% 100%, auto;
+            -moz-background-size: 100% 100%, auto;
+            -webkit-background-size: 100% 100%, auto;
+            background-size: 100% 100%, auto;
             margin-left: 200px;
             margin-right: 200px;
 
@@ -320,15 +327,24 @@
             color: #A9A9A9;
         }
 
+        .breadcrumb-add {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 0.75rem 1rem;
+            margin-bottom: 1rem;
+            list-style: none;
+            border-radius: 0.25rem;
+        }
+
     </style>
 </head>
 
 <body style="font-family: 'Athiti', sans-serif;">
     <div class="addproject">
         <div class="border2">
-            <ul class="app-breadcrumb breadcrumb magne-right">
+            <ul class="app-breadcrumb breadcrumb-add magne-right">
                 <li class="breadcrumb-item magne-right-text"><a href="{{action('ProjectController@itemproject')}}">หน้าหลัก</a></li>
-                <li class="breadcrumb-item magne-right-text"><a href="#">สร้างผลงาน</a></li>
+                <li class="breadcrumb-item magne-right-text">สร้างผลงาน</li>
             </ul><br>
             <div class="tile">
                 <div class="tile-body">
@@ -385,7 +401,7 @@
                                                 <div class="form-group ">
                                                     <label for="text" class="text-left fontdetail" style="margin-top:-20px;margin-left:50px;">อาจารย์ที่ปรึกษา:<span style="color: red;font-size: 20;">*</span></label>
                                                     <div class="col-sm-11" style="margin-left:25px;">
-                                                        <input type="text" class="form-control"  name="advisor_p" id="advisor_p" placeholder="กรุณากรอกชื่ออาจารย์ที่ปรึกษา" oninput="this.className = ''" disabled title="ชื่ออาจารย์ที่ปรึกษา">
+                                                        <input type="text" class="form-control"  name="advisor_p" id="advisor_p" placeholder="กรุณากรอกชื่ออาจารย์ที่ปรึกษา" oninput="this.className = ''" disabled title="ชื่ออาจารย์ที่ปรึกษา" autocomplete="off">
                                                     </div>
                                                 </div>
                                             </div>
@@ -553,7 +569,7 @@
                                             <div class="form-group">
                                                 <label for="text" class="text-left fontdetail" style="margin-top:-20px;">คำอธิบายย่อ:<span style="color: red;font-size: 20;">* <span class="danger_d">ป้อนบทคัดย่อลงช่องข้างล่างนี้เพื่อหาคำสำคัญ</span></span></label>
                                                 <div class="col-sm-11">
-                                                    <textarea type="text" class="form-control" name="des_project" id="des_project" rows="7" oninput="this.className = ''" data-toggle="tooltip" data-placement="top" title="ใส่บทคัทย่อ หลังจากนั้นกดปุ่มค้นหาคำสำคัญ" ></textarea>
+                                                    <textarea type="text" class="form-control" name="des_project" id="des_project" rows="7" oninput="this.className = ''" data-toggle="tooltip" data-placement="top" title="ใส่บทคัทย่อ หลังจากนั้นกดปุ่มค้นหาคำสำคัญ" autofocus></textarea>
                                                 </div><br>
                                                 <center><button type="button" class="Sse_des" id="des_p" onClick="UpdateStatus()" >เเนะนำคำสำคัญ</button></center>
                                             </div>
@@ -636,7 +652,7 @@
                                         <div class="col">
                                             <center><label for="text" class="">อัปโหลดไฟล์บทคัดย่อ<span style="color: red;font-size: 20;">*</span></label><br></center>
                                             <center><p class="danger">เลือกไฟล์ต้องเป็น .pdf เท่านั้น</p></center>
-                                            <input type="file" class="" name="filead" id="file_ad" accept=".pdf" required>      
+                                            <input type="file" class="file-upload" name="filead" id="file_ad" accept=".pdf" required>      
                                             <div class="invalid-feedback">
                                                 กรุณาเลือกไฟล์
                                             </div>
@@ -645,7 +661,7 @@
                                         
                                             <center><label for="text" class="">อัปโหลดไฟล์เล่มโครงงาน<span style="color: red;font-size: 20;">*</span></label><br></center>
                                             <center><p class="danger">เลือกไฟล์ต้องเป็น .pdf เท่านั้น</p></center>
-                                            <input type="file" class="" name="fileproject" id="file_project" accept=".pdf" required>      
+                                            <input type="file" class="file-upload" name="fileproject" id="file_project" accept=".pdf" required>      
                                             <div class="invalid-feedback">
                                                 กรุณาเลือกไฟล์
                                             </div>
@@ -654,14 +670,14 @@
                                         <div class="col">
                                             <center><label for="text" class="">อัปโหลดไฟล์สไลด์นำเสนอ<span style="color: red;font-size: 20;">*</span></label><br></center>
                                             <center><p class="danger">เลือกไฟล์ต้องเป็น .pdf เท่านั้น</p></center>
-                                            <input type="file" class="" name="fileslide" id="fileslide" accept=".pdf" required>      
+                                            <input type="file" class="file-upload"  name="fileslide" id="fileslide" accept=".pdf" required>      
                                             <div class="invalid-feedback">
                                                 กรุณาเลือกไฟล์
                                             </div>
                                        
                                             <center><label for="text" class="">อัปโหลดไฟล์โปสเตอร์<span style="color: red;font-size: 20;">*</span></label><br></center>
                                             <center><p class="danger">เลือกไฟล์ต้องเป็น .pdf เท่านั้น</p></center>
-                                            <input type="file" class="" name="filepost" id="filepost" accept=".pdf" required>      
+                                            <input type="file" class="file-upload" name="filepost" id="filepost" accept=".pdf" required>      
                                             <div class="invalid-feedback">
                                                 กรุณาเลือกไฟล์
                                             </div>

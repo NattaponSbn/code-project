@@ -286,10 +286,7 @@
             <a href="homeadmin" class="app-header__logo">ICTThesis(ADMIN)</a>
             <!-- main.css-->
             <ul class="app-nav">
-                <li class="app-search search-left">
-                    <input class="app-search__input" type="search" placeholder="ค้นหา...">
-                    <button class="app-search__button"><i class="fa fa-search"></i></button>
-                </li>
+               
                 <div class="app-navbar__overlay" data-toggle="sidebar" aria-label="Hide Sidebar"></div>
                 <nav class="app-navmenu">
                     <li class="active1 menulink fontlink"><a href="homeadmin">หน้าเเรก</a></li>
@@ -483,6 +480,7 @@
                                                         class="view">ข้อมูลรายละเอียดผู้ดูเเลระบบ</a><br>
                                                     <a href="{{ url('viewproject') }}"
                                                         class="view">ข้อมูลรายละเอียดผลงานปริญญาตรี</a><br>
+                                                        
                                                     <a href="{{ url('viewprojectmdd') }}"
                                                         class="view">ข้อมูลรายละเอียดผลงานปริญญาเอก&โท</a><br>
                                                     <!-- <a href="{{ url('dataview') }}" class="view">คำขอสร้างผลงาน</a><br> -->

@@ -138,18 +138,24 @@ class AdminController extends Controller
         // echo $userid;
     }
     public function delete_project($project_id){
-        $chk = DB::select("SELECT projects.user_id FROM projects WHERE  projects.project_id='$project_id'");
+        $chk = DB::select("SELECT * FROM projects WHERE  projects.project_id='$project_id'");
         // print_r($chk);
         compact('chk');
         foreach($chk as $chks) {
-            $iduser=$chks->user_id;
-            DB::delete("DELETE FROM img_project WHERE img_project.p_id='$iduser'");
+            $id=$chks->project_id;
+            DB::delete("DELETE FROM img_project WHERE img_project.p_id='$id'");
         }
         DB::delete("DELETE FROM projects WHERE projects.project_id='$project_id'");
+        DB::delete("DELETE FROM rating_p WHERE rating_p.project_id='$project_id'");
+        DB::delete("DELETE FROM login_log WHERE login_log.login_project='$project_id'");
+ 
+
         return redirect('viewproject')->with('delete_project', 'ลบข้อมูลเรียบร้อย');
     }
     public function delete_projectmdd($project_m_id){
         DB::delete("DELETE FROM projectmdd WHERE projectmdd.project_m_id='$project_m_id'");
+        DB::delete("DELETE FROM rating_m WHERE rating_p.project_id='$project_m_id'");
+        DB::delete("DELETE FROM login_logmdd WHERE login_log.login_project='$project_m_id'");
         return redirect('viewproject')->with('delete_project', 'ลบข้อมูลเรียบร้อย');
     }
 
@@ -240,5 +246,42 @@ class AdminController extends Controller
         // // header('Accept-Ranges: bytes');
         // @readfile($file);
         return view('admin.readfile',compact('file_chk','namefile_chk'));
+    }
+
+     // admin show
+     public function showdata() {
+        session_start();
+        $chkidadmin = (isset($_SESSION['adminid'])) ? $_SESSION['adminid'] : '';
+
+        $imgaccount = DB::select("SELECT * FROM admin_company WHERE admin_id='$chkidadmin'");
+
+        $project = DB::select("SELECT * FROM type_project,genre_project,category_project,users,projects,img_project,year_project
+        WHERE users.U_id=projects.user_id AND projects.type_id=type_project.type_id AND projects.genre_id=genre_project.genre_id 
+        AND projects.category_id=category_project.category_id AND projects.project_id=img_project.p_id AND projects.project_year=year_project.NO_Y");
+        // echo'<pre>';
+        // print_r($project);
+        // echo'</pre>';
+        $projectA = DB::select("SELECT * FROM type_project,genre_project,category_project,admin_company,owner_project,projects,img_project,year_project
+        WHERE owner_project.owner_id=projects.user_id and admin_company.admin_id=projects.ad_id AND projects.type_id=type_project.type_id AND projects.genre_id=genre_project.genre_id 
+        AND projects.category_id=category_project.category_id AND projects.project_id=img_project.p_id AND projects.project_year=year_project.NO_Y");
+
+        return view('admin.project',compact('project','imgaccount','projectA'));
+    }
+
+    public function showdatamdd() {
+        session_start();
+        $chkidadmin = (isset($_SESSION['adminid'])) ? $_SESSION['adminid'] : '';
+
+        $imgaccount = DB::select("SELECT * FROM admin_company WHERE admin_id='$chkidadmin'");
+
+        $projectmdd = DB::select("SELECT * FROM type_project,genre_project,category_project,users,projectmdd,year_project
+        WHERE users.U_id=projectmdd.user_id AND projectmdd.type_id=type_project.type_id AND projectmdd.genre_id=genre_project.genre_id 
+        AND projectmdd.category_id=category_project.category_id AND projectmdd.project_m_year=year_project.NO_Y");
+
+        $projectmddA = DB::select("SELECT * FROM type_project,genre_project,category_project,admin_company,owner_projectmdd,projectmdd,year_project
+        WHERE owner_projectmdd.owner_m_id=projectmdd.user_id and admin_company.admin_id=projectmdd.adm_id AND projectmdd.type_id=type_project.type_id AND projectmdd.genre_id=genre_project.genre_id 
+        AND projectmdd.category_id=category_project.category_id AND projectmdd.project_m_year=year_project.NO_Y ");
+
+        return view('admin.projectmdd',compact('projectmdd','imgaccount','projectmddA'));
     }
 }

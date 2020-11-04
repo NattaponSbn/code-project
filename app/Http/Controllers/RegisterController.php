@@ -12,20 +12,43 @@ class RegisterController extends Controller
     public function register(Request $req) {
         //iduser
         
+        
         $codeu = 'U';
         $cont = count(DB::select("SELECT NO_User FROM users"));
         $nextint = $cont+1;
         $string_id = substr("000".$nextint,-4);
         $nextid = $codeu.$string_id;
+        $chk_user = DB::select("SELECT * FROM users WHERE U_id in ('$nextid')");
+        if(isset($chk_user)?$chk_user:''){
+            $codeu = 'U';
+            $cont = count(DB::select("SELECT NO_User FROM users"));
+            $nextint = $cont+2;
+            $string_id = substr("000".$nextint,-4);
+            $id = $codeu.$string_id;
+        }else{
+            $id = $nextid;
+        }
+
+        // echo $id;
 
         $path = 'default.png';
         $status = 'user';
 
+        $fname = $req->firstname;
+        $lname = $req->lastname;
+        if(isset($fname)=='' && isset($lname)==''){
+            $name = '';
+        }else{
+            $name = $fname.' '.$lname;
+            // echo $name;
+        }
+
+      
         $user = new Datauser;
         $user->U_id=$nextid;
-        $user->name=$req->name;
+        $user->name=$name;
         $user->gender=$req->gender;
-        $user->province=$req->province;
+        $user->branch=$req->branch;
         $user->email=$req->email;
         $user->username=$req->username;
         $user->password=$req->password;

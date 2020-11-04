@@ -114,6 +114,7 @@ class AutocompleteController extends Controller
                 $chk_genre = DB::select("SELECT * FROM genre_project");
                 $chk_category = DB::select("SELECT * FROM category_project");
                 $chk_type = DB::select("SELECT * FROM type_project");
+                $chk_branch = DB::select("SELECT * FROM branch_project");
     
                 // print_r($easysearch);
                 foreach ($easysearch as $key_s) {
@@ -143,8 +144,9 @@ class AutocompleteController extends Controller
                 $chk_genre = DB::select("SELECT * FROM genre_project");
                 $chk_category = DB::select("SELECT * FROM category_project");
                 $chk_type = DB::select("SELECT * FROM type_project");
+                $chk_branch = DB::select("SELECT * FROM branch_project");
                 $easysearch='';
-                return view('beforesearchBD', compact('easysearch','imgaccount','adminaccount','chk_genre','chk_category','chk_type'));
+                return view('beforesearchBD', compact('easysearch','imgaccount','adminaccount','chk_genre','chk_category','chk_type','chk_branch'));
             }
             // compact('easysearch');
             // $a = $easysearch;
@@ -2537,9 +2539,10 @@ class AutocompleteController extends Controller
         $chk_genre = DB::select("SELECT * FROM genre_project");
         $chk_category = DB::select("SELECT * FROM category_project");
         $chk_type = DB::select("SELECT * FROM type_project");
+        $chk_branch = DB::select("SELECT * FROM branch_project");
 
         //print_r($detailsearch);
-        return view('beforesearchAV', compact('detailsearch','similar','imgaccount','adminaccount','chk_type','chk_genre','chk_category'));
+        return view('beforesearchAV', compact('detailsearch','similar','imgaccount','adminaccount','chk_type','chk_genre','chk_category','chk_branch'));
     }else{
         return back();
     }

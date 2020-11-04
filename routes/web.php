@@ -67,11 +67,18 @@ Route::get('test', function () {
 Route::get('homeMDD', 'Project_MDDController@itemproject');
 // Route::get('homeMDD', 'ProfileMDDController@show');
 
+Route::get('manual_wed','ListdataController@readinto');
+// Route::get('manual_wed', function () {
+//     return view('manual_wed');
+// });
+
 Route::get('addprojectmdd', 'Project_MDDController@viewadd');
 Route::post('insertprojectmdd', 'Project_MDDController@insertproject')->name('insertproject');
 Route::post('editprojectmdd', 'Project_MDDController@editproject');
 Route::get('showdataprojectmdd', 'Project_MDDController@showproject');
 Route::get('projectviewmdd', 'Project_MDDController@project');
+
+Route::get('star', 'ProjectController@star_s');
 
 // Route::get('db', 'ListdataController@addproject');
 
@@ -238,8 +245,8 @@ Route::get('home', 'HomeController@index')->name('home');
 // โชว์ข้อมูล
 Route::get('dataview', 'ListdataController@Datalist');
 Route::get('viewadmin', 'ListdataController@Datalistadmin');
-Route::get('viewproject', 'ProjectController@showdata');
-Route::get('viewprojectmdd', 'ProjectController@showdatamdd');
+Route::get('viewproject', 'AdminController@showdata');
+Route::get('viewprojectmdd', 'AdminController@showdatamdd');
 // ลบข้อมูล
 Route::get('delete/{id}', 'ListdataController@destroy');
 Route::get('delete/{id}', 'DataadminController@destroy');
