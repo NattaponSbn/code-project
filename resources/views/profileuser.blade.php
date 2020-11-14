@@ -103,9 +103,9 @@
                                     @foreach($imgaccount as $img)
                                         <img id="profile" name="showimg" src="{{URL::to('imgaccount/'.$img->pathimg)}}" class="avatar img-circle img-thumbnail" alt="imgupload">
                                     @endforeach
-                                    <span style="color: red;">(รูปภาพ ต้องเป็น .png หรือ jpg เท่านั้น เเละขนาดภาพต้องไม่เกิน 3 MB)</span>
+                                    <!-- <span style="color: red;">(รูปภาพ ต้องเป็น .png หรือ jpg เท่านั้น เเละขนาดภาพต้องไม่เกิน 3 MB)</span>
                                     <h6>อัพโหลดรูปภาพของคุณ...</h6>
-                                    <input type="file" class="text-center center-block file-upload image" accept=".jpg, .jpeg, .png" name="img" OnChange="showPreviewlogo(this)">
+                                    <input type="file" class="text-center center-block file-upload image" accept=".jpg, .jpeg, .png" name="img" OnChange="showPreviewlogo(this)"> -->
                                 </div></hr><br>
                             </div><!--/col-3-->
                         </div>
@@ -116,7 +116,7 @@
                                 <div class="col">
                                     <div class="col-sm-5" style="margin-top:10px;">
                                         <label for="name"><h5>ชื่อ-สุกล</h5></label>
-                                        <input type="text" class="form-control front layoutprovince-size" name="name" id="name" placeholder="ชื่อ-สุกล" 
+                                        <input type="text" class="form-control front layoutprovince-size" name="name" id="name" placeholder="ชื่อ-สุกล" disabled
                                         value="{{ $users->name }}">
                                     </div>
                                 </div>
@@ -124,16 +124,13 @@
                         </div>
                         <div class="form-group ">
                             <div class="col-sm-5">
-                                <label for="gender"><h5>เพศ</h5></label>
-                                <select name="gender" id="gender" class="form-control"placeholder="enter phone">
-                                    <option value="" disabled selected>เลือกเพศ</option>
-                                    <option value="ชาย" <?php if($users->gender =="ชาย"){ echo 'selected' ; } ?>>ชาย</option>
-                                    <option value="หญิง" <?php if($users->gender =="หญิง"){ echo  'selected' ; } ?>>หญิง</option>
-                                    </select>
+                                <label for="name"><h5>สาขาวิชา</h5></label>
+                                <input type="text" class="form-control front layoutprovince-size" name="name" id="name" placeholder="ชื่อ-สุกล" disabled
+                                value="{{ $users->name }}">
                             </div>
                         </div>
             
-                        <div class="form-group ">
+                        <!-- <div class="form-group ">
                             <div class="col-sm-5">
                                 <label for="text"><h5>สาขาวิชา</h5></label>
                                 <select name="branch" id="branch" class="form-control">
@@ -147,26 +144,26 @@
                                     @endforeach
                                 </select>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="form-group">
                             <div class="col-sm-5">
                                 <label for="email"><h5>อีเมล</h5></label>
-                                <input type="email" class="form-control" name="email" id="email" placeholder="you@email.com" title="enter your email."
+                                <input type="email" class="form-control" name="email" id="email" placeholder="you@email.com" title="enter your email." disabled
                                 value="<?php echo $users->email; ?>">
                             </div>
                         </div>
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <div class="col-sm-5">
                                 <label for="username"><h5>ชื่อผู้ใช้</h5></label>
                                 <input type="text" class="form-control" name="username" id="username" placeholder="you@email.com" title="enter your email."
                                 value="<?php echo $users->username; ?>">
                             </div>
-                        </div>
+                        </div> -->
                         @endforeach
                         <div class="form-group" style="margin-left:10%;">
                             <div class="col-xs-12">
                                 <br>
-                                <button class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> อัพเดท</button>
+                                <!-- <button class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> อัพเดท</button> -->
                                 <a href="homeBD"><button  class="btn btn-lg" type="button"  >กลับ</button></a>
                                 <!-- <button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button> -->
                             </div>

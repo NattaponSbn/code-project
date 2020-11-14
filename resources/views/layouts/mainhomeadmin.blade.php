@@ -316,7 +316,7 @@
                                                 <div class="card-header">{{ __('เข้าสู่ระบบ') }}</div>
                                             </h3>
                                             <div class="" style="font-family: 'Athiti', sans-serif;font-size: 16px;">
-                                                <form method="POST" action="loginBD">
+                                                <form method="POST" action="{{URL::to('loginBD')}}">
                                                     @csrf
 
                                                     <div class="form-group row">
@@ -429,9 +429,9 @@
                                             </center>
                                             <div class="content">
                                                 <h5 class="name">
-                                                    <span class="caret"><?php echo $_SESSION['adminname'];?></span>
+                                                    <span class="caret">{{$_SESSION['adminname']}}</span>
                                                 </h5>
-                                                <span class="email"><?php echo $_SESSION['adminemail'];?></span>
+                                                <span class="email">{{$_SESSION['adminemail']}}</span>
                                             </div>
                                         </div>
 
@@ -474,14 +474,14 @@
                                                 <div class="padding-admin">
                                                     <?php if(!isset($_SESSION['statusA'])=='admin') { ?> <?php }
                                                             else if(isset($_SESSION['statusA'])=='admin') { ?>
-                                                    <a href="{{ url('dataview') }}"
+                                                    <a href="{{URL::to('dataview') }}"
                                                         class="view ">ข้อมูลรายละเอียดผู้ใช้</a><br>
-                                                    <a href="{{ url('viewadmin') }}"
+                                                    <a href="{{URL::to('viewadmin') }}"
                                                         class="view">ข้อมูลรายละเอียดผู้ดูเเลระบบ</a><br>
-                                                    <a href="{{ url('viewproject') }}"
+                                                    <a href="{{URL::to('viewproject') }}"
                                                         class="view">ข้อมูลรายละเอียดผลงานปริญญาตรี</a><br>
                                                         
-                                                    <a href="{{ url('viewprojectmdd') }}"
+                                                    <a href="{{URL::to('viewprojectmdd') }}"
                                                         class="view">ข้อมูลรายละเอียดผลงานปริญญาเอก&โท</a><br>
                                                     <!-- <a href="{{ url('dataview') }}" class="view">คำขอสร้างผลงาน</a><br> -->
                                                     <?php } ?>

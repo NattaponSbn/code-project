@@ -11,6 +11,7 @@ use App\User;
 use App\Dataupload;
 use App\Datafileupload;
 use App\Http\Controllers;
+use session;
 
 class ListdataController extends Controller
 {
@@ -296,7 +297,7 @@ class ListdataController extends Controller
         if(isset($advisor_p)?$advisor_p:''){
             $adv = DB::select("SELECT *,COUNT(login_project) AS countview FROM projects,login_log,temp_star,genre_project,type_project WHERE projects.advisor_p in ('$advisor_p') 
             AND projects.type_id=type_project.type_id AND projects.genre_id=genre_project.genre_id AND projects.project_id=login_log.login_project 
-            AND temp_star.id_star=projects.fk_star GROUP BY login_project");
+            AND temp_star.id_star=projects.fk_star GROUP BY login_project ");
             // echo '<pre>';
             // print_r($adv);
             // echo '</pre>';
@@ -435,6 +436,7 @@ class ListdataController extends Controller
     public function listdetil(){
         session_start();
         $chkid = (isset($_SESSION['usersid'])) ? $_SESSION['usersid'] : '';
+        
         $chkidadmin = (isset($_SESSION['adminid'])) ? $_SESSION['adminid'] : '';
         $imgaccount = DB::select("SELECT * FROM users WHERE U_id='$chkid'");
         $adminaccount = DB::select("SELECT * FROM admin_company WHERE admin_id='$chkidadmin'");
@@ -449,10 +451,13 @@ class ListdataController extends Controller
             // echo'<pre>';
             // print_r($list);
             // echo'</pre>';
+            return view('project.listdetail',compact('list','imgaccount', 'adminaccount','chk_type','chk_category','chk_genre','chk_branch'));
         }else{
             $null = $_SESSION['non'] = 'null';
+            return redirect('homeBD');
         }
-        return view('project.listdetail',compact('list','imgaccount', 'adminaccount','chk_type','chk_category','chk_genre','chk_branch'));
+        
+        
     }
 
     public function readinto(){

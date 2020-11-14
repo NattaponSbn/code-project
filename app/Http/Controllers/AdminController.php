@@ -79,7 +79,7 @@ class AdminController extends Controller
                 $imgproject2 = 'defaultimg2.png';
                 $imgproject3 = 'defaultimg3.png';
 
-                DB::INSERT("INSERT INTO img_project (img_p_1, img_p_2, img_p_3, p_id) VALUES ('$imgproject1','$imgproject1','$imgproject1','$user_id')");
+                DB::INSERT("INSERT INTO img_project (img_p_1, img_p_2, img_p_3, p_id) VALUES ('$imgproject1','$imgproject2','$imgproject3','$user_id')");
                 return redirect('viewproject')->with('successappproject', 'สร้างผลงานเรียบร้อย');
             }
         }
@@ -138,25 +138,62 @@ class AdminController extends Controller
         // echo $userid;
     }
     public function delete_project($project_id){
-        $chk = DB::select("SELECT * FROM projects WHERE  projects.project_id='$project_id'");
-        // print_r($chk);
-        compact('chk');
-        foreach($chk as $chks) {
-            $id=$chks->project_id;
-            DB::delete("DELETE FROM img_project WHERE img_project.p_id='$id'");
-        }
+        // $chk = DB::select("SELECT * FROM projects WHERE projects.project_id='$project_id'");
+        // // print_r($chk);
+        // compact('chk');
+        // foreach($chk as $chks) {
+        //     $id=$chks->project_id;
+        //     DB::delete("DELETE FROM img_project WHERE img_project.p_id='$id'");
+        // }
+        DB::delete("DELETE FROM img_project WHERE img_project.p_id='$project_id'");
         DB::delete("DELETE FROM projects WHERE projects.project_id='$project_id'");
+            
+        //ลบไฟล์ทั้งใน database เเละ ในโฟลเดอร์
+        //ไฟล์บทคัดย่อ
+        $chk_A = DB::select("SELECT fileA_path FROM file_ad WHERE id_projectA='$project_id'");
+        foreach($chk_A as $chk_A){
+            @unlink("project/$chk_A->fileA_path");
+        }
+        DB::delete("DELETE FROM file_ad WHERE id_projectA='$project_id'");
+
+        //ไฟล์เล่ม
+        $chk_B = DB::select("SELECT fileB_path FROM file_book WHERE id_projectB='$project_id'");
+        foreach($chk_B as $chk_B){
+            @unlink("project/$chk_B->fileB_path");
+        }
+        // unlink("project/.$chk_B");
+        DB::delete("DELETE FROM file_book WHERE id_projectB='$project_id'");
+        
+        //ไฟล์โปสเตอร์
+        $chk_P = DB::select("SELECT fileP_path FROM file_postter WHERE id_projectP='$project_id'");
+        foreach($chk_P as $chk_P){
+            @unlink("project/$chk_P->fileP_path");
+        }
+        DB::delete("DELETE FROM file_postter WHERE id_projectP='$project_id'");
+
+        //ไฟล์สไล
+        $chk_S = DB::select("SELECT fileS_path FROM file_slide WHERE id_projectS='$project_id'");
+        foreach($chk_S as $chk_S){
+            @unlink("project/$chk_S->fileS_path");
+        }
+        DB::delete("DELETE FROM file_slide WHERE id_projectS='$project_id'");
+
+        DB::delete("DELETE FROM link_code WHERE id_projectL='$project_id'");
         DB::delete("DELETE FROM rating_p WHERE rating_p.project_id='$project_id'");
         DB::delete("DELETE FROM login_log WHERE login_log.login_project='$project_id'");
- 
+        DB::delete("DELETE FROM temp_star WHERE id_pro='$project_id'");
 
-        return redirect('viewproject')->with('delete_project', 'ลบข้อมูลเรียบร้อย');
+        return back()->with('delete_project', 'ลบข้อมูลเรียบร้อย');
     }
     public function delete_projectmdd($project_m_id){
+        $chk_M = DB::select("SELECT file_m FROM projectmdd WHERE projectmdd.project_m_id='$project_m_id'");
+        foreach($chk_M as $chk_M){
+            @unlink("project/$chk_M->file_m");
+        }
         DB::delete("DELETE FROM projectmdd WHERE projectmdd.project_m_id='$project_m_id'");
         DB::delete("DELETE FROM rating_m WHERE rating_p.project_id='$project_m_id'");
         DB::delete("DELETE FROM login_logmdd WHERE login_log.login_project='$project_m_id'");
-        return redirect('viewproject')->with('delete_project', 'ลบข้อมูลเรียบร้อย');
+        return back()->with('delete_project', 'ลบข้อมูลเรียบร้อย');
     }
 
     public function datadetil(){

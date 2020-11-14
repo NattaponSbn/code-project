@@ -350,6 +350,16 @@
     }
     @endif
 
+    @if($message = Session::get('logout'))
+    <script>
+        swal({
+            title: "ออกจากระบบเรียบร้อย",
+            icon: "success",
+            button: "ตกลง",
+        });
+    </script>
+    @endif
+
     @if(isset($_SESSION['notpass'])){
     <script>
         swal({
@@ -549,7 +559,7 @@
                     
                     <ul class="navbar-nav ml-auto ml-md-0">
                         <?php
-                        if (!isset($_SESSION['status']) == 'user' & !isset($_SESSION['statusA']) == 'admin') { ?>
+                        if (!isset($_SESSION['status']) == 'user' & !isset($_SESSION['statusA']) == 'admin' & !isset($_SESSION['statusR']) == 'guest' & !isset($_SESSION['statusP']) == 'personnel') { ?>
                             <div class="front nav-item" style="margin-top: px;font-family: 'Athiti', sans-serif;font-size: 16px;margin-right:-100px;">
                                 <a class="text-item" id="userDropdown" href="login" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><button class="btn-login btn btn-outline-primaryy"><i class="fas fa-user-circle span-i-user"></i>
                                         <div class="text-mage" >เข้าสู่ระบบ</div>
@@ -563,7 +573,7 @@
                                                     <div class="card-header" style="margin-right:-15%;">{{ __('เข้าสู่ระบบ') }}</div>
                                                 </h3>
                                                 <div class="" style="font-family: 'Athiti', sans-serif;font-size: 16px;">
-                                                    <form method="POST" action="loginBD">
+                                                    <form method="POST" action="{{URL::to('loginBD')}}">
                                                         @csrf
 
                                                         <div class="form-group row">
@@ -633,41 +643,44 @@
                             
                             <li class="nav-item dropdown">
                                 <a class="nav-link " id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    @foreach($imgaccount as $img)
-                                    <img class="rounded-circle user-sizes img-profile" src="{{URL::to('imgaccount/'.$img->pathimg)}}" alt="USer Atver">
-
-                                    @endforeach
-                                    @foreach($imgaccount as $user)
-                                    <div class="name-scle dropdown-toggle "><?php echo $user->name; ?></div>
-                                    @endforeach
+                                    @if(isset($_SESSION['pathimg'])?$_SESSION['pathimg']:'')
+                                        
+                                        @else
+                                            <img class="rounded-circle user-sizes img-profile" src="{{URL::to('imgaccount/default.png')}}" alt="USer Atver">
+                                    @endif
+                                   
+                                    <div class="name-scle dropdown-toggle ">{{$_SESSION['nameuser']}}</div>
+                                   
                                 </a>
                                 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                                    <ul class="navbar-nav ml-auto">
+                                <ul class="navbar-nav ml-auto">
                                         <div class="account-dropdown js-dropdown">
                                             <div class="info clearfix">
                                                 <center>
                                                     <div class="image">
-                                                        <a href="profile">
-                                                            @foreach($imgaccount as $img)
-                                                            <img src="{{URL::to('imgaccount/'.$img->pathimg)}}" alt="" class="img-user-size user-avatar rounded-circle" />
-                                                            @endforeach
+                                                        <a href="{{URL::to('profile')}}">
+                                                        @if(isset($_SESSION['pathimg'])?$_SESSION['pathimg']:'')
+                                                            @else
+                                                                <img src="{{URL::to('imgaccount/default.png')}}" alt="" class="img-user-size user-avatar rounded-circle" />
+                                                        @endif
                                                         </a>
 
                                                     </div>
                                                 </center>
                                                 <div class="content">
                                                     <h5 class="name">
-                                                        @foreach($imgaccount as $user)
-                                                        <span class="caret"><?php echo $user->name; ?></span>
-
+                                                        <span class="caret">{{$_SESSION['nameuser']}}</span>
                                                     </h5>
-                                                    <span class="email"><?php echo $user->email; ?></span>
-                                                    @endforeach
+                                                        <span class="email">{{$_SESSION['emailuser']}}</span>
+                                                        <br>
+                                                        <span class="email">{{$_SESSION['ProgramName_TH']}}</span>
+                                                        <br>
+                                                        <span class="Department">คณะเทคโนโลยีสารสนเทศเเละการสื่อสาร</span>
                                                 </div>
                                             </div>
-
-                                            <a href="{{URL::to('profile')}}" class="top dropdown-item"><i class="fas fa-user" style="margin-right: 2%;"></i>โปรไฟล์</a>
+                                            <center>
+                                            
                                             <div class="top dropdown-item" >
                                                 @if(!isset($_SESSION['project']))
                                                 <a href="{{URL::to('addproject')}}" class="view" style="color: black;text-decoration: none;"><i class="fas fa-plus-circle" style="margin-right: 2%;"></i>สร้างผลงาน</a><br>
@@ -678,7 +691,7 @@
                                             <a class="dropdown-item" href="{{URL::to('logout')}}" onclick="event.preventDefault();
                                                                     document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt" ></i>
                                                 {{ __('ออกจากระบบ') }}
-                                            </a>
+                                            </a></center>
                                             <form id="logout-form" action="{{URL::to('logout')}}" method="POST" style="display: none;">
                                                 @csrf
                                             </form>
@@ -688,8 +701,111 @@
                             </li>
                         <?php }
 
-                        // admin
+                        //*** login personnel ***/
+                        else if (isset($_SESSION['statusP']) == 'personnel') { ?>
+                            <li class="nav-item dropdown" style="margin-left: 30%;">
+                                <a class="nav-link " id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    @if(isset($_SESSION['pathimg'])?$_SESSION['pathimg']:'')
+                                        @else
+                                            <img class="rounded-circle user-sizes img-profile" src="{{URL::to('imgaccount/default.png')}}" alt="USer Atver">
+                                    @endif
+                                    <div class="name-scle dropdown-toggle ">{{$_SESSION['nameuser']}}</div>
+                                    
+                                </a>
+                                
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                                    <ul class="navbar-nav ml-auto">
+                                        <div class="account-dropdown js-dropdown">
+                                            <div class="info clearfix">
+                                                <center>
+                                                    <div class="image">
+                                                        <a href="{{URL::to('profile')}}">
+                                                        @if(isset($_SESSION['pathimg'])?$_SESSION['pathimg']:'')
+                                                            <img src="{{URL::to('imgaccount/'.$_SESSION['pathimg'])}}" alt="" class="img-user-size user-avatar rounded-circle" />
+                                                            @else
+                                                                <img src="{{URL::to('imgaccount/default.png')}}" alt="" class="img-user-size user-avatar rounded-circle" />
+                                                        @endif
+                                                        </a>
 
+                                                    </div>
+                                                </center>
+                                                <div class="content">
+                                                    <h5 class="name">
+                                                        <span class="caret">{{$_SESSION['nameuser']}}</span>
+                                                    </h5>
+                                                        <span class="Department">{{$_SESSION['Department']}}</span><br>
+                                                        <span class="Department">คณะเทคโนโลยีสารสนเทศเเละการสื่อสาร</span>
+                                                </div>
+                                            </div>
+
+                                            
+                                            <center>
+                                            <a class="dropdown-item" href="{{URL::to('logout')}}" onclick="event.preventDefault();
+                                                                    document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt" ></i>
+                                                {{ __('ออกจากระบบ') }}
+                                            </a></center>
+                                            <form id="logout-form" action="{{URL::to('logout')}}" method="POST" style="display: none;">
+                                                @csrf
+                                            </form>
+                                        </div>
+                                    </ul>
+                                </div>
+                            </li>
+                        <?php }
+
+                        //*** login register ***/
+                        else if (isset($_SESSION['statusR']) == 'guest') { ?>
+                            <li class="nav-item dropdown" style="margin-left: 30%;">
+                                <a class="nav-link " id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    @if(isset($_SESSION['pathimg'])?$_SESSION['pathimg']:'')
+                                        <img src="{{URL::to('imgaccount/'.$_SESSION['pathimg'])}}" alt="" class="rounded-circle user-sizes img-profile" />
+                                        @else
+                                            <img class="rounded-circle user-sizes img-profile" src="{{URL::to('imgaccount/default.png')}}" alt="USer Atver">
+                                    @endif
+                                    <div class="name-scle dropdown-toggle ">{{$_SESSION['name']}}</div>
+                                    
+                                </a>
+                                
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                                    <ul class="navbar-nav ml-auto">
+                                        <div class="account-dropdown js-dropdown">
+                                            <div class="info clearfix">
+                                                <center>
+                                                    <div class="image">
+                                                        <a href="{{URL::to('profile')}}">
+                                                        @if(isset($_SESSION['pathimg'])?$_SESSION['pathimg']:'')
+                                                            <img src="{{URL::to('imgaccount/'.$_SESSION['pathimg'])}}" alt="" class="img-user-size user-avatar rounded-circle" />
+                                                            @else
+                                                                <img src="{{URL::to('imgaccount/default.png')}}" alt="" class="img-user-size user-avatar rounded-circle" />
+                                                        @endif
+                                                        </a>
+
+                                                    </div>
+                                                </center>
+                                                <div class="content">
+                                                    <h5 class="name">
+                                                        <span class="caret">{{$_SESSION['name']}}</span>
+                                                    </h5>
+                                                        <span class="email">{{$_SESSION['email']}}</span>
+                                                </div>
+                                            </div>
+
+                                          
+                                            <center>
+                                            <a class="dropdown-item" href="{{URL::to('logout')}}" onclick="event.preventDefault();
+                                                                    document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt" ></i>
+                                                {{ __('ออกจากระบบ') }}
+                                            </a></center>
+                                            <form id="logout-form" action="{{URL::to('logout')}}" method="POST" style="display: none;">
+                                                @csrf
+                                            </form>
+                                        </div>
+                                    </ul>
+                                </div>
+                            </li>
+                        <?php }
+
+                        // login admin
                         else  if (isset($_SESSION['statusA']) == 'admin') {
                         ?>
                             <li class="nav-item dropdown">

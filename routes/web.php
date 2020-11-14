@@ -87,6 +87,7 @@ Route::get('star', 'ProjectController@star_s');
     Route::get('Newarrival', 'ListdataController@Newarrivaldata');
     Route::get('Popular', 'ListdataController@popular');
     Route::get('itemtypeBD/{type_id}', 'ProjectController@typeitem');
+    Route::get('itemtypeBD/itemdetaliBD/{project_id}','ProjectController@detailitem');
     Route::get('pageIot', 'ListdataController@dataIot');
 
 // page MDD
@@ -94,15 +95,35 @@ Route::get('star', 'ProjectController@star_s');
     Route::post('download_m', 'Project_MDDController@downloadfile');
 
 // เลือกต่างๆ
+
+
+    //item ประเภทต่างๆ
+    Route::get('itemdetaliBD/typeproject/{type_id}', 'ListdataController@type');
+    Route::get('itemdetaliBD/category/{category_id}', 'ListdataController@category');
+    Route::get('itemdetaliBD/genre/{genre_id}', 'ListdataController@genre');
+
     //ชนิดเอกสาร
     Route::get('typeproject/{type_id}', 'ListdataController@type');
+    Route::get('typeproject/category/{category_id}', 'ListdataController@category');
+    Route::get('typeproject/genre/{genre_id}', 'ListdataController@genre');
+
 
     //หมวดหมู่
     Route::get('category/{category_id}', 'ListdataController@category');
+    Route::get('category/typeproject/{type_id}', 'ListdataController@type');
+    Route::get('category/genre/{genre_id}', 'ListdataController@genre');
+    
     
     //ประเภท
     Route::get('genre/{genre_id}', 'ListdataController@genre');
+    Route::get('genre/category/{category_id}', 'ListdataController@category');
+    Route::get('genre/category/typeproject/{type_id}', 'ListdataController@type');
+    Route::get('genre/typeproject/{type_id}', 'ListdataController@type');
     
+    //type in type
+    Route::get('itemtypeBD/genre/{genre_id}', 'ListdataController@genre');
+    Route::get('itemtypeBD/category/{category_id}', 'ListdataController@category');
+    Route::get('itemtypeBD/typeproject/{type_id}', 'ListdataController@type');
 
 // Route::get('Popular', function () {
 //     return view('pagewedsum.pagePopular');
@@ -218,9 +239,12 @@ Route::get('dbconnect', function () {
     return view('dbconnect');
 });
 
-Route::post('loginBD', function () {
-    return view('session.session-loginBD');
-});
+// Route::post('loginBD', function () {
+//     return view('session.session-loginBD');
+// });
+
+Route::post('loginBD','login_pyController@authentication');
+Route::post('logout','login_pyController@logout');
 
 Route::post('loginMDD', function () {
     return view('session.session-loginMDD');
@@ -230,9 +254,9 @@ Route::post('loginMDD', function () {
 //     return view('insertproject');
 // });
 
-Route::post('logout', function () {
-    return view('session.logout');
-});
+// Route::post('logout', function () {
+//     return view('session.logout');
+// });
 
 // Route::post('loginBD','login_pyController@auth_py');
 

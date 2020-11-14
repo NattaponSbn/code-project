@@ -300,7 +300,7 @@
 
         .danger {
             background-color: #ffffcc;
-            width: 30%;
+            width: 50%;
             height: auto;
             
         }
@@ -339,6 +339,15 @@
     </style>
 </head>
 
+@if(count($errors)>0)
+    <div class="alert alert-danger">
+    <ul> @foreach($errors->all() as $error)
+    <li>{{$error}}</li>
+    @endforeach
+    </ul>
+    </div>
+@endif
+
 <body style="font-family: 'Athiti', sans-serif;">
     <div class="addproject">
         <div class="border2">
@@ -369,13 +378,13 @@
                                         <div class="form-group">
                                             <label for="text" class="text-left fontdetail" style="margin-top:-20px;margin-left:20px;">ชื่อเรื่อง(TH):<span style="color: red;font-size: 20;">*</span></label>
                                             <div class="col-sm-12">
-                                                <textarea type="text" class="form-control" name="project_name" id="project_name"  oninput="this.className = ''" placeholder="ชื่อโครงงานภาษาไทย" rows="4" title="ชื่อผลงานเป็นภาษาไทย"></textarea>   
+                                                <textarea type="text" class="form-control" name="project_name" id="project_name"  oninput="this.className = ''" placeholder="ชื่อโครงงานภาษาไทย" rows="4" title="ชื่อผลงานเป็นภาษาไทย" autocomplete="off"></textarea>   
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="text" class="text-left fontdetail control-label" style="margin-top:-20px;margin-left:20px;">ชื่อเรื่อง(EN):<span style="color: red;font-size: 20;">*</span></label>
                                             <div class="col-sm-12">
-                                                <textarea type="text" class="form-control" name="project_name_en" id="project_name_en" oninput="this.className = ''" placeholder="ชื่อโครงงานภาษาอังกฤษ" rows="4"  disabled title="ชื่อผลงานเป็นภาษาอังกฤษ"></textarea>
+                                                <textarea type="text" class="form-control" name="project_name_en" id="project_name_en" oninput="this.className = ''" placeholder="ชื่อโครงงานภาษาอังกฤษ" rows="4"  disabled title="ชื่อผลงานเป็นภาษาอังกฤษ" autocomplete="off"></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -389,13 +398,13 @@
                                                     <label for="text" class="text-left fontdetail" style="margin-top:-20px;margin-left:50px;">เจ้าของโครงงาน:<span style="color: red;font-size: 20;">*<span class="danger_d">(ไม่ต้องระบุคำนำหน้า)</span></span></label>
                                                     <div class="col-sm-11" style="margin-left:25px;">
                                                         <label for="text" class="text-left fontdetail" style="margin-top:-20px;margin-left:25px;font-size: 15px;">คนที่ 1</label>
-                                                        <input type="text" class="form-control"  name="owner_p1" id="owner_p1" placeholder="กรุณากรอกชื่อเเละนามสกุล" oninput="this.className = ''" disabled title="ชื่อเจ้าของผลงานคนที่ 1">
+                                                        <input type="text" class="form-control"  name="owner_p1" id="owner_p1" placeholder="กรุณากรอกชื่อเเละนามสกุล" oninput="this.className = ''" disabled title="ชื่อเจ้าของผลงานคนที่ 1" autocomplete="off">
                                                     </div>
                                                 </div>
                                                 <div class="form-group ">
                                                     <div class="col-sm-11" style="margin-left:25px;">
                                                         <label for="text" class="text-left fontdetail" style="margin-top:-20px;margin-left:25px;font-size: 15px;">คนที่ 3</label>
-                                                        <input type="text" class="form-control"  name="owner_p3" id="owner_p3" placeholder="กรุณากรอกชื่อเเละนามสกุล" oninput="this.className = ''" disabled title="ชื่อเจ้าของผลงานคนที่ 3">
+                                                        <input type="text" class="form-control"  name="owner_p3" id="owner_p3" placeholder="กรุณากรอกชื่อเเละนามสกุล" oninput="this.className = ''" disabled title="ชื่อเจ้าของผลงานคนที่ 3" autocomplete="off">
                                                     </div>
                                                 </div>
                                                 <div class="form-group ">
@@ -410,7 +419,7 @@
                                                     <div class="col-sm-11" style="margin-left:-25px;">
                                                         <label for="text" class="text-left fontdetail" style="margin-top:10%;margin-left:20px;font-size: 15px;">คนที่ 2</label>
                                                         <div class="input-owner">
-                                                            <input type="text" class="form-control"  name="owner_p2" id="owner_p2" placeholder="กรุณากรอกชื่อเเละนามสกุล" oninput="this.className = ''" disabled title="ชื่อเจ้าของผลงานคนที่ 2">
+                                                            <input type="text" class="form-control"  name="owner_p2" id="owner_p2" placeholder="กรุณากรอกชื่อเเละนามสกุล" oninput="this.className = ''" disabled title="ชื่อเจ้าของผลงานคนที่ 2" autocomplete="off">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -418,7 +427,7 @@
                                                     <div class="col-sm-11" style="margin-left:-25px;">
                                                         <label for="text" class="text-left fontdetail" style="margin-top:-23px;margin-left:20px;font-size: 15px;">คนที่ 4</label>
                                                         <div class="input-owner">
-                                                            <input type="text" class="form-control" name="owner_p4" id="owner_p4" placeholder="กรุณากรอกชื่อเเละนามสกุล" oninput="this.className = ''" disabled title="ชื่อเจ้าของผลงานคนที่ 4">
+                                                            <input type="text" class="form-control" name="owner_p4" id="owner_p4" placeholder="กรุณากรอกชื่อเเละนามสกุล" oninput="this.className = ''" disabled title="ชื่อเจ้าของผลงานคนที่ 4" autocomplete="off">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -477,7 +486,7 @@
                                                             <div class="form-group ">
                                                                 <label for="text" class="text-left fontdetail" style="margin-top:-20px;">หมวดหมู่เอกสาร:<span style="color: red;font-size: 20;">*</span></label>
                                                                 <div class="col-sm-11" style="margin-left:-25px;">
-                                                                    <select name="category_project" class="form-control" id="category_project" oninput="this.className = ''" disabled title="เลือกหมวดหมู่เอกสารของคุณ">
+                                                                    <select name="category_project" class="form-control" id="category_project" oninput="this.className = ''" disabled title="เลือกหมวดหมู่เอกสารของคุณ" >
                                                                         <option value="" disabled selected>เลือกหมวดหมู่เอกสาร</option>
                                                                         @foreach($chk_category as $category)
                                                                         <option value="{{$category->category_id}}">{{$category->category_name}}</option>
@@ -497,13 +506,13 @@
                                                                 <label for="text" class="text-left fontdetail" style="margin-top:-20px;margin-left:50px;">ข้อมูลจำเพาะ<span style="color: red;font-size: 18;">*</span><span class="danger_d">ถ้ามี</span></label>
                                                                 <div class="col-sm-11" style="margin-left:25px;">
                                                                     <label for="text" class="text-left fontdetail " style="margin-top:-20px;margin-left:25px;font-size: 14px;" title="ระบบปฏิบัติการที่ใช้ในการสร้างโปรเเกรม">ระบบปฏิบัติการ<span style="color: #A9A9A9;font-weight: normal;font-size: 14px;"> เช่น Windowns,ios ฯลฯ</span></label>
-                                                                    <input type="text" class="form-control"  name="os_p1" id="os_p1" placeholder="กรุณากรอกชื่อระบบปฏิบัติการ" oninput="this.className = ''" title="กรอกชื่อระบบปฏิบัติการที่ใช้ในการสร้างโปรเเกรม">
+                                                                    <input type="text" class="form-control"  name="os_p1" id="os_p1" placeholder="กรุณากรอกชื่อระบบปฏิบัติการ" oninput="this.className = ''" title="กรอกชื่อระบบปฏิบัติการที่ใช้ในการสร้างโปรเเกรม" autocomplete="off">
                                                                 </div>
                                                             </div>
                                                             <div class="form-group ">
                                                                 <div class="col-sm-11" style="margin-left:25px;">
                                                                     <label for="text" class="text-left fontdetail " style="margin-top:-20px;margin-left:25px;font-size: 14px;" title="โปรเเกรมจำลองเซิฟเวอร์">โปรเเกรมจำลองเซิฟเวอร์<span style="color: #A9A9A9;font-weight: normal;font-size: 14px;"> เช่น xampp v3.2.4 </span></label>
-                                                                    <input type="text" class="form-control"  name="server_p1" id="cop_p1" placeholder="กรุณากรอกชื่อโปรเเกรมจำลองเซิฟเวอร์" oninput="this.className = ''" title="กรอกชื่อโปรเเกรมจำลองเซิฟเวอร์">
+                                                                    <input type="text" class="form-control"  name="server_p1" id="cop_p1" placeholder="กรุณากรอกชื่อโปรเเกรมจำลองเซิฟเวอร์" oninput="this.className = ''" title="กรอกชื่อโปรเเกรมจำลองเซิฟเวอร์" autocomplete="off">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -511,13 +520,13 @@
                                                             <div class="form-group ">
                                                                 <div class="col-sm-11" style="margin-left:-25px;">
                                                                     <label for="text" class="text-left fontdetail " style="margin-top:10%;margin-left:25px;font-size: 14px;" title="โปรเเกรมที่ใช้รันโปรเเเกรม">โปรเเกรม<span style="color: #A9A9A9;font-weight: normal;font-size: 14px;"> เช่น Visual Studio Code v.15.0.1 </span></label>
-                                                                    <input type="text" class="form-control"  name="run_p1" id="run_p1" placeholder="กรุณากรอกชื่อโปรเเกรมที่ใช้รันโปรเเเกรม" oninput="this.className = ''" title="กรอกชื่อโปรเเกรมที่ใช้รันโปรเเเกรม">
+                                                                    <input type="text" class="form-control"  name="run_p1" id="run_p1" placeholder="กรุณากรอกชื่อโปรเเกรมที่ใช้รันโปรเเเกรม" oninput="this.className = ''" title="กรอกชื่อโปรเเกรมที่ใช้รันโปรเเเกรม" autocomplete="off">
                                                                 </div>
                                                             </div>
                                                             <div class="form-group ">
                                                                 <div class="col-sm-12" style="margin-left:-25px;width: 100%;">
                                                                     <label for="text" class="text-left fontdetail " style="margin-top:-20px;margin-left:25px;font-size: 14px;" title="อื่นๆ">อื่นๆ<span style="color: #A9A9A9;font-weight: normal;font-size: 14px;"> </span></label>
-                                                                    <textarea type="text" class="form-control"  name="other_p1" id="other_p1" placeholder="อื่นๆ" oninput="this.className = ''" title="อื่นๆ"></textarea>
+                                                                    <textarea type="text" class="form-control"  name="other_p1" id="other_p1" placeholder="อื่นๆ" oninput="this.className = ''" title="อื่นๆ" autocomplete="off"></textarea>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -532,13 +541,13 @@
                                                                 <label for="text" class="text-left fontdetail" style="margin-top:-20px;margin-left:50px;">ช่องทางการติดต่อ<span style="color: red;font-size: 18;">*</span><span class="danger_d">ถ้ามี</span></label>
                                                                 <div class="col-sm-11" style="margin-left:25px;">
                                                                     <label for="text" class="text-left fontdetail " style="margin-top:-20px;margin-left:25px;font-size: 14px;" title="email ของคุณ">Email</label>
-                                                                    <input type="text" class="form-control"  name="email_p1" id="email_p1" placeholder="กรุณากรอก email ของคุณ" oninput="this.className = ''" title="กรอก email ของคุณ">
+                                                                    <input type="text" class="form-control"  name="email_p1" id="email_p1" placeholder="กรุณากรอก email ของคุณ" oninput="this.className = ''" title="กรอก email ของคุณ" autocomplete="off">
                                                                 </div>
                                                             </div>
                                                             <div class="form-group ">
                                                                 <div class="col-sm-11" style="margin-left:25px;">
                                                                     <label for="text" class="text-left fontdetail " style="margin-top:-20px;margin-left:25px;font-size: 14px;" title="เบอร์โทรศัพท์ของคุณ">เบอร์โทรศัพท์</label>
-                                                                    <input type="text" class="form-control"  name="phone_p1" id="phone_p1" placeholder="กรุณากรอกเบอร์โทรศัพท์ของคุณ" oninput="this.className = ''" title="กรอกเบอร์โทรศัพท์ของคุณ">
+                                                                    <input type="text" class="form-control"  name="phone_p1" id="phone_p1" placeholder="กรุณากรอกเบอร์โทรศัพท์ของคุณ" oninput="this.className = ''" title="กรอกเบอร์โทรศัพท์ของคุณ" autocomplete="off">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -546,7 +555,7 @@
                                                             <div class="form-group ">
                                                                 <div class="col-sm-11" style="margin-left:-25px;">
                                                                     <label for="text" class="text-left fontdetail " style="margin-top:10%;margin-left:25px;font-size: 14px;" title="facebook ของคุณ">Facebook</label>
-                                                                    <input type="text" class="form-control"  name="facebook_p1" id="facebook_p1" placeholder="กรุณากรอก facebook ของคุณ" oninput="this.className = ''" title="กรุณากรอก facebook ของคุณ">
+                                                                    <input type="text" class="form-control"  name="facebook_p1" id="facebook_p1" placeholder="กรุณากรอก facebook ของคุณ" oninput="this.className = ''" title="กรุณากรอก facebook ของคุณ" autocomplete="off">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -580,7 +589,7 @@
                                                 <label for="text" class="text-left fontdetail" style="margin-top:-20px;">คำสำคัญ1:</label>
                                                 @if(!isset($_SESSION['keyid1']))
                                                 <div class="col-sm-8" id="listkey1">
-                                                    <input type="text" class="hol" name="keyword_project_1" id="keyword_project_1" >
+                                                    <input type="text" class="hol" name="keyword_project_1" id="keyword_project_1" autocomplete="off">
                                                 </div>
                                                 @elseif(isset($_SESSION['keyid1']))
                                                 <div class="col-sm-8" id="listkey1">
@@ -599,7 +608,7 @@
                                                 <label for="text" class="text-left fontdetail" style="margin-top:-20px;">คำสำคัญ2:</label>
                                                 @if(!isset($_SESSION['keyid2']))
                                                 <div class="col-sm-8" id="listkey2">
-                                                    <input type="text" class="hol" name="keyword_project_2" id="keyword_project_2" >
+                                                    <input type="text" class="hol" name="keyword_project_2" id="keyword_project_2" autocomplete="off">
                                                 </div>
                                                 @elseif(isset($_SESSION['keyid2']))
                                                 <div class="col-md-5" style="position: relative;margin-top: -2px;margin-left: 125px;">
@@ -614,7 +623,7 @@
                                                 <label for="text" class="text-left fontdetail" style="margin-top:-20px;">คำสำคัญ3:</label>
                                                 @if(!isset($_SESSION['keyid3']))
                                                 <div class="col-sm-8" id="listkey3">
-                                                    <input type="text" class="" name="keyword_project_3" id="keyword_project_3" >
+                                                    <input type="text" class="" name="keyword_project_3" id="keyword_project_3" autocomplete="off">
                                                 </div>
                                                 @elseif(isset($_SESSION['keyid4']))
                                                 <div class="col-md-5" style="position: relative;margin-top: -2px;margin-left: 125px;">
@@ -629,7 +638,7 @@
                                                 <label for="text" class="text-left fontdetail" style="margin-top:-20px;">คำสำคัญ4:</label>
                                                 @if(!isset($_SESSION['keyid3']))
                                                 <div class="col-sm-8" id="listkey4">
-                                                    <input type="text" class="" name="keyword_project_4" id="keyword_project_4" >
+                                                    <input type="text" class="" name="keyword_project_4" id="keyword_project_4" autocomplete="off">
                                                 </div>
                                                 @elseif(isset($_SESSION['keyid4']))
                                                 <div class="col-md-5" style="position: relative;margin-top: -2px;margin-left: 125px;">
@@ -651,7 +660,7 @@
                                     <div class="row">
                                         <div class="col">
                                             <center><label for="text" class="">อัปโหลดไฟล์บทคัดย่อ<span style="color: red;font-size: 20;">*</span></label><br></center>
-                                            <center><p class="danger">เลือกไฟล์ต้องเป็น .pdf เท่านั้น</p></center>
+                                            <center><p class="danger">เลือกไฟล์ต้องเป็น .pdf เท่านั้น ขนาดไฟล์ไม่เกิน 5MB</p></center>
                                             <input type="file" class="file-upload" name="filead" id="file_ad" accept=".pdf" required>      
                                             <div class="invalid-feedback">
                                                 กรุณาเลือกไฟล์
@@ -660,8 +669,8 @@
                                         
                                         
                                             <center><label for="text" class="">อัปโหลดไฟล์เล่มโครงงาน<span style="color: red;font-size: 20;">*</span></label><br></center>
-                                            <center><p class="danger">เลือกไฟล์ต้องเป็น .pdf เท่านั้น</p></center>
-                                            <input type="file" class="file-upload" name="fileproject" id="file_project" accept=".pdf" required>      
+                                            <center><p class="danger">เลือกไฟล์ต้องเป็น .pdf เท่านั้น ขนาดไฟล์ไม่เกิน 5MB</p></center>
+                                            <input type="file" class="file-upload" name="fileproject" id="file_project" accept=".pdf" onchange="ValidateSize(this)" required >      
                                             <div class="invalid-feedback">
                                                 กรุณาเลือกไฟล์
                                             </div>
@@ -669,14 +678,14 @@
                                         
                                         <div class="col">
                                             <center><label for="text" class="">อัปโหลดไฟล์สไลด์นำเสนอ<span style="color: red;font-size: 20;">*</span></label><br></center>
-                                            <center><p class="danger">เลือกไฟล์ต้องเป็น .pdf เท่านั้น</p></center>
+                                            <center><p class="danger">เลือกไฟล์ต้องเป็น .pdf เท่านั้น ขนาดไฟล์ไม่เกิน 5MB</p></center>
                                             <input type="file" class="file-upload"  name="fileslide" id="fileslide" accept=".pdf" required>      
                                             <div class="invalid-feedback">
                                                 กรุณาเลือกไฟล์
                                             </div>
                                        
                                             <center><label for="text" class="">อัปโหลดไฟล์โปสเตอร์<span style="color: red;font-size: 20;">*</span></label><br></center>
-                                            <center><p class="danger">เลือกไฟล์ต้องเป็น .pdf เท่านั้น</p></center>
+                                            <center ><p class="danger">เลือกไฟล์ต้องเป็น .pdf เท่านั้น ขนาดไฟล์ไม่เกิน 5MB</p></center>
                                             <input type="file" class="file-upload" name="filepost" id="filepost" accept=".pdf" required>      
                                             <div class="invalid-feedback">
                                                 กรุณาเลือกไฟล์
@@ -738,6 +747,19 @@
         $(document).ready(function(){
             $('[data-toggle="tooltip"]').tooltip();   
         });
+    </script>
+
+    <script type="text/javascript">
+        function ValidateSize(file) {
+            var FileSize = file.files[0].size / 1024 / 1024// in MB
+            // console.log(FileSize);
+            if (FileSize > 5) {
+                alert('ขนาดของไฟล์เกิน 5 MB');
+            // $(file).val(''); //for clearing with Jquery
+            } else {
+
+            }
+        }
     </script>
 
     <script>
@@ -823,8 +845,9 @@
             var var1= document.getElementById("des_project").value;
             $.ajax({
                     method:"GET",
-                    url:"{{route('adddes_project')}}",    
-                    data:{'data1':var1},
+                    url:"{{route('list_keyword')}}",    
+                    dataType:"json",
+                    data:{data1:var1},
                     success:function(responsedata){
                         // $('#keyword_project_1').html(responsedata);
                     }

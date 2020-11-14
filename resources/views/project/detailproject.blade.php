@@ -1122,7 +1122,7 @@
 
                                         <label for="text" class="">โลโก้</label><span class="text-muted">(.png )</span><br>
                                         <span style="color: red;font-size: 20;">* <span class="danger_d">กรุณาใส่รูปโลโก้ผลงาน</span></span><br>
-                                        <input type="file" name="filelogo" id="fileimgToUpload" accept=".jpg, .jpeg, .png" class="" OnChange="showPreviewlogo(this)"><br>
+                                        <input type="file" name="filelogo" id="fileimgToUpload" accept=".jpg, .jpeg, .png" class="" OnChange="showPreviewlogo(this)" onSubmit="return OnUploadCheck();"><br>
 
                                         <label for="text" class="">รูปโชว์ผลงาน</label><span class="text-muted">(.png .jpeg)</span><br>
                                         <span style="color: red;font-size: 20;">* <span class="danger_d">กรุณาใส่รูปโชว์ผลงาน ตัวอย่างเช่น หน้าจอผู้ใช้ *หมายเหตุ เลือกรูปได้ไม่เกิน 3 รูป</span></span><br>
@@ -1433,6 +1433,22 @@
                 alert("คุณเลือกรูปได้ไม่เกิน 3 รูป");
             }
         });
+    </script>
+
+    <script language="JavaScript">
+        function OnUploadCheck()
+        {
+            var extall="jpg,jpeg,png";
+
+            file = document.form1.filUpload.value;
+            ext = file.split('.').pop().toLowerCase();
+            if(parseInt(extall.indexOf(ext)) < 0)
+            {
+                alert('Extension support : ' + extall);
+                return false;
+            }
+            return true;
+        }
     </script>
 
     <script>

@@ -1,11 +1,19 @@
 @extends('layouts.mainhomeBD')
 @section('content')
+    @if ($message = Session::get('delete_project'))
+        <script>
+        swal({
+            title: "ลบข้อมูลเรียบร้อย",
+            icon: "success",
+            button: "ตกลง",
+        });
+        </script>
+    @endif
 <main class="app-content">
-  
         
         <ul class="breadcrumb-detail" style="margin-left:800px;">
             <li class="breadcrumb-item active"><a href="{{action('ProjectController@itemproject')}}">หน้าหลัก</a></li>
-            <li class="breadcrumb-item"> รายชื่อผลงาน(@foreach($list as $data){{$data->name}}@endforeach)</li>
+            <li class="breadcrumb-item"> รายชื่อผลงาน({{$_SESSION['nameuser']}})</li>
         </ul>
  
     <div class="container">
@@ -50,4 +58,4 @@
     </div>
 </main>
 
-    @endsection
+@endsection

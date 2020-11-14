@@ -9,7 +9,10 @@
     "license": "MIT",
     "require": {
         "php": "^7.2.5",
+        "artisaninweb/laravel-soap": "0.3.0.9",
+        "asistenteweb/nusoap": "dev-master",
         "copyleaks/php-plagiarism-checker": "^1.4",
+        "econea/nusoap": "^0.9.10",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^1.0",
         "guzzlehttp/guzzle": "^6.3",
@@ -17,6 +20,7 @@
         "laravel/framework": "^7.0",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.1",
+        "spatie/laravel-activitylog": "^3.16",
         "symfony/process": "^5.1"
     },
     "require-dev": {
@@ -49,6 +53,7 @@
         "psr-4": {
             "Tests\\": "tests/"
         }
+
     },
     "minimum-stability": "dev",
     "prefer-stable": true,

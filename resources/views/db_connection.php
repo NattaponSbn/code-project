@@ -4,6 +4,11 @@
     $username = "root";
     $password = "";
 
+    // $datadb = "ictthesis";
+    // $servername = "localhost";
+    // $username = "ictthesis";
+    // $password = "ictthesis@2";
+
     // Create connection
     $conn = new mysqli($servername, $username, $password, $datadb);
 

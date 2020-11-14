@@ -7,203 +7,196 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Datauser;
 
 use Session;
 
+use nusoap_client;
 
-class login_pyController extends Controller{
+class login_pyController extends Controller
+{
 
-    public function auth_py(Request $request){
+
+    public function authentication(Request $request)
+    {
+
+        // require('dbconnect.php');
         session_start();
+
+        $user = base64_encode(@$_POST['username']);
+        $pass = base64_encode(@$_POST['password']);
         $user_log = $_POST['username'];
+        // echo $username;
         $pass_log = $_POST['password'];
-        
-     
-        $chackadmin = DB::select("SELECT * FROM admin_company WHERE admin_company.admin_pass='$pass_log'");
-        compact('chackadmin');
+        $chackadmin = DB::select("SELECT * FROM admin_company WHERE admin_user = '$user_log' and admin_pass = '$pass_log'");
+        $countadmin = count(DB::select("SELECT * FROM admin_company WHERE admin_user = '$user_log' and admin_pass = '$pass_log'"));
         foreach($chackadmin as $chackadmin){
-            $idadmin = $chackadmin->admin_id;
-            $useradmin = $chackadmin->admin_user;
-            $pass = $chackadmin->admin_pass;
-            $nameadmin = $chackadmin->admin_name;
-            $emailadmin = $chackadmin->admin_email;
-            $imgadmin = $chackadmin->pathimg;
-            $statusadmin = $chackadmin->status;
-           
+            $admin_id = $chackadmin->admin_id;
+            $admin_user = $chackadmin->admin_user;
+            $admin_pass = $chackadmin->admin_pass;
+            $admin_name = $chackadmin->admin_name;
+            $admin_email = $chackadmin->admin_email;
+            $pathimg = $chackadmin->pathimg;
+            $status = $chackadmin->status;
+
         }
-        // $pass = $chackadmin->admin_user;
-        // print_r($chackadmin);
-        if(isset($chackadmin)?$chackadmin:''){
-            if($useradmin == $user_log){
-                if($pass == $pass_log){
-                    $_SESSION['adminid'] = $idadmin;
-                    $_SESSION['adminauser'] = $useradmin;
-                    $_SESSION['adminname'] = $nameadmin;
-                    $_SESSION['adminemail'] = $emailadmin;
-                    $_SESSION['pathimg'] = $imgadmin;
-                    $_SESSION['statusA'] = $statusadmin;
+        if ($countadmin > 0) {
+                if($admin_pass == $pass_log){
+                    $_SESSION['adminid'] =$admin_id;
+                    $_SESSION['adminauser'] =$admin_user;
+                    $_SESSION['adminname'] =$admin_name;
+                    $_SESSION['adminemail'] =$admin_email;
+                    $_SESSION['pathimg'] =$pathimg;
+                    $_SESSION['statusA'] =$status;
                     $_SESSION['successloginadmin'] = "successloginadmin";
-        
-                    // echo $_SESSION['adminid'];
-                
-                    $iduser = $_SESSION['adminid'];
-                    $chk_idpro = DB::select("SELECT * FROM admin_company WHERE admin_company.admin_pass='$iduser'");
-                
-                    if(isset($dataadmin)?$dataadmin:''){
-                        $_SESSION['admin'] = 'admin';
-                    }
-                    }else{
-                        $_SESSION['notpass'] = "null";
-                        ?>
-                        <script>
-                            alert("ขออภัย ไม่สามารถเข้าสู่ระบบได้")
-                        </script>
-                        <?php
-                        // echo 'ไม่ผ่าน';
-                        return back();
-                        // return redirect('homeadmin');
-                        // header( "refresh: 0; url=/homeBD" );
-                        // exit(0);
-                    }
-                    $_SESSION['message'] = "successlogin";
-                    // // echo 'ผ่าน';
+
                     return redirect('homeadmin');
                 }else{
-                    ?>
-                    <script>
-                        alert("ขออภัย ไม่สามารถเข้าสู่ระบบได้")
-                    </script>
-                    <?php
-                    return redirect('logout');
-                    die();
+                    $_SESSION['notpass'] = "null";
+                    session_destroy();
+                    return back();
                 }
-        }else{
-            // chk user UP 
-            $user = base64_encode($_POST['username']);
-            $pass = base64_encode($_POST['password']);
 
-            // require_once 'soaplib/nusoap.php';
+        }
+
+        // elseif($user_log == 'personnel'){
+        //     $_SESSION['nameuser'] = 123 . "  " . 3456;
+        //     $_SESSION['Department'] = 'สำนักงาน';
+        //     // $_SESSION['pathimg'] = $datauser['pathimg'];
+        //     $_SESSION['statusP'] = 'personnel';
+        //     $_SESSION['message'] = "successlogin";
+        //     return back();           
+        // }
+
+        else {
+
+            /*********************** AuthenService **************************/
             $wsdl = "https://ws.up.ac.th/mobile/AuthenService.asmx?WSDL";
             $method = "Login.";
             $soapaction = "http://tempuri.org/Login";
             $body = '<Login xmlns="http://tempuri.org/">';
-            $body .= '<username>'.$user.'</username>';
-            $body .= '<password>'.$pass.'</password>';
+            $body .= '<username>' . $user . '</username>';
+            $body .= '<password>' . $pass . '</password>';
             $body .= '<ProductName>ictcoopsystem</ProductName>';
             $body .= '</Login>';
 
+
             $client = new \nusoap_client($wsdl, false);
             $client->decode_utf8 = false;
-            $mysoapmsg = $client->serializeEnvelope($body,'',array(),'document','literal');	
-            $response = $client->send($mysoapmsg,$soapaction);
+            $mysoapmsg = $client->serializeEnvelope($body, '', array(), 'document', 'literal');
+            $response = $client->send($mysoapmsg, $soapaction);
             $result = $response['LoginResult'];
-            session(['SID' => $result]);
+            $_SESSION['SID'] = $result;
+            /*********************** AuthenService **************************/
 
-            $res_chk_admin = DB::table('admin')->where([
-                ['admin_upuser', '=', $user]
-                ])->get();
-            /// if official board teacher login
-            if(!is_numeric($username) && $res_chk_admin->count() > 0 && !empty($result) ){
-                //adminsystem,staff,teacher,director login
-
-                        /*********************** GetStaffInfo **************************/
-                        $wsdl = "https://ws.up.ac.th/mobile/StaffService.asmx?op=GetStaffInfo";
-                        $method = "GetStaffInfo";
-                        $soapaction = "http://tempuri.org/GetStaffInfo";
-                        $body = '<GetStaffInfo   xmlns="http://tempuri.org/">';
-                        $body .= '<sessionID>'.$request->session()->get('SID').'</sessionID>';
-                        $body .= '</GetStaffInfo >';
-
-                        $client = new \nusoap_client($wsdl, false);
-                        $client->decode_utf8 = false;
-                        $mysoapmsg=$client->serializeEnvelope($body,'',array(),'document','literal');	
-                        $response=$client->send($mysoapmsg,$soapaction);
-                        $result = $response['GetStaffInfoResult'];
-
-
-                        session(['username' => $username]);
-                        session(['FirstName_TH' => $result['FirstName_TH']]);
-                        session(['LastName_TH' => $result['LastName_TH']]);
-                        session(['Department' => $result['Department']]);
-                        session(['Faculty' => $result['Faculty']]);
-                        session(['Status' => $result['Status']]);
-                        session(['GroupType' => $result['GroupType']]);
-                        session(['logged_in' => "1"]);
-
-
-
-                        // administratorsystem login
-                        if($request->session()->get('Status')==="ปฏิบัติงาน"  ){
-                            if($res_chk_admin[0]->admin_type==1){
-                                return redirect('/administratorsystem');
-                            } 
-                            // staff login
-                            else if( $res_chk_admin[0]->admin_type==2){
-                                return redirect('/official');
-                            } 
-                            // teacher login
-                            else if( $res_chk_admin[0]->admin_type==3){
-                                return redirect('/director');
-                            } 
-                            // director login
-                            else if( $res_chk_admin[0]->admin_type==4){
-                                return redirect('/teacher');
-                            }
-                        }
-            }
-            // studentlogin
-            else{
-                /*********************** GetStudentInfo **************************/
-                    $wsdl = "https://ws.up.ac.th/mobile/StudentService.asmx?WSDL";
-                    $method = "GetStudentInfo";
-                    $soapaction = "http://tempuri.org/GetStudentInfo";
-                    $body = '<GetStudentInfo   xmlns="http://tempuri.org/">';
-                    $body .= '<sessionID>'.$request->session()->get('SID').'</sessionID>';
-                    $body .= '</GetStudentInfo >';
+            // teacher,staff,teacher,director login,login_register
+            if (!is_numeric($user_log)) {
+                $countuser = count(DB::select("SELECT * FROM users WHERE username = '$user_log' and password = '$pass_log'"));
+                $chackuser = DB::select("SELECT * FROM users WHERE username = '$user_log' and password = '$pass_log'");
+                //*** login from register ***//
+                if(isset($chackuser)?$chackuser:''){
+                    foreach($chackuser as $chackuser){
+                        $name = $chackuser->name;
+                        $email = $chackuser->email;
+                        $password = $chackuser->password;
+                        $status = $chackuser->status;
+                        $pathimg = $chackuser->pathimg;
+                    }
+                    if($password == $pass_log){
+                        $_SESSION['name'] =$name;
+                        $_SESSION['email'] =$email;
+                        $_SESSION['pathimg'] =$pathimg;
+                        $_SESSION['statusR'] =$status;
+                        $_SESSION['message'] = "successlogin";
+                        return back();
+                    }
+                    else{
+                        $_SESSION['notpass'] = "null";
+                        session_destroy();
+                        return back();
+                    }
+                }else{
+                    /*********************** GetStaffInfo **************************/
+                    $wsdl = "https://ws.up.ac.th/mobile/StaffService.asmx?op=GetStaffInfo";
+                    $method = "GetStaffInfo";
+                    $soapaction = "http://tempuri.org/GetStaffInfo";
+                    $body = '<GetStaffInfo   xmlns="http://tempuri.org/">';
+                    $body .= '<sessionID>' . $_SESSION['SID'] . '</sessionID>';
+                    $body .= '</GetStaffInfo >';
 
                     $client = new \nusoap_client($wsdl, false);
                     $client->decode_utf8 = false;
-                    $mysoapmsg=$client->serializeEnvelope($body,'',array(),'document','literal');	
-                    $response=$client->send($mysoapmsg,$soapaction);
-                    @$result = $response['GetStudentInfoResult'];
+                    $mysoapmsg = $client->serializeEnvelope($body, '', array(), 'document', 'literal');
+                    $response = $client->send($mysoapmsg, $soapaction);
+                    $result = $response['GetStaffInfoResult'];
+                    /*********************** GetStaffInfo **************************/
 
-
-                    session(['StudentCode' => $result['StudentCode']]);
-                    session(['Title' => $result['Title']]);
-                    session(['FirstName_TH' => $result['FirstName_TH']]);
-                    session(['LastName_TH' => $result['LastName_TH']]);
-                    session(['ProgramName_TH' => $result['ProgramName_TH']]);
-                    session(['FacultyName_TH' => $result['FacultyName_TH']]);
-                    session(['CurrentStatus' => $result['CurrentStatus']]);
-                    session(['status_login' => "2"]);
-                    session(['logged_in' => "1"]);
-                    session(['user' => $result['StudentCode']]);
-                    session(['name_stu' => $result['Title'].$result['FirstName_TH']."  ".$result['LastName_TH']]);
-
-
-
-
-
-                    // var_dump($response);
-
-                    // dd(session());
-                    // die();
-
-
-                    // echo "</pre>";
-
-
-                    // echo $response_curl['status'];
-                    
-                    if( /* $response_curl['status'] == true */ $request->session()->get('logged_in') == 1){
-                        return redirect('/student');
-                    }else{
-                        Session::flush();
-                        return redirect('/');
-                    }
-                    } 
+                    $_SESSION['nameuser'] = $result['FirstName_TH'] . "  " . $result['LastName_TH'];
+                    $_SESSION['Department'] = $result['Department'];
+                    // $_SESSION['pathimg'] = $datauser['pathimg'];
+                    $_SESSION['statusP'] = 'personnel';
+                    $_SESSION['message'] = "successlogin";
+                    return back();      
                 }
+                      
             }
-        
-    
+
+            // studentlogin
+            else {
+                /*********************** GetStudentInfo **************************/
+                $wsdl = "https://ws.up.ac.th/mobile/StudentService.asmx?WSDL";
+                $method = "GetStudentInfo";
+                $soapaction = "http://tempuri.org/GetStudentInfo";
+                $body = '<GetStudentInfo   xmlns="http://tempuri.org/">';
+                $body .= '<sessionID>' . $_SESSION['SID'] . '</sessionID>';
+                $body .= '</GetStudentInfo >';
+
+
+                $client = new \nusoap_client($wsdl, false);
+                $client->decode_utf8 = false;
+                $mysoapmsg = $client->serializeEnvelope($body, '', array(), 'document', 'literal');
+                $response = $client->send($mysoapmsg, $soapaction);
+                $result = $response['GetStudentInfoResult'];
+                /*********************** GetStudentInfo **************************/
+
+                $_SESSION['usersid'] = $result['StudentCode'];
+                // $_SESSION['usernameguest'] = $datauser['username'];
+                $_SESSION['nameuser'] = $result['FirstName_TH'] . "  " . $result['LastName_TH'];
+                $_SESSION['emailuser'] = $result['StudentCode'] . '@up.ac.th';
+                $_SESSION['ProgramName_TH'] = 'สาขา' . $result['ProgramName_TH'];
+                // $_SESSION['pathimg'] = $datauser['pathimg'];
+                $_SESSION['status'] = 'user';
+
+                //**** เพิ่มข้อมูลผู้ใช้ลง ****//
+                $userid = $_SESSION['usersid'];
+                $name = $_SESSION['nameuser'];
+                $email = $_SESSION['emailuser'];
+                $branch = $_SESSION['ProgramName_TH'];
+                $status = $_SESSION['status'];
+                $img = 'default.png';
+                $chkuser = DB::select("SELECT U_id FROM users WHERE U_id = '$userid'");
+                if(isset($chkuser)?$chkuser:''){
+
+                }else{
+                    DB::INSERT("INSERT INTO users (U_id, name, email, branch, pathimg, status) VALUES ('$userid','$name','$email','$branch','$img','$status')");
+                }
+
+                $iduser = $_SESSION['usersid'];
+                $chk_idpro = DB::select("SELECT * FROM projects WHERE projects.user_id='$iduser'");
+                if (isset($chk_idpro) ? $chk_idpro : '') {
+                    $_SESSION['project'] = 'BD';
+                } else {
+                }
+                $_SESSION['message'] = "successlogin";
+                return back();
+
+            }
+        }
+    }
+
+    public function logout(){
+        session_start();
+        session_destroy();
+        return back()->with('logout','success');
+    }
 }

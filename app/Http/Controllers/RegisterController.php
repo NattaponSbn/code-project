@@ -32,7 +32,7 @@ class RegisterController extends Controller
         // echo $id;
 
         $path = 'default.png';
-        $status = 'user';
+        $status = 'guest';
 
         $fname = $req->firstname;
         $lname = $req->lastname;
